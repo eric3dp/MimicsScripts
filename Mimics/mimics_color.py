@@ -1,3 +1,6 @@
+
+import mimics
+
 import trimatic
 
 selected = trimatic.get_selection()
