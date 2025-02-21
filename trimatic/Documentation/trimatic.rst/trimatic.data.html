@@ -1,0 +1,1487 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>data &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="trimatic modules" href="trimatic.html"/>
+        <link rel="next" title="types" href="trimatic.types.html"/>
+        <link rel="prev" title="trimatic modules" href="trimatic.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">trimatic API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="trimatic.html">trimatic modules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.types.html">types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.align.html">align</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.analyze.html">analyze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.cad_link.html">cadlink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.curve.html">curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.design.html">design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.file.html">file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.finish.html">finish</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.fix.html">fix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.group.html">group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.interactive.html">interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.lattice.html">lattice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.logging.html">logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.mark.html">mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.measure.html">measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.preferences.html">preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.remesh.html">remesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.sketch.html">sketch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.surface.html">surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.texturing.html">texturing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.uv.html">uv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.view.html">view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.subscription.html">subscription</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">trimatic API</a> &raquo;</li>
+      
+          <li><a href="trimatic.html">trimatic modules</a> &raquo;</li>
+      
+    <li>data</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/trimatic.rst/trimatic.data.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-trimatic.data">
+<span id="data"></span><h1>data<a class="headerlink" href="#module-trimatic.data" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="trimatic.data.HollowType">
+<em class="property">class </em><code class="descname">HollowType</code><a class="reference internal" href="../_modules/trimatic/data.html#HollowType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.HollowType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Hollow type.</p>
+<dl class="attribute">
+<dt id="trimatic.data.HollowType.Both">
+<code class="descname">Both</code><em class="property"> = 'Both'</em><a class="headerlink" href="#trimatic.data.HollowType.Both" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an extra shell that gives the part a thickness in both directions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.HollowType.Inside">
+<code class="descname">Inside</code><em class="property"> = 'Inside'</em><a class="headerlink" href="#trimatic.data.HollowType.Inside" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an extra shell to give the part a thickness on the outside.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.HollowType.Outside">
+<code class="descname">Outside</code><em class="property"> = 'Outside'</em><a class="headerlink" href="#trimatic.data.HollowType.Outside" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an extra shell to give the part a thickness on the inside.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.HollowType.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Hollow type.'</em><a class="headerlink" href="#trimatic.data.HollowType.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.HollowType.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.data'</em><a class="headerlink" href="#trimatic.data.HollowType.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.data.HollowType.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.data.HollowType.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.data.HollowType._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.data.HollowType._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.HollowType._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'Both': &lt;HollowType.Both: 'Both'&gt;, 'Inside': &lt;HollowType.Inside: 'Inside'&gt;, 'Outside': &lt;HollowType.Outside: 'Outside'&gt;}</em><a class="headerlink" href="#trimatic.data.HollowType._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.HollowType._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['Inside', 'Outside', 'Both']</em><a class="headerlink" href="#trimatic.data.HollowType._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.HollowType._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.data.HollowType._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.HollowType._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'Both': &lt;HollowType.Both: 'Both'&gt;, 'Inside': &lt;HollowType.Inside: 'Inside'&gt;, 'Outside': &lt;HollowType.Outside: 'Outside'&gt;}</em><a class="headerlink" href="#trimatic.data.HollowType._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="trimatic.data.TextAlignment">
+<em class="property">class </em><code class="descname">TextAlignment</code><a class="reference internal" href="../_modules/trimatic/data.html#TextAlignment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.TextAlignment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Text alignment methods.</p>
+<dl class="attribute">
+<dt id="trimatic.data.TextAlignment.Center">
+<code class="descname">Center</code><em class="property"> = 'Center'</em><a class="headerlink" href="#trimatic.data.TextAlignment.Center" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.TextAlignment.Left">
+<code class="descname">Left</code><em class="property"> = 'Left'</em><a class="headerlink" href="#trimatic.data.TextAlignment.Left" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.TextAlignment.Right">
+<code class="descname">Right</code><em class="property"> = 'Right'</em><a class="headerlink" href="#trimatic.data.TextAlignment.Right" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.TextAlignment.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Text alignment methods.'</em><a class="headerlink" href="#trimatic.data.TextAlignment.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.TextAlignment.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.data'</em><a class="headerlink" href="#trimatic.data.TextAlignment.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.data.TextAlignment.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.data.TextAlignment.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.data.TextAlignment._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.data.TextAlignment._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.TextAlignment._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'Center': &lt;TextAlignment.Center: 'Center'&gt;, 'Left': &lt;TextAlignment.Left: 'Left'&gt;, 'Right': &lt;TextAlignment.Right: 'Right'&gt;}</em><a class="headerlink" href="#trimatic.data.TextAlignment._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.TextAlignment._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['Left', 'Right', 'Center']</em><a class="headerlink" href="#trimatic.data.TextAlignment._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.TextAlignment._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.data.TextAlignment._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.TextAlignment._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'Center': &lt;TextAlignment.Center: 'Center'&gt;, 'Left': &lt;TextAlignment.Left: 'Left'&gt;, 'Right': &lt;TextAlignment.Right: 'Right'&gt;}</em><a class="headerlink" href="#trimatic.data.TextAlignment._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="trimatic.data.TriangulationAccuracy">
+<em class="property">class </em><code class="descname">TriangulationAccuracy</code><a class="reference internal" href="../_modules/trimatic/data.html#TriangulationAccuracy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.TriangulationAccuracy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Accuracy of triangulation.</p>
+<dl class="attribute">
+<dt id="trimatic.data.TriangulationAccuracy.Coarse">
+<code class="descname">Coarse</code><em class="property"> = 'Coarse'</em><a class="headerlink" href="#trimatic.data.TriangulationAccuracy.Coarse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coarse level.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.TriangulationAccuracy.Fine">
+<code class="descname">Fine</code><em class="property"> = 'Fine'</em><a class="headerlink" href="#trimatic.data.TriangulationAccuracy.Fine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fine level.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.TriangulationAccuracy.Medium">
+<code class="descname">Medium</code><em class="property"> = 'Medium'</em><a class="headerlink" href="#trimatic.data.TriangulationAccuracy.Medium" title="Permalink to this definition">¶</a></dt>
+<dd><p>Medium level.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.TriangulationAccuracy.Very_Coarse">
+<code class="descname">Very_Coarse</code><em class="property"> = 'Very coarse'</em><a class="headerlink" href="#trimatic.data.TriangulationAccuracy.Very_Coarse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Very coarse level.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.TriangulationAccuracy.Very_Fine">
+<code class="descname">Very_Fine</code><em class="property"> = 'Very fine'</em><a class="headerlink" href="#trimatic.data.TriangulationAccuracy.Very_Fine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Very fine level.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.TriangulationAccuracy.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Accuracy of triangulation.'</em><a class="headerlink" href="#trimatic.data.TriangulationAccuracy.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.TriangulationAccuracy.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.data'</em><a class="headerlink" href="#trimatic.data.TriangulationAccuracy.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.data.TriangulationAccuracy.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.data.TriangulationAccuracy.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.data.TriangulationAccuracy._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.data.TriangulationAccuracy._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.TriangulationAccuracy._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'Coarse': &lt;TriangulationAccuracy.Coarse: 'Coarse'&gt;, 'Fine': &lt;TriangulationAccuracy.Fine: 'Fine'&gt;, 'Medium': &lt;TriangulationAccuracy.Medium: 'Medium'&gt;, 'Very_Coarse': &lt;TriangulationAccuracy.Very_Coarse: 'Very coarse'&gt;, 'Very_Fine': &lt;TriangulationAccuracy.Very_Fine: 'Very fine'&gt;}</em><a class="headerlink" href="#trimatic.data.TriangulationAccuracy._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.TriangulationAccuracy._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['Very_Coarse', 'Coarse', 'Medium', 'Fine', 'Very_Fine']</em><a class="headerlink" href="#trimatic.data.TriangulationAccuracy._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.TriangulationAccuracy._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.data.TriangulationAccuracy._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.data.TriangulationAccuracy._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'Coarse': &lt;TriangulationAccuracy.Coarse: 'Coarse'&gt;, 'Fine': &lt;TriangulationAccuracy.Fine: 'Fine'&gt;, 'Medium': &lt;TriangulationAccuracy.Medium: 'Medium'&gt;, 'Very coarse': &lt;TriangulationAccuracy.Very_Coarse: 'Very coarse'&gt;, 'Very fine': &lt;TriangulationAccuracy.Very_Fine: 'Very fine'&gt;}</em><a class="headerlink" href="#trimatic.data.TriangulationAccuracy._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.copy_to_part">
+<code class="descname">copy_to_part</code><span class="sig-paren">(</span><em>entities</em>, <em>destination=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#copy_to_part"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.copy_to_part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copies surfaces, curves, and surface or curve sets from one part to another.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>[ </em><em>trimatic.Surface | trimatic.SurfaceSet | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles</em><em> ]</em>) – Either single object or heterogeneous list of objects.</li>
+<li><strong>destination</strong> (<em>trimatic.Part</em>) – The part where the data has to be copied to. When None is specified, a new one will be created.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">copied entities or newly created part when a new part was created.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">( trimatic.Surface | trimatic.SurfaceSet | trimatic.Curve | trimatic.CurveSet ) | trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">surface</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Right&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">copy_to_part</span><span class="p">(</span><span class="n">surface</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><em>entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes the specified objects.</p>
+<p>Deleting an object multiple times or attempting to access a deleted object will raise an AttributeError.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entities</strong> (<em>trimatic.Object |</em><em> [</em><em>trimatic.Object</em><em>] </em><em>|</em><em> (</em><em>trimatic.Object</em><em>)</em>) – Either single object or heterogeneous list of parts, surfaces, surface sets, etc.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if delete is successful.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">RuntimeError, AttributeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">box_duplicate</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.duplicate">
+<code class="descname">duplicate</code><span class="sig-paren">(</span><em>entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#duplicate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.duplicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Duplicates the specified entities.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entities</strong> (<em>trimatic.Object |</em><em> [</em><em>trimatic.Object</em><em>] </em><em>|</em><em> (</em><em>trimatic.Object</em><em>)</em>) – Either single object or heterogeneous list of objects.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Duplicated entity or tuple of duplicated entities.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Object | (trimatic.Object)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">RuntimeError, ValueError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">box_duplicate</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_angle_measurement">
+<code class="descname">find_angle_measurement</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_angle_measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_angle_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds an AngleMeasurement object with a specific name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name to find.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The first AngleMeasurement object found. None if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.AngleMeasurement</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_angle_measurements">
+<code class="descname">find_angle_measurements</code><span class="sig-paren">(</span><em>regex</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_angle_measurements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_angle_measurements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds AngleMeasurement objects with names that match a specified regular expression. For more information on regular expressions we refer to section <a class="reference internal" href="../introduction/overview_api.html#finding-objects"><span class="std std-ref">Finding an object in 3-matic</span></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regex</strong> (<em>string</em>) – Regular expression to match.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple of AngleMeasurement objects that match the specified expression. Empty tuple if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.AngleMeasurement)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_annotation">
+<code class="descname">find_annotation</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_annotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_annotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds an Annotation object with a specific name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name to find.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The first Annotation object found. None if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Annotation</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_annotations">
+<code class="descname">find_annotations</code><span class="sig-paren">(</span><em>regex</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_annotations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_annotations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds Annotation objects with names that match a specified regular expression. For more information on regular expressions we refer to section <a class="reference internal" href="../introduction/overview_api.html#finding-objects"><span class="std std-ref">Finding an object in 3-matic</span></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regex</strong> (<em>string</em>) – Regular expression to match.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Annotation objects that match the specified expression. Empty tuple if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Annotation)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_arc">
+<code class="descname">find_arc</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_arc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_arc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds an Arc object with a specific name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name to find.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The first Arc object found. None if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Arc</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_arcs">
+<code class="descname">find_arcs</code><span class="sig-paren">(</span><em>regex</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_arcs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_arcs" title="Permalink to this definition">¶</a></dt>
+<dd><p>finds Arc objects with names that match a specified regular expression. For more information on regular expressions we refer to section <a class="reference internal" href="../introduction/overview_api.html#finding-objects"><span class="std std-ref">Finding an object in 3-matic</span></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regex</strong> (<em>string</em>) – Regular expression to match.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Arc objects that match the specified expression. Empty tuple if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Arc)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_cone">
+<code class="descname">find_cone</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_cone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_cone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds a Cone object with a specific name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name to find.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The first Cone object found. None if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Cone</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_cones">
+<code class="descname">find_cones</code><span class="sig-paren">(</span><em>regex</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_cones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_cones" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds Cone objects with names that match a specified regular expression. For more information on regular expressions we refer to section <a class="reference internal" href="../introduction/overview_api.html#finding-objects"><span class="std std-ref">Finding an object in 3-matic</span></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regex</strong> (<em>string</em>) – Regular expression to match.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Cone objects that match the specified expression. Empty tuple if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Cone)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_cylinder">
+<code class="descname">find_cylinder</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_cylinder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_cylinder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds a Cylinder object with a specific name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name to find.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The first Cylinder object found. None if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Cylinder</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_cylinders">
+<code class="descname">find_cylinders</code><span class="sig-paren">(</span><em>regex</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_cylinders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_cylinders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds Cylinder objects with names that match a specified regular expression. For more information on regular expressions we refer to section <a class="reference internal" href="../introduction/overview_api.html#finding-objects"><span class="std std-ref">Finding an object in 3-matic</span></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regex</strong> (<em>string</em>) – Regular expression to match.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Cylinder objects that match the specified expression. Empty tuple if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Cylinder)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_diameter_measurement">
+<code class="descname">find_diameter_measurement</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_diameter_measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_diameter_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds a DiameterMeasurement object with a specific name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name to find.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The first DiameterMeasurement object found. None if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.DiameterMeasurement</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_diameter_measurements">
+<code class="descname">find_diameter_measurements</code><span class="sig-paren">(</span><em>regex</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_diameter_measurements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_diameter_measurements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find DiameterMeasurement objects with names that match a specified regular expression. For more information on regular expressions we refer to section <a class="reference internal" href="../introduction/overview_api.html#finding-objects"><span class="std std-ref">Finding an object in 3-matic</span></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regex</strong> (<em>string</em>) – Regular expression to match.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple of DiameterMeasurement objects that match the specified expression. Empty tuple if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.DiameterMeasurement)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_distance_measurement">
+<code class="descname">find_distance_measurement</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_distance_measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_distance_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds a DistanceMeasurement object with a specific name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name to find.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The first DistanceMeasure object found. None if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.DistanceMeasurement</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_distance_measurements">
+<code class="descname">find_distance_measurements</code><span class="sig-paren">(</span><em>regex</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_distance_measurements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_distance_measurements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find DistanceMeasurement objects with names that match a specified regular expression. For more information on regular expressions we refer to section <a class="reference internal" href="../introduction/overview_api.html#finding-objects"><span class="std std-ref">Finding an object in 3-matic</span></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regex</strong> (<em>string</em>) – Regular expression to match.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple of DistanceMeasurement objects that match the specified expression. Empty tuple if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.DistanceMeasurement)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_group">
+<code class="descname">find_group</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds a group with a specific name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name to find.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The first group object found. None if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Group</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_groups">
+<code class="descname">find_groups</code><span class="sig-paren">(</span><em>regex</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_groups"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_groups" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds groups with names that match a specified regular expression.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regex</strong> (<em>string</em>) – Regular expression to match.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple of group objects that match the specified expression. Empty tuple if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Group)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_line">
+<code class="descname">find_line</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_line"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds a Line object with a specific name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name to find.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The first Line object found. None if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Line</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_lines">
+<code class="descname">find_lines</code><span class="sig-paren">(</span><em>regex</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_lines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_lines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find Line objects with names that match a specified regular expression. For more information on regular expressions we refer to section <a class="reference internal" href="../introduction/overview_api.html#finding-objects"><span class="std std-ref">Finding an object in 3-matic</span></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regex</strong> (<em>string</em>) – Regular expression to match.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Line objects that match the specified expression. Empty tuple if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Line)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_object">
+<code class="descname">find_object</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds an object with a specific name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name to find.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The first Object found. None if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_objects">
+<code class="descname">find_objects</code><span class="sig-paren">(</span><em>regex</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_objects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds objects with names that match a specified regular expression. For more information on regular expressions we refer to section <a class="reference internal" href="../introduction/overview_api.html#finding-objects"><span class="std std-ref">Finding an object in 3-matic</span></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regex</strong> (<em>string</em>) – Regular expression to match.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Objects that match the specified expression. Empty tuple if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Object)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_objects_with_metadata">
+<code class="descname">find_objects_with_metadata</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_objects_with_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_objects_with_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds objects whose metadata matches specified criteria. Objects without metadata will be ignored.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>string</em>) – Name to find. When None is specified, name can be anything.</li>
+<li><strong>value</strong> (<em>string</em>) – Value to find. When None is specified, value can be anything.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The object(s) matching the search criteria.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.Object)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">x_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">box_metadata</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">()</span>
+<span class="n">box_metadata</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Test&#39;</span><span class="p">)</span>
+<span class="n">box_metadata</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;19&#39;</span><span class="p">)</span>
+<span class="n">found_objects</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_objects_with_metadata</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Test&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">found_objects</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_part">
+<code class="descname">find_part</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_part"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds a Part object with a specific name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name to find.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The first Part object found. None if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Part</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_part_byguid">
+<code class="descname">find_part_byguid</code><span class="sig-paren">(</span><em>guid</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_part_byguid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_part_byguid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds a Part object with a specific Globally Unique Identifier (GUID).</p>
+<p>This is the recommended method to search for Parts reliably. Names are not guaranteed to be unique, but every Part
+with the same name will have a different GUID. This is especially useful when exchanging data between 3-matic and
+Mimics.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>guid</strong> (<em>string</em>) – GUID to find.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The Part with a matching GUID. None if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Part</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_parts">
+<code class="descname">find_parts</code><span class="sig-paren">(</span><em>regex</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_parts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_parts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds Part objects with names that match a specified regular expression. For more information on regular expressions we refer to section <a class="reference internal" href="../introduction/overview_api.html#finding-objects"><span class="std std-ref">Finding an object in 3-matic</span></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regex</strong> (<em>string</em>) – Regular expression to match.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Part objects that match the specified expression. Empty tuple if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Part)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_plane">
+<code class="descname">find_plane</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_plane"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_plane" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds a Plane object with a specific name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name to find.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The first Plane object found. None if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Plane</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_planes">
+<code class="descname">find_planes</code><span class="sig-paren">(</span><em>regex</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_planes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_planes" title="Permalink to this definition">¶</a></dt>
+<dd><p>finds planes whose name match a regular expression. For more information on regular expressions we refer to section <a class="reference internal" href="../introduction/overview_api.html#finding-objects"><span class="std std-ref">Finding an object in 3-matic</span></a>.
+Find Plane objects with names that match a specified regular expression.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regex</strong> (<em>string</em>) – Regular expression to match.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Plane objects that match the specified expression. Empty tuple if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Plane)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_point">
+<code class="descname">find_point</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds a Point object with a specific name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name to find.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The first Point object found. None if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Point</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_points">
+<code class="descname">find_points</code><span class="sig-paren">(</span><em>regex</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_points"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find Point objects with names that match a specified regular expression. For more information on regular expressions we refer to section <a class="reference internal" href="../introduction/overview_api.html#finding-objects"><span class="std std-ref">Finding an object in 3-matic</span></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regex</strong> (<em>string</em>) – Regular expression to match.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Point objects that match the specified expression. Empty tuple if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Point)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_sketch">
+<code class="descname">find_sketch</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_sketch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_sketch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds a Sketch with a specific name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name to find.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The first Sketch found. None if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Sketch</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_sketches">
+<code class="descname">find_sketches</code><span class="sig-paren">(</span><em>regex</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_sketches"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_sketches" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find Sketches with names that match a specified regular expression. For more information on regular expressions we refer to section <a class="reference internal" href="../introduction/overview_api.html#finding-objects"><span class="std std-ref">Finding an object in 3-matic</span></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regex</strong> (<em>string</em>) – Regular expression to match.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Sketches that match the specified expression. Empty tuple if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Sketch)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_sphere">
+<code class="descname">find_sphere</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_sphere"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_sphere" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds a Sphere object with a specific name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name to find.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The first Sphere object found. None if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Sphere</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.find_spheres">
+<code class="descname">find_spheres</code><span class="sig-paren">(</span><em>regex</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#find_spheres"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.find_spheres" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find Sphere objects with names that match a specified regular expression. For more information on regular expressions we refer to section <a class="reference internal" href="../introduction/overview_api.html#finding-objects"><span class="std std-ref">Finding an object in 3-matic</span></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regex</strong> (<em>string</em>) – Regular expression to match.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Sphere objects that match the specified expression. Empty tuple if no match is found.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Sphere)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.get_angle_measurements">
+<code class="descname">get_angle_measurements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#get_angle_measurements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.get_angle_measurements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all AngleMeasurement objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Tuple of AngleMeasurement objects. Empty tuple if none are found.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.AngleMeasurement)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.get_annotations">
+<code class="descname">get_annotations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#get_annotations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.get_annotations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all Annotation objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Annotation objects. Empty tuple if none are found.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Annotation)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.get_arcs">
+<code class="descname">get_arcs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#get_arcs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.get_arcs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all Arc objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Arc objects. Empty tuple if none are found.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Arc)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.get_cones">
+<code class="descname">get_cones</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#get_cones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.get_cones" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all Cone objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Cone objects. Empty tuple if none are found.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Cone)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.get_cylinders">
+<code class="descname">get_cylinders</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#get_cylinders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.get_cylinders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all Cylinder objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Cylinder objects. Empty tuple if none are found.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Cylinder)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.get_diameter_measurements">
+<code class="descname">get_diameter_measurements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#get_diameter_measurements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.get_diameter_measurements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all DiameterMeasurement objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Tuple of DiameterMeasurement objects. Empty tuple if none are found.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.DiameterMeasurement)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.get_distance_measurements">
+<code class="descname">get_distance_measurements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#get_distance_measurements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.get_distance_measurements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all DistanceMeasurement objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Tuple of DistanceMeasurement objects. Empty tuple if none are found.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.DistanceMeasurement)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.get_groups">
+<code class="descname">get_groups</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#get_groups"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.get_groups" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all groups present.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Group objects. Empty tuple if none are found.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Group)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.get_lines">
+<code class="descname">get_lines</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#get_lines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.get_lines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all Line objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Line objects. Empty tuple if none are found.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Line)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.get_metadata">
+<code class="descname">get_metadata</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#get_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.get_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets project level metadata.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The project level metadata object.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Metadata</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.get_objects">
+<code class="descname">get_objects</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#get_objects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.get_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all Objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Tuple of all Objects. Empty tuple if none are found.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Object)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.get_parts">
+<code class="descname">get_parts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#get_parts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.get_parts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all Part objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Part objects. Empty tuple if none are found.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Part)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.get_planes">
+<code class="descname">get_planes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#get_planes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.get_planes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all Plane objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Plane objects. Empty tuple if none are found.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Plane)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.get_points">
+<code class="descname">get_points</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#get_points"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.get_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all Point objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Point objects. Empty tuple if none are found.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Point)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.get_sketches">
+<code class="descname">get_sketches</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#get_sketches"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.get_sketches" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all Sketches.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Sketches. Empty tuple if none are found.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Sketch)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.get_spheres">
+<code class="descname">get_spheres</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#get_spheres"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.get_spheres" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all Sphere objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Tuple of Sphere objects. Empty tuple if none are found.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Sphere)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.merge">
+<code class="descname">merge</code><span class="sig-paren">(</span><em>entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#merge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.merge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merges the specified entities. You can only merge entities of the same type: surfaces with surfaces, parts with parts or graphs with graphs. You can pass either a single entity or multiple entities to merge. For 
+example, you can (i) merge a single SurfaceSet which merges all surfaces in the SurfaceSet, or (ii) merge multiple SurfaceSets, which merges the SurfaceSets into one.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.Graph | trimatic.GraphSet | trimatic.UVRegion |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.Graph | trimatic.GraphSet | trimatic.UVRegion</em><em>]</em>) – Either single object or heterogeneous list of objects.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">merged entities.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.Graph | trimatic.GraphSet | trimatic.UVRegion</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">box2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">merge</span><span class="p">([</span><span class="n">box1</span><span class="p">,</span> <span class="n">box2</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.data.move_to_part">
+<code class="descname">move_to_part</code><span class="sig-paren">(</span><em>entities</em>, <em>destination=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/data.html#move_to_part"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.data.move_to_part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Moves surfaces, curves, and surface or curve sets from one part to another.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>[ </em><em>trimatic.Surface | trimatic.SurfaceSet | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles</em><em>]</em>) – Either single object or heterogeneous list of objects.</li>
+<li><strong>destination</strong> (<em>trimatic.Part</em>) – The part where the data has to be moved to. When None is specified, a new one will be created.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">moved entities or newly created part when a new part was created.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">( trimatic.Surface | trimatic.SurfaceSet | trimatic.Curve | trimatic.CurveSet ) | trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">cylinder1</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">(</span><span class="n">point_1</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">point_2</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span><span class="n">radius</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Box-001&quot;</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Cylinder-001&quot;</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Mantle&quot;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">move_to_part</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trimatic.types.html" class="btn btn-neutral float-right" title="types" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="trimatic.html" class="btn btn-neutral" title="trimatic modules" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

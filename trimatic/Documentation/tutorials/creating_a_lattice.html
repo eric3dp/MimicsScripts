@@ -1,0 +1,358 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>9. Creating a lattice structure &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="Tutorials" href="index.html"/>
+        <link rel="next" title="10. Create a statistical shape model" href="creating_a_ssm_model.html"/>
+        <link rel="prev" title="8. Benchtop model" href="benchtop.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="working_with_marking.html">1. Working with Marking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="measurements.html">2. Measurements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preparation_for_fea.html">3. Preparation for FEA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="non_manifold_assembly.html">4. Non manifold assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="align_and_remesh.html">5. Align and remesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hand_plate.html">6. Fracture plate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="working_with_metadata.html">7. Working with Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchtop.html">8. Benchtop model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">9. Creating a lattice structure</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+      
+    <li>9. Creating a lattice structure</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/creating_a_lattice.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="creating-a-lattice-structure">
+<h1>9. Creating a lattice structure<a class="headerlink" href="#creating-a-lattice-structure" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, some basic features of the lattice module are presented.
+The tutorial starts from the demo file pedal.mxp located in the 3-matic installation folder <code class="file docutils literal"><span class="pre">\..\DemoFiles</span></code>.
+The unit cell to create the lattice is located in the 3-matic installation folder <code class="file docutils literal"><span class="pre">\...\UnitCellLibrary</span></code>.
+Note that only the scriptable functionality is shown, for the full explanation of the lattice module, we refer to the general help documentation.</p>
+<p><strong>Step 1: Open the files</strong></p>
+<p><em>Manual</em>:</p>
+<blockquote>
+<div><p>To open the project, launch 3-matic and select <strong>File -&gt; Open project</strong>.
+Browse to the demo file <code class="file docutils literal"><span class="pre">\...\DemoFiles\pedal.mxp</span></code> and open it.
+Open the dodecahedron unit cell via <strong>File -&gt; import part</strong> <code class="file docutils literal"><span class="pre">\...\UnitCellLibrary\Dodecahedron.mxp</span></code>.
+The outer volume is the solid volume which will be printed as solid material.
+The inner volume is the volume to which the lattice needs to be applied.
+The dodecahedron is the unit cell which will be used to generate the porous structure in the inner volume.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/open_files.png"><img alt="../_images/open_files.png" class="align-center" src="../_images/open_files.png" style="width: 360px; height: 200px;" /></a>
+</div></blockquote>
+</div></blockquote>
+<p><em>Scripting</em>:</p>
+<blockquote>
+<div>The completed script can be found in the 3-matic installation folder in <code class="file docutils literal"><span class="pre">DemoFiles\scripts\Creating</span> <span class="pre">a</span> <span class="pre">lattice</span> <span class="pre">structure.py</span></code>.
+The script can be run via <strong>Script -&gt; Run Script</strong>.
+Alternatively, the script can be opened in the editor: <strong>Script-&gt;Toggle Editor</strong>.
+We will describe the different steps in the script in more detail. The next section shows the code-lines which opens the project files and assigns the entities to a variable:</div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">new_project</span><span class="p">()</span>
+<span class="c1">#Import pedal and unit graph from library</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\pedal.mxp&quot;</span><span class="p">)</span>
+<span class="n">unit_cell</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">import_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\UnitCellLibrary\Dodecahedron.mxp&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1">#Find the entities and assign them to variables</span>
+<span class="n">outer_volume</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Outer_Volume&quot;</span><span class="p">)</span>
+<span class="n">inner_volume</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Inner_Volume&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Step 2: Create unit cell based lattice</strong></p>
+<p><em>Manual</em>:</p>
+<p>First, create a unit cell based lattice: <strong>Lattice -&gt; Unit Cell Based Lattice</strong>.
+In order to select the loaded unit cell, the dodecahedron graph needs to be selected.
+The unit cell is scaled by assigning a unit cell size of (3.464, 3.464, 3.464).
+The next parameters are used:</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/Unit_cell_basedMan.png"><img alt="../_images/Unit_cell_basedMan.png" class="align-center" src="../_images/Unit_cell_basedMan.png" style="width: 720px; height: 400px;" /></a>
+</div></blockquote>
+<p>A new part called “Inner_Volume with graphs” is created.
+Hide the inner volume: right-click <strong>Inner_Volume -&gt; Hide</strong>.
+Do the same for the dodecahedron unit cell: right-click <strong>Dodecahedron -&gt; Hide</strong>.
+Close-up of the result:</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/Unit_cell_basedEx.png"><img alt="../_images/Unit_cell_basedEx.png" class="align-center" src="../_images/Unit_cell_basedEx.png" style="width: 360px; height: 200px;" /></a>
+</div></blockquote>
+<p><em>Scripting</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1">#Scale the unit cell</span>
+<span class="n">dim</span> <span class="o">=</span> <span class="n">unit_cell</span><span class="o">.</span><span class="n">dimension_delta</span>
+<span class="n">scale_factor</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="mf">3.464</span><span class="o">/</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">dim</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">unit_cell</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="n">scale_factor</span><span class="p">)</span>
+<span class="c1">#Create unit cell based lattice</span>
+<span class="n">graph_unit_cell</span> <span class="o">=</span> <span class="n">unit_cell</span><span class="o">.</span><span class="n">find_graph_set</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">)</span>
+<span class="n">inner_volume_with_graphs</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">unit_cell_based_lattice</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">inner_volume</span><span class="p">,</span> <span class="n">unit_cell</span><span class="o">=</span><span class="n">graph_unit_cell</span><span class="p">)</span>
+<span class="c1">#Hide the Inner volume and dodecahedron unit cell</span>
+<span class="n">inner_volume</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">unit_cell</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p><strong>Step 3: Attach graph to mesh</strong></p>
+<p><em>Manual</em>:</p>
+<p>The unit cell based lattice created in step 1 is attached to the outer surface in order to assure a good connection: <strong>Lattice -&gt; Attach Graph to Mesh</strong>.
+This operation allows users to create useful nodes, especially for finite element analysis (FEA) study which requires connections between graph nodes and triangle nodes (surface).
+The next parameters are used:</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/attach_graphMan.png"><img alt="../_images/attach_graphMan.png" class="align-center" src="../_images/attach_graphMan.png" style="width: 720px; height: 400px;" /></a>
+</div></blockquote>
+<p>The Attach Graph to Mesh operation hides the part, “Inner_Volume with graphs” and creates a new part with the name, “Part with graph connections-001”.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/attach_graphEx.png"><img alt="../_images/attach_graphEx.png" class="align-center" src="../_images/attach_graphEx.png" style="width: 720px; height: 400px;" /></a>
+</div></blockquote>
+<p><em>Scripting</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1">#Attach graph to mesh</span>
+<span class="n">part_with_graph_connections</span><span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">attach_graph_to_mesh</span><span class="p">(</span><span class="n">graphs</span><span class="o">=</span><span class="n">inner_volume_with_graphs</span><span class="p">,</span> <span class="n">entity</span><span class="o">=</span><span class="n">outer_volume</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="c1">#Hide the outer volume and the inner volume with graphs part</span>
+<span class="n">inner_volume_with_graphs_part</span> <span class="o">=</span> <span class="n">inner_volume_with_graphs</span><span class="o">.</span><span class="n">get_parent</span><span class="p">()</span>
+<span class="n">inner_volume_with_graphs</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">outer_volume</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p><strong>Step 4: Filter graphs</strong></p>
+<p><em>Manual</em>:</p>
+<p>The next step filters the lattice from loose connections: <strong>Lattice -&gt; Filter -&gt; Filter Loose Beams</strong>.
+This operation creates a new graph group containing the filtered graphs based on the assigned parameters.
+The next parameters are used:</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/filterMan.png"><img alt="../_images/filterMan.png" class="align-center" src="../_images/filterMan.png" style="width: 630px; height: 350px;" /></a>
+</div></blockquote>
+<p>The connection type “No connections” filters all the linear beams that don’t have any neighboring beams on any side and that are not connected to the surface.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/filterEx.png"><img alt="../_images/filterEx.png" class="align-center" src="../_images/filterEx.png" style="width: 720px; height: 400px;" /></a>
+</div></blockquote>
+<p>The graph entity “Filtered Loose Graph” can be selected and deleted. The same result can be achieved in one click by setting the filter mode to “Delete” when filtering the loose beams.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/filter_with_delete.png"><img alt="../_images/filter_with_delete.png" class="align-center" src="../_images/filter_with_delete.png" style="width: 630px; height: 350px;" /></a>
+</div></blockquote>
+<p><em>Scripting</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">trimatic</span><span class="o">.</span><span class="n">filter_loose_beams</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">part_with_graph_connections</span><span class="p">,</span> <span class="n">connection_threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">part_with_graph_connections</span><span class="o">.</span><span class="n">find_graph</span><span class="p">(</span><span class="s2">&quot;Filtered Loose Graph&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Step 5: Edit graph properties</strong></p>
+<p><em>Manual</em>:</p>
+<p>In order to prepare the lattice for 3D printing, a thickness needs to be assigned to the beams. This is achieved via the <strong>Graph’s properties page</strong>.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/edit_prop.png"><img alt="../_images/edit_prop.png" class="align-center" src="../_images/edit_prop.png" style="width: 630px; height: 350px;" /></a>
+</div></blockquote>
+<p>The lattice changes color when a thickness is applied.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/edit_propEx.png"><img alt="../_images/edit_propEx.png" class="align-center" src="../_images/edit_propEx.png" style="width: 360px; height: 200px;" /></a>
+</div></blockquote>
+<p><em>Scripting</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1">#Edit graph properties</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">set_graph_properties</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">part_with_graph_connections</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">accuracy</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Step 6: Convert lattice to mesh</strong></p>
+<p><em>Manual</em>:</p>
+<p>The last step before continuing in the 3D printing production pipeline is converting the lattice to a valid mesh: <strong>Lattice -&gt; Convert Lattice to Mesh</strong>.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/convert_to_mesh.png"><img alt="../_images/convert_to_mesh.png" class="align-center" src="../_images/convert_to_mesh.png" style="width: 630px; height: 350px;" /></a>
+</div></blockquote>
+<p><em>Scripting</em> :</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1">#Convert lattice to mesh</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">convert_lattice_to_regular_mesh</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">part_with_graph_connections</span><span class="p">,</span> <span class="n">connection_thickness</span><span class="o">=</span><span class="mf">0.025</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="creating_a_ssm_model.html" class="btn btn-neutral float-right" title="10. Create a statistical shape model" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="benchtop.html" class="btn btn-neutral" title="8. Benchtop model" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

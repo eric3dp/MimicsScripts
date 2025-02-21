@@ -1,0 +1,8 @@
+remesh
+======
+
+.. automodule:: trimatic.remesh
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

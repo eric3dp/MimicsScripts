@@ -1,0 +1,559 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>trimatic.align &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>trimatic.align</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for trimatic.align</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pymatic</span>
+<span class="kn">import</span> <span class="nn">trimatic.utils</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<div class="viewcode-block" id="arc_to_arc_align"><a class="viewcode-back" href="../../trimatic.rst/trimatic.align.html#trimatic.align.arc_to_arc_align">[docs]</a><span class="k">def</span> <span class="nf">arc_to_arc_align</span><span class="p">(</span><span class="n">fixed_entity</span><span class="p">,</span> <span class="n">moving_entity</span><span class="p">,</span> <span class="n">move_along_entities</span><span class="o">=</span><span class="p">(),</span> <span class="n">coincident</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Aligns two (or more) entities, through arc-fitting method, based on the center and normal orientation of the selected arcs.</span>
+
+<span class="sd">    :param fixed_entity: Reference entity to be aligned with.</span>
+<span class="sd">    :type fixed_entity: trimatic.Curve | trimatic.Surface | trimatic.Arc</span>
+<span class="sd">    :param moving_entity: Entity to align/move. For curves or surfaces, the part they belong to will be moved.</span>
+<span class="sd">    :type moving_entity: trimatic.Curve | trimatic.Surface | trimatic.Arc</span>
+<span class="sd">    :param move_along_entities: Either single object, empty or heterogeneous list/tuple of root level entities</span>
+<span class="sd">        (parts, analytical primitives) that will be aligned along with the moving_entity.</span>
+<span class="sd">    :type move_along_entities: trimatic.Object | [trimatic.Object] | (trimatic.Object), optional</span>
+<span class="sd">    :param coincident: If True, centre points of the input arcs will be made coincident and their normals will be parallel.</span>
+<span class="sd">    :type coincident: bool, optional</span>
+<span class="sd">    :return: Aligned entities. This will be a combination of moving_entity and move_along_entities.</span>
+<span class="sd">    :rtype: trimatic.Object | (trimatic.Object)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/align/arc_to_arc_align.py</span>
+
+<span class="sd">    .. testcode::</span>
+<span class="sd">        :hide:</span>
+
+<span class="sd">        print(run_test(&#39;/example/align/arc_to_arc_align.py&#39;, [&#39;result&#39;], &#39;/expected_results/align/arc_to_arc_align.json&#39;))</span>
+
+<span class="sd">    .. testoutput::</span>
+<span class="sd">        :hide:</span>
+
+<span class="sd">        [(&lt;trimatic.Arc(Arc)&gt;, &lt;trimatic.Part(Cylinder-012-2)&gt;)]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;fixed_entity&quot;</span><span class="p">,</span> <span class="n">fixed_entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Arc</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;moving_entity&quot;</span><span class="p">,</span> <span class="n">moving_entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Arc</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;move_along_entities&quot;</span><span class="p">,</span> <span class="n">move_along_entities</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">transformable_types</span><span class="p">(),</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">arc_to_arc_align</span><span class="p">(</span><span class="n">fixed_entity</span><span class="p">,</span><span class="n">moving_entity</span><span class="p">,</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">move_along_entities</span><span class="p">),</span><span class="n">coincident</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="global_registration"><a class="viewcode-back" href="../../trimatic.rst/trimatic.align.html#trimatic.align.global_registration">[docs]</a><span class="k">def</span> <span class="nf">global_registration</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="c1">#&#39;force named parameters&#39;</span>
+    <span class="n">fixed_entity</span><span class="p">,</span>
+    <span class="n">moving_entity</span><span class="p">,</span>
+    <span class="n">move_along_entities</span><span class="o">=</span><span class="p">(),</span>
+    <span class="n">distance_threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">number_of_iterations</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">subsample_percentage</span><span class="o">=</span><span class="mi">15</span>
+    <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Performs final registration of entities based on a heuristic algorithm.</span>
+
+<span class="sd">    :param fixed_entity: Reference entity to be aligned with.</span>
+<span class="sd">    :type fixed_entity: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles</span>
+<span class="sd">    :param moving_entity: Entity to align/move.</span>
+<span class="sd">    :type moving_entity: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles</span>
+<span class="sd">    :param move_along_entities: Either single object or heterogeneous list of root level entities</span>
+<span class="sd">     (parts, analytical primitives) that will be aligned along with the moving_entity.</span>
+<span class="sd">    :type move_along_entities: trimatic.Object | [trimatic.Object] , optional</span>
+<span class="sd">    :param distance_threshold: If distance between a point on fixed and moving entity is less than the</span>
+<span class="sd">        threshold value, the point will be used for registration. Set to None for automatic calculation.</span>
+<span class="sd">    :type distance_threshold: float, optional</span>
+<span class="sd">    :param number_of_iterations: Increases the number of passes for higher quality but increases computation time.</span>
+<span class="sd">    :type number_of_iterations: int, optional</span>
+<span class="sd">    :param subsample_percentage: Defines how many points (in percentage) will be used for registration.</span>
+<span class="sd">    :type subsample_percentage: int, optional</span>
+<span class="sd">    :return: Average distance deviation after registration or None if operation failed.</span>
+<span class="sd">    :rtype: float</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/align/global_registration.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;fixed_entity&quot;</span><span class="p">,</span> <span class="n">fixed_entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;moving_entity&quot;</span><span class="p">,</span> <span class="n">moving_entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;move_along_entities&quot;</span><span class="p">,</span> <span class="n">move_along_entities</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">transformable_types</span><span class="p">(),</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">distance_threshold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;distance_threshold&quot;</span><span class="p">,</span> <span class="n">distance_threshold</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_iterations&quot;</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;subsample_percentage&quot;</span><span class="p">,</span> <span class="n">subsample_percentage</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">global_registration</span><span class="p">(</span>
+        <span class="n">fixed_entity</span><span class="p">,</span>
+        <span class="n">moving_entity</span><span class="p">,</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">move_along_entities</span><span class="p">),</span>
+        <span class="n">distance_threshold</span><span class="p">,</span>
+        <span class="n">number_of_iterations</span><span class="p">,</span>
+        <span class="n">subsample_percentage</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="mirror"><a class="viewcode-back" href="../../trimatic.rst/trimatic.align.html#trimatic.align.mirror">[docs]</a><span class="k">def</span> <span class="nf">mirror</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">origin</span><span class="p">,</span> <span class="n">normal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function mirrors the selected part around a mirror plane defined by the user.</span>
+
+<span class="sd">    :param entities: Entities that need to be mirrored.</span>
+<span class="sd">    :type entities:  trimatic.Object | [trimatic.Object] | (trimatic.Object)</span>
+<span class="sd">    :param origin: origin of the mirror plane.</span>
+<span class="sd">    :type origin: trimatic.Point</span>
+<span class="sd">    :param normal: normal of the mirror plane.</span>
+<span class="sd">    :type normal: trimatic.Point</span>
+<span class="sd">    :return: mirrored entities</span>
+<span class="sd">    :rtype: (trimatic.Object)</span>
+<span class="sd">    :raises: RuntimeError, ValueError, AttributeException</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/align/mirror.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,)</span> <span class="o">+</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">analytical_primitive_types</span><span class="p">(),</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">pymatic_normal</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">normal</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_direction</span><span class="p">(</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="n">pymatic_normal</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">mirror</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">origin</span><span class="p">),</span> <span class="n">pymatic_normal</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="n_points_registration"><a class="viewcode-back" href="../../trimatic.rst/trimatic.align.html#trimatic.align.n_points_registration">[docs]</a><span class="k">def</span> <span class="nf">n_points_registration</span><span class="p">(</span> <span class="n">fixed_points</span><span class="p">,</span> <span class="n">moving_points</span><span class="p">,</span> <span class="n">moving_entities</span> <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Performs registration based on 2 sets of points, e.g. landmarks</span>
+
+<span class="sd">    :param fixed_points: Reference points to be aligned with.</span>
+<span class="sd">    :type fixed_points: [(float,float,float)]</span>
+<span class="sd">    :param moving_points: For every fixed point, a corresponding &quot;moving point&quot;. The points won&#39;t actually move, but indicate points on the moving entities.</span>
+<span class="sd">    :type moving_points: [(float,float,float)]</span>
+<span class="sd">    :param moving_entities: Either single object or heterogeneous list of root level entities.</span>
+<span class="sd">     (parts, analytical primitives) that will be aligned along with the moving_entity.</span>
+<span class="sd">    :type moving_entities: trimatic.Object | [trimatic.Object]</span>
+<span class="sd">    :return: moved entities</span>
+<span class="sd">    :rtype: (trimatic.Object)</span>
+<span class="sd">    :raises: RuntimeError, ValueError, AttributeException</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/align/n_points_registration.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;moving_entities&quot;</span><span class="p">,</span> <span class="n">moving_entities</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">transformable_types</span><span class="p">(),</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">n_points_registration</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_sequence_argument</span><span class="p">(</span><span class="n">fixed_points</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_sequence_argument</span><span class="p">(</span><span class="n">moving_points</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">moving_entities</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="plane_to_plane_align"><a class="viewcode-back" href="../../trimatic.rst/trimatic.align.html#trimatic.align.plane_to_plane_align">[docs]</a><span class="k">def</span> <span class="nf">plane_to_plane_align</span><span class="p">(</span><span class="n">plane_on_fixed_entity</span><span class="p">,</span> <span class="n">plane_on_moving_entity</span><span class="p">,</span> <span class="n">move_along_entities</span> <span class="o">=</span> <span class="p">(),</span> <span class="n">coincident</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Aligns a moving plane against a fixed plane and repositioning specified entities along with the moving plane.</span>
+
+<span class="sd">    :param plane_on_fixed_entity: Cartesian plane representing the reference plane to be aligned with.</span>
+<span class="sd">    :type plane_on_fixed_entity: trimatic.Plane</span>
+<span class="sd">    :param plane_on_moving_entity: Cartesian plane representing the plane to align/move.</span>
+<span class="sd">    :type plane_on_moving_entity: trimatic.Plane</span>
+<span class="sd">    :param move_along_entities: Either single object or heterogeneous list of root level entities</span>
+<span class="sd">        (parts, analytical primitives) that will be aligned along with the plane_on_moving_entity.</span>
+<span class="sd">    :type move_along_entities: trimatic.Object | [trimatic.Object] | (trimatic.Object) , optional</span>
+<span class="sd">    :param coincident: If True, centre points of the input planes will be made coincident and the directions</span>
+<span class="sd">        will be the same.</span>
+<span class="sd">    :type coincident: bool, optional</span>
+<span class="sd">    :return: Aligned entities. This will be a combination of plane_on_moving_entity and move_along_entities.</span>
+<span class="sd">    :rtype: trimatic.Object | (trimatic.Object)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/align/plane_to_plane_align.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;plane_on_fixed_entity&quot;</span><span class="p">,</span> <span class="n">plane_on_fixed_entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Plane</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">CoordinateSystemPlane</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;plane_on_moving_entity&quot;</span><span class="p">,</span> <span class="n">plane_on_moving_entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Plane</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">CoordinateSystemPlane</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">plane_to_plane_align</span><span class="p">(</span><span class="n">plane_on_fixed_entity</span><span class="p">,</span> <span class="n">plane_on_moving_entity</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">move_along_entities</span><span class="p">),</span> <span class="n">coincident</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="rotate"><a class="viewcode-back" href="../../trimatic.rst/trimatic.align.html#trimatic.align.rotate">[docs]</a><span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">angle_deg</span><span class="p">,</span> <span class="n">axis_origin</span><span class="p">,</span> <span class="n">axis_direction</span><span class="p">,</span> <span class="n">number_of_copies</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Rotates entities around a single axis.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of root level entities (parts, analytical primitives).</span>
+<span class="sd">    :type entities:  trimatic.Object | [trimatic.Object] | (trimatic.Object)</span>
+<span class="sd">    :param angle_deg: Angle of rotation, in degrees.</span>
+<span class="sd">    :type angle_deg: float</span>
+<span class="sd">    :param axis_origin: Origin of axis of rotation.</span>
+<span class="sd">    :type axis_origin: (float, float, float)</span>
+<span class="sd">    :param axis_direction: Direction of axis of rotation.</span>
+<span class="sd">    :type axis_direction: (float, float, float)</span>
+<span class="sd">    :param number_of_copies: Number of additional copies of the input entities to create. Each copy is rotated</span>
+<span class="sd">        by angle_deg relative to the last copy made.</span>
+<span class="sd">    :type number_of_copies: int, optional</span>
+<span class="sd">    :return: Rotated entities (including any copies).</span>
+<span class="sd">    :rtype: trimatic.Object | (trimatic.Object)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/align/rotate.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">transformable_types</span><span class="p">())</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_copies&quot;</span><span class="p">,</span> <span class="n">number_of_copies</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">angle_deg</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">axis_origin</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">axis_direction</span><span class="p">),</span> <span class="n">number_of_copies</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="rotate_around_axes"><a class="viewcode-back" href="../../trimatic.rst/trimatic.align.html#trimatic.align.rotate_around_axes">[docs]</a><span class="k">def</span> <span class="nf">rotate_around_axes</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">angle_axes</span><span class="p">,</span> <span class="n">rotation_origin</span><span class="p">,</span> <span class="n">number_of_copies</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Rotates entities around an origin and angles along each major axis.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of root level entities (parts, analytical primitives).</span>
+<span class="sd">    :type entities: trimatic.Object | [trimatic.Object] | (trimatic.Object)</span>
+<span class="sd">    :param angle_axes: An (x,y,z) tuple with values representing the angles, in degrees, along each major axis.</span>
+<span class="sd">    :type angle_axes: (float, float, float)</span>
+<span class="sd">    :param rotation_origin: Origin/center of rotation.</span>
+<span class="sd">    :type rotation_origin: (float, float, float)</span>
+<span class="sd">    :param number_of_copies: Number of additional copies of the input entities to create. Each copy is rotated</span>
+<span class="sd">        by angle_axes relative to the last copy made.</span>
+<span class="sd">    :type number_of_copies: int, optional</span>
+<span class="sd">    :return: Rotated entities (including any copies).</span>
+<span class="sd">    :rtype: trimatic.Object | (trimatic.Object)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/align/rotate_around_axes.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">transformable_types</span><span class="p">())</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_copies&quot;</span><span class="p">,</span> <span class="n">number_of_copies</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">rotate_around_axes</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">angle_axes</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">rotation_origin</span><span class="p">),</span> <span class="n">number_of_copies</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="scale_factor"><a class="viewcode-back" href="../../trimatic.rst/trimatic.align.html#trimatic.align.scale_factor">[docs]</a><span class="k">def</span> <span class="nf">scale_factor</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">factor</span><span class="p">,</span> <span class="n">center_object</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">number_of_copies</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Scales entities by the specified factor along each major axis</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of objects.</span>
+<span class="sd">    :type entities:  trimatic.Object | [trimatic.Object]</span>
+<span class="sd">    :param factor: An (x,y,z) tuple with values representing the scale factor along each major axis.</span>
+<span class="sd">    :type factor: (float, float, float)</span>
+<span class="sd">    :param center_object: If True, scaling is done relative to the center of each input entity independently.</span>
+<span class="sd">        Otherwise, scaling is done against the average center of all the input entities.</span>
+<span class="sd">    :type center_object: bool, optional</span>
+<span class="sd">    :param number_of_copies: Number of additional copies of the input entities to create. Each copy is scaled</span>
+<span class="sd">        by factor relative to the last copy made.</span>
+<span class="sd">    :type number_of_copies: int, optional</span>
+<span class="sd">    :return: Scaled entities (including any copies).</span>
+<span class="sd">    :rtype:   trimatic.Object | (trimatic.Object)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/align/scale_factor.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;factor[0]&quot;</span><span class="p">,</span> <span class="n">factor</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;factor[1]&quot;</span><span class="p">,</span> <span class="n">factor</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;factor[2]&quot;</span><span class="p">,</span> <span class="n">factor</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_copies&quot;</span><span class="p">,</span> <span class="n">number_of_copies</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="kc">True</span><span class="p">,</span>
+                         <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">factor</span><span class="p">),</span> <span class="n">center_object</span><span class="p">,</span> <span class="n">number_of_copies</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="scale_delta"><a class="viewcode-back" href="../../trimatic.rst/trimatic.align.html#trimatic.align.scale_delta">[docs]</a><span class="k">def</span> <span class="nf">scale_delta</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">center_object</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">number_of_copies</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Scales entities by the specified distance along each major axis.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of objects.</span>
+<span class="sd">    :type entities:  trimatic.Part | [trimatic.Part] | (trimatic.Part)</span>
+<span class="sd">    :param delta: An (x,y,z) tuple with values representing the scale distance along each major axis.</span>
+<span class="sd">    :type delta: (float, float, float)</span>
+<span class="sd">    :param center_object: position of scale, by default center around object.</span>
+<span class="sd">     If False, center at midpoint of all objects.</span>
+<span class="sd">    :type center_object: bool</span>
+<span class="sd">    :param center_object: If True, scaling is done relative to the center of each input entity independently.</span>
+<span class="sd">        Otherwise, scaling is done against the average center of all the input entities.</span>
+<span class="sd">    :type center_object: bool, optional</span>
+<span class="sd">    :param number_of_copies: Number of additional copies of the input entities to create. Each copy is scaled</span>
+<span class="sd">        by factor relative to the last copy made.</span>
+<span class="sd">    :type number_of_copies: int, optional</span>
+<span class="sd">    :return: Scaled entities (including any copies).</span>
+<span class="sd">    :rtype: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/align/scale_delta.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_copies&quot;</span><span class="p">,</span> <span class="n">number_of_copies</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="kc">False</span><span class="p">,</span>
+                         <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">delta</span><span class="p">),</span> <span class="n">center_object</span><span class="p">,</span> <span class="n">number_of_copies</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="translate"><a class="viewcode-back" href="../../trimatic.rst/trimatic.align.html#trimatic.align.translate">[docs]</a><span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span><span class="n">translation_vector</span><span class="p">,</span> <span class="n">number_of_copies</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Translates entities along the specified translation vector</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of root level entities</span>
+<span class="sd">        (parts, analytical primitives, datum planes).</span>
+<span class="sd">    :type entities: trimatic.Object | [trimatic.Object]</span>
+<span class="sd">    :param translation_vector: An (x,y,z) tuple representing the vector of translation.</span>
+<span class="sd">    :type translation_vector: (float, float, float)</span>
+<span class="sd">    :param number_of_copies: Number of additional copies of the input entities to create. Each copy is</span>
+<span class="sd">        translated by translation_vector relative to the last copy made.</span>
+<span class="sd">    :type number_of_copies: int, optional</span>
+<span class="sd">    :return: Translated entities (including any copies).</span>
+<span class="sd">    :rtype:  trimatic.Object | (trimatic.Object)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/align/translate.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">transformable_types</span><span class="p">())</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_copies&quot;</span><span class="p">,</span> <span class="n">number_of_copies</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">translation_vector</span><span class="p">),</span><span class="n">number_of_copies</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UpdateOCSMethod"><a class="viewcode-back" href="../../trimatic.rst/trimatic.align.html#trimatic.align.UpdateOCSMethod">[docs]</a><span class="k">class</span> <span class="nc">UpdateOCSMethod</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Updates object coordinate system method.&quot;&quot;&quot;</span>
+
+    <span class="n">Inertia_axes</span> <span class="o">=</span> <span class="s2">&quot;Inertia axes&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Part inertia axes update OCS method.&quot;&quot;&quot;</span>
+
+    <span class="n">WCS</span> <span class="o">=</span> <span class="s2">&quot;WCS&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;World coordinate system update OCS method.&quot;&quot;&quot;</span>
+
+    <span class="n">User_defined_CS</span> <span class="o">=</span> <span class="s2">&quot;User defined coordinate system&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;User-defined entity coordinate system update OCS method.&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="update_ocs_to_cs"><a class="viewcode-back" href="../../trimatic.rst/trimatic.align.html#trimatic.align.update_ocs_to_cs">[docs]</a><span class="k">def</span> <span class="nf">update_ocs_to_cs</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">UpdateOCSMethod</span><span class="o">.</span><span class="n">WCS</span><span class="p">,</span> <span class="n">user_defined_cs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Updates the object coordinate system to a defined coordinate system.</span>
+
+<span class="sd">    :param entity: Part that needs the OCS to be updated</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :param method: Updates the OCS based on one of the methods</span>
+<span class="sd">    :type method: trimatic.UpdateOCSMethod, optional</span>
+<span class="sd">    :param user_defined_cs: The OCS of the part will be made the same as the OCS of selection here.</span>
+<span class="sd">     This parameter is valid only when method = User_defined_CS</span>
+<span class="sd">    :type user_defined_cs: trimatic.CoordinateSystem, optional</span>
+
+<span class="sd">    :return: Part with updated OCS, which will be the same as the entity</span>
+<span class="sd">    :rtype: trimatic.Part</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/align/update_ocs_to_cs.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;method&quot;</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="p">(</span><span class="n">UpdateOCSMethod</span><span class="p">,))</span>
+
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="n">UpdateOCSMethod</span><span class="o">.</span><span class="n">User_defined_CS</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;user_defined_cs&quot;</span><span class="p">,</span> <span class="n">user_defined_cs</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,)</span> <span class="o">+</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">analytical_primitive_types</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">update_ocs_to_cs</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entity</span><span class="p">),</span> <span class="n">method</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">user_defined_cs</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

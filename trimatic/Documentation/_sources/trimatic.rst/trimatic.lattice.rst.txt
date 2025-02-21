@@ -1,0 +1,8 @@
+lattice
+=======
+
+.. automodule:: trimatic.lattice
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

@@ -1,0 +1,8 @@
+group
+======
+
+.. automodule:: trimatic.group
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

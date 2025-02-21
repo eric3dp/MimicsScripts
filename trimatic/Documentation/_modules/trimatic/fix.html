@@ -1,0 +1,809 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>trimatic.fix &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>trimatic.fix</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for trimatic.fix</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pymatic</span>
+<span class="kn">import</span> <span class="nn">trimatic.utils</span>
+
+<span class="kn">from</span> <span class="nn">trimatic.data</span> <span class="kn">import</span> <span class="n">TriangulationAccuracy</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<div class="viewcode-block" id="auto_adjust_normals"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.auto_adjust_normals">[docs]</a><span class="k">def</span> <span class="nf">auto_adjust_normals</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Adjust normals of the input parts.</span>
+
+<span class="sd">    :param entities: Either single part or a list of parts.</span>
+<span class="sd">    :type entities: trimatic.Part | [trimatic.Part]</span>
+<span class="sd">    :return: Fixed parts</span>
+<span class="sd">    :rtype: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/auto_adjust_normals.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">auto_adjust_normals</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="auto_fix"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.auto_fix">[docs]</a><span class="k">def</span> <span class="nf">auto_fix</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Performs auto fix on selected parts using the Automatic method, which includes filtering and small shell removal.</span>
+
+<span class="sd">    :param entities: Either single part or a list of parts.</span>
+<span class="sd">    :type entities: trimatic.Part | [trimatic.Part]</span>
+<span class="sd">    :return: Fixed parts</span>
+<span class="sd">    :rtype: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/auto_fix.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">auto_fix</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="fill_hole_freeform"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.fill_hole_freeform">[docs]</a><span class="k">def</span> <span class="nf">fill_hole_freeform</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">accuracy</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">TriangulationAccuracy</span><span class="o">.</span><span class="n">Coarse</span><span class="p">,</span> <span class="n">treat_as_one_hole</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">tangent</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The freeform hole filler will use a freeform surface. This functions corresponds to the GUI behavior with the Fill Algorithm &quot;Advanced&quot; and Method &quot;Automatic&quot;.</span>
+<span class="sd">    </span>
+<span class="sd">    :param entities: Entities to fill.</span>
+<span class="sd">    :type entities: trimatic.SurfaceContour | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles | [trimatic.SurfaceContour | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles]</span>
+<span class="sd">    :param accuracy: Accuracy of the triangulation.</span>
+<span class="sd">    :type accuracy: trimatic.TriangulationAccuracy, optional</span>
+<span class="sd">    :param tangent: When True, the surface will be created tangentially to the surrounding surface(s).</span>
+<span class="sd">    :type tangent: bool, optional</span>
+<span class="sd">    :param treat_as_one_hole: If True, 3-matic will interpret the selection as being the contours of one surface and create only one.</span>
+<span class="sd">    :type treat_as_one_hole: bool, optional</span>
+<span class="sd">    :return: Surface(s) that were created to fill the hole(s).</span>
+<span class="sd">    :rtype: trimatic.Surface | (trimatic.Surface)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+<span class="sd">    :example:</span>
+<span class="sd">    </span>
+<span class="sd">    .. literalinclude:: example/fix/fill_hole_freeform.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceContour</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">CurveSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span> <span class="p">))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">fill_hole_freeform</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">accuracy</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">treat_as_one_hole</span><span class="p">,</span> <span class="n">tangent</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="fill_hole_freeform_expert"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.fill_hole_freeform_expert">[docs]</a><span class="k">def</span> <span class="nf">fill_hole_freeform_expert</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">grid_size</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">treat_as_one_hole</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">tangent</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The freeform hole filler will use a freeform surface. This functions corresponds to the GUI behavior with Fill Algorithm &quot;Normal&quot;.</span>
+<span class="sd">    </span>
+<span class="sd">    :param entities: Entities to fill.</span>
+<span class="sd">    :type entities: trimatic.SurfaceBorder | trimatic.SurfaceContour | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles | [trimatic.SurfaceBorder | trimatic.SurfaceContour | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles]</span>
+<span class="sd">    :param grid_size: The size of the triangles that will create the surface.</span>
+<span class="sd">    :type grid_size: float, optional</span>
+<span class="sd">    :param tangent: When True, the surface will be created tangentially to the surrounding surface(s).</span>
+<span class="sd">    :type tangent: bool, optional</span>
+<span class="sd">    :param treat_as_one_hole: If True, 3-matic will interpret the selection as being the contours of one surface and create only one.</span>
+<span class="sd">    :type treat_as_one_hole: bool, optional</span>
+<span class="sd">    :return: Surface(s) that were created to fill the hole(s).</span>
+<span class="sd">    :rtype: trimatic.Surface | (trimatic.Surface)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+<span class="sd">    :example:</span>
+<span class="sd">    </span>
+<span class="sd">    .. literalinclude:: example/fix/fill_hole_freeform_expert.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceBorder</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceContour</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">CurveSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span> <span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;grid_size&quot;</span><span class="p">,</span> <span class="n">grid_size</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">fill_hole_freeform_expert</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">grid_size</span><span class="p">,</span> <span class="n">treat_as_one_hole</span><span class="p">,</span> <span class="n">tangent</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="fill_hole_normal"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.fill_hole_normal">[docs]</a><span class="k">def</span> <span class="nf">fill_hole_normal</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">treat_as_one_hole</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fills the hole with the fastest and easiest triangulation.</span>
+<span class="sd">    </span>
+<span class="sd">    :param entities: Entities to fill.</span>
+<span class="sd">    :type entities: trimatic.SurfaceBorder | trimatic.SurfaceContour | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles | [trimatic.SurfaceBorder | trimatic.SurfaceContour | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles]</span>
+<span class="sd">    :param treat_as_one_hole: If True, 3-matic will interpret the selection as being the contours of one surface and create only one.</span>
+<span class="sd">    :type treat_as_one_hole: bool, optional</span>
+<span class="sd">    :return: Surface(s) that were created to fill the hole(s).</span>
+<span class="sd">    :rtype: trimatic.Surface | (trimatic.Surface)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/fill_hole_normal.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceBorder</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceContour</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">CurveSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span> <span class="p">))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">fill_hole_normal</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">treat_as_one_hole</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="fill_hole_ruled"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.fill_hole_ruled">[docs]</a><span class="k">def</span> <span class="nf">fill_hole_ruled</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The ruled hole filler directs the triangulation according to the specified direction. </span>
+<span class="sd">    </span>
+<span class="sd">    :param entities: Entities to fill.</span>
+<span class="sd">    :type entities: trimatic.SurfaceBorder | trimatic.SurfaceContour | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles | [trimatic.SurfaceBorder | trimatic.SurfaceContour | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles]</span>
+<span class="sd">    :param direction: Direction along which the triangulation of the hole will be performed.</span>
+<span class="sd">    :type direction: float, optional</span>
+<span class="sd">    :return: Surface(s) that were created to fill the hole(s).</span>
+<span class="sd">    :rtype: trimatic.Surface | (trimatic.Surface)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+<span class="sd">    :example:</span>
+<span class="sd">    </span>
+<span class="sd">    .. literalinclude:: example/fix/fill_hole_ruled.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceBorder</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceContour</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">CurveSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span> <span class="p">))</span>
+    <span class="n">pymatic_direction</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_direction</span><span class="p">(</span><span class="s2">&quot;direction&quot;</span><span class="p">,</span> <span class="n">pymatic_direction</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">fill_hole_ruled</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">pymatic_direction</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FilterSharpTriangleMode"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.FilterSharpTriangleMode">[docs]</a><span class="k">class</span> <span class="nc">FilterSharpTriangleMode</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mode for filter sharp triangle.&quot;&quot;&quot;</span>
+
+    <span class="n">Collapse</span> <span class="o">=</span> <span class="s2">&quot;Collapse&quot;</span>
+    <span class="n">Delete</span> <span class="o">=</span> <span class="s2">&quot;Delete&quot;</span></div>
+
+
+<div class="viewcode-block" id="filter_sharp_triangles"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.filter_sharp_triangles">[docs]</a><span class="k">def</span> <span class="nf">filter_sharp_triangles</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">filter_distance</span><span class="o">=</span><span class="mf">0.0100</span><span class="p">,</span> <span class="n">threshold_angle</span><span class="o">=</span><span class="mf">5.0000</span><span class="p">,</span> <span class="n">filter_mode</span><span class="o">=</span><span class="n">FilterSharpTriangleMode</span><span class="o">.</span><span class="n">Collapse</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Removes sharp, thin and long triangles of the selected parts.</span>
+
+<span class="sd">    :param entities: Either a single object or heterogeneous list of parts, surfaces, or surface sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet]</span>
+<span class="sd">    :param filter_distance: Triangles with an edge or height smaller than this distance will be filtered.</span>
+<span class="sd">    :type filter_distance: float, optional</span>
+<span class="sd">    :param threshold_angle: A triangle will be filtered when the angle it makes with its neighbors is larger than the threshold angle.</span>
+<span class="sd">    :type threshold_angle: float, optional</span>
+<span class="sd">    :param filter_mode: 2 Options - Collapse and Delete.</span>
+<span class="sd">        With Collapse, the thin triangle will be removed and its neighbours will be connected to each other.</span>
+<span class="sd">        With Delete, the thin triangle will be deleted, and bad edges will appear.</span>
+<span class="sd">    :type filter_mode: FilterSharpTriangleMode, optional</span>
+<span class="sd">    :return: Fixed input entities.</span>
+<span class="sd">    :rtype: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/filter_sharp_triangles.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;threshold_angle&quot;</span><span class="p">,</span> <span class="n">threshold_angle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;filter_distance&quot;</span><span class="p">,</span> <span class="n">filter_distance</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;filter_mode&quot;</span><span class="p">,</span> <span class="n">filter_mode</span><span class="p">,</span> <span class="p">(</span><span class="n">FilterSharpTriangleMode</span><span class="p">,))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">filter_sharp_triangles</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">filter_distance</span><span class="p">,</span>
+                                          <span class="n">threshold_angle</span><span class="p">,</span> <span class="n">filter_mode</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="filter_small_edges"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.filter_small_edges">[docs]</a><span class="k">def</span> <span class="nf">filter_small_edges</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">filter_distance</span><span class="o">=</span><span class="mf">0.0010</span><span class="p">,</span> <span class="n">threshold_angle</span><span class="o">=</span><span class="mf">30.0000</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                       <span class="n">surface_border_only</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Removes small edges of the selected parts.</span>
+<span class="sd">    </span>
+<span class="sd">    :param entities: Either single part or a list of parts.</span>
+<span class="sd">    :type entities: trimatic.Part | [trimatic.Part]</span>
+<span class="sd">    :param filter_distance: Triangles with an edge or height smaller than this distance are filtered.</span>
+<span class="sd">    :type filter_distance: float, optional</span>
+<span class="sd">    :param threshold_angle: A triangle will be filtered when the angle it makes with its neighbors is larger than the threshold angle.</span>
+<span class="sd">    :type threshold_angle: float, optional</span>
+<span class="sd">    :param number_of_iterations: The number of iterations to filter the small edges.</span>
+<span class="sd">    :type number_of_iterations: int, optional</span>
+<span class="sd">    :param surface_border_only: If True, only edges situated on a surface border of the selected part are filtered.</span>
+<span class="sd">    :type surface_border_only: bool, optional</span>
+<span class="sd">    :return: Fixed parts</span>
+<span class="sd">    :rtype: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/filter_small_edges.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;filter_distance&quot;</span><span class="p">,</span> <span class="n">filter_distance</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_iterations&quot;</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">filter_small_edges</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">filter_distance</span><span class="p">,</span>
+                                      <span class="n">threshold_angle</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="p">,</span> <span class="n">surface_border_only</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="filter_small_shells"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.filter_small_shells">[docs]</a><span class="k">def</span> <span class="nf">filter_small_shells</span><span class="p">(</span>
+        <span class="n">entities</span><span class="p">,</span>
+        <span class="n">threshold_area</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+        <span class="n">threshold_volume</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+        <span class="n">threshold_relative</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Removes small noisy shells from the parts.</span>
+<span class="sd">    </span>
+<span class="sd">    :param entities: Either single part or a list of parts.</span>
+<span class="sd">    :type entities: trimatic.Part | [trimatic.Part]</span>
+<span class="sd">    :param threshold_area: Area threshold (in terms of percentage or absolute value depending on threshold_relative).</span>
+<span class="sd">    :type threshold_area: float, optional</span>
+<span class="sd">    :param threshold_volume: Volume threshold (in terms of percentage or absolute value depending on threshold_relative).</span>
+<span class="sd">    :type threshold_volume: float, optional</span>
+<span class="sd">    :param threshold_relative: If True, thresholds values are interpreted as percentage; if False, the absolute values are taken.</span>
+<span class="sd">    :type threshold_relative: bool, optional</span>
+<span class="sd">    :return: Fixed parts</span>
+<span class="sd">    :rtype: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/filter_small_shells.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">threshold_relative</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_between</span><span class="p">(</span><span class="s2">&quot;threshold_area&quot;</span><span class="p">,</span> <span class="n">threshold_area</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_between</span><span class="p">(</span><span class="s2">&quot;threshold_volume&quot;</span><span class="p">,</span> <span class="n">threshold_volume</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;threshold_area&quot;</span><span class="p">,</span> <span class="n">threshold_area</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;threshold_volume&quot;</span><span class="p">,</span> <span class="n">threshold_volume</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">filter_small_shells</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">threshold_area</span><span class="p">,</span>
+                                       <span class="n">threshold_volume</span><span class="p">,</span> <span class="n">threshold_relative</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="get_number_of_intersecting_triangles"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.get_number_of_intersecting_triangles">[docs]</a><span class="k">def</span> <span class="nf">get_number_of_intersecting_triangles</span><span class="p">(</span><span class="n">entity</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the number of intersecting triangles.</span>
+<span class="sd">    </span>
+<span class="sd">    :param entity: The part from which a user wants the number of intersecting triangles.</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :return: Returns the number of intersecting triangles.</span>
+<span class="sd">    :rtype: int</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/get_number_of_intersecting_triangles.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">)</span>
+
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_number_of_intersecting_triangles</span><span class="p">(</span><span class="n">entity</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="get_number_of_overlapping_triangles"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.get_number_of_overlapping_triangles">[docs]</a><span class="k">def</span> <span class="nf">get_number_of_overlapping_triangles</span><span class="p">(</span><span class="n">entity</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the number of overlapping triangles.</span>
+<span class="sd">    </span>
+<span class="sd">    :param entity: The part from which a user wants the number of overlapping triangles.</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :return: Returns the number of overlapping triangles.</span>
+<span class="sd">    :rtype: int</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/get_number_of_overlapping_triangles.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">)</span>
+
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_number_of_overlapping_triangles</span><span class="p">(</span><span class="n">entity</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="improve_mesh"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.improve_mesh">[docs]</a><span class="k">def</span> <span class="nf">improve_mesh</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">shape_quality_high</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">maximum_geometrical_error</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">maximum_edge_length</span> <span class="o">=</span> <span class="mf">20.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Improves the meshes of the selected entities.</span>
+
+<span class="sd">    :param entities: Either single object or a heterogeneous list of parts, surfaces, or surface sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet]</span>
+<span class="sd">    :param shape_quality_high: If True, the original mesh will be converted into high quality triangles.</span>
+<span class="sd">    :type shape_quality_high: bool, optional</span>
+<span class="sd">    :param maximum_geometrical_error: No geometrical error higher than this value will be introduced.</span>
+<span class="sd">    :type maximum_geometrical_error: float, optional</span>
+<span class="sd">    :param maximum_edge_length: The maximum triangle edge length in the output.</span>
+<span class="sd">    :type maximum_edge_length: float, optional</span>
+<span class="sd">    :return: Entities with improved meshes.</span>
+<span class="sd">    :rtype: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/improve_mesh.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;maximum_edge_length&quot;</span><span class="p">,</span> <span class="n">maximum_edge_length</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">improve_mesh</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">shape_quality_high</span><span class="p">,</span> <span class="n">maximum_geometrical_error</span><span class="p">,</span> <span class="n">maximum_edge_length</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="invert_normal"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.invert_normal">[docs]</a><span class="k">def</span> <span class="nf">invert_normal</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Inverts the normal of all triangles of part, surface, or surface sets.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of parts, surfaces, or surface sets</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet]</span>
+<span class="sd">    :return: Entities with the normals inverted</span>
+<span class="sd">    :rtype: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/invert_normal.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">invert_normal</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="reduce"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.reduce">[docs]</a><span class="k">def</span> <span class="nf">reduce</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">flip_threshold_angle</span> <span class="o">=</span> <span class="mf">15.0</span><span class="p">,</span> <span class="n">geometrical_error</span> <span class="o">=</span> <span class="mf">0.0500</span><span class="p">,</span> <span class="n">number_of_iterations</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">preserve_surfaces</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function reduces the number of triangles in a chosen entity. </span>
+<span class="sd">    The number of triangles will be as small as possible within given geometric error constraints.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of parts, surfaces, or surface sets.</span>
+<span class="sd">    :type  entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles]</span>
+<span class="sd">    :param flip_threshold_angle:</span>
+<span class="sd">           This parameter avoids that triangles will flip during the reduce process. It determines the</span>
+<span class="sd">           maximum allowed deviation between the normals of the triangles before and after the reduction.</span>
+<span class="sd">    :type  flip_threshold_angle: float, optional</span>
+<span class="sd">    :param geometrical_error: Maximum error that can be produced by the reduction.</span>
+<span class="sd">    :type  geometrical_error: float, optional</span>
+<span class="sd">    :param number_of_iterations: Higher number of iterations will further reduce the entity’s number of triangles.</span>
+<span class="sd">    :type  number_of_iterations: int, optional</span>
+<span class="sd">    :param preserve_surfaces: If True, the geometry of surface contours will be preserved during reduction.</span>
+<span class="sd">           This is useful when there are surfaces defined that are not based on the part geometry.</span>
+<span class="sd">    :type  preserve_surfaces: bool, optional</span>
+
+<span class="sd">    :return: Reduced parts</span>
+<span class="sd">    :rtype:  trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</span>
+<span class="sd">             (trimatic.Part) | (trimatic.Surface) | (trimatic.SurfaceSet)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/reduce.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_iterations&quot;</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;flip_threshold_angle&quot;</span><span class="p">,</span> <span class="n">flip_threshold_angle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">flip_threshold_angle</span><span class="p">,</span> <span class="n">geometrical_error</span><span class="p">,</span>
+                          <span class="n">number_of_iterations</span><span class="p">,</span> <span class="n">preserve_surfaces</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="reduce_quality_preserving"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.reduce_quality_preserving">[docs]</a><span class="k">def</span> <span class="nf">reduce_quality_preserving</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">quality_threshold</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">geometrical_error</span> <span class="o">=</span> <span class="mf">0.0500</span><span class="p">,</span> <span class="n">number_of_iterations</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">preserve_surfaces</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function reduces the number of triangles in a chosen entity. </span>
+<span class="sd">    The number of triangles will be as small as possible within given geometric error constraints, and</span>
+<span class="sd">    besides that, it does not create any triangle with quality worse than the specified quality threshold.</span>
+
+<span class="sd">    :param entities: Either a single object or a heterogeneous list of parts, surfaces, or surface sets.</span>
+<span class="sd">    :type  entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles]</span>
+<span class="sd">    :param quality_threshold:</span>
+<span class="sd">           Choose a triangle quality between 1 (all sides of the triangle are equal) and 0 (collapsed triangle).</span>
+<span class="sd">    :type  quality_threshold: float, optional</span>
+<span class="sd">    :param geometrical_error: Maximum error that can be produced by the reduction.</span>
+<span class="sd">    :type  geometrical_error: float, optional</span>
+<span class="sd">    :param number_of_iterations: Higher number of iterations will further reduce the entity’s number of triangles.</span>
+<span class="sd">    :type  number_of_iterations: int, optional</span>
+<span class="sd">    :param preserve_surfaces: If True, the geometry of surface contours will be preserved during the reduction.</span>
+<span class="sd">           This is useful when there are surfaces defined that are not based on the part geometry.</span>
+<span class="sd">    :type  preserve_surfaces: bool, optional</span>
+
+<span class="sd">    :return: Reduced parts</span>
+<span class="sd">    :rtype:  trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</span>
+<span class="sd">             (trimatic.Part) | (trimatic.Surface) | (trimatic.SurfaceSet)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/reduce_quality_preserving.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_iterations&quot;</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;quality_threshold&quot;</span><span class="p">,</span> <span class="n">quality_threshold</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">reduce_quality_preserving</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">quality_threshold</span><span class="p">,</span>
+                                             <span class="n">geometrical_error</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="p">,</span> <span class="n">preserve_surfaces</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="remove_spikes"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.remove_spikes">[docs]</a><span class="k">def</span> <span class="nf">remove_spikes</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="c1">#&#39;force named parameters&#39;</span>
+    <span class="n">entities</span><span class="p">,</span>
+    <span class="n">spike_size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">smallest_detail</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">reduce</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">preserve_surface_structure</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove unwanted spike shaped noise on parts.</span>
+
+<span class="sd">    :param entities: Either single object or a list of parts, surface or surface sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles]</span>
+<span class="sd">    :param spike_size: The average size of spikes that will be removed. The value must be greater than or equal to the smallest detail.</span>
+<span class="sd">    :type spike_size: float, optional</span>
+<span class="sd">    :param smallest_detail: Targeted size of triangles of the part.</span>
+<span class="sd">    :type smallest_detail: float, optional</span>
+<span class="sd">    :param reduce: If True, triangle reduction will be applied to the parts.</span>
+<span class="sd">    :type reduce: bool, optional</span>
+<span class="sd">    :param preserve_surface_structure: If True, the original surface structure and the surface color will be preserved.</span>
+<span class="sd">    :type preserve_surface_structure: bool, optional</span>
+
+<span class="sd">    :return: Part after spikes are removed.</span>
+<span class="sd">    :rtype: trimatic.Part</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/remove_spikes.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;smallest_detail&quot;</span><span class="p">,</span> <span class="n">smallest_detail</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;spike_size&quot;</span><span class="p">,</span> <span class="n">spike_size</span><span class="p">)</span>
+  
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">remove_spikes</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> 
+                                 <span class="n">spike_size</span><span class="p">,</span> 
+                                 <span class="n">smallest_detail</span><span class="p">,</span> 
+                                 <span class="n">reduce</span><span class="p">,</span>
+                                 <span class="n">preserve_surface_structure</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="shells_to_parts"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.shells_to_parts">[docs]</a><span class="k">def</span> <span class="nf">shells_to_parts</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function creates one part from each shell in the specified part(s).</span>
+
+<span class="sd">    :param entities: Either single part or a list of parts.</span>
+<span class="sd">    :type entities: trimatic.Part | [trimatic.Part]</span>
+<span class="sd">    :return: Single part or a tuple of parts.</span>
+<span class="sd">    :rtype: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/shells_to_parts.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">shells_to_parts</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="SmoothMethod"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.SmoothMethod">[docs]</a><span class="k">class</span> <span class="nc">SmoothMethod</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Smooth method for smooth.&quot;&quot;&quot;</span>
+
+    <span class="n">first_order_laplacian</span> <span class="o">=</span> <span class="s2">&quot;First Order Laplacian&quot;</span>
+    <span class="n">second_order_laplacian</span> <span class="o">=</span> <span class="s2">&quot;Second Order Laplacian&quot;</span>
+    <span class="n">curvature</span> <span class="o">=</span> <span class="s2">&quot;Curvature&quot;</span></div>
+
+<div class="viewcode-block" id="smooth"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.smooth">[docs]</a><span class="k">def</span> <span class="nf">smooth</span><span class="p">(</span>
+    <span class="n">entities</span><span class="p">,</span> 
+    <span class="n">smooth_method</span> <span class="o">=</span> <span class="n">SmoothMethod</span><span class="o">.</span><span class="n">first_order_laplacian</span><span class="p">,</span>
+    <span class="n">smooth_factor</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">,</span>
+    <span class="n">perform_post_processing</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Smooths entities with simplified parameters.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of parts, surfaces, or surface sets</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles]</span>
+<span class="sd">    :param smooth_method: Method used to smooth the selected entities.</span>
+<span class="sd">    :type smooth_method: trimatic.SmoothMethod, optional</span>
+<span class="sd">    :param smooth_factor: Strength of smoothing – higher values give better smoothing but may change geometry</span>
+<span class="sd">    :type smooth_factor: float, optional</span>
+<span class="sd">    :param perform_post_processing: When True, postprocessing will be performed after smoothing</span>
+<span class="sd">    :type perform_post_processing: bool, optional</span>
+<span class="sd">    :return: Smoothed entities</span>
+<span class="sd">    :rtype: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/smooth.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;smooth_method&quot;</span><span class="p">,</span> <span class="n">smooth_method</span><span class="p">,</span> <span class="p">(</span><span class="n">SmoothMethod</span><span class="p">,))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;smooth_factor&quot;</span><span class="p">,</span> <span class="n">smooth_factor</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">smooth_method</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">smooth_factor</span><span class="p">,</span> <span class="n">perform_post_processing</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="split_surface"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.split_surface">[docs]</a><span class="k">def</span> <span class="nf">split_surface</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function creates multiple surfaces if the given surface has unconnected triangles.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of parts, surfaces, or surface sets</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet]</span>
+<span class="sd">    :return: Surface or tuple of surfaces.</span>
+<span class="sd">    :rtype: trimatic.Surface | (trimatic.Surface)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/split_surface.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span> <span class="p">))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">split_surface</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="stitch"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.stitch">[docs]</a><span class="k">def</span> <span class="nf">stitch</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">iteration</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Stitches small holes in the mesh by moving triangle nodes.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of parts, surfaces, or surface sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet]</span>
+<span class="sd">    :param tolerance: Maximum distance that a point will be moved to fill a gap.</span>
+<span class="sd">    :type tolerance: float, optional</span>
+<span class="sd">    :param iteration: Number of times the stitch algorithm will be applied.</span>
+<span class="sd">    :type iteration: int, optional</span>
+<span class="sd">    :return: Stitched entities</span>
+<span class="sd">    :rtype: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/stitch.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;tolerance&quot;</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;iteration&quot;</span><span class="p">,</span> <span class="n">iteration</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">stitch</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">tolerance</span><span class="p">,</span> <span class="n">iteration</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="subdivide"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.subdivide">[docs]</a><span class="k">def</span> <span class="nf">subdivide</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">number_of_iterations</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">maximum_edge_length</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This operation increases the number of triangles in the chosen entity by splitting triangles into smaller ones.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of parts, surfaces, or surface sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles]</span>
+<span class="sd">    :param number_of_iterations: Number of subdivide iterations.</span>
+<span class="sd">    :type number_of_iterations: int, optional</span>
+<span class="sd">    :param maximum_edge_length: When specified, only subdivide triangles with an edge longer than this length. When not specified, all triangles are subdivided.</span>
+<span class="sd">    :type maximum_edge_length: float, optional</span>
+<span class="sd">    :return: Subdivided entities</span>
+<span class="sd">    :rtype: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/subdivide.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_iterations&quot;</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">maximum_edge_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;maximum_edge_length&quot;</span><span class="p">,</span> <span class="n">maximum_edge_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">subdivide</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">number_of_iterations</span><span class="p">,</span> <span class="n">maximum_edge_length</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="surface_sets_to_parts"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.surface_sets_to_parts">[docs]</a><span class="k">def</span> <span class="nf">surface_sets_to_parts</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This operation creates one part from each surface set in the specified part(s).</span>
+
+<span class="sd">    :param entities: Either single part or a list of parts.</span>
+<span class="sd">    :type entities: trimatic.Part | [trimatic.Part]</span>
+<span class="sd">    :return: Single part or a tuple of parts.</span>
+<span class="sd">    :rtype: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/surface_sets_to_parts.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">surface_sets_to_parts</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="surfaces_to_parts"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.surfaces_to_parts">[docs]</a><span class="k">def</span> <span class="nf">surfaces_to_parts</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This operation creates one part from each surface in the specified part(s).</span>
+
+<span class="sd">    :param entities: Either single part or a list of parts.</span>
+<span class="sd">    :type entities: trimatic.Part | [trimatic.Part]</span>
+<span class="sd">    :return: Single part or a tuple of parts.</span>
+<span class="sd">    :rtype: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/surfaces_to_parts.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">surfaces_to_parts</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="unify"><a class="viewcode-back" href="../../trimatic.rst/trimatic.fix.html#trimatic.fix.unify">[docs]</a><span class="k">def</span> <span class="nf">unify</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This operation preserves the outer triangles, and deletes all the inner triangles for each entity.</span>
+
+<span class="sd">    :param entities: Either single part or a list of parts.</span>
+<span class="sd">    :type entities: trimatic.Part | [trimatic.Part]</span>
+<span class="sd">    :return: Single part or a tuple of parts.</span>
+<span class="sd">    :rtype: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/fix/unify.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">unify</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">))</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

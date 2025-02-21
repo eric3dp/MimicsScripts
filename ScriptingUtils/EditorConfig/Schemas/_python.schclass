@@ -1,0 +1,385 @@
+//=======================================================================
+//================ Lex class support ====================================
+//=======================================================================
+// 	lexClass:
+//		name		= c_PYString
+//		parent		= c_PY
+//		parent:dyn	= c_PY
+//		parent:file = <*.py|*.pyw|*.pys>	
+//
+//		children		= 0
+//		children		= class1, class2, ...
+//
+//		previous:class			=	
+//		previous:tag			=	
+//		previous:tag:separators	=	
+//
+//		start:class		= 
+//		start:Tag		= '"'
+//
+//		skip:Tag		= '\"'
+//
+//		end:class		= //
+//		end:Tag			= '"'
+//		end:separators	= ' '
+//
+//		Token:tag		= 'if', 'for', 'while', 'do'
+//		Token:start:separators	= 
+//		Token:end:separators	= 
+//-----------------------------------------------------------------------
+//---------------- Attributes -------------------------------------------
+//-----------------------------------------------------------------------
+//	txt:colorFG	= 0xffc0c0 // color value in hex format. default: black	
+//	txt:colorBK	= 0xffc0c0 // color value in hex format. default: white		
+//
+//	txt:colorSelFG	= 0xffc0c0 // color value in hex format. default: white
+//	txt:colorSelBK	= 0xffc0c0 // color value in hex format. default: black
+//
+//	txt:Bold	= 1 // {1,0} default: 0
+//	txt:Italic	= 1 // {1,0} default: 0
+//	txt:Underline	= 1 // {1,0} default: 0
+//
+//	caseSensitive	= 1 // {1,0} default: 0
+//
+//	Collapsable	= 1 // {1,0} default: 0
+//	CollapsedText	= '/*...*/' // quoted string value. default: '[..]'	
+//
+//	ParseOnScreen	= 1 // {1,0} default: 0
+// 	
+//-----------------------------------------------------------------------
+//* Global attributes ***************************************************
+//-----------------------------------------------------------------------
+// 	global:FirstParseInSeparateThread	= 1		// {0,1} default=1
+// 	global:EditReparceInSeparateThread	= 1		// {0,1} default=1
+// 	global:ConfigChangedReparceInSeparateThread= 1 // {0,1} default=1
+// 	global:EditReparceTimeout_ms	= 500		// default= 500 ms; time out for start reparse after last key was pressed.
+// 	global:MaxBackParseOffset		= 100		// default= 100 chars; maximum back buffer size. Some times parser look back for the text from current position.
+// 	global:OnScreenSchCacheLifeTime_sec = 180	// default= 180 sec; -1 and 0 means infinite; time out for on screen parsed pices of text. for memory using optimization.
+// 	global:ParserThreadIdleLifeTime_sec = 60	// default=60 sec; -1 and 0 means infinite; time out for existing of parser thread when parser idle (no parse requests).
+	
+/////////////////////////////////////////////////////////////////////////
+
+//=======================================================================
+//================ Variables support ====================================
+//=======================================================================
+// NON operation - example:   @alpha:not
+//
+// @alpha	= a-z, A-Z
+// @digit	= 0-9
+// @HexDdigit	= 0-9, a-f, A-F
+// @specs	= "~`!@#$%^&*()_-+=\\|{}[];:'\",.<>/?"
+// @EOL		= End Of Line
+//---------------------------------------------
+// special tags:  '\\', '\'', '\t', '\r', '\n'
+/////////////////////////////////////////////////////////////////////////
+
+lexClass: 
+	name			= c_PY	
+	parent:file		= <*.py|*.pyw|*.pys>	
+	caseSensitive	= 1
+	DisplayName		= 'Normal Text'
+
+	//global:FirstParseInSeparateThread	= 0
+	global:EditReparceInSeparateThread	= 1
+
+	//global:EditReparceTimeout_ms	= 250
+	//global:MaxBackParseOffset		= 100
+	//global:OnScreenSchCacheLifeTime_sec = 60
+	//global:ParserThreadIdleLifeTime_sec = -1
+
+lexClass:
+	name		= c_PYCommentML1	
+	parent		= c_PY 
+	children	= c_URL		
+
+	//children	= c_PascalCodeBlock_End		
+	start:Tag	= '"""'	
+	end:Tag 	= '"""'
+	Collapsable	= 1 
+	CollapsedText	= '###'
+	txt:colorFG	= 0xA0A0A4
+	DisplayName		= 'Comment (Multi-Line)'
+
+lexClass:
+	name		= c_PYCommentML2	
+	parent		= c_PY 
+	children	= c_URL		
+
+	//children	= c_PascalCodeBlock_End		
+	start:Tag	= '\'\'\''	
+	end:Tag 	= '\'\'\''
+	Collapsable	= 1 
+	CollapsedText	= '###'
+	txt:colorFG	= 0xA0A0A4
+	DisplayName		= 'Comment (Multi-Line)'
+
+lexClass: 	
+	name		= c_URL	
+	ParseOnScreen	= 0
+	parent:dyn	= c_PY
+	caseSensitive	= 0
+	children		= 0
+	previous:tag	= @specs, ' ', '\t', @eol
+	start:Tag		= 'http:'
+	end:separators	= ' ', '\t', '*', '"', @eol
+	txt:colorBK	= 0xC0FFC0
+	txt:Underline	= 1
+	DisplayName		= 'URL'
+
+lexClass: 	
+	name			= c_String	
+	parent:dyn		= c_PY
+	children		= c_URL
+	start:Tag		= '"'
+//	skip:Tag		= '\\"', '\\\r\n', '\\\n\r', '\\\n', '\\\r'	
+	end:Tag			= '"', @eol
+	txt:colorFG		= 0x00AA00
+	DisplayName		= 'String (Double Quotes)'
+
+lexClass: 	
+	name			= c_String_char	
+	parent:dyn		= c_PY
+	children		= 0
+	start:Tag		= '\''
+	//skip:Tag		= '\\"', '\\\r\n', '\\\n\r', '\\\n', '\\\r'	
+	end:Tag			= '\'', @eol
+	txt:colorFG		= 0x00AA00
+	DisplayName		= 'String (Single Quotes)'
+
+
+lexClass:	
+	name		= c_PYCommentSL
+//	ParseOnScreen	= 0
+	parent		= c_PY
+	children	= c_URL		
+	start:tag	='#'
+//	skip:Tag	= '\\\r\n', '\\\n\r', '\\\n', '\\\r'	
+	end:tag		= @eol
+	txt:colorFG	= 0xA0A0A4
+	DisplayName		= 'Comment (Single-Line)'
+	
+lexClass:	
+	name		= c_PYKeywords
+	ParseOnScreen	= 0
+	parent:Dyn	= c_PY
+	children	= 0
+	DisplayName		= 'Keyword'
+
+	token:tag	= 'False'
+	token:tag	= 'None'
+	token:tag	= 'True'
+	token:tag	= 'and'
+	token:tag	= 'as'
+	token:tag	= 'assert'
+	token:tag	= 'break'
+	token:tag	= 'class'
+	token:tag	= 'continue'
+	token:tag	= 'def'
+	token:tag	= 'del'
+	token:tag	= 'elif'
+	token:tag	= 'else'
+	token:tag	= 'except'
+	token:tag	= 'finally'
+	token:tag	= 'for'
+	token:tag	= 'from'
+	token:tag	= 'global'
+	token:tag	= 'if'
+	token:tag	= 'import'
+	token:tag	= 'in'
+	token:tag	= 'is'
+	token:tag	= 'lambda'
+	token:tag	= 'nonlocal'
+	token:tag	= 'not'
+	token:tag	= 'or'
+	token:tag	= 'pass'
+	token:tag	= 'raise'
+	token:tag	= 'return'
+	token:tag	= 'try'
+	token:tag	= 'while'
+	token:tag	= 'with'
+	token:tag	= 'yield'
+    
+	token:start:separators	= ' ', @eol, '~', '`', '!', '@', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '|', '{', '}', '[', ']', ';', ':', ',', '.', '<', '>', '/', '?', '\\'
+	token:end:separators	= ' ', @eol, '~', '`', '!', '@', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '|', '{', '}', '[', ']', ';', ':', ',', '.', '<', '>', '/', '?', '\\'
+
+	txt:colorFG	= 0xFF7700
+
+
+lexClass:	
+	name		= c_PYExceptions
+	ParseOnScreen	= 0
+	parent:Dyn	= c_PY
+	children	= 0
+	DisplayName		= 'Exception'
+
+	token:tag	= 'ArithmeticError'
+	token:tag	= 'AssertionError'
+	token:tag	= 'AttributeError'
+	token:tag	= 'BaseException'
+	token:tag	= 'BlockingIOError'
+	token:tag	= 'BrokenPipeError'
+	token:tag	= 'BufferError'
+	token:tag	= 'BytesWarning'
+	token:tag	= 'ChildProcessError'
+	token:tag	= 'ConnectionAbortedError'
+	token:tag	= 'ConnectionError'
+	token:tag	= 'ConnectionRefusedError'
+	token:tag	= 'ConnectionResetError'
+	token:tag	= 'DeprecationWarning'
+	token:tag	= 'EOFError'
+	token:tag	= 'Exception'
+	token:tag	= 'FileExistsError'
+	token:tag	= 'FileNotFoundError'
+	token:tag	= 'FloatingPointError'
+	token:tag	= 'FutureWarning'
+	token:tag	= 'GeneratorExit'
+	token:tag	= 'ImportError'
+	token:tag	= 'ImportWarning'
+	token:tag	= 'IndentationError'
+	token:tag	= 'IndexError'
+	token:tag	= 'InterruptedError'
+	token:tag	= 'IsADirectoryError'
+	token:tag	= 'KeyError'
+	token:tag	= 'KeyboardInterrupt'
+	token:tag	= 'LookupError'
+	token:tag	= 'MemoryError'
+	token:tag	= 'NameError'
+	token:tag	= 'NotADirectoryError'
+	token:tag	= 'NotImplementedError'
+	token:tag	= 'OSError'
+	token:tag	= 'OverflowError'
+	token:tag	= 'PendingDeprecationWarning'
+	token:tag	= 'PermissionError'
+	token:tag	= 'ProcessLookupError'
+	token:tag	= 'RecursionError'
+	token:tag	= 'ReferenceError'
+	token:tag	= 'ResourceWarning'
+	token:tag	= 'RuntimeError'
+	token:tag	= 'RuntimeWarning'
+	token:tag	= 'StopAsyncIteration'
+	token:tag	= 'StopIteration'
+	token:tag	= 'SyntaxError'
+	token:tag	= 'SyntaxWarning'
+	token:tag	= 'SystemError'
+	token:tag	= 'SystemExit'
+	token:tag	= 'TabError'
+	token:tag	= 'TimeoutError'
+	token:tag	= 'TypeError'
+	token:tag	= 'UnboundLocalError'
+	token:tag	= 'UnicodeDecodeError'
+	token:tag	= 'UnicodeEncodeError'
+	token:tag	= 'UnicodeError'
+	token:tag	= 'UnicodeTranslateError'
+	token:tag	= 'UnicodeWarning'
+	token:tag	= 'UserWarning'
+	token:tag	= 'ValueError'
+	token:tag	= 'Warning'
+	token:tag	= 'ZeroDivisionError'
+
+	token:start:separators	= ' ', @eol, '~', '`', '!', '@', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '|', '{', '}', '[', ']', ';', ':', ',', '.', '<', '>', '/', '?', '\\'
+	token:end:separators	= ' ', @eol, '~', '`', '!', '@', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '|', '{', '}', '[', ']', ';', ':', ',', '.', '<', '>', '/', '?', '\\'
+
+	txt:colorFG	= 0xFF7700
+
+lexClass:	
+	name		= c_PYBuiltins
+	ParseOnScreen	= 0
+	parent:Dyn	= c_PY
+	children	= 0
+	DisplayName		= 'Builtins'
+
+	token:tag	= 'abs'
+	token:tag	= 'all'
+	token:tag	= 'any'
+	token:tag	= 'ascii'
+	token:tag	= 'bin'
+	token:tag	= 'bool'
+	token:tag	= 'bytearray'
+	token:tag	= 'bytes'
+	token:tag	= 'callable'
+	token:tag	= 'chr'
+	token:tag	= 'classmethod'
+	token:tag	= 'compile'
+	token:tag	= 'complex'
+	token:tag	= 'delattr'
+	token:tag	= 'dict'
+	token:tag	= 'dir'
+	token:tag	= 'divmod'
+	token:tag	= 'enumerate'
+	token:tag	= 'eval'
+	token:tag	= 'exec'
+	token:tag	= 'filter'
+	token:tag	= 'float'
+	token:tag	= 'format'
+	token:tag	= 'frozenset'
+	token:tag	= 'getattr'
+	token:tag	= 'globals'
+	token:tag	= 'hasattr'
+	token:tag	= 'hash'
+	token:tag	= 'help'
+	token:tag	= 'hex'
+	token:tag	= 'id'
+	token:tag	= 'input'
+	token:tag	= 'int'
+	token:tag	= 'isinstance'
+	token:tag	= 'issubclass'
+	token:tag	= 'iter'
+	token:tag	= 'len'
+	token:tag	= 'list'
+	token:tag	= 'locals'
+	token:tag	= 'map'
+	token:tag	= 'max'
+	token:tag	= 'memoryview'
+	token:tag	= 'min'
+	token:tag	= 'next'
+	token:tag	= 'object'
+	token:tag	= 'oct'
+	token:tag	= 'open'
+	token:tag	= 'ord'
+	token:tag	= 'pow'
+	token:tag	= 'print'
+	token:tag	= 'property'
+	token:tag	= 'range'
+	token:tag	= 'repr'
+	token:tag	= 'reversed'
+	token:tag	= 'round'
+	token:tag	= 'set'
+	token:tag	= 'setattr'
+	token:tag	= 'slice'
+	token:tag	= 'sorted'
+	token:tag	= 'staticmethod'
+	token:tag	= 'str'
+	token:tag	= 'sum'
+	token:tag	= 'super'
+	token:tag	= 'tuple'
+	token:tag	= 'type'
+	token:tag	= 'vars'
+	token:tag	= 'zip'
+	token:tag	= '__import__'
+
+	token:start:separators	= ' ', @eol, '~', '`', '!', '@', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '|', '{', '}', '[', ']', ';', ':', ',', '.', '<', '>', '/', '?', '\\'
+	token:end:separators	= ' ', @eol, '~', '`', '!', '@', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '|', '{', '}', '[', ']', ';', ':', ',', '.', '<', '>', '/', '?', '\\'
+
+	txt:colorFG	= 0x900090
+	
+lexClass:	
+	name		= c_PYSpecs
+	ParseOnScreen	= 0
+	parent:Dyn	= c_PY
+	children	= 0
+	DisplayName		= 'Specs'
+
+	token:tag	= @specs
+
+	txt:colorFG	= 0x000000
+
+lexClass:	
+	name		= c_PYDigit
+	ParseOnScreen	= 0
+	parent:Dyn	= c_PY
+	children	= 0
+	DisplayName		= 'Digit'
+
+	token:tag	= @digit
+
+	txt:colorFG	= 0x000000

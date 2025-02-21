@@ -1,0 +1,262 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. Microsoft Visual Studio &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="External IDE" href="index.html"/>
+        <link rel="next" title="6. Using an External IDE" href="Using_an_External_IDE.html"/>
+        <link rel="prev" title="4. Eclipse &amp; Pydev" href="Eclipse_and_Pydev.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">External IDE</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Installation_guide_for_rpyc.html">2. Installation guide for RPyC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JetBrains_PyCharm.html">3. JetBrains PyCharm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Eclipse_and_Pydev.html">4. Eclipse &amp; Pydev</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. Microsoft Visual Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Using_an_External_IDE.html">6. Using an External IDE</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">External IDE</a> &raquo;</li>
+      
+    <li>5. Microsoft Visual Studio</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/external_IDE/Microsoft_Visual_Studio.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="microsoft-visual-studio">
+<h1>5. Microsoft Visual Studio<a class="headerlink" href="#microsoft-visual-studio" title="Permalink to this headline">¶</a></h1>
+<p>To setup Microsoft Visual Studio to work via external IDE please follow the steps below:</p>
+<ol class="arabic">
+<li><p class="first">Install RPyC package. For more information on how to do so, please refer to the following section: <a class="reference internal" href="../introduction/installation.html#installing-packages"><span class="std std-ref">Installing extra packages (optional)</span></a>.</p>
+</li>
+<li><p class="first">Launch Visual Studio and install Python language support for Visual Studio. This is readily available for Visual Studio 2017 onwards; for Visual Studio 2015 and older, please download and install Python Tools for Visual Studio (PTVS).</p>
+<ul class="simple">
+<li>Click on <strong>Solution Explorer -&gt; File -&gt; New -&gt; Project</strong></li>
+<li>If the Python language support is already installed, continue from step 3</li>
+<li>Install Python language support for Visual Studio</li>
+<li>Click on <strong>Install more tools and features</strong></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/install_python_1.png"><img alt="../_images/install_python_1.png" class="align-center" src="../_images/install_python_1.png" style="width: 763.1999999999999px; height: 510.0px;" /></a>
+<ul class="simple">
+<li>Select <strong>Python language support</strong> under <strong>Python Development</strong> and click the <strong>Modify</strong> button. (Note that Visual Studio needs to be closed when installing Python language support)</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/install_python_2.png"><img alt="../_images/install_python_2.png" class="align-center" src="../_images/install_python_2.png" style="width: 960.0px; height: 542.4px;" /></a>
+</li>
+<li><p class="first">Next, configure your project. Click on <strong>Solution Explorer -&gt; File -&gt; New -&gt; Project</strong> and select Python Application.</p>
+<a class="reference internal image-reference" href="../_images/create_project.png"><img alt="../_images/create_project.png" class="align-center" src="../_images/create_project.png" style="width: 765.6px; height: 512.4px;" /></a>
+</li>
+<li><p class="first">The next step is to set up the Python environment.</p>
+<ul class="simple">
+<li>If Python 3.10 is not the default environment under Python Environments, right click on Python Environments in the Solutions Explorer on the right of the window and click on Add Environment</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/python_environment_1.png"><img alt="../_images/python_environment_1.png" class="align-center" src="../_images/python_environment_1.png" style="width: 274.4px; height: 324.79999999999995px;" /></a>
+<ul class="simple">
+<li>Then, click on Existing Environment and set the Prefix path to the location of Python 3.10 and ensure that the Interpreter path is set to python.exe. (This location should reflect the Python directory where the RPyC and PyQt5 packages have been installed)</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/python_environment_2.png"><img alt="../_images/python_environment_2.png" class="align-center" src="../_images/python_environment_2.png" style="width: 899.4999999999999px; height: 617.4px;" /></a>
+</li>
+<li><p class="first">Click on <strong>Solution Explorer</strong>, then right-click on <strong>Search Paths</strong> and select <strong>Add Folder to Search Path…</strong></p>
+</li>
+<li><p class="first">Browse to the location where 3-matic is installed and click <strong>Select Folder</strong>. For example: “C:\Program Files\Materialise\3-matic 18.0 (x64)”</p>
+</li>
+<li><p class="first">It is recommended that you relaunch the application.</p>
+</li>
+</ol>
+<p>Disclaimer: All external IDEs mentioned in this chapter are property of their respective owners.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Using_an_External_IDE.html" class="btn btn-neutral float-right" title="6. Using an External IDE" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Eclipse_and_Pydev.html" class="btn btn-neutral" title="4. Eclipse &amp; Pydev" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

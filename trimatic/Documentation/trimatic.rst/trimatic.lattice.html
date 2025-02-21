@@ -1,0 +1,1606 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lattice &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="trimatic modules" href="trimatic.html"/>
+        <link rel="next" title="logging" href="trimatic.logging.html"/>
+        <link rel="prev" title="interactive" href="trimatic.interactive.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">trimatic API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="trimatic.html">trimatic modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="trimatic.data.html">data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.types.html">types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.align.html">align</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.analyze.html">analyze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.cad_link.html">cadlink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.curve.html">curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.design.html">design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.file.html">file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.finish.html">finish</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.fix.html">fix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.group.html">group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.interactive.html">interactive</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">lattice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.logging.html">logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.mark.html">mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.measure.html">measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.preferences.html">preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.remesh.html">remesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.sketch.html">sketch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.surface.html">surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.texturing.html">texturing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.uv.html">uv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.view.html">view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.subscription.html">subscription</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">trimatic API</a> &raquo;</li>
+      
+          <li><a href="trimatic.html">trimatic modules</a> &raquo;</li>
+      
+    <li>lattice</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/trimatic.rst/trimatic.lattice.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-trimatic.lattice">
+<span id="lattice"></span><h1>lattice<a class="headerlink" href="#module-trimatic.lattice" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="trimatic.lattice.DesiredResultDualConformalLattice">
+<em class="property">class </em><code class="descname">DesiredResultDualConformalLattice</code><a class="reference internal" href="../_modules/trimatic/lattice.html#DesiredResultDualConformalLattice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.DesiredResultDualConformalLattice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Desired Result Dual Conformal Lattice.</p>
+<dl class="attribute">
+<dt id="trimatic.lattice.DesiredResultDualConformalLattice.RefitBoundaryEntity">
+<code class="descname">RefitBoundaryEntity</code><em class="property"> = 'RefitBoundaryEntity'</em><a class="headerlink" href="#trimatic.lattice.DesiredResultDualConformalLattice.RefitBoundaryEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.lattice.DesiredResultDualConformalLattice.Trimmed">
+<code class="descname">Trimmed</code><em class="property"> = 'Trimmed'</em><a class="headerlink" href="#trimatic.lattice.DesiredResultDualConformalLattice.Trimmed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.lattice.DesiredResultDualConformalLattice.Untrimmed">
+<code class="descname">Untrimmed</code><em class="property"> = 'Untrimmed'</em><a class="headerlink" href="#trimatic.lattice.DesiredResultDualConformalLattice.Untrimmed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.lattice.DesiredResultDualConformalLattice.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Desired Result Dual Conformal Lattice.'</em><a class="headerlink" href="#trimatic.lattice.DesiredResultDualConformalLattice.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.lattice.DesiredResultDualConformalLattice.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.lattice'</em><a class="headerlink" href="#trimatic.lattice.DesiredResultDualConformalLattice.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.lattice.DesiredResultDualConformalLattice.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.lattice.DesiredResultDualConformalLattice.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.lattice.DesiredResultDualConformalLattice._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.lattice.DesiredResultDualConformalLattice._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.lattice.DesiredResultDualConformalLattice._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'RefitBoundaryEntity': &lt;DesiredResultDualConformalLattice.RefitBoundaryEntity: 'RefitBoundaryEntity'&gt;, 'Trimmed': &lt;DesiredResultDualConformalLattice.Trimmed: 'Trimmed'&gt;, 'Untrimmed': &lt;DesiredResultDualConformalLattice.Untrimmed: 'Untrimmed'&gt;}</em><a class="headerlink" href="#trimatic.lattice.DesiredResultDualConformalLattice._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.lattice.DesiredResultDualConformalLattice._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['RefitBoundaryEntity', 'Trimmed', 'Untrimmed']</em><a class="headerlink" href="#trimatic.lattice.DesiredResultDualConformalLattice._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.lattice.DesiredResultDualConformalLattice._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.lattice.DesiredResultDualConformalLattice._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.lattice.DesiredResultDualConformalLattice._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'RefitBoundaryEntity': &lt;DesiredResultDualConformalLattice.RefitBoundaryEntity: 'RefitBoundaryEntity'&gt;, 'Trimmed': &lt;DesiredResultDualConformalLattice.Trimmed: 'Trimmed'&gt;, 'Untrimmed': &lt;DesiredResultDualConformalLattice.Untrimmed: 'Untrimmed'&gt;}</em><a class="headerlink" href="#trimatic.lattice.DesiredResultDualConformalLattice._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="trimatic.lattice.LatticeType">
+<em class="property">class </em><code class="descname">LatticeType</code><a class="reference internal" href="../_modules/trimatic/lattice.html#LatticeType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.LatticeType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Lattice Type.</p>
+<dl class="attribute">
+<dt id="trimatic.lattice.LatticeType.Surface">
+<code class="descname">Surface</code><em class="property"> = 'Surface'</em><a class="headerlink" href="#trimatic.lattice.LatticeType.Surface" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.lattice.LatticeType.SurfaceAndVolume">
+<code class="descname">SurfaceAndVolume</code><em class="property"> = 'SurfaceAndVolume'</em><a class="headerlink" href="#trimatic.lattice.LatticeType.SurfaceAndVolume" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.lattice.LatticeType.Volume">
+<code class="descname">Volume</code><em class="property"> = 'Volume'</em><a class="headerlink" href="#trimatic.lattice.LatticeType.Volume" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.lattice.LatticeType.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Lattice Type.'</em><a class="headerlink" href="#trimatic.lattice.LatticeType.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.lattice.LatticeType.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.lattice'</em><a class="headerlink" href="#trimatic.lattice.LatticeType.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.lattice.LatticeType.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.lattice.LatticeType.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.lattice.LatticeType._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.lattice.LatticeType._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.lattice.LatticeType._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'Surface': &lt;LatticeType.Surface: 'Surface'&gt;, 'SurfaceAndVolume': &lt;LatticeType.SurfaceAndVolume: 'SurfaceAndVolume'&gt;, 'Volume': &lt;LatticeType.Volume: 'Volume'&gt;}</em><a class="headerlink" href="#trimatic.lattice.LatticeType._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.lattice.LatticeType._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['SurfaceAndVolume', 'Surface', 'Volume']</em><a class="headerlink" href="#trimatic.lattice.LatticeType._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.lattice.LatticeType._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.lattice.LatticeType._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.lattice.LatticeType._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'Surface': &lt;LatticeType.Surface: 'Surface'&gt;, 'SurfaceAndVolume': &lt;LatticeType.SurfaceAndVolume: 'SurfaceAndVolume'&gt;, 'Volume': &lt;LatticeType.Volume: 'Volume'&gt;}</em><a class="headerlink" href="#trimatic.lattice.LatticeType._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.analyze_lattice_pore_size">
+<code class="descname">analyze_lattice_pore_size</code><span class="sig-paren">(</span><em>entities</em>, <em>step_size</em>, <em>maximum_pore_size</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#analyze_lattice_pore_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.analyze_lattice_pore_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Analyzes the pore size of the lattice structure.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Graph(s) to analyze.</li>
+<li><strong>step_size</strong> (<em>float</em>) – The analysis step size (equivalent to the step size as well) 
+from the minimum pore size to the the maximum pore size.</li>
+<li><strong>maximum_pore_size</strong> (<em>float</em>) – The maximum pore size to analyze to. The operation 
+will terminate when this value is reached.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A tuple of analysis that consists of input graph corresponding to the result, 
+maximum pore radius, minimum pore radius, mode pore radius, average pore radius, 
+and for every sample pore, a tuple of coordinates and radius(X coordinate, 
+Y coordinate, Z coordinate, Radius) for every graph entity that exists in the input 
+entities. The ordering of a graph entity within the input entities serves as its 
+index into the top-level tuple of the returned value.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">((trimatic.Graph, float, float, float, float, ((float, float, float, float),)),)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">x_extent</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">subdivide</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">graphs</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">mesh_based_lattice_with_volume</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">box</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">set_graph_properties</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">graphs</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">analyze_lattice_pore_size</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">graphs</span><span class="p">,</span> <span class="n">step_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">maximum_pore_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.analyze_lattice_porosity">
+<code class="descname">analyze_lattice_porosity</code><span class="sig-paren">(</span><em>entities</em>, <em>sample_region</em>, <em>sample_size=100000</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#analyze_lattice_porosity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.analyze_lattice_porosity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Analyzes the porosity of a lattice.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Graph(s) to analyze.</li>
+<li><strong>sample_region</strong> (<em>trimatic.Part |</em><em> [</em><em>trimatic.Part</em><em>]</em>) – Region in 3D space where graph needs to be analyzed.</li>
+<li><strong>sample_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of points that will be sampled to calculate the density. 
+With larger sample size, a more accurate estimate will be obtained. 
+GUI Precision ‘Medium’ corresponds to sample size 100000, ‘High’ with 1000000.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A tuple that contains for every sample region, a tuple of analysis results containing (porosity value in region (in %), confidence interval start, confidence end)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">((float, float, float))</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Cup.mxp&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Lattice Volume&quot;</span><span class="p">)</span>
+<span class="n">unit_cell</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">unit_cell_based_lattice</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">lattice_volume</span><span class="p">,</span><span class="n">unit_cell</span><span class="o">=</span><span class="n">unit_cell</span><span class="o">.</span><span class="n">find_graph_set</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">))</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">set_graph_properties</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">accuracy</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">analyze_lattice_porosity</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span> <span class="n">sample_region</span><span class="o">=</span><span class="n">lattice_volume</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.attach_graph_to_mesh">
+<code class="descname">attach_graph_to_mesh</code><span class="sig-paren">(</span><em>graphs</em>, <em>entity</em>, <em>margin=0.5</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#attach_graph_to_mesh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.attach_graph_to_mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attaches graphs to a mesh.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>graphs</strong> (<em>trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – The graph(s) to attach.</li>
+<li><strong>entity</strong> (<em>trimatic.Part</em>) – Part on which to attach.</li>
+<li><strong>margin</strong> (<em>float</em><em>, </em><em>optional</em>) – When specified, nodes on the surface closer than this value will be merged. When None, no nodes will be merged.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A newly created part containing the retriangulated surface of the target part and the attached graph.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">size</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="n">center</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">dimension_min</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">box</span><span class="o">.</span><span class="n">dimension_max</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="n">sphere</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_part</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">size</span><span class="o">*</span><span class="mf">1.05</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">mesh_based_lattice</span><span class="p">(</span><span class="n">sphere</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">attach_graph_to_mesh</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">box</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.attract_graph_to_mesh">
+<code class="descname">attract_graph_to_mesh</code><span class="sig-paren">(</span><em>graphs</em>, <em>entity</em>, <em>distance_threshold=1.0</em>, <em>clearance=0.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#attract_graph_to_mesh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.attract_graph_to_mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attracts the beam nodes to the target mesh.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>graphs</strong> (<em>trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Graphs and graph sets with beam nodes to be attracted to the target mesh.</li>
+<li><strong>entity</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em>) – A mesh to attract the beam nodes to. It should be within the same part as graphs.</li>
+<li><strong>distance_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – The distance of beam nodes from the target mesh to be attracted.</li>
+<li><strong>clearance</strong> (<em>float</em><em>, </em><em>optional</em>) – The tolerance distance of the attracted nodes position from the target mesh.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Attracted graphs and graph sets.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Graph | trimatic.GraphSet | (trimatic.Graph | trimatic.GraphSet)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">x_extent</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">mesh_based_lattice</span><span class="p">(</span><span class="n">box</span><span class="p">))</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">get_surfaces</span><span class="p">())</span>
+<span class="n">big_box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">x_extent</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">merged_part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">merge</span><span class="p">([</span><span class="n">box</span><span class="p">,</span> <span class="n">big_box</span><span class="p">])</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">attract_graph_to_mesh</span><span class="p">(</span><span class="n">merged_part</span><span class="o">.</span><span class="n">get_graphs</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">merged_part</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.connect_graphs">
+<code class="descname">connect_graphs</code><span class="sig-paren">(</span><em>*args</em>, <em>source</em>, <em>target</em>, <em>number_of_connections=3</em>, <em>min_connection_radius=0</em>, <em>max_connection_radius=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#connect_graphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.connect_graphs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates connections between two graph structures.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>source</strong> (<em>trimatic.Part | trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Part | trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Either single object or heterogenous list of parts or graph or graph sets.</li>
+<li><strong>target</strong> (<em>trimatic.Part | trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Part | trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Either single object or heterogenous list of parts or graph or graph sets.</li>
+<li><strong>number_of_connections</strong> (<em>int</em><em>, </em><em>optional</em>) – If number of connections is 1 then a single connection between the inner points (source graph) and outer points (target graph) is laid. If number of connections is ‘n’ and the graph connections are chosen from inside to outside, then each inner point is connected to the ‘n’ nearest neighboring outer points.</li>
+<li><strong>min_connection_radius</strong> (<em>float | None</em><em>, </em><em>optional</em>) – Within this specified radius, the operation will look for the number of nearest neighboring points. Set None to disable.</li>
+<li><strong>max_connection_radius</strong> (<em>float | None</em><em>, </em><em>optional</em>) – Within this specified radius, the operation will look for the number of nearest neighboring points. Set None to disable. This parameter together with ‘min_connection_radius’ specifies the range of connection radius.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">newly created graphs.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Graph | (trimatic.Graph)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">box2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">mesh_based_lattice</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="p">(</span><span class="n">box1</span><span class="p">,</span><span class="n">box2</span><span class="p">))</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">connect_graphs</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">box1</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">box2</span><span class="p">,</span> <span class="n">number_of_connections</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_connection_radius</span><span class="o">=</span><span class="mf">3.0000</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.connect_graphs_self_supporting">
+<code class="descname">connect_graphs_self_supporting</code><span class="sig-paren">(</span><em>*args</em>, <em>source</em>, <em>target</em>, <em>normal</em>, <em>minimum_angle</em>, <em>number_of_connections=3</em>, <em>min_connection_radius=0</em>, <em>max_connection_radius=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#connect_graphs_self_supporting"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.connect_graphs_self_supporting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates connections between two graph structures that are self supported based on the normal vector of the plane selected.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>source</strong> (<em>trimatic.Part | trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Part | trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Either single object or heterogenous list of parts or graph or graph sets.</li>
+<li><strong>target</strong> (<em>trimatic.Part | trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Part | trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Either single object or heterogenous list of parts or graph or graph sets.</li>
+<li><strong>normal</strong> (<em>trimatic.Point</em>) – Normal vector of the reference plane to be used.</li>
+<li><strong>minimum_angle</strong> (<em>float</em>) – Minimum required angle between created graph beams and reference plane.</li>
+<li><strong>number_of_connections</strong> (<em>int</em><em>, </em><em>optional</em>) – If number of connections is 1 then a single connection between the inner points (source graph) and outer points (target graph) is laid. If number of connections is ‘n’ and the graph connections are chosen from inside to outside, then each inner point is connected to the ‘n’ nearest neighboring outer points.</li>
+<li><strong>min_connection_radius</strong> (<em>float | None</em><em>, </em><em>optional</em>) – Within this specified radius, the operation will look for the number of nearest neighboring points. Set None to disable.</li>
+<li><strong>max_connection_radius</strong> (<em>float | None</em><em>, </em><em>optional</em>) – Within this specified radius, the operation will look for the number of nearest neighboring points. Set None to disable. This parameter together with ‘min_connection_radius’ specifies the range of connection radius.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">newly created graphs.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Graph | (trimatic.Graph)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">box2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">mesh_based_lattice</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="p">(</span><span class="n">box1</span><span class="p">,</span><span class="n">box2</span><span class="p">))</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">connect_graphs_self_supporting</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">box1</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">box2</span><span class="p">,</span> <span class="n">number_of_connections</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_connection_radius</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">minimum_angle</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.connect_nodes">
+<code class="descname">connect_nodes</code><span class="sig-paren">(</span><em>entities</em>, <em>number_of_connections=3</em>, <em>min_connection_distance=0</em>, <em>max_connection_distance=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#connect_nodes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.connect_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates connections between two or more beam nodes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Part | trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Single object or heterogeneous list of graphs for the nodes to be connected.</li>
+<li><strong>number_of_connections</strong> (<em>int</em><em>, </em><em>optional</em>) – If a beam node already has equal or more than the specified number of connections, then that node will not be connected to any nodes, else enough connections will be added to satisfy this input.</li>
+<li><strong>min_connection_distance</strong> (<em>float | None</em><em>, </em><em>optional</em>) – Within this specified distance, the operation will look for the number of nearest neighboring points. Set None to disable.</li>
+<li><strong>max_connection_distance</strong> (<em>float | None</em><em>, </em><em>optional</em>) – Within this specified distance, the operation will look for the number of nearest neighboring points. Set None to disable. This parameter together with ‘min_connection_radius’ specifies the range of connection radius.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Graph entities with the connected nodes.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Graph | (trimatic.Graph)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">graphs</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">mesh_based_lattice</span><span class="p">([</span><span class="n">box</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s1">&#39;Left&#39;</span><span class="p">),</span> <span class="n">box</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s1">&#39;Right&#39;</span><span class="p">)])</span>
+
+<span class="n">graph</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">graphs</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">connect_nodes</span><span class="p">(</span><span class="n">entities</span> <span class="o">=</span> <span class="n">graph</span><span class="p">,</span> <span class="n">number_of_connections</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">min_connection_distance</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">max_connection_distance</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.connect_nodes_self_supporting">
+<code class="descname">connect_nodes_self_supporting</code><span class="sig-paren">(</span><em>*args</em>, <em>entities</em>, <em>number_of_connections=3</em>, <em>normal</em>, <em>minimum_angle</em>, <em>min_connection_distance=0</em>, <em>max_connection_distance=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#connect_nodes_self_supporting"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.connect_nodes_self_supporting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates connections between two or more beam nodes which are self supporting.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Part | trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Single object or heterogeneous list of graphs for the nodes to be connected with self supporting beams.</li>
+<li><strong>number_of_connections</strong> (<em>int</em><em>, </em><em>optional</em>) – If a beam node already has equal or more than the specified number of connections, then that node will not be connected to any nodes, else enough connections will be added to satisfy this input.</li>
+<li><strong>normal</strong> (<em>trimatic.Point</em>) – Normal direction of the desired build platform of the selected entity.</li>
+<li><strong>minimum_angle</strong> (<em>float</em>) – Minimum required angle between created graph beams and reference plane.</li>
+<li><strong>min_connection_distance</strong> (<em>float | None</em><em>, </em><em>optional</em>) – Within this specified distance, the operation will look for the number of nearest neighboring points. Set None to disable.</li>
+<li><strong>max_connection_distance</strong> (<em>float | None</em><em>, </em><em>optional</em>) – Within this specified distance, the operation will look for the number of nearest neighboring points. Set None to disable. This parameter together with ‘min_connection_radius’ specifies the range of connection radius.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Graph entities with the connected nodes.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Graph | (trimatic.Graph)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">box2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">mesh_based_lattice</span><span class="p">([</span><span class="n">box1</span><span class="p">,</span> <span class="n">box2</span><span class="p">])</span>
+<span class="n">merged_part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">merge</span><span class="p">([</span><span class="n">box1</span><span class="p">,</span> <span class="n">box2</span><span class="p">])</span>
+<span class="n">merged_graph</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">merged_part</span><span class="o">.</span><span class="n">get_graphs</span><span class="p">())</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">connect_nodes_self_supporting</span><span class="p">(</span><span class="n">entities</span> <span class="o">=</span> <span class="n">merged_part</span><span class="p">,</span> <span class="n">number_of_connections</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">normal</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">minimum_angle</span> <span class="o">=</span> <span class="mi">80</span><span class="p">,</span> <span class="n">min_connection_distance</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">max_connection_distance</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.convert_lattice_to_organic_mesh">
+<code class="descname">convert_lattice_to_organic_mesh</code><span class="sig-paren">(</span><em>entities</em>, <em>organic_factor=1.2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#convert_lattice_to_organic_mesh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.convert_lattice_to_organic_mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts graph(s) to part(s) where the beams are converted to organic (cancellous bone-like) mesh structure.</p>
+<p>Input entities are grouped according to the part they belong to. For every group, a new part will be created. 
+To control beam thickness and/or accuracy, use trimatic.set_graph_properties. 
+When the input has graphs with thickness 0, the operation will fail.
+When the input has graphs with accuracy 0, the operation will use accuracy of 40% of the minimal thickness value.
+When the group does not have graphs with accuracy 0, the operation will use minimal accuracy value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Part | trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Either single object or heterogenous list of parts or graph or graph sets.</li>
+<li><strong>organic_factor</strong> (<em>float</em><em>, </em><em>optional</em>) – The intensity of the organic effect on the output mesh.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Newly created part(s).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | (trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Cup.mxp&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Lattice Volume&quot;</span><span class="p">)</span>
+<span class="n">unit_cell</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span><span class="o">.</span><span class="n">visible</span><span class="o">=</span><span class="kc">False</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">unit_cell_based_lattice</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">lattice_volume</span><span class="p">,</span> <span class="n">unit_cell</span><span class="o">=</span><span class="n">unit_cell</span><span class="o">.</span><span class="n">find_graph_set</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">))</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">set_graph_properties</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">accuracy</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">convert_lattice_to_organic_mesh</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.convert_lattice_to_regular_mesh">
+<code class="descname">convert_lattice_to_regular_mesh</code><span class="sig-paren">(</span><em>entities</em>, <em>connection_thickness=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#convert_lattice_to_regular_mesh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.convert_lattice_to_regular_mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts graph(s) to part(s) where the beams are converted to cylindrical entities with spherical endings.</p>
+<p>Input entities are grouped according to the part they belong to. For every group, a new part will be created. 
+To control beam thickness and/or accuracy, use trimatic.set_graph_properties. 
+When the input has graphs with thickness 0, the operation will fail.
+When the input has graphs with accuracy 0, the operation will use accuracy of 40% of the minimal thickness value.
+When the group does not have graphs with accuracy 0, the operation will use minimal accuracy value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Part | trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Either single object or heterogenous list of parts or graph or graph sets.</li>
+<li><strong>connection_thickness</strong> (<em>float</em><em>, </em><em>optional</em>) – The diameters of the spheres at beam connections. This parameter only has effect when the connection_thickness is larger than beam thickness (e.g. when it is 0).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Newly created part(s).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | (trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Cup.mxp&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Lattice Volume&quot;</span><span class="p">)</span>
+<span class="n">unit_cell</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span><span class="o">.</span><span class="n">visible</span><span class="o">=</span><span class="kc">False</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">unit_cell_based_lattice</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">lattice_volume</span><span class="p">,</span> <span class="n">unit_cell</span><span class="o">=</span><span class="n">unit_cell</span><span class="o">.</span><span class="n">find_graph_set</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">))</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">set_graph_properties</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">accuracy</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">convert_lattice_to_regular_mesh</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.convert_to_graph">
+<code class="descname">convert_to_graph</code><span class="sig-paren">(</span><em>entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#convert_to_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.convert_to_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts curve like entities to graphs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entities</strong> (<em>trimatic.Curve | trimatic.SurfaceBorder | trimatic.SurfaceContour |  trimatic.CurveSet |</em><em> [</em><em>trimatic.Curve | trimatic.SurfaceBorder | trimatic.SurfaceContour | trimatic.CurveSet</em><em> ]</em>) – Either single object or heterogenous list of curve, curve sets , surface borders or surface contours.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">newly created graphs.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Graph | (trimatic.Graph)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValueError | RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">border</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Right&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get_border</span><span class="p">()</span>
+<span class="n">curve</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">convert_to_curve</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">border</span><span class="p">,</span> <span class="n">add_to</span><span class="o">=</span><span class="n">box</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">convert_to_graph</span><span class="p">(</span><span class="n">curve</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.create_beam">
+<code class="descname">create_beam</code><span class="sig-paren">(</span><em>graph</em>, <em>point1</em>, <em>point2</em>, <em>thickness1=0</em>, <em>thickness2=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#create_beam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.create_beam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a beam in a graph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>graph</strong> (<em>trimatic.Graph</em>) – The graph in which to create a beam. When specifying None, a new part is created that contains a graph with the new beam.</li>
+<li><strong>point1</strong> (<em>trimatic.Point</em>) – First point of the beam</li>
+<li><strong>point2</strong> (<em>trimatic.Point</em>) – Second point of the beam</li>
+<li><strong>thickness1</strong> (<em>float</em><em>, </em><em>optional</em>) – Thickness (diameter) of the new beam at point1.</li>
+<li><strong>thickness2</strong> (<em>float</em><em>, </em><em>optional</em>) – Thickness (diameter) of the new beam at point2.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Graph containing the new beam</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Graph</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">points</span><span class="p">,</span><span class="n">triangles</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">get_triangles</span><span class="p">()</span>
+<span class="n">lattice</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">mesh_based_lattice</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_beam</span><span class="p">(</span><span class="n">graph</span><span class="o">=</span><span class="n">lattice</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">point1</span><span class="o">=</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">point2</span><span class="o">=</span><span class="n">points</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+
+
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.create_uv_based_conformal_lattice">
+<code class="descname">create_uv_based_conformal_lattice</code><span class="sig-paren">(</span><em>*args</em>, <em>uv_map</em>, <em>unit_cell</em>, <em>margin_u=0.0</em>, <em>margin_v=0.0</em>, <em>preserve_unit_cell_height=False</em>, <em>height_offset=0.0</em>, <em>is_outside=True</em>, <em>number_of_layers=1</em>, <em>preserve_boundary_unit_cells=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#create_uv_based_conformal_lattice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.create_uv_based_conformal_lattice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates conformal lattice structure from an array of unit cells based on UV Map on the outside.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>uv_map</strong> (<em>trimatic.UVMap</em>) – Parameterization to be used to guide the conformal lattice.</li>
+<li><strong>unit_cell</strong> (<em>trimatic.GraphSet</em>) – The unit cell to be used as cells in the conformal lattice.</li>
+<li><strong>margin_u</strong> (<em>float</em><em>, </em><em>optional</em>) – The distance between the unit cells in the U direction in UV units.</li>
+<li><strong>margin_v</strong> (<em>float</em><em>, </em><em>optional</em>) – The distance between the unit cells in the V direction in UV units.</li>
+<li><strong>preserve_unit_cell_height</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, preserve the original unit cell height in the output.</li>
+<li><strong>height_offset</strong> (<em>float</em><em>, </em><em>optional</em>) – The distance of the first layer of the unit cell from the UV mapped surface.</li>
+<li><strong>is_outside</strong> (<em>bool</em><em>, </em><em>optional</em>) – IF True, the lattice structure will be generated in the outer side of the parameterized surface, else inner side.</li>
+<li><strong>number_of_layers</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of layers in the vertical direction for the unit cells.</li>
+<li><strong>preserve_boundary_unit_cells</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the partial unit cells will be preserved as is in the final output.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Graph entity that is the conformal lattice structure. A new part is created to contain the graph entity.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Graph</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Cup.mxp&quot;</span><span class="p">)</span>
+<span class="n">target_part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Lattice Volume&quot;</span><span class="p">)</span>
+<span class="n">target_surface</span> <span class="o">=</span> <span class="n">target_part</span><span class="o">.</span><span class="n">find_surface_set</span><span class="p">(</span><span class="s2">&quot;Subtraction result-001-001+-001-001-2+&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_uv_maps</span><span class="p">(</span><span class="n">entities</span> <span class="o">=</span> <span class="n">target_surface</span><span class="p">,</span> <span class="n">preserve_surface_connections</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">uv_map</span> <span class="o">=</span> <span class="n">target_part</span><span class="o">.</span><span class="n">find_uv_map</span><span class="p">(</span><span class="s1">&#39;UV Map-001&#39;</span><span class="p">)</span>
+
+<span class="n">part_with_unit_cell</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">)</span>
+<span class="n">unit_cell</span> <span class="o">=</span> <span class="n">part_with_unit_cell</span><span class="o">.</span><span class="n">find_graph_set</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">)</span>
+
+<span class="n">lattice_part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_uv_based_conformal_lattice</span><span class="p">(</span><span class="n">uv_map</span> <span class="o">=</span> <span class="n">uv_map</span><span class="p">,</span><span class="n">unit_cell</span> <span class="o">=</span> <span class="n">unit_cell</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.create_uv_based_dual_conformal_lattice">
+<code class="descname">create_uv_based_dual_conformal_lattice</code><span class="sig-paren">(</span><em>*args</em>, <em>source_uv_map</em>, <em>target_uv_map</em>, <em>unit_cell</em>, <em>margin_u=0.0</em>, <em>margin_v=0.0</em>, <em>height_offset=0.0</em>, <em>number_of_layers=None</em>, <em>desired_result=&lt;DesiredResultDualConformalLattice.RefitBoundaryEntity: 'RefitBoundaryEntity'&gt;</em>, <em>multi_cell_parameters=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#create_uv_based_dual_conformal_lattice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.create_uv_based_dual_conformal_lattice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates conformal lattice structure from an array of unit cells in between 2 UV Maps.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>source_uv_map</strong> (<em>trimatic.UVMap</em>) – First parameterization to be used to guide the conformal lattice.</li>
+<li><strong>target_uv_map</strong> (<em>trimatic.UVMap</em>) – Second parameterization to be used to guide the conformal lattice.</li>
+<li><strong>unit_cell</strong> (<em>trimatic.GraphSet</em>) – The unit cell to be used as cells in the conformal lattice.</li>
+<li><strong>margin_u</strong> (<em>float</em><em>, </em><em>optional</em>) – The distance between the unit cells in the U direction in UV units.</li>
+<li><strong>margin_v</strong> (<em>float</em><em>, </em><em>optional</em>) – The distance between the unit cells in the V direction in UV units.</li>
+<li><strong>height_offset</strong> (<em>float</em><em>, </em><em>optional</em>) – The distance of the first layer of the unit cell from the UV mapped surface.</li>
+<li><strong>number_of_layers</strong> (<em>int/None</em><em>, </em><em>optional</em>) – If set to None, then number_of_layers will be auto calculated else, the specified number of layers will fitted between the UV maps.</li>
+<li><strong>desired_result</strong> (<em>trimatic.DesiredResultDualConformalLattice</em><em>, </em><em>optional</em>) – Method to determine whether the partially boundary cells will be trimmed, refitted or not modified.</li>
+<li><strong>multi_cell_parameters</strong> (<em>(</em><em>(</em><em>trimatic.GraphSet</em><em>, </em><em>int</em><em>, </em><em>int</em><em>)</em><em>,</em><em>)</em><em>, </em><em>optional</em>) – Tuple of tuple with the unit cell entity, start layer and end layer for the multi cells. If set to None, then only the main unit cell input will be applied for all layers.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Graph entity that is the dual conformal lattice structure. A new part is created to contain the graph entity.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Graph</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">x_extent</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">uv_maps</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_uv_maps</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">part</span><span class="o">.</span><span class="n">get_surfaces</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">single_uv_map</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">dir_path</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;3-matic.exe&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">open_project</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">import_project</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_path</span><span class="p">,</span> <span class="s1">&#39;UnitCellLibrary/Cubeplex.mxp&#39;</span><span class="p">))</span>
+<span class="n">graph1</span> <span class="o">=</span> <span class="n">open_project</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_graph_sets</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">open_project</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">import_project</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_path</span><span class="p">,</span> <span class="s1">&#39;UnitCellLibrary/Diamond-Crystal-Lattice.mxp&#39;</span><span class="p">))</span>
+<span class="n">graph2</span> <span class="o">=</span> <span class="n">open_project</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_graph_sets</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<span class="n">lattice_part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_uv_based_dual_conformal_lattice</span><span class="p">(</span><span class="n">source_uv_map</span><span class="o">=</span><span class="n">uv_maps</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                                               <span class="n">target_uv_map</span><span class="o">=</span><span class="n">uv_maps</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                                               <span class="n">unit_cell</span><span class="o">=</span><span class="n">graph1</span><span class="p">,</span>
+                                                               <span class="n">number_of_layers</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                                               <span class="n">multi_cell_parameters</span><span class="o">=</span><span class="p">((</span><span class="n">graph1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="n">graph2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">)),</span>
+                                                               <span class="n">desired_result</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">DesiredResultDualConformalLattice</span><span class="o">.</span><span class="n">RefitBoundaryEntity</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.create_voronoi_based_lattice">
+<code class="descname">create_voronoi_based_lattice</code><span class="sig-paren">(</span><em>*args</em>, <em>entities</em>, <em>lattice_type=&lt;LatticeType.SurfaceAndVolume: 'SurfaceAndVolume'&gt;</em>, <em>target_pore_radius=5.0</em>, <em>thickness=1.0</em>, <em>push_nodes_under_surface=False</em>, <em>local_lattice_parameters=()</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#create_voronoi_based_lattice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.create_voronoi_based_lattice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create voronoi based lattices structure from an input mesh entity.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles</em><em>]</em>) – The mesh entity that needs to be used to generate the voronoi lattice structure.</li>
+<li><strong>lattice_type</strong> (<em>trimatic.LatticeType</em><em>, </em><em>optional</em>) – Type of lattice to be generated, surface or volume or both.</li>
+<li><strong>target_pore_radius</strong> (<em>float</em><em>, </em><em>optional</em>) – The target radius of the pore sizes to be achieved for the voronoi cells.</li>
+<li><strong>thickness</strong> (<em>float</em><em>, </em><em>optional</em>) – The thickness of the beams of the voronoi based lattice structures.</li>
+<li><strong>push_nodes_under_surface</strong> (<em>bool</em><em>, </em><em>optional</em>) – When true, all the beams nodes that is on or outside the mesh border will be pushed to be under the mesh entity with the thickness accounted for.</li>
+<li><strong>local_lattice_parameters</strong> (<em>(</em><em>(</em><em>trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles</em><em>, </em><em>float</em><em>, </em><em>float</em><em>)</em><em>,</em><em>)</em><em>, </em><em>optional</em>) – Tuple of tuples containing the info (entity, target pore radius, thickness)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Graph structures from the voronoi edges.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.Graph)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">ValueError, RuntimeError</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Error shall be thrown in the following cases</p>
+<ul class="simple">
+<li>When the local entities selected do not belong to the global entities o Error message: “Local entities does not match global entities”,</li>
+<li>When the local lattice thickness is non-zero and global thickness is zero o Error message: “The local lattice thickness shall be set to zero if the global thickness is zero”</li>
+<li>When the local lattice thickness is zero and global thickness is non-zero o Error message: “The local lattice thickness shall be set to a non-zero value if the global thickness is not zero”</li>
+<li>When the global entity is not of type trimatic.Part but local lattice parameters are still passed.</li>
+</ul>
+<p>Local parameters shall only be allowed with entities that are part of global entities that are of type trimatic.Part. No local parameters shall be allowed in case there is no global entity of type trimatic.Part.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">(</span><span class="n">point_1</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">point_2</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">surfaces</span> <span class="o">=</span> <span class="n">cylinder</span><span class="o">.</span><span class="n">get_surfaces</span><span class="p">()</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_voronoi_based_lattice</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="p">[</span><span class="n">cylinder</span><span class="p">],</span> <span class="n">target_pore_radius</span><span class="o">=</span><span class="mf">5.0000</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">1.0000</span><span class="p">,</span> <span class="n">local_lattice_parameters</span><span class="o">=</span><span class="p">((</span><span class="n">surfaces</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">),(</span><span class="n">surfaces</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)))</span>
+
+<span class="n">result2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_voronoi_based_lattice</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="p">[</span><span class="n">surfaces</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">lattice_type</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">LatticeType</span><span class="o">.</span><span class="n">Surface</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.fea_based_thickness">
+<code class="descname">fea_based_thickness</code><span class="sig-paren">(</span><em>entity</em>, <em>analysis</em>, <em>minimum_thickness</em>, <em>maximum_thickness</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#fea_based_thickness"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.fea_based_thickness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses FEA analysis to apply thickness on a graph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entity</strong> (<em>trimatic.Graph</em>) – The graph to apply thickness.</li>
+<li><strong>analysis</strong> (<em>trimatic.Analysis</em>) – Analysis to use.</li>
+<li><strong>minimum_thickness</strong> (<em>float</em>) – Minimum thickness to use for minimum analysis value.</li>
+<li><strong>maximum_thickness</strong> (<em>float</em>) – Maximum thickness to use for maximum analysis value.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Graph to which thickness was applied.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Graph</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">()),</span> <span class="s2">&quot;DemoFiles&quot;</span><span class="p">)</span>
+<span class="n">filename_inp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;Lattice_Bracket_Abaqus.inp&quot;</span><span class="p">)</span>
+<span class="n">filename_rpt</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;Lattice_Bracket_Abaqus_VonMises.rpt&quot;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">import_fea_results</span><span class="p">(</span><span class="n">filename_inp</span><span class="p">,</span><span class="n">filename_rpt</span><span class="p">)</span>
+<span class="n">analysis</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">find_analysis</span><span class="p">(</span><span class="s1">&#39;Average Values - Graph&#39;</span><span class="p">)</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">find_graph</span><span class="p">(</span><span class="s1">&#39;Part-2-1_Set-1&#39;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">fea_based_thickness</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">analysis</span><span class="p">,</span> <span class="n">minimum_thickness</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">maximum_thickness</span><span class="o">=</span><span class="mf">3.0</span> <span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.filter_beams_by_length">
+<code class="descname">filter_beams_by_length</code><span class="sig-paren">(</span><em>entities</em>, <em>length_threshold</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#filter_beams_by_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.filter_beams_by_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters beams based on length.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Part | trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Either single object or heterogenous list of parts or graph or graph sets.</li>
+<li><strong>length_threshold</strong> (<em>float</em>) – Beams with length &gt; length_threshold will be filtered.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">GraphSet that contains the graph with the filtered beams.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.GraphSet</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Cup.mxp&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Lattice Volume&quot;</span><span class="p">)</span>
+<span class="n">unit_cell</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">lattice</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">unit_cell_based_lattice</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">lattice_volume</span><span class="p">,</span><span class="n">unit_cell</span><span class="o">=</span><span class="n">unit_cell</span><span class="o">.</span><span class="n">find_graph_set</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">),</span><span class="n">randomization_max</span><span class="o">=</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.9</span><span class="p">))</span>
+
+<span class="n">filtered_graph</span> <span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">filter_beams_by_length</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span><span class="n">length_threshold</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">filtered_graph</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.filter_loose_beams">
+<code class="descname">filter_loose_beams</code><span class="sig-paren">(</span><em>entities</em>, <em>connection_threshold=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#filter_loose_beams"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.filter_loose_beams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters beams based on connectivity.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Part | trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Either single object or heterogenous list of parts or graph or graph sets.</li>
+<li><strong>connection_threshold</strong> (<em>int</em><em>, </em><em>optional</em>) – Beams with that have &lt;= connection_threshold connections will be filtered. 
+For example, when connection_threshold = 0, graphs without connections will be filtered. 
+when connection_threshold = 1, graphs with 0 or 1 connections will be filtered.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">GraphSet that contains the graph with the filtered beams.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.GraphSet</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Cup.mxp&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Lattice Volume&quot;</span><span class="p">)</span>
+<span class="n">unit_cell</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">lattice</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">unit_cell_based_lattice</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">lattice_volume</span><span class="p">,</span> <span class="n">unit_cell</span><span class="o">=</span><span class="n">unit_cell</span><span class="o">.</span><span class="n">find_graph_set</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">),</span> <span class="n">randomization_max</span><span class="o">=</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.9</span><span class="p">))</span>
+
+<span class="n">filtered_graph</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">filter_loose_beams</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span> <span class="n">connection_threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">filtered_graph</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.filter_overlapping_beams">
+<code class="descname">filter_overlapping_beams</code><span class="sig-paren">(</span><em>entities</em>, <em>offset_margin=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#filter_overlapping_beams"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.filter_overlapping_beams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters overlapping beams.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Part | trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Either single object or heterogenous list of parts or graph or graph sets.</li>
+<li><strong>offset_margin</strong> (<em>float</em><em>, </em><em>optional</em>) – When None, only fully overlapping beams are filtered. When specifying offset_margin, also beams that don’t exactly overlap are filtered out.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">GraphSet that contains the graph with the filtered beams.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.GraphSet</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Cup.mxp&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Lattice Volume&quot;</span><span class="p">)</span>
+<span class="n">unit_cell</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">lattice</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">unit_cell_based_lattice</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">lattice_volume</span><span class="p">,</span> <span class="n">unit_cell</span><span class="o">=</span><span class="n">unit_cell</span><span class="o">.</span><span class="n">find_graph_set</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">),</span> <span class="n">randomization_max</span><span class="o">=</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.9</span><span class="p">))</span>
+
+<span class="n">filtered_graph</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">filter_overlapping_beams</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span> <span class="n">offset_margin</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">filtered_graph</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.mesh_based_lattice">
+<code class="descname">mesh_based_lattice</code><span class="sig-paren">(</span><em>entities</em>, <em>maximum_beam_length=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#mesh_based_lattice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.mesh_based_lattice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates graph on the selected part or surface.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em>]</em>) – Either single object or a heterogenous list of parts or surfaces or surface sets.</li>
+<li><strong>maximum_beam_length</strong> (<em>(</em><em>float | None</em><em>, </em><em>optional</em><em>)</em>) – The maximum triangle edge length in the output. Set to None to disable.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">newly created graphs after converting mesh to lattice.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Graph | (trimatic.Graph)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Cup.mxp&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Lattice Volume&quot;</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">mesh_based_lattice</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">lattice_volume</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.mesh_based_lattice_with_volume">
+<code class="descname">mesh_based_lattice_with_volume</code><span class="sig-paren">(</span><em>entities</em>, <em>maximum_beam_length=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#mesh_based_lattice_with_volume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.mesh_based_lattice_with_volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates graph on the selected part.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> [</em><em>trimatic.Part</em><em>]</em>) – Either single object or a list of parts.</li>
+<li><strong>maximum_beam_length</strong> (<em>(</em><em>float | None</em><em>, </em><em>optional</em><em>)</em>) – The maximum triangle edge length in the output. Set to None to disable.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">newly created graphs after converting mesh to lattice.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Graph | (trimatic.Graph)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Cup.mxp&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Lattice Volume&quot;</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_volume_mesh</span><span class="p">(</span><span class="n">part</span><span class="o">=</span><span class="n">lattice_volume</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">mesh_based_lattice_with_volume</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">lattice_volume</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.move_graphs_to_graphset">
+<code class="descname">move_graphs_to_graphset</code><span class="sig-paren">(</span><em>graphs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#move_graphs_to_graphset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.move_graphs_to_graphset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Moves graph(s) into a newly created graph set. The graphset is created in the part that contains the first graph in the list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entities</strong> (<em>trimatic.Graph |</em><em> [</em><em>trimatic.Graph</em><em>]</em>) – One or more graph(s) to move.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Newly created graphset.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.GraphSet</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">RuntimeError, ValueError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Cup.mxp&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Lattice Volume&quot;</span><span class="p">)</span>
+
+<span class="n">graphs</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">mesh_based_lattice</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">lattice_volume</span><span class="p">)</span>
+<span class="n">graph_set</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">move_graphs_to_graphset</span><span class="p">(</span><span class="n">graphs</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.porosity_based_thickness">
+<code class="descname">porosity_based_thickness</code><span class="sig-paren">(</span><em>entity</em>, <em>sample_region</em>, <em>target_porosity=20</em>, <em>sample_size=100000</em>, <em>affect_whole_entity=True</em>, <em>scaled=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#porosity_based_thickness"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.porosity_based_thickness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assigns porosity based thickness.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entity</strong> (<em>trimatic.Graph | trimatic.GraphSet</em>) – The graph to apply thickness.</li>
+<li><strong>sample_region</strong> (<em>trimatic.Part</em>) – The porosity will be calculated based on this region.</li>
+<li><strong>target_porosity</strong> (<em>float</em><em>, </em><em>optional</em>) – The desired porosity to be achieved.</li>
+<li><strong>sample_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of points that will be sampled to calculate the density. 
+With larger sample size, a more accurate estimate will be obtained. 
+GUI Precision ‘Medium’ corresponds to sample size 100000, ‘High’ with 1000000.</li>
+<li><strong>affect_whole_entity</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, The thickness will be applied to the whole graph set. When False, the operation will trim and apply thickness to graphs within the sample region only.</li>
+<li><strong>scaled</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, the operation will scale the thickness of the selection (zero thickness will remain zero). When False, the operation will apply absolute thickness to the selection.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of acheived results containing (pososity value in region (in %), confidence interval start, confidence end)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(float, float, float)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Cup.mxp&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Lattice Volume&quot;</span><span class="p">)</span>
+<span class="n">unit_cell</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">unit_cell_based_lattice</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">lattice_volume</span><span class="p">,</span> <span class="n">unit_cell</span><span class="o">=</span><span class="n">unit_cell</span><span class="o">.</span><span class="n">find_graph_set</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">))</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">porosity_based_thickness</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span><span class="n">sample_region</span><span class="o">=</span><span class="n">lattice_volume</span><span class="p">,</span> <span class="n">target_porosity</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.quad_based_lattice">
+<code class="descname">quad_based_lattice</code><span class="sig-paren">(</span><em>entities</em>, <em>edge_length=2.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#quad_based_lattice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.quad_based_lattice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates graphs with quad based design.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em> ]</em>) – Either single object or heterogenous list of parts or surfaces or surface sets.</li>
+<li><strong>edge_length</strong> (<em>float</em><em>, </em><em>optional</em>) – Target edge length of the quad mesh.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">newly created graphs.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Graph | (trimatic.Graph)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Cup.mxp&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Lattice Volume&quot;</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">quad_based_lattice</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">lattice_volume</span><span class="p">,</span> <span class="n">edge_length</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.set_graph_properties">
+<code class="descname">set_graph_properties</code><span class="sig-paren">(</span><em>entities</em>, <em>thickness</em>, <em>accuracy=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#set_graph_properties"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.set_graph_properties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets properties (thickness and/or accuracy) of graph beams.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Part | trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Either single object or heterogenous list of parts or graph or graph sets.</li>
+<li><strong>thickness</strong> (<em>float</em>) – The thickness that the beams should get. When specifying None, thickness will not be modified.</li>
+<li><strong>accuracy</strong> (<em>float</em><em>, </em><em>optional</em>) – The accuracy that the beams should get. When specifying None, accuracy will not be modified.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The modified graphs.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | trimatic.Graph | trimatic.GraphSet | (trimatic.Part | trimatic.Graph | trimatic.GraphSet)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Cup.mxp&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Lattice Volume&quot;</span><span class="p">)</span>
+<span class="n">unit_cell</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">unit_cell_based_lattice</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">lattice_volume</span><span class="p">,</span> <span class="n">unit_cell</span><span class="o">=</span><span class="n">unit_cell</span><span class="o">.</span><span class="n">find_graph_set</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">))</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">set_graph_properties</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">accuracy</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.split_beams_at_intersection">
+<code class="descname">split_beams_at_intersection</code><span class="sig-paren">(</span><em>entities</em>, <em>thickness_based_intersection=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#split_beams_at_intersection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.split_beams_at_intersection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates node at all positions where beams are crossing each other.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Part | trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Either single object or a heterogenous list of parts or graphs or graph sets.</li>
+<li><strong>thickness_based_intersection</strong> (<em>(</em><em>bool</em><em>, </em><em>optional</em><em>)</em>) – If set to True, the intersecting thickness will be accounted to generate the nodes.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Graphs that has been modified by the operations.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Graph | (trimatic.Graph)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">graph</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_beam</span><span class="p">(</span><span class="n">graph</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">point1</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">point2</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_beam</span><span class="p">(</span><span class="n">graph</span><span class="o">=</span><span class="n">graph</span><span class="p">,</span> <span class="n">point1</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">point2</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="c1"># graph has 2 beams</span>
+
+<span class="n">graph</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">split_beams_at_intersection</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">graph</span><span class="p">,</span> <span class="n">thickness_based_intersection</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># graph has now 4 beams</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.stitch_graphs">
+<code class="descname">stitch_graphs</code><span class="sig-paren">(</span><em>entities</em>, <em>number_of_iterations=1</em>, <em>tolerance=1.0</em>, <em>loose_beams_only=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#stitch_graphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.stitch_graphs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stitches beam nodes within the specified tolerance distance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Part | trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Either single object or a heterogenous list of parts or graphs or graph sets.</li>
+<li><strong>number_of_iterations</strong> (<em>(</em><em>integer</em><em>, </em><em>optional</em><em>)</em>) – The maximum number of iterations to repeat the operation before terminating.</li>
+<li><strong>tolerance</strong> (<em>(</em><em>float</em><em>, </em><em>optional</em><em>)</em>) – The tolerance distance between the nodes to be stitched together.</li>
+<li><strong>loose_beams_only</strong> (<em>(</em><em>bool</em><em>, </em><em>optional</em><em>)</em>) – If set to True, then only the loose beams will be stitched.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Graphs with nodes stitched together.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Graph | (trimatic.Graph)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">box2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">mesh_based_lattice</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="p">(</span><span class="n">box1</span><span class="p">,</span><span class="n">box2</span><span class="p">))</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">stitch_graphs</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="p">(</span><span class="n">box1</span><span class="p">,</span><span class="n">box2</span><span class="p">),</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">10.0000</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.lattice.unit_cell_based_lattice">
+<code class="descname">unit_cell_based_lattice</code><span class="sig-paren">(</span><em>*args</em>, <em>entity</em>, <em>unit_cell</em>, <em>fill_solid=True</em>, <em>keep_beams_on_border=True</em>, <em>randomization_min=None</em>, <em>randomization_max=None</em>, <em>trim_randomized=True</em>, <em>randomization_seed=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/lattice.html#unit_cell_based_lattice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.lattice.unit_cell_based_lattice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fills up the selected part with the provided unit cell.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entity</strong> (<em>trimatic.Part</em>) – The part to fill.</li>
+<li><strong>unit_cell</strong> (<em>trimatic.GraphSet</em>) – The unit cell to use for filling.</li>
+<li><strong>fill_solid</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True (solid fill), the operation will fill all the solid regions in the part with unit cells. When False (hollow fill), all hollow regions in the part are filled with unit cells.</li>
+<li><strong>keep_beams_on_border</strong> (<em>bool</em><em>, </em><em>optional</em>) – When False, beams on the surface of the input entity will be removed.</li>
+<li><strong>randomization_min</strong> (<em>(</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>)</em><em>, </em><em>optional</em>) – The minimal (x,y,z) deviation of the endpoints.</li>
+<li><strong>randomization_max</strong> (<em>(</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>)</em><em>, </em><em>optional</em>) – The maximal (x,y,z) deviation of the endpoints.</li>
+<li><strong>trim_randomized</strong> (<em>bool</em><em>, </em><em>optional</em>) – Any graph lines going out of the bounding box of the part to fill will be trimmed and deleted.</li>
+<li><strong>randomization_seed</strong> (<em>int</em><em>, </em><em>optional</em>) – Randomization can be controlled by specifying a seed value.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Newly created graph. Note that a part was created as well to contain the graph.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Graph</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError | RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Cup.mxp&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Lattice Volume&quot;</span><span class="p">)</span>
+<span class="n">unit_cell</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">)</span>
+<span class="n">lattice_volume</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">unit_cell_based_lattice</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">lattice_volume</span><span class="p">,</span> <span class="n">unit_cell</span><span class="o">=</span><span class="n">unit_cell</span><span class="o">.</span><span class="n">find_graph_set</span><span class="p">(</span><span class="s2">&quot;Dodecahedron&quot;</span><span class="p">),</span> <span class="n">randomization_max</span><span class="o">=</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.9</span><span class="p">))</span>
+
+
+
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trimatic.logging.html" class="btn btn-neutral float-right" title="logging" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="trimatic.interactive.html" class="btn btn-neutral" title="interactive" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

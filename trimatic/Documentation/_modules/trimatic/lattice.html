@@ -1,0 +1,1191 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>trimatic.lattice &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>trimatic.lattice</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for trimatic.lattice</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pymatic</span>
+<span class="kn">import</span> <span class="nn">trimatic.utils</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<div class="viewcode-block" id="analyze_lattice_porosity"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.analyze_lattice_porosity">[docs]</a><span class="k">def</span> <span class="nf">analyze_lattice_porosity</span><span class="p">(</span>
+    <span class="n">entities</span><span class="p">,</span>
+    <span class="n">sample_region</span><span class="p">,</span>
+    <span class="n">sample_size</span> <span class="o">=</span> <span class="mi">100000</span>
+    <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analyzes the porosity of a lattice.</span>
+
+<span class="sd">    :param entities: Graph(s) to analyze.</span>
+<span class="sd">    :type entities: trimatic.Graph | trimatic.GraphSet | [trimatic.Graph | trimatic.GraphSet]</span>
+<span class="sd">    :param sample_region: Region in 3D space where graph needs to be analyzed.</span>
+<span class="sd">    :type sample_region: trimatic.Part | [trimatic.Part]</span>
+<span class="sd">    :param sample_size: The number of points that will be sampled to calculate the density. </span>
+<span class="sd">        With larger sample size, a more accurate estimate will be obtained. </span>
+<span class="sd">        GUI Precision &#39;Medium&#39; corresponds to sample size 100000, &#39;High&#39; with 1000000.</span>
+<span class="sd">    :type sample_size: int, optional</span>
+<span class="sd">    :return: A tuple that contains for every sample region, a tuple of analysis results containing (porosity value in region (in %), confidence interval start, confidence end)</span>
+<span class="sd">    :rtype: ((float, float, float))</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/analyze_lattice_porosity.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;sample_region&quot;</span><span class="p">,</span> <span class="n">sample_region</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;sample_size&quot;</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">analyze_lattice_porosity</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">sample_region</span><span class="p">),</span> <span class="n">sample_size</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="analyze_lattice_pore_size"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.analyze_lattice_pore_size">[docs]</a><span class="k">def</span> <span class="nf">analyze_lattice_pore_size</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">step_size</span><span class="p">,</span> <span class="n">maximum_pore_size</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analyzes the pore size of the lattice structure.</span>
+
+<span class="sd">    :param entities: Graph(s) to analyze.</span>
+<span class="sd">    :type entities: trimatic.Graph | trimatic.GraphSet | [trimatic.Graph | trimatic.GraphSet]</span>
+<span class="sd">    :param step_size: The analysis step size (equivalent to the step size as well) </span>
+<span class="sd">        from the minimum pore size to the the maximum pore size.</span>
+<span class="sd">    :type step_size: float</span>
+<span class="sd">    :param maximum_pore_size: The maximum pore size to analyze to. The operation </span>
+<span class="sd">        will terminate when this value is reached.</span>
+<span class="sd">    :type maximum_pore_size: float</span>
+
+<span class="sd">    :return: A tuple of analysis that consists of input graph corresponding to the result, </span>
+<span class="sd">        maximum pore radius, minimum pore radius, mode pore radius, average pore radius, </span>
+<span class="sd">        and for every sample pore, a tuple of coordinates and radius(X coordinate, </span>
+<span class="sd">        Y coordinate, Z coordinate, Radius) for every graph entity that exists in the input </span>
+<span class="sd">        entities. The ordering of a graph entity within the input entities serves as its </span>
+<span class="sd">        index into the top-level tuple of the returned value.</span>
+<span class="sd">    :rtype: ((trimatic.Graph, float, float, float, float, ((float, float, float, float),)),)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/analyze_lattice_pore_size.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;step_size&quot;</span><span class="p">,</span> <span class="n">step_size</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_resolution</span><span class="p">())</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;maximum_pore_size&quot;</span><span class="p">,</span> <span class="n">maximum_pore_size</span><span class="p">,</span> <span class="n">step_size</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">analyze_lattice_pore_size</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span>
+                                             <span class="n">step_size</span><span class="p">,</span> <span class="n">maximum_pore_size</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="attach_graph_to_mesh"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.attach_graph_to_mesh">[docs]</a><span class="k">def</span> <span class="nf">attach_graph_to_mesh</span><span class="p">(</span><span class="n">graphs</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="n">margin</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Attaches graphs to a mesh.</span>
+
+<span class="sd">    :param graphs: The graph(s) to attach.</span>
+<span class="sd">    :type graphs: trimatic.Graph | trimatic.GraphSet | [trimatic.Graph | trimatic.GraphSet]</span>
+<span class="sd">    :param entity: Part on which to attach.</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :param margin: When specified, nodes on the surface closer than this value will be merged. When None, no nodes will be merged.</span>
+<span class="sd">    :type margin: float, optional</span>
+<span class="sd">    :return: A newly created part containing the retriangulated surface of the target part and the attached graph.</span>
+<span class="sd">    :rtype: trimatic.Part</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/attach_graph_to_mesh.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;graphs&quot;</span><span class="p">,</span> <span class="n">graphs</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">margin</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;margin&quot;</span><span class="p">,</span> <span class="n">margin</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">attach_graph_to_mesh</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">graphs</span><span class="p">),</span> <span class="n">entity</span><span class="p">,</span> <span class="n">margin</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="connect_graphs"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.connect_graphs">[docs]</a><span class="k">def</span> <span class="nf">connect_graphs</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> 
+                   <span class="n">source</span><span class="p">,</span> 
+                   <span class="n">target</span><span class="p">,</span> 
+                   <span class="n">number_of_connections</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> 
+                   <span class="n">min_connection_radius</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+                   <span class="n">max_connection_radius</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates connections between two graph structures.</span>
+
+<span class="sd">    :param source: Either single object or heterogenous list of parts or graph or graph sets.</span>
+<span class="sd">    :type source: trimatic.Part | trimatic.Graph | trimatic.GraphSet | [trimatic.Part | trimatic.Graph | trimatic.GraphSet]</span>
+<span class="sd">    :param target: Either single object or heterogenous list of parts or graph or graph sets.</span>
+<span class="sd">    :type target: trimatic.Part | trimatic.Graph | trimatic.GraphSet | [trimatic.Part | trimatic.Graph | trimatic.GraphSet]</span>
+<span class="sd">    :param number_of_connections: If number of connections is 1 then a single connection between the inner points (source graph) and outer points (target graph) is laid. If number of connections is ‘n’ and the graph connections are chosen from inside to outside, then each inner point is connected to the ‘n’ nearest neighboring outer points.</span>
+<span class="sd">    :type number_of_connections: int, optional</span>
+<span class="sd">    :param min_connection_radius: Within this specified radius, the operation will look for the number of nearest neighboring points. Set None to disable.</span>
+<span class="sd">    :type min_connection_radius: float | None, optional</span>
+<span class="sd">    :param max_connection_radius: Within this specified radius, the operation will look for the number of nearest neighboring points. Set None to disable. This parameter together with &#39;min_connection_radius&#39; specifies the range of connection radius.</span>
+<span class="sd">    :type max_connection_radius: float | None, optional</span>
+
+<span class="sd">    :return: newly created graphs.</span>
+<span class="sd">    :rtype: trimatic.Graph | (trimatic.Graph)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/connect_graphs.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span> <span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span> <span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_entity_sets_do_not_contain_equal_entities</span><span class="p">(</span><span class="s2">&quot;source&quot;</span><span class="p">,</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_connections&quot;</span><span class="p">,</span> <span class="n">number_of_connections</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">min_connection_radius</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;min_connection_radius&quot;</span><span class="p">,</span> <span class="n">min_connection_radius</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">max_connection_radius</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+       <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;max_connection_radius&quot;</span><span class="p">,</span> <span class="n">max_connection_radius</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_resolution</span><span class="p">())</span>
+       <span class="k">if</span> <span class="n">min_connection_radius</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+           <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;max_connection_radius&quot;</span><span class="p">,</span> <span class="n">max_connection_radius</span><span class="p">,</span> <span class="n">min_connection_radius</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">connect_graphs</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">source</span><span class="p">),</span>
+                                  <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">target</span><span class="p">),</span>
+                                  <span class="n">number_of_connections</span><span class="p">,</span>
+                                  <span class="n">min_connection_radius</span><span class="p">,</span>
+                                  <span class="n">max_connection_radius</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="connect_graphs_self_supporting"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.connect_graphs_self_supporting">[docs]</a><span class="k">def</span> <span class="nf">connect_graphs_self_supporting</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> 
+                   <span class="n">source</span><span class="p">,</span> 
+                   <span class="n">target</span><span class="p">,</span> 
+                   <span class="n">normal</span><span class="p">,</span>
+                   <span class="n">minimum_angle</span><span class="p">,</span>
+                   <span class="n">number_of_connections</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> 
+                   <span class="n">min_connection_radius</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+                   <span class="n">max_connection_radius</span> <span class="o">=</span> <span class="mi">1</span>
+                   <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates connections between two graph structures that are self supported based on the normal vector of the plane selected.</span>
+
+<span class="sd">    :param source: Either single object or heterogenous list of parts or graph or graph sets.</span>
+<span class="sd">    :type source: trimatic.Part | trimatic.Graph | trimatic.GraphSet | [trimatic.Part | trimatic.Graph | trimatic.GraphSet]</span>
+<span class="sd">    :param target: Either single object or heterogenous list of parts or graph or graph sets.</span>
+<span class="sd">    :type target: trimatic.Part | trimatic.Graph | trimatic.GraphSet | [trimatic.Part | trimatic.Graph | trimatic.GraphSet]</span>
+<span class="sd">    :param normal: Normal vector of the reference plane to be used. </span>
+<span class="sd">    :type normal: trimatic.Point</span>
+<span class="sd">    :param minimum_angle: Minimum required angle between created graph beams and reference plane. </span>
+<span class="sd">    :type minimum_angle: float</span>
+<span class="sd">    :param number_of_connections: If number of connections is 1 then a single connection between the inner points (source graph) and outer points (target graph) is laid. If number of connections is ‘n’ and the graph connections are chosen from inside to outside, then each inner point is connected to the ‘n’ nearest neighboring outer points.</span>
+<span class="sd">    :type number_of_connections: int, optional</span>
+<span class="sd">    :param min_connection_radius: Within this specified radius, the operation will look for the number of nearest neighboring points. Set None to disable.</span>
+<span class="sd">    :type min_connection_radius: float | None, optional</span>
+<span class="sd">    :param max_connection_radius: Within this specified radius, the operation will look for the number of nearest neighboring points. Set None to disable. This parameter together with &#39;min_connection_radius&#39; specifies the range of connection radius.</span>
+<span class="sd">    :type max_connection_radius: float | None, optional</span>
+<span class="sd"> </span>
+<span class="sd">    :return: newly created graphs.</span>
+<span class="sd">    :rtype: trimatic.Graph | (trimatic.Graph)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/connect_graphs_self_supporting.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span> <span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span> <span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_entity_sets_do_not_contain_equal_entities</span><span class="p">(</span><span class="s2">&quot;source&quot;</span><span class="p">,</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_connections&quot;</span><span class="p">,</span> <span class="n">number_of_connections</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">min_connection_radius</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;min_connection_radius&quot;</span><span class="p">,</span> <span class="n">min_connection_radius</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">max_connection_radius</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+       <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;max_connection_radius&quot;</span><span class="p">,</span> <span class="n">max_connection_radius</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_resolution</span><span class="p">())</span>
+       <span class="k">if</span> <span class="n">min_connection_radius</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+           <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;max_connection_radius&quot;</span><span class="p">,</span> <span class="n">max_connection_radius</span><span class="p">,</span> <span class="n">min_connection_radius</span><span class="p">)</span>
+
+    <span class="n">pymatic_normal</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">normal</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_direction</span><span class="p">(</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="n">pymatic_normal</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;minimum_angle&quot;</span><span class="p">,</span> <span class="n">minimum_angle</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_smaller_or_equal</span><span class="p">(</span><span class="s2">&quot;minimum_angle&quot;</span><span class="p">,</span> <span class="n">minimum_angle</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">connect_graphs_self_supporting</span><span class="p">(</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">source</span><span class="p">),</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">target</span><span class="p">),</span>
+        <span class="n">pymatic_normal</span><span class="p">,</span>
+        <span class="n">minimum_angle</span><span class="p">,</span>
+        <span class="n">number_of_connections</span><span class="p">,</span>
+        <span class="n">min_connection_radius</span><span class="p">,</span>
+        <span class="n">max_connection_radius</span><span class="p">)</span></div>
+ 
+<div class="viewcode-block" id="convert_lattice_to_regular_mesh"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.convert_lattice_to_regular_mesh">[docs]</a><span class="k">def</span> <span class="nf">convert_lattice_to_regular_mesh</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">connection_thickness</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts graph(s) to part(s) where the beams are converted to cylindrical entities with spherical endings. </span>
+
+<span class="sd">    Input entities are grouped according to the part they belong to. For every group, a new part will be created. </span>
+<span class="sd">    To control beam thickness and/or accuracy, use trimatic.set_graph_properties. </span>
+<span class="sd">    When the input has graphs with thickness 0, the operation will fail.</span>
+<span class="sd">    When the input has graphs with accuracy 0, the operation will use accuracy of 40% of the minimal thickness value.</span>
+<span class="sd">    When the group does not have graphs with accuracy 0, the operation will use minimal accuracy value.</span>
+<span class="sd">    </span>
+<span class="sd">    :param entities: Either single object or heterogenous list of parts or graph or graph sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Graph | trimatic.GraphSet | [trimatic.Part | trimatic.Graph | trimatic.GraphSet]</span>
+<span class="sd">    :param connection_thickness: The diameters of the spheres at beam connections. This parameter only has effect when the connection_thickness is larger than beam thickness (e.g. when it is 0). </span>
+<span class="sd">    :type connection_thickness: float, optional</span>
+
+<span class="sd">    :return: Newly created part(s).</span>
+<span class="sd">    :rtype: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/convert_lattice_to_regular_mesh.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span> <span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">connection_thickness</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;connection_thickness&quot;</span><span class="p">,</span> <span class="n">connection_thickness</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">convert_lattice_to_regular_mesh</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">connection_thickness</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="convert_lattice_to_organic_mesh"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.convert_lattice_to_organic_mesh">[docs]</a><span class="k">def</span> <span class="nf">convert_lattice_to_organic_mesh</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">organic_factor</span> <span class="o">=</span> <span class="mf">1.200</span><span class="p">)</span> <span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts graph(s) to part(s) where the beams are converted to organic (cancellous bone-like) mesh structure. </span>
+
+<span class="sd">    Input entities are grouped according to the part they belong to. For every group, a new part will be created. </span>
+<span class="sd">    To control beam thickness and/or accuracy, use trimatic.set_graph_properties. </span>
+<span class="sd">    When the input has graphs with thickness 0, the operation will fail.</span>
+<span class="sd">    When the input has graphs with accuracy 0, the operation will use accuracy of 40% of the minimal thickness value.</span>
+<span class="sd">    When the group does not have graphs with accuracy 0, the operation will use minimal accuracy value.</span>
+<span class="sd">    </span>
+<span class="sd">    :param entities: Either single object or heterogenous list of parts or graph or graph sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Graph | trimatic.GraphSet | [trimatic.Part | trimatic.Graph | trimatic.GraphSet]</span>
+<span class="sd">    :param organic_factor: The intensity of the organic effect on the output mesh. </span>
+<span class="sd">    :type organic_factor: float, optional</span>
+
+<span class="sd">    :return: Newly created part(s).</span>
+<span class="sd">    :rtype: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+<span class="sd">    </span>
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/convert_lattice_to_organic_mesh.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span> <span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">organic_factor</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;organic_factor&quot;</span><span class="p">,</span> <span class="n">organic_factor</span><span class="p">,</span> <span class="mf">1.0001</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">convert_lattice_to_organic_mesh</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">organic_factor</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="convert_to_graph"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.convert_to_graph">[docs]</a><span class="k">def</span> <span class="nf">convert_to_graph</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts curve like entities to graphs.</span>
+
+<span class="sd">    :param entities: Either single object or heterogenous list of curve, curve sets , surface borders or surface contours.</span>
+<span class="sd">    :type entities: trimatic.Curve | trimatic.SurfaceBorder | trimatic.SurfaceContour |  trimatic.CurveSet | [trimatic.Curve | trimatic.SurfaceBorder | trimatic.SurfaceContour | trimatic.CurveSet ]</span>
+
+<span class="sd">    :return: newly created graphs.</span>
+<span class="sd">    :rtype: trimatic.Graph | (trimatic.Graph)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/convert_to_graph.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">CurveSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceBorder</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceContour</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">convert_to_graph</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">))</span>   </div>
+
+<div class="viewcode-block" id="create_beam"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.create_beam">[docs]</a><span class="k">def</span> <span class="nf">create_beam</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">,</span> <span class="n">thickness1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">thickness2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a beam in a graph.</span>
+
+<span class="sd">    :param graph: The graph in which to create a beam. When specifying None, a new part is created that contains a graph with the new beam.</span>
+<span class="sd">    :type graph: trimatic.Graph</span>
+<span class="sd">    :param point1: First point of the beam</span>
+<span class="sd">    :type point1: trimatic.Point</span>
+<span class="sd">    :param point2: Second point of the beam</span>
+<span class="sd">    :type point2: trimatic.Point</span>
+<span class="sd">    :param thickness1: Thickness (diameter) of the new beam at point1.</span>
+<span class="sd">    :type thickness1: float, optional</span>
+<span class="sd">    :param thickness2: Thickness (diameter) of the new beam at point2.</span>
+<span class="sd">    :type thickness2: float, optional</span>
+<span class="sd">    :return: Graph containing the new beam</span>
+<span class="sd">    :rtype: trimatic.Graph</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/create_beam.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;graph&quot;</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="p">),</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;thickness1&quot;</span><span class="p">,</span> <span class="n">thickness1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;thickness2&quot;</span><span class="p">,</span> <span class="n">thickness2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">pymatic_point1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point1</span><span class="p">)</span> 
+    <span class="n">pymatic_point2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point2</span><span class="p">)</span> 
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_2points_not_coincident</span><span class="p">(</span><span class="s2">&quot;point1&quot;</span><span class="p">,</span> <span class="s2">&quot;point2&quot;</span><span class="p">,</span> <span class="n">pymatic_point1</span><span class="p">,</span> <span class="n">pymatic_point2</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_beam</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">pymatic_point1</span><span class="p">,</span> <span class="n">pymatic_point2</span><span class="p">,</span> <span class="n">thickness1</span><span class="p">,</span> <span class="n">thickness2</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="fea_based_thickness"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.fea_based_thickness">[docs]</a><span class="k">def</span> <span class="nf">fea_based_thickness</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">analysis</span><span class="p">,</span> <span class="n">minimum_thickness</span><span class="p">,</span> <span class="n">maximum_thickness</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Uses FEA analysis to apply thickness on a graph.</span>
+
+<span class="sd">    :param entity: The graph to apply thickness.</span>
+<span class="sd">    :type entity: trimatic.Graph</span>
+<span class="sd">    :param analysis: Analysis to use.</span>
+<span class="sd">    :type analysis: trimatic.Analysis</span>
+<span class="sd">    :param minimum_thickness: Minimum thickness to use for minimum analysis value.</span>
+<span class="sd">    :type minimum_thickness: float</span>
+<span class="sd">    :param maximum_thickness: Maximum thickness to use for maximum analysis value.</span>
+<span class="sd">    :type maximum_thickness: float</span>
+<span class="sd">    :return: Graph to which thickness was applied.</span>
+<span class="sd">    :rtype: trimatic.Graph</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/fea_based_thickness.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;analysis&quot;</span><span class="p">,</span> <span class="n">analysis</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Analysis</span><span class="p">))</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;minimum_thickness&quot;</span><span class="p">,</span> <span class="n">minimum_thickness</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;maximum_thickness&quot;</span><span class="p">,</span> <span class="n">maximum_thickness</span><span class="p">,</span> <span class="n">minimum_thickness</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">fea_based_thickness</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">analysis</span><span class="p">,</span> <span class="n">minimum_thickness</span><span class="p">,</span> <span class="n">maximum_thickness</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="filter_beams_by_length"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.filter_beams_by_length">[docs]</a><span class="k">def</span> <span class="nf">filter_beams_by_length</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">length_threshold</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Filters beams based on length.</span>
+
+<span class="sd">    :param entities: Either single object or heterogenous list of parts or graph or graph sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Graph | trimatic.GraphSet | [trimatic.Part | trimatic.Graph | trimatic.GraphSet]</span>
+<span class="sd">    :param length_threshold: Beams with length &gt; length_threshold will be filtered.</span>
+<span class="sd">    :type length_threshold: float </span>
+
+<span class="sd">    :return: GraphSet that contains the graph with the filtered beams.</span>
+<span class="sd">    :rtype: trimatic.GraphSet</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/filter_beams_by_length.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span> <span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;length_threshold&quot;</span><span class="p">,</span> <span class="n">length_threshold</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_resolution</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">filter_beams_by_length</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span><span class="n">length_threshold</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="filter_loose_beams"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.filter_loose_beams">[docs]</a><span class="k">def</span> <span class="nf">filter_loose_beams</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">connection_threshold</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Filters beams based on connectivity.</span>
+
+<span class="sd">    :param entities: Either single object or heterogenous list of parts or graph or graph sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Graph | trimatic.GraphSet | [trimatic.Part | trimatic.Graph | trimatic.GraphSet]</span>
+<span class="sd">    :param connection_threshold: Beams with that have &lt;= connection_threshold connections will be filtered. </span>
+<span class="sd">                                For example, when connection_threshold = 0, graphs without connections will be filtered. </span>
+<span class="sd">                                when connection_threshold = 1, graphs with 0 or 1 connections will be filtered. </span>
+<span class="sd">    :type connection_threshold: int, optional </span>
+
+<span class="sd">    :return: GraphSet that contains the graph with the filtered beams.</span>
+<span class="sd">    :rtype: trimatic.GraphSet</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/filter_loose_beams.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span> <span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;connection_threshold&quot;</span><span class="p">,</span> <span class="n">connection_threshold</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_smaller_or_equal</span><span class="p">(</span><span class="s2">&quot;connection_threshold&quot;</span><span class="p">,</span> <span class="n">connection_threshold</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">filter_loose_beams</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span><span class="n">connection_threshold</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="filter_overlapping_beams"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.filter_overlapping_beams">[docs]</a><span class="k">def</span> <span class="nf">filter_overlapping_beams</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">offset_margin</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Filters overlapping beams.</span>
+
+<span class="sd">    :param entities: Either single object or heterogenous list of parts or graph or graph sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Graph | trimatic.GraphSet | [trimatic.Part | trimatic.Graph | trimatic.GraphSet]</span>
+<span class="sd">    :param offset_margin: When None, only fully overlapping beams are filtered. When specifying offset_margin, also beams that don&#39;t exactly overlap are filtered out.</span>
+
+<span class="sd">    :type offset_margin: float, optional </span>
+
+<span class="sd">    :return: GraphSet that contains the graph with the filtered beams.</span>
+<span class="sd">    :rtype: trimatic.GraphSet</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/filter_overlapping_beams.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span> <span class="p">))</span>
+    <span class="k">if</span> <span class="n">offset_margin</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;offset_margin&quot;</span><span class="p">,</span> <span class="n">offset_margin</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">filter_overlapping_beams</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">offset_margin</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="mesh_based_lattice"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.mesh_based_lattice">[docs]</a><span class="k">def</span> <span class="nf">mesh_based_lattice</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">maximum_beam_length</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates graph on the selected part or surface.</span>
+
+<span class="sd">    :param entities: Either single object or a heterogenous list of parts or surfaces or surface sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet]</span>
+<span class="sd">    :param maximum_beam_length: The maximum triangle edge length in the output. Set to None to disable.</span>
+<span class="sd">    :type maximum_beam_length: (float | None, optional)</span>
+
+<span class="sd">    :return: newly created graphs after converting mesh to lattice.</span>
+<span class="sd">    :rtype: trimatic.Graph | (trimatic.Graph)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/mesh_based_lattice.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span> <span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">maximum_beam_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+       <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;maximum_beam_length&quot;</span><span class="p">,</span> <span class="n">maximum_beam_length</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">mesh_based_lattice</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">maximum_beam_length</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="mesh_based_lattice_with_volume"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.mesh_based_lattice_with_volume">[docs]</a><span class="k">def</span> <span class="nf">mesh_based_lattice_with_volume</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span>  <span class="n">maximum_beam_length</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates graph on the selected part.</span>
+
+<span class="sd">    :param entities: Either single object or a list of parts.</span>
+<span class="sd">    :type entities: trimatic.Part | [trimatic.Part]</span>
+<span class="sd">    :param maximum_beam_length: The maximum triangle edge length in the output. Set to None to disable.</span>
+<span class="sd">    :type maximum_beam_length: (float | None, optional)</span>
+
+<span class="sd">    :return: newly created graphs after converting mesh to lattice.</span>
+<span class="sd">    :rtype: trimatic.Graph | (trimatic.Graph)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/mesh_based_lattice_with_volume.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">maximum_beam_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+       <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;maximum_beam_length&quot;</span><span class="p">,</span> <span class="n">maximum_beam_length</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">mesh_based_lattice_with_volume</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">maximum_beam_length</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="move_graphs_to_graphset"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.move_graphs_to_graphset">[docs]</a><span class="k">def</span> <span class="nf">move_graphs_to_graphset</span><span class="p">(</span><span class="n">graphs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Moves graph(s) into a newly created graph set. The graphset is created in the part that contains the first graph in the list.</span>
+
+<span class="sd">    :param entities: One or more graph(s) to move.</span>
+<span class="sd">    :type entities: trimatic.Graph | [trimatic.Graph]</span>
+<span class="sd">    :return: Newly created graphset.</span>
+<span class="sd">    :rtype: trimatic.GraphSet</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/move_graphs_to_graphset.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;graphs&quot;</span><span class="p">,</span> <span class="n">graphs</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">move_graphs_to_graphset</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">graphs</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="porosity_based_thickness"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.porosity_based_thickness">[docs]</a><span class="k">def</span> <span class="nf">porosity_based_thickness</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">sample_region</span><span class="p">,</span> <span class="n">target_porosity</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">sample_size</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">,</span> <span class="n">affect_whole_entity</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">scaled</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Assigns porosity based thickness.</span>
+
+<span class="sd">    :param entity: The graph to apply thickness.</span>
+<span class="sd">    :type entity: trimatic.Graph | trimatic.GraphSet</span>
+<span class="sd">    :param sample_region: The porosity will be calculated based on this region. </span>
+<span class="sd">    :type sample_region: trimatic.Part </span>
+<span class="sd">    :param target_porosity: The desired porosity to be achieved.</span>
+<span class="sd">    :type target_porosity: float, optional</span>
+<span class="sd">    :param sample_size: The number of points that will be sampled to calculate the density. </span>
+<span class="sd">        With larger sample size, a more accurate estimate will be obtained. </span>
+<span class="sd">        GUI Precision &#39;Medium&#39; corresponds to sample size 100000, &#39;High&#39; with 1000000.</span>
+<span class="sd">    :type sample_size: int, optional</span>
+<span class="sd">    :param affect_whole_entity: When True, The thickness will be applied to the whole graph set. When False, the operation will trim and apply thickness to graphs within the sample region only.</span>
+<span class="sd">    :type affect_whole_entity: bool, optional</span>
+<span class="sd">    :param scaled: When True, the operation will scale the thickness of the selection (zero thickness will remain zero). When False, the operation will apply absolute thickness to the selection.</span>
+<span class="sd">    :type scaled: bool, optional</span>
+
+<span class="sd">    :return: Tuple of acheived results containing (pososity value in region (in %), confidence interval start, confidence end)</span>
+<span class="sd">    :rtype: (float, float, float)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+<span class="sd">    </span>
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/porosity_based_thickness.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;sample_region&quot;</span><span class="p">,</span> <span class="n">sample_region</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;sample_size&quot;</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;target_porosity&quot;</span><span class="p">,</span> <span class="n">target_porosity</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">porosity_based_thickness</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">sample_region</span><span class="p">,</span> <span class="n">target_porosity</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="n">affect_whole_entity</span><span class="p">,</span> <span class="n">scaled</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="quad_based_lattice"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.quad_based_lattice">[docs]</a><span class="k">def</span> <span class="nf">quad_based_lattice</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">edge_length</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates graphs with quad based design.</span>
+<span class="sd">    </span>
+<span class="sd">    :param entities: Either single object or heterogenous list of parts or surfaces or surface sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet ]</span>
+<span class="sd">    :param edge_length: Target edge length of the quad mesh.</span>
+<span class="sd">    :type edge_length: float, optional</span>
+
+<span class="sd">    :return: newly created graphs.</span>
+<span class="sd">    :rtype: trimatic.Graph | (trimatic.Graph)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/quad_based_lattice.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span> <span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;edge_length&quot;</span><span class="p">,</span> <span class="n">edge_length</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_resolution</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">quad_based_lattice</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">edge_length</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="set_graph_properties"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.set_graph_properties">[docs]</a><span class="k">def</span> <span class="nf">set_graph_properties</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">thickness</span><span class="p">,</span> <span class="n">accuracy</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sets properties (thickness and/or accuracy) of graph beams. </span>
+
+<span class="sd">    :param entities: Either single object or heterogenous list of parts or graph or graph sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Graph | trimatic.GraphSet | [trimatic.Part | trimatic.Graph | trimatic.GraphSet]</span>
+<span class="sd">    :param thickness: The thickness that the beams should get. When specifying None, thickness will not be modified.</span>
+<span class="sd">    :type thickness: float</span>
+<span class="sd">    :param accuracy: The accuracy that the beams should get. When specifying None, accuracy will not be modified.</span>
+<span class="sd">    :type accuracy: float, optional</span>
+
+<span class="sd">    :return: The modified graphs.</span>
+<span class="sd">    :rtype: trimatic.Part | trimatic.Graph | trimatic.GraphSet | (trimatic.Part | trimatic.Graph | trimatic.GraphSet)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/set_graph_properties.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span> <span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">thickness</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;thickness&quot;</span><span class="p">,</span> <span class="n">thickness</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">accuracy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">set_graph_properties</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span><span class="n">thickness</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="unit_cell_based_lattice"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.unit_cell_based_lattice">[docs]</a><span class="k">def</span> <span class="nf">unit_cell_based_lattice</span><span class="p">(</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="c1">#&#39;force named parameters&#39;</span>
+        <span class="n">entity</span><span class="p">,</span> 
+        <span class="n">unit_cell</span><span class="p">,</span> 
+        <span class="n">fill_solid</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
+        <span class="n">keep_beams_on_border</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
+        <span class="n">randomization_min</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
+        <span class="n">randomization_max</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
+        <span class="n">trim_randomized</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
+        <span class="n">randomization_seed</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fills up the selected part with the provided unit cell. </span>
+
+<span class="sd">    :param entity: The part to fill.</span>
+<span class="sd">    :type entity: trimatic.Part </span>
+<span class="sd">    :param unit_cell: The unit cell to use for filling.</span>
+<span class="sd">    :type unit_cell: trimatic.GraphSet</span>
+<span class="sd">    :param fill_solid: When True (solid fill), the operation will fill all the solid regions in the part with unit cells. When False (hollow fill), all hollow regions in the part are filled with unit cells.  </span>
+<span class="sd">    :type fill_solid: bool, optional</span>
+<span class="sd">    :param keep_beams_on_border: When False, beams on the surface of the input entity will be removed.  </span>
+<span class="sd">    :type keep_beams_on_border: bool, optional</span>
+<span class="sd">    :param randomization_min: The minimal (x,y,z) deviation of the endpoints.</span>
+<span class="sd">    :type randomization_min: (float, float, float), optional</span>
+<span class="sd">    :param randomization_max: The maximal (x,y,z) deviation of the endpoints.</span>
+<span class="sd">    :type randomization_max: (float, float, float), optional</span>
+<span class="sd">    :param trim_randomized: Any graph lines going out of the bounding box of the part to fill will be trimmed and deleted.  </span>
+<span class="sd">    :type trim_randomized: bool, optional</span>
+<span class="sd">    :param randomization_seed: Randomization can be controlled by specifying a seed value.</span>
+<span class="sd">    :type randomization_seed: int, optional</span>
+
+<span class="sd">    :return: Newly created graph. Note that a part was created as well to contain the graph.</span>
+<span class="sd">    :rtype: trimatic.Graph </span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/unit_cell_based_lattice.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;unit_cell&quot;</span><span class="p">,</span> <span class="n">unit_cell</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">randomization_min</span> <span class="ow">and</span> <span class="n">randomization_max</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">randomization_max</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">randomization_min</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">randomization_max</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">randomization_min</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">or</span> <span class="n">randomization_max</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">randomization_min</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Maximum deviation must be larger than Minimum deviation&quot;</span><span class="p">)</span>
+
+    <span class="n">pymatic_randomization_min</span> <span class="o">=</span> <span class="n">randomization_min</span>
+    <span class="k">if</span> <span class="n">pymatic_randomization_min</span><span class="p">:</span>
+        <span class="n">pymatic_randomization_min</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">randomization_min</span><span class="p">)</span>
+
+    <span class="n">pymatic_randomization_max</span> <span class="o">=</span> <span class="n">randomization_max</span>
+    <span class="k">if</span> <span class="n">pymatic_randomization_max</span><span class="p">:</span>
+        <span class="n">pymatic_randomization_max</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">randomization_max</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">unit_cell_based_lattice</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">unit_cell</span><span class="p">,</span> <span class="n">keep_beams_on_border</span><span class="p">,</span> <span class="n">fill_solid</span><span class="p">,</span> <span class="n">pymatic_randomization_min</span> <span class="p">,</span> <span class="n">pymatic_randomization_max</span><span class="p">,</span> <span class="n">trim_randomized</span><span class="p">,</span> <span class="n">randomization_seed</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_uv_based_conformal_lattice"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.create_uv_based_conformal_lattice">[docs]</a><span class="k">def</span> <span class="nf">create_uv_based_conformal_lattice</span><span class="p">(</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="n">uv_map</span><span class="p">,</span>
+        <span class="n">unit_cell</span><span class="p">,</span>
+        <span class="n">margin_u</span> <span class="o">=</span> <span class="mf">0.0000</span><span class="p">,</span>
+        <span class="n">margin_v</span> <span class="o">=</span> <span class="mf">0.0000</span><span class="p">,</span>
+        <span class="n">preserve_unit_cell_height</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">height_offset</span> <span class="o">=</span> <span class="mf">0.0000</span><span class="p">,</span>
+        <span class="n">is_outside</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">number_of_layers</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">preserve_boundary_unit_cells</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Creates conformal lattice structure from an array of unit cells based on UV Map on the outside.</span>
+
+<span class="sd">    :param uv_map: Parameterization to be used to guide the conformal lattice.</span>
+<span class="sd">    :type uv_map: trimatic.UVMap</span>
+<span class="sd">    :param unit_cell: The unit cell to be used as cells in the conformal lattice.</span>
+<span class="sd">    :type unit_cell: trimatic.GraphSet</span>
+<span class="sd">    :param margin_u: The distance between the unit cells in the U direction in UV units.</span>
+<span class="sd">    :type margin_u: float, optional </span>
+<span class="sd">    :param margin_v: The distance between the unit cells in the V direction in UV units.</span>
+<span class="sd">    :type margin_v: float, optional</span>
+<span class="sd">    :param preserve_unit_cell_height: If True, preserve the original unit cell height in the output.</span>
+<span class="sd">    :type preserve_unit_cell_height: bool, optional</span>
+<span class="sd">    :param height_offset: The distance of the first layer of the unit cell from the UV mapped surface.</span>
+<span class="sd">    :type height_offset: float, optional</span>
+<span class="sd">    :param is_outside: IF True, the lattice structure will be generated in the outer side of the parameterized surface, else inner side.</span>
+<span class="sd">    :type is_outside: bool, optional</span>
+<span class="sd">    :param number_of_layers: Number of layers in the vertical direction for the unit cells.</span>
+<span class="sd">    :type number_of_layers: int, optional </span>
+<span class="sd">    :param preserve_boundary_unit_cells: If True, the partial unit cells will be preserved as is in the final output.</span>
+<span class="sd">    :type preserve_boundary_unit_cells: bool, optional</span>
+
+<span class="sd">    :return: Graph entity that is the conformal lattice structure. A new part is created to contain the graph entity.</span>
+<span class="sd">    :rtype: trimatic.Graph</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/uv_based_conformal_lattice.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;uv_map&quot;</span><span class="p">,</span> <span class="n">uv_map</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">UVMap</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;unit_cell&quot;</span><span class="p">,</span> <span class="n">unit_cell</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;margin_u&quot;</span><span class="p">,</span> <span class="n">margin_u</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.9999</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;margin_v&quot;</span><span class="p">,</span> <span class="n">margin_v</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.9999</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_layers&quot;</span><span class="p">,</span> <span class="n">number_of_layers</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_uv_based_conformal_lattice</span><span class="p">(</span><span class="n">uv_map</span><span class="p">,</span> <span class="n">unit_cell</span><span class="p">,</span> <span class="n">margin_u</span><span class="p">,</span> <span class="n">margin_v</span><span class="p">,</span> <span class="n">preserve_unit_cell_height</span><span class="p">,</span>
+                                                     <span class="n">height_offset</span><span class="p">,</span> <span class="n">is_outside</span><span class="p">,</span> <span class="n">number_of_layers</span><span class="p">,</span> <span class="n">preserve_boundary_unit_cells</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DesiredResultDualConformalLattice"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.DesiredResultDualConformalLattice">[docs]</a><span class="k">class</span> <span class="nc">DesiredResultDualConformalLattice</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Desired Result Dual Conformal Lattice.&quot;&quot;&quot;</span>
+    <span class="n">RefitBoundaryEntity</span> <span class="o">=</span> <span class="s2">&quot;RefitBoundaryEntity&quot;</span>
+    <span class="n">Trimmed</span> <span class="o">=</span> <span class="s2">&quot;Trimmed&quot;</span>
+    <span class="n">Untrimmed</span> <span class="o">=</span> <span class="s2">&quot;Untrimmed&quot;</span></div>
+
+<div class="viewcode-block" id="create_uv_based_dual_conformal_lattice"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.create_uv_based_dual_conformal_lattice">[docs]</a><span class="k">def</span> <span class="nf">create_uv_based_dual_conformal_lattice</span><span class="p">(</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="n">source_uv_map</span><span class="p">,</span>
+        <span class="n">target_uv_map</span><span class="p">,</span>
+        <span class="n">unit_cell</span><span class="p">,</span>
+        <span class="n">margin_u</span> <span class="o">=</span> <span class="mf">0.0000</span><span class="p">,</span>
+        <span class="n">margin_v</span> <span class="o">=</span> <span class="mf">0.0000</span><span class="p">,</span>
+        <span class="n">height_offset</span> <span class="o">=</span> <span class="mf">0.0000</span><span class="p">,</span>
+        <span class="n">number_of_layers</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">desired_result</span> <span class="o">=</span> <span class="n">DesiredResultDualConformalLattice</span><span class="o">.</span><span class="n">RefitBoundaryEntity</span><span class="p">,</span>
+        <span class="n">multi_cell_parameters</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Creates conformal lattice structure from an array of unit cells in between 2 UV Maps.</span>
+
+<span class="sd">    :param source_uv_map: First parameterization to be used to guide the conformal lattice.</span>
+<span class="sd">    :type source_uv_map: trimatic.UVMap</span>
+<span class="sd">    :param target_uv_map: Second parameterization to be used to guide the conformal lattice.</span>
+<span class="sd">    :type target_uv_map: trimatic.UVMap</span>
+<span class="sd">    :param unit_cell: The unit cell to be used as cells in the conformal lattice.</span>
+<span class="sd">    :type unit_cell: trimatic.GraphSet</span>
+<span class="sd">    :param margin_u: The distance between the unit cells in the U direction in UV units.</span>
+<span class="sd">    :type margin_u: float, optional</span>
+<span class="sd">    :param margin_v: The distance between the unit cells in the V direction in UV units.</span>
+<span class="sd">    :type margin_v: float, optional</span>
+<span class="sd">    :param height_offset: The distance of the first layer of the unit cell from the UV mapped surface.</span>
+<span class="sd">    :type height_offset: float, optional</span>
+<span class="sd">    :param number_of_layers: If set to None, then number_of_layers will be auto calculated else, the specified number of layers will fitted between the UV maps.</span>
+<span class="sd">    :type number_of_layers: int/None, optional</span>
+<span class="sd">    :param desired_result: Method to determine whether the partially boundary cells will be trimmed, refitted or not modified.</span>
+<span class="sd">    :type desired_result: trimatic.DesiredResultDualConformalLattice, optional</span>
+<span class="sd">    :param multi_cell_parameters: Tuple of tuple with the unit cell entity, start layer and end layer for the multi cells. If set to None, then only the main unit cell input will be applied for all layers.</span>
+<span class="sd">    :type multi_cell_parameters: ((trimatic.GraphSet, int, int),), optional</span>
+
+<span class="sd">    :return: Graph entity that is the dual conformal lattice structure. A new part is created to contain the graph entity.</span>
+<span class="sd">    :rtype: trimatic.Graph</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/create_uv_based_dual_conformal_lattice.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;source_uv_map&quot;</span><span class="p">,</span> <span class="n">source_uv_map</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">UVMap</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;target_uv_map&quot;</span><span class="p">,</span> <span class="n">target_uv_map</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">UVMap</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;unit_cell&quot;</span><span class="p">,</span> <span class="n">unit_cell</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;margin_u&quot;</span><span class="p">,</span> <span class="n">margin_u</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.9999</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;margin_v&quot;</span><span class="p">,</span> <span class="n">margin_v</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.9999</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">number_of_layers</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_layers&quot;</span><span class="p">,</span> <span class="n">number_of_layers</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">desired_result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s1">&#39;desired_result&#39;</span><span class="p">,</span> <span class="n">desired_result</span><span class="p">,</span> <span class="p">(</span><span class="n">DesiredResultDualConformalLattice</span><span class="p">,))</span>
+    <span class="k">if</span> <span class="n">multi_cell_parameters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type_tuple_of_tuples</span><span class="p">(</span><span class="s2">&quot;multi_cell_parameters&quot;</span><span class="p">,</span>
+                                                  <span class="n">multi_cell_parameters</span><span class="p">,</span>
+                                                  <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">),</span>
+                                                  <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">TOT_Constraint</span><span class="o">.</span><span class="n">NOT_NONE</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">TOT_Constraint</span><span class="o">.</span><span class="n">GT_ZERO</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">TOT_Constraint</span><span class="o">.</span><span class="n">GT_ZERO</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_uv_based_dual_conformal_lattice</span><span class="p">(</span><span class="n">source_uv_map</span><span class="p">,</span> 
+                                                          <span class="n">target_uv_map</span><span class="p">,</span> 
+                                                          <span class="n">unit_cell</span><span class="p">,</span>
+                                                          <span class="n">margin_u</span><span class="p">,</span>
+                                                          <span class="n">margin_v</span><span class="p">,</span>
+                                                          <span class="n">height_offset</span><span class="p">,</span>
+                                                          <span class="n">number_of_layers</span><span class="p">,</span>
+                                                          <span class="n">desired_result</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                                                          <span class="n">multi_cell_parameters</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="attract_graph_to_mesh"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.attract_graph_to_mesh">[docs]</a><span class="k">def</span> <span class="nf">attract_graph_to_mesh</span><span class="p">(</span><span class="n">graphs</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="n">distance_threshold</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">clearance</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Attracts the beam nodes to the target mesh.</span>
+
+<span class="sd">    :param graphs: Graphs and graph sets with beam nodes to be attracted to the target mesh.</span>
+<span class="sd">    :type  graphs: trimatic.Graph | trimatic.GraphSet | [trimatic.Graph | trimatic.GraphSet]</span>
+<span class="sd">    :param entity: A mesh to attract the beam nodes to. It should be within the same part as graphs.</span>
+<span class="sd">    :type  entity: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</span>
+<span class="sd">    :param distance_threshold: The distance of beam nodes from the target mesh to be attracted.</span>
+<span class="sd">    :type distance_threshold: float, optional</span>
+<span class="sd">    :param clearance: The tolerance distance of the attracted nodes position from the target mesh.</span>
+<span class="sd">    :type clearance: float, optional</span>
+
+<span class="sd">    :return: Attracted graphs and graph sets.</span>
+<span class="sd">    :rtype: trimatic.Graph | trimatic.GraphSet | (trimatic.Graph | trimatic.GraphSet)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/attract_graph_to_mesh.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;graphs&quot;</span><span class="p">,</span> <span class="n">graphs</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;distance_threshold&quot;</span><span class="p">,</span> <span class="n">distance_threshold</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;clearance&quot;</span><span class="p">,</span> <span class="n">clearance</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">attract_graph_to_mesh</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">graphs</span><span class="p">),</span> <span class="n">entity</span><span class="p">,</span> <span class="n">distance_threshold</span><span class="p">,</span> <span class="n">clearance</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="connect_nodes"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.connect_nodes">[docs]</a><span class="k">def</span> <span class="nf">connect_nodes</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span>
+                  <span class="n">number_of_connections</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+                  <span class="n">min_connection_distance</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+                  <span class="n">max_connection_distance</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates connections between two or more beam nodes.</span>
+
+<span class="sd">    :param entities: Single object or heterogeneous list of graphs for the nodes to be connected.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Graph | trimatic.GraphSet | [trimatic.Part | trimatic.Graph | trimatic.GraphSet]</span>
+<span class="sd">    :param number_of_connections: If a beam node already has equal or more than the specified number of connections, then that node will not be connected to any nodes, else enough connections will be added to satisfy this input.</span>
+<span class="sd">    :type number_of_connections: int, optional</span>
+<span class="sd">    :param min_connection_distance: Within this specified distance, the operation will look for the number of nearest neighboring points. Set None to disable.</span>
+<span class="sd">    :type min_connection_distance: float | None, optional</span>
+<span class="sd">    :param max_connection_distance: Within this specified distance, the operation will look for the number of nearest neighboring points. Set None to disable. This parameter together with &#39;min_connection_radius&#39; specifies the range of connection radius.</span>
+<span class="sd">    :type max_connection_distance: float | None, optional</span>
+
+<span class="sd">    :return: Graph entities with the connected nodes.</span>
+<span class="sd">    :rtype: trimatic.Graph | (trimatic.Graph)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/connect_nodes.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span> <span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_connections&quot;</span><span class="p">,</span> <span class="n">number_of_connections</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">min_connection_distance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;min_connection_distance&quot;</span><span class="p">,</span> <span class="n">min_connection_distance</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">max_connection_distance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+       <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;max_connection_distance&quot;</span><span class="p">,</span> <span class="n">max_connection_distance</span><span class="p">)</span>
+       <span class="k">if</span> <span class="n">min_connection_distance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+           <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;max_connection_distance&quot;</span><span class="p">,</span> <span class="n">max_connection_distance</span><span class="p">,</span> <span class="n">min_connection_distance</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">connect_nodes</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">number_of_connections</span><span class="p">,</span> <span class="n">min_connection_distance</span><span class="p">,</span> <span class="n">max_connection_distance</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="connect_nodes_self_supporting"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.connect_nodes_self_supporting">[docs]</a><span class="k">def</span> <span class="nf">connect_nodes_self_supporting</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                                  <span class="n">entities</span><span class="p">,</span>
+                                  <span class="n">number_of_connections</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+                                  <span class="n">normal</span><span class="p">,</span>
+                                  <span class="n">minimum_angle</span><span class="p">,</span>
+                                  <span class="n">min_connection_distance</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+                                  <span class="n">max_connection_distance</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates connections between two or more beam nodes which are self supporting.</span>
+
+<span class="sd">    :param entities: Single object or heterogeneous list of graphs for the nodes to be connected with self supporting beams.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Graph | trimatic.GraphSet | [trimatic.Part | trimatic.Graph | trimatic.GraphSet]</span>
+<span class="sd">    :param number_of_connections: If a beam node already has equal or more than the specified number of connections, then that node will not be connected to any nodes, else enough connections will be added to satisfy this input.</span>
+<span class="sd">    :type number_of_connections: int, optional</span>
+<span class="sd">    :param normal: Normal direction of the desired build platform of the selected entity.</span>
+<span class="sd">    :type normal: trimatic.Point</span>
+<span class="sd">    :param minimum_angle: Minimum required angle between created graph beams and reference plane.</span>
+<span class="sd">    :type minimum_angle: float</span>
+<span class="sd">    :param min_connection_distance: Within this specified distance, the operation will look for the number of nearest neighboring points. Set None to disable.</span>
+<span class="sd">    :type min_connection_distance: float | None, optional</span>
+<span class="sd">    :param max_connection_distance: Within this specified distance, the operation will look for the number of nearest neighboring points. Set None to disable. This parameter together with &#39;min_connection_radius&#39; specifies the range of connection radius.</span>
+<span class="sd">    :type max_connection_distance: float | None, optional</span>
+<span class="sd"> </span>
+<span class="sd">    :return: Graph entities with the connected nodes.</span>
+<span class="sd">    :rtype: trimatic.Graph | (trimatic.Graph)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/connect_nodes_self_supporting.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_connections&quot;</span><span class="p">,</span> <span class="n">number_of_connections</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">min_connection_distance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;min_connection_distance&quot;</span><span class="p">,</span> <span class="n">min_connection_distance</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">max_connection_distance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+       <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;max_connection_distance&quot;</span><span class="p">,</span> <span class="n">max_connection_distance</span><span class="p">)</span>
+       <span class="k">if</span> <span class="n">min_connection_distance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+           <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;max_connection_distance&quot;</span><span class="p">,</span> <span class="n">max_connection_distance</span><span class="p">,</span> <span class="n">min_connection_distance</span><span class="p">)</span>
+
+    <span class="n">pymatic_normal</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">normal</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_direction</span><span class="p">(</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="n">pymatic_normal</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;minimum_angle&quot;</span><span class="p">,</span> <span class="n">minimum_angle</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_smaller_or_equal</span><span class="p">(</span><span class="s2">&quot;minimum_angle&quot;</span><span class="p">,</span> <span class="n">minimum_angle</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">connect_nodes_self_supporting</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">number_of_connections</span><span class="p">,</span> <span class="n">pymatic_normal</span><span class="p">,</span> <span class="n">minimum_angle</span><span class="p">,</span> <span class="n">min_connection_distance</span><span class="p">,</span> <span class="n">max_connection_distance</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LatticeType"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.LatticeType">[docs]</a><span class="k">class</span> <span class="nc">LatticeType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Lattice Type.&quot;&quot;&quot;</span>
+    <span class="n">SurfaceAndVolume</span> <span class="o">=</span> <span class="s2">&quot;SurfaceAndVolume&quot;</span>
+    <span class="n">Surface</span> <span class="o">=</span> <span class="s2">&quot;Surface&quot;</span>
+    <span class="n">Volume</span> <span class="o">=</span> <span class="s2">&quot;Volume&quot;</span></div>
+
+<div class="viewcode-block" id="create_voronoi_based_lattice"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.create_voronoi_based_lattice">[docs]</a><span class="k">def</span> <span class="nf">create_voronoi_based_lattice</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="c1">#&#39;force named parameters&#39;</span>
+                                 <span class="n">entities</span><span class="p">,</span>
+                                 <span class="n">lattice_type</span> <span class="o">=</span> <span class="n">LatticeType</span><span class="o">.</span><span class="n">SurfaceAndVolume</span><span class="p">,</span>
+                                 <span class="n">target_pore_radius</span> <span class="o">=</span> <span class="mf">5.0000</span><span class="p">,</span>
+                                 <span class="n">thickness</span> <span class="o">=</span> <span class="mf">1.0000</span><span class="p">,</span>
+                                 <span class="n">push_nodes_under_surface</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                                 <span class="n">local_lattice_parameters</span> <span class="o">=</span> <span class="p">()):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create voronoi based lattices structure from an input mesh entity.</span>
+
+<span class="sd">    :param entities: The mesh entity that needs to be used to generate the voronoi lattice structure. </span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles]</span>
+<span class="sd">    :param lattice_type: Type of lattice to be generated, surface or volume or both.</span>
+<span class="sd">    :type lattice_type: trimatic.LatticeType, optional</span>
+<span class="sd">    :param target_pore_radius: The target radius of the pore sizes to be achieved for the voronoi cells. </span>
+<span class="sd">    :type target_pore_radius: float, optional</span>
+<span class="sd">    :param thickness: The thickness of the beams of the voronoi based lattice structures. </span>
+<span class="sd">    :type thickness: float, optional</span>
+<span class="sd">    :param push_nodes_under_surface: When true, all the beams nodes that is on or outside the mesh border will be pushed to be under the mesh entity with the thickness accounted for. </span>
+<span class="sd">    :type push_nodes_under_surface: bool, optional</span>
+<span class="sd">    :param local_lattice_parameters: Tuple of tuples containing the info (entity, target pore radius, thickness)</span>
+<span class="sd">    :type local_lattice_parameters: ((trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles, float, float),), optional</span>
+<span class="sd">    :return: Graph structures from the voronoi edges. </span>
+<span class="sd">    :rtype: (trimatic.Graph)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    Error shall be thrown in the following cases</span>
+
+<span class="sd">    * When the local entities selected do not belong to the global entities o Error message: &quot;Local entities does not match global entities&quot;,</span>
+<span class="sd">    * When the local lattice thickness is non-zero and global thickness is zero o Error message: &quot;The local lattice thickness shall be set to zero if the global thickness is zero&quot; </span>
+<span class="sd">    * When the local lattice thickness is zero and global thickness is non-zero o Error message: &quot;The local lattice thickness shall be set to a non-zero value if the global thickness is not zero&quot;</span>
+<span class="sd">    * When the global entity is not of type trimatic.Part but local lattice parameters are still passed. </span>
+
+<span class="sd">    Local parameters shall only be allowed with entities that are part of global entities that are of type trimatic.Part. No local parameters shall be allowed in case there is no global entity of type trimatic.Part.  </span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/create_voronoi_based_lattice.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">lattice_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s1">&#39;lattice_type&#39;</span><span class="p">,</span> <span class="n">lattice_type</span><span class="p">,</span> <span class="p">(</span><span class="n">LatticeType</span><span class="p">,))</span>
+    <span class="k">if</span> <span class="n">target_pore_radius</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;target_pore_radius&quot;</span><span class="p">,</span> <span class="n">target_pore_radius</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">thickness</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;thickness&quot;</span><span class="p">,</span> <span class="n">thickness</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">local_lattice_parameters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">local_lattice_parameters</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_at_least_one_of_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">)</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type_tuple_of_tuples</span><span class="p">(</span><span class="s2">&quot;local_lattice_parameters&quot;</span><span class="p">,</span> <span class="n">local_lattice_parameters</span><span class="p">,</span>
+            <span class="p">((</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span><span class="p">),</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">TOT_Constraint</span><span class="o">.</span><span class="n">NOT_NONE</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">TOT_Constraint</span><span class="o">.</span><span class="n">CHECK_RESOLUTION_GT_EQ</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">TOT_Constraint</span><span class="o">.</span><span class="n">GT_EQ_ZERO</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="n">is_global_thickness_zero</span> <span class="o">=</span> <span class="p">(</span><span class="n">thickness</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">local_parameter</span> <span class="ow">in</span> <span class="n">local_lattice_parameters</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">is_global_thickness_zero</span> <span class="ow">and</span> <span class="n">local_parameter</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">!=</span><span class="mi">0</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The local lattice thickness shall be set to zero if the global thickness is zero&quot;</span><span class="p">)</span>
+            <span class="k">elif</span><span class="p">(</span><span class="ow">not</span> <span class="n">is_global_thickness_zero</span> <span class="ow">and</span> <span class="n">local_parameter</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The local lattice thickness shall be set to a non-zero value if the global thickness is not zero&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_voronoi_based_lattice</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> 
+                                                <span class="n">lattice_type</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                                                <span class="n">target_pore_radius</span><span class="p">,</span>
+                                                <span class="n">thickness</span><span class="p">,</span>
+                                                <span class="n">push_nodes_under_surface</span><span class="p">,</span>
+                                                <span class="n">local_lattice_parameters</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="stitch_graphs"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.stitch_graphs">[docs]</a><span class="k">def</span> <span class="nf">stitch_graphs</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">1.0000</span><span class="p">,</span> <span class="n">loose_beams_only</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Stitches beam nodes within the specified tolerance distance.</span>
+
+<span class="sd">    :param entities: Either single object or a heterogenous list of parts or graphs or graph sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Graph | trimatic.GraphSet | [trimatic.Part | trimatic.Graph | trimatic.GraphSet]</span>
+<span class="sd">    :param number_of_iterations: The maximum number of iterations to repeat the operation before terminating.</span>
+<span class="sd">    :type number_of_iterations: (integer, optional) </span>
+<span class="sd">    :param tolerance: The tolerance distance between the nodes to be stitched together. </span>
+<span class="sd">    :type tolerance: (float, optional) </span>
+<span class="sd">    :param loose_beams_only: If set to True, then only the loose beams will be stitched.</span>
+<span class="sd">    :type loose_beams_only: (bool, optional) </span>
+
+<span class="sd">    :return: Graphs with nodes stitched together.</span>
+<span class="sd">    :rtype: trimatic.Graph | (trimatic.Graph)  </span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+<span class="sd">    </span>
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/stitch_graphs.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_iterations&quot;</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;tolerance&quot;</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">stitch_graphs</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">number_of_iterations</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">,</span> <span class="n">loose_beams_only</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="split_beams_at_intersection"><a class="viewcode-back" href="../../trimatic.rst/trimatic.lattice.html#trimatic.lattice.split_beams_at_intersection">[docs]</a><span class="k">def</span> <span class="nf">split_beams_at_intersection</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">thickness_based_intersection</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates node at all positions where beams are crossing each other.</span>
+
+<span class="sd">    :param entities: Either single object or a heterogenous list of parts or graphs or graph sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Graph | trimatic.GraphSet | [trimatic.Part | trimatic.Graph | trimatic.GraphSet]</span>
+<span class="sd">    :param thickness_based_intersection: If set to True, the intersecting thickness will be accounted to generate the nodes.</span>
+<span class="sd">    :type thickness_based_intersection: (bool, optional) </span>
+
+<span class="sd">    :return: Graphs that has been modified by the operations.</span>
+<span class="sd">    :rtype: trimatic.Graph | (trimatic.Graph)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/lattice/split_beams_at_intersection.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">split_beams_at_intersection</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">thickness_based_intersection</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

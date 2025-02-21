@@ -1,0 +1,131 @@
+Align and remesh
+--------------------
+
+This tutorial shows how to align two objects that are not positioned correctly after importing in 3-matic. 
+Furthermore, additional operations and remeshing are performed for the preparation of the 3D model. The project Aorta_Hollow.mxp that is located in the 3-matic installation folder under the folder `DemoFiles` is used. 
+
+The completed script can be found in the 3-matic installation folder in :file:`DemoFiles\\scripts\\Align and remesh.py`. 
+We will describe the different steps in the script in more detail.
+
+The first step is to import the project from the path that is located locally. In case that you have selected a different installation location, the input path must be modified.
+
+.. code-block:: python
+
+	import trimatic
+	import os
+	import numpy as np
+	#Open the project Aorta_Hollow
+	application_exe = trimatic.get_application_path()
+	application_path = os.path.dirname(application_exe)
+	demopath = os.path.join(application_path, "DemoFiles")
+	path = os.path.join(demopath, "Aorta_Hollow.mxp")
+	trimatic.open_project(path)
+
+.. image:: align_and_remesh/Input.png
+ :width: 200px
+ :height: 200px
+ :align: center  
+
+In the following step, the part, Aorta, is located and 3 points are created in predefined locations. Those points are used to create a datum plane that will be used for the parts' alignment. The aortic datum plane is calculated and renamed.
+
+.. code-block:: python
+
+    # Find the part Aorta
+    p = trimatic.find_part("Aorta")
+    # Create 3 points that will help to create the correct datum plane
+    print("Select Point 1")
+    p1_coords=trimatic.indicate_coordinate()
+    p1=trimatic.create_point(p1_coords)
+
+    print("Select Point 2")
+    p2_coords =trimatic.indicate_coordinate()
+    p2=trimatic.create_point(p2_coords)
+
+    print("Select Point 3")
+    p3_coords = trimatic.indicate_coordinate()
+    p3=trimatic.create_point(p3_coords)
+    
+.. image:: align_and_remesh/Pt1.png
+ :width: 250px
+ :height: 250px
+ :align: center  
+ 
+.. image:: align_and_remesh/Pt2.png
+ :width: 250px
+ :height: 250px
+ :align: center  
+ 
+.. image:: align_and_remesh/Pt3.png
+ :width: 220px
+ :height: 220px
+ :align: center
+
+.. code-block:: python 
+
+	#Create the aortic plane
+	aor_plane = trimatic.create_plane_3_points(p1,p2,p3)
+	aor_plane.name = "Aortic plane"
+
+
+The next step is to import the part, Flange. To align this part with the Aorta, a plane is fitted to the top and bottom surfaces of the flange respectively. Firstly, the part is located and its surfaces are assigned to a variable. Then, a plane is fitted to the top and bottom surfaces and renamed.
+
+.. code-block:: python
+
+	# Import the flange
+	flange_path = os.path.join(demopath, "Flange.stl")
+	flange = trimatic.import_part_stl(flange_path, True)
+	surfaces = flange.get_surfaces()
+	# Find the top and the bottom surfaces of the Flange
+	for s in surfaces:
+		if s.name == "Top-0":
+			# Fit a plane to the top surface
+			fl_t_plane = trimatic.create_plane_fit(s)
+			fl_t_plane.name = "Flange top plane"
+		elif s.name == "Bottom":
+			# Fit a plane to the bottom surface
+			fl_b_plane = trimatic.create_plane_fit(s)
+			fl_b_plane.name = "Flange bottom plane"
+		else:
+			continue
+
+
+
+
+In the next step, the midplane of the flange will be used for the alignment with the Aorta. The midplane is calculated based on the top and bottom planes. Then, using the plane to plane align functionality, the flange is aligned with the Aorta.
+After the repositioning, a local offset is applied to the internal surface (Mantle) of the flange to narrow the nozzle.
+
+
+.. code-block:: python
+
+	# Find the midplane
+	avg_fl_plane = trimatic.create_plane_average_existing([fl_t_plane,fl_b_plane])
+	avg_fl_plane.name = "Mid flange plane"
+	# Plane to plane align the flange to the aorta
+	trimatic.plane_to_plane_align(aor_plane,avg_fl_plane,[flange,fl_b_plane,fl_t_plane],False)
+	# Apply local offset to the inner surface
+	surfaces_pairs = {}
+	for s in surfaces:
+		if s.name == "Mantle":
+			surfaces_pairs[s.area] = s
+
+	min_area = min(surfaces_pairs)
+	inner_surface = surfaces_pairs[min_area]
+	trimatic.local_offset(surface_entities=inner_surface, offset_distance=3.5)
+
+	# Hide entities which are not needed
+	entities=[aor_plane,fl_b_plane,fl_t_plane,p1,p2,p3,avg_fl_plane]
+	for i in entities:
+		i.visible=False
+
+
+The final step is to unite the two parts into one, rename and remesh it.
+
+.. code-block:: python
+
+	# Boolean union
+	union = trimatic.boolean_union([flange,p])
+	union.name = "3D model"
+	# Remesh 3D model
+	trimatic.uniform_remesh(entities=union, target_triangle_edge_length=1, split_edge_factor=0.3, preserve_surface_contours=True)
+
+        

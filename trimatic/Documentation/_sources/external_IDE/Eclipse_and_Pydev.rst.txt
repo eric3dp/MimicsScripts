@@ -1,0 +1,96 @@
+Eclipse & Pydev
+----------------------
+
+
+To setup Eclipse to work via external IDE, please follow the steps below: 
+
+1. Install RPyC package, for more information to do so please refer to the following section: :ref:`installing_packages`
+
+2. Install Eclipse:
+	
+	*	Install the latest Java runtime environment (Windows x64 Offline):
+		https://java.com/en/download/manual.jsp
+	*	Install Eclipse IDE for Java Developers:
+		https://www.eclipse.org/downloads/download.php?file=/oomph/epp/oxygen/R/eclipse-inst-win64.exe
+
+3. Download PyDev Certificate:
+	
+	*	Instructions to install PyDev are in the following link:
+		http://www.pydev.org/manual_101_install.html 
+	*	Download the certificate: 
+		http://www.pydev.org/pydev_certificate.cer
+	*	Copy the “pydev_certificate” to this location  C:\\Program Files\\Java\\jre-18.0.2.1
+	
+	.. image:: pydev.png
+	   :scale: 50 %
+	   :align: center
+   
+	*	Ensure to run command prompt as an administrator (press the windows button, type cmd in search, right click cmd.exe -> run as administrator)
+	
+	*	Execute: 
+		cd C:\\Program Files\\Java\\jre-18.0.2.1
+
+	.. image:: jre.png
+	   :scale: 60 %
+	   :align: center
+
+	   
+	*	Execute:
+		bin\\keytool.exe -import -file pydev_certificate.cer -keystore 
+		
+	.. image:: binkeytool.png
+	   :scale: 60 %
+	   :align: center
+	     
+4. Install PyDev Certificate:
+	
+	*	Launch Eclipse
+	*	Help -> Install new software
+	*	On the top right, click on “Add…” and enter the site with 
+	
+				Name: “Pydev” 
+				Location: http://www.pydev.org/updates
+	
+	.. image:: installnewsoftware.png
+	   :scale: 60 %
+	   :align: center
+	     
+		 
+	*	Press OK and wait for Eclipse to get the information
+	*	Select the checkbox of PyDev
+	*	Unselect “Contact all update sites during install to find required software”
+	*	Press Next >, then Press Next
+	*	During the installation, if you are prompted to select that you trust the installed certificate, click accept
+	*	Restart the application before proceeding to the next step
+
+5. Add the Python Interpreter
+
+	*	Launch Eclipse
+	*	**Window > Preferences > PyDev > Interpreters > Python Interpreter**
+
+.. image:: Add_python.png
+   :scale: 60 %
+   :align: center
+   
+6. To select the Python interpreter for the project:
+
+	*	Launch Eclipse
+	*	**File > New > Project > PyDev > PyDev Project : under “Interpreter”**, select the Python interpreter previously configured
+	
+.. image:: interpreter_eclipse.png
+   :scale: 60 %
+   :align: center
+   
+7. Once a project is created, add a source folder:
+
+	*	Right click the project and access the properties
+	*	Select PyDev - PYTHONPATH
+	*	Tab : External Libraries
+	*	Add a source folder and browse to the folder where 3-matic is installed: C:\\Program Files\\Materialise\\3-matic 18.0(x64).
+	
+.. image:: pydev_pythonpath.png
+   :scale: 70 %
+   :align: center
+
+Disclaimer: All external IDEs mentioned in this chapter are property of their respective owners. 
+

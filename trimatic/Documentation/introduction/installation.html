@@ -1,0 +1,269 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. Python installation &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="Introduction" href="index.html"/>
+        <link rel="next" title="3. Scripting in 3-matic Quick Start Guide" href="editor.html"/>
+        <link rel="prev" title="1. Overview" href="general_introduction.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Introduction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="general_introduction.html">1. Overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. Python installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-3-matic-for-scripting">2.1. Configuring 3-matic for scripting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-extra-packages-optional">2.2. Installing extra packages (optional)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="editor.html">3. Scripting in 3-matic Quick Start Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview_api.html">4. Getting started with the 3-matic API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Introduction</a> &raquo;</li>
+      
+    <li>2. Python installation</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/introduction/installation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="python-installation">
+<h1>2. Python installation<a class="headerlink" href="#python-installation" title="Permalink to this headline">¶</a></h1>
+<p>To use scripting in 3-matic, Python 3.10 needs to be installed, as explained in this section.</p>
+<div class="section" id="configuring-3-matic-for-scripting">
+<h2>2.1. Configuring 3-matic for scripting<a class="headerlink" href="#configuring-3-matic-for-scripting" title="Permalink to this headline">¶</a></h2>
+<p>3-matic scripting features require the following to run effectively:</p>
+<ul class="simple">
+<li>Python version must be 3.10.x.</li>
+<li>Jedi package is needed to make autocomplete work in the internal editor and console.</li>
+<li>RPyC package is needed to make external IDE work.</li>
+</ul>
+<p>It is required to install a 64-bit version of the Python 3.10 which can be obtained from the following website: <a class="reference external" href="https://www.python.org/downloads/release/python-31010">https://www.python.org/downloads/release/python-31010</a></p>
+<p><strong>Step 1</strong>: It is recommended to use the executable installer for convenience.</p>
+<a class="reference internal image-reference" href="../_images/python_installer.png"><img alt="../_images/python_installer.png" class="align-center" src="../_images/python_installer.png" style="width: 450px; height: 250px;" /></a>
+<p><strong>Step 2</strong>: Run the executable in administrator mode and choose the custom installation.</p>
+<p><strong>Step 3</strong>: Set desired install location e.g. “C:\Program Files\Python310”.</p>
+<a class="reference internal image-reference" href="../_images/path_python.png"><img alt="../_images/path_python.png" class="align-center" src="../_images/path_python.png" style="width: 540px; height: 300px;" /></a>
+<p><strong>Step 4</strong>: After a successful installation, close the wizard and open up 3-matic.</p>
+<p><strong>Step 5</strong>: Open <strong>Options &amp; Help -&gt; Preferences -&gt; Scripting</strong> and set the interpreter path to the location of the installed Python e.g. “C:\Program Files\Python310”.</p>
+<a class="reference internal image-reference" href="../_images/preference_path_python.png"><img alt="../_images/preference_path_python.png" class="align-center" src="../_images/preference_path_python.png" style="width: 630px; height: 350px;" /></a>
+<p><strong>Step 6</strong>: Restart the application for the changes to be made available.</p>
+<a class="reference internal image-reference" href="../_images/restart.png"><img alt="../_images/restart.png" class="align-center" src="../_images/restart.png" style="width: 450px; height: 250px;" /></a>
+<p>Note that when Python is installed, it typically becomes the default Python on your computer.
+We recommend to set your interpreter path to the last Python version that you installed.</p>
+</div>
+<div class="section" id="installing-extra-packages-optional">
+<span id="installing-packages"></span><h2>2.2. Installing extra packages (optional)<a class="headerlink" href="#installing-extra-packages-optional" title="Permalink to this headline">¶</a></h2>
+<p>To enjoy the full functionality of 3-matic and its scripting features, it is required to install two Python packages (Jedi and RPyC).
+In order to be able to execute all the scripting tutorials, two additional packages (numpy and PyQt) should be installed as well.
+To install these packages, ensure that command prompt is run in administrator mode (press the windows button, in search type cmd, right click cmd.exe -&gt; run as administrator).
+In command prompt, use the “cd” command followed by the directory path of Python 3.10 to change the directory.</p>
+<p><strong>Execute</strong>: “cd C:\Program Files\Python310”</p>
+<p><em>Python package Jedi</em> : The autocomplete feature available in the 3-matic “Editor” and “Console” requires the Jedi 0.9.0 package.
+To install this package you can run the following commands as defined in the picture below.</p>
+<p><strong>Execute</strong>: “pip install jedi==0.9.0”</p>
+<a class="reference internal image-reference" href="../_images/cmd.png"><img alt="../_images/cmd.png" class="align-center" src="../_images/cmd.png" style="width: 720px; height: 400px;" /></a>
+<p><em>Python package RPyC</em>: In order to use an external IDE, as explained <a class="reference internal" href="../external_IDE/index.html#external-ide"><span class="std std-ref">here</span></a>, 3-matic requires the RPyC package.
+To install the RPyC package, repeat the steps above using the following commands.</p>
+<p><strong>Execute</strong>: “pip install rpyc”</p>
+<p>3-matic 18 was tested with jedi version 0.9.0 and RPyC version 4.0.2.</p>
+<p><em>Python packages numpy/PyQt</em>: In order to be able to execute all tutorials in this scripting guide, 3-matic requires the numpy and PyQt packages.
+To install those, repeat the above steps using the following commands:</p>
+<p><strong>Execute</strong>: “pip install numpy”</p>
+<p><strong>Execute</strong>: “pip install pyqt5”</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="editor.html" class="btn btn-neutral float-right" title="3. Scripting in 3-matic Quick Start Guide" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="general_introduction.html" class="btn btn-neutral" title="1. Overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

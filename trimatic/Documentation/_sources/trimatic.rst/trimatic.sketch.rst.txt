@@ -1,0 +1,8 @@
+sketch
+======
+
+.. automodule:: trimatic.sketch
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

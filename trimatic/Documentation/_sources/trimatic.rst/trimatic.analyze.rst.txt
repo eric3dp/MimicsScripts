@@ -1,0 +1,8 @@
+analyze
+=======
+
+.. automodule:: trimatic.analyze
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

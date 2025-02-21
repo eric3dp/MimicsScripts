@@ -1,0 +1,42 @@
+######################
+Tutorials
+######################
+
+.. Any Module which needs to be in appeared Non-Medical Documentation should be added to toctree below. 
+
+
+.. only:: non_medical
+
+	.. toctree:: 
+	   :numbered:
+
+	   working_with_marking.rst
+	   measurements.rst
+	   preparation_for_fea.rst
+	   non_manifold_assembly.rst
+	   align_and_remesh.rst
+	   hand_plate.rst
+	   working_with_metadata
+	   benchtop.rst
+	   creating_a_lattice.rst
+	   creating_a_ssm_model.rst
+	   
+	   
+	  
+.. Any Module which needs to be in appeared Medical Documentation should be added to toctree below.  
+
+
+.. only:: medical
+
+ 	.. toctree:: 
+	   
+	   working_with_marking.rst
+	   measurements.rst
+	   preparation_for_fea.rst
+	   non_manifold_assembly.rst
+	   align_and_remesh.rst
+	   hand_plate.rst
+	   working_with_metadata
+	   benchtop.rst
+	   creating_a_lattice.rst
+   

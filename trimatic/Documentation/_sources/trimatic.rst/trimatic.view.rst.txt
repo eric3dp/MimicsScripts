@@ -1,0 +1,8 @@
+view
+====
+
+.. automodule:: trimatic.view
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

@@ -31,7 +31,7 @@ selected = trimatic.get_selection() # get the selected parts into a tuple
 add_prefix.rename(selected)
 basepath = ""
 result = "Performed the following operations:\n"
-# exportPDF.exportPDF(selected)
+exportPDF.exportPDF(selected)
 for x in selected: # loop through the selection, check if the file exists, check if it's a group or multiple parts, then export them
     groupselection.clear()
     if isinstance(x, trimatic.Group):

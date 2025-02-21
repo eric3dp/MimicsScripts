@@ -1,0 +1,317 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>trimatic.uv &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>trimatic.uv</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for trimatic.uv</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pymatic</span>
+<span class="kn">import</span> <span class="nn">trimatic.utils</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<div class="viewcode-block" id="create_uv_maps"><a class="viewcode-back" href="../../trimatic.rst/trimatic.uv.html#trimatic.uv.create_uv_maps">[docs]</a><span class="k">def</span> <span class="nf">create_uv_maps</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="c1">#&#39;force named parameters&#39;</span>
+    <span class="n">entities</span><span class="p">,</span>
+    <span class="n">seams</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">single_uv_map</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">preserve_surface_connections</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">xyz_to_u_factor</span> <span class="o">=</span> <span class="mf">10.0000</span><span class="p">,</span>
+    <span class="n">xyz_to_v_factor</span> <span class="o">=</span> <span class="mf">10.0000</span>
+    <span class="p">)</span> <span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Operation to create UV maps with surfaces/surface sets input.</span>
+
+<span class="sd">    :param entities: Entities to be parameterized. Heterogeneous list of entities are allowed.</span>
+<span class="sd">    :type entities: trimatic.Surface | trimatic.SurfaceSet | [trimatic.Surface | trimatic.SurfaceSet]</span>
+<span class="sd">    :param seams: One or multiple attached curve(s) to be used as relaxer cuts in the parameterization.</span>
+<span class="sd">    :type seams: trimatic.Curve | [trimatic.Curve], optional</span>
+<span class="sd">    :param single_uv_map: When True, only one UV Map will be generated in a single parent part.</span>
+<span class="sd">    :type single_uv_map: bool, optional</span>
+<span class="sd">    :param preserve_surface_connections: When True, all the existing connections between the selected entities will be preserved in the output map.</span>
+<span class="sd">    :type preserve_surface_connections: bool, optional</span>
+<span class="sd">    :param xyz_to_u_factor: The XYZ to U factor of the initial parameterization.</span>
+<span class="sd">    :type xyz_to_u_factor: float, optional</span>
+<span class="sd">    :param xyz_to_v_factor: The XYZ to V factor of the initial parameterization.</span>
+<span class="sd">    :type xyz_to_v_factor: float, optional</span>
+<span class="sd">    :return: Newly created UV Maps.</span>
+<span class="sd">    :rtype: trimatic.UVMap | (trimatic.UVMap)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/uv/create_uv_maps.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">seams</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;seams&quot;</span><span class="p">,</span> <span class="n">seams</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span> <span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;xyz_to_u_factor&quot;</span><span class="p">,</span> <span class="n">xyz_to_u_factor</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;xyz_to_v_factor&quot;</span><span class="p">,</span> <span class="n">xyz_to_v_factor</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_uv_maps</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">seams</span><span class="p">),</span>
+                                  <span class="n">single_uv_map</span><span class="p">,</span> <span class="n">preserve_surface_connections</span><span class="p">,</span> <span class="n">xyz_to_u_factor</span><span class="p">,</span> <span class="n">xyz_to_v_factor</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="OptimizeMethod"><a class="viewcode-back" href="../../trimatic.rst/trimatic.uv.html#trimatic.uv.OptimizeMethod">[docs]</a><span class="k">class</span> <span class="nc">OptimizeMethod</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Methods to be used to optimize the UV parameterization.&quot;&quot;&quot;</span>
+
+    <span class="n">Angles</span> <span class="o">=</span> <span class="s2">&quot;Angles&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Angles method.&quot;&quot;&quot;</span>
+
+    <span class="n">AnglesAndArea</span> <span class="o">=</span> <span class="s2">&quot;Angles and Area&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Angles and Area method.&quot;&quot;&quot;</span>
+
+    <span class="n">Area</span> <span class="o">=</span> <span class="s2">&quot;Area&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Area method.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="optimize_uv"><a class="viewcode-back" href="../../trimatic.rst/trimatic.uv.html#trimatic.uv.optimize_uv">[docs]</a><span class="k">def</span> <span class="nf">optimize_uv</span><span class="p">(</span>
+    <span class="n">entities</span><span class="p">,</span>
+    <span class="n">iterations</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="n">OptimizeMethod</span><span class="o">.</span><span class="n">AnglesAndArea</span><span class="p">,</span>
+    <span class="n">preserve_uv_border</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Optimizes the UV Parameterization based on the selected method for the number of iterations set by the user.</span>
+
+<span class="sd">    :param entities: Parameterized entities to be optimized. Heterogeneous list of entities are allowed.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.UVRegion | trimatic.UVMap | [trimatic.Part | trimatic.UVRegion | trimatic.UVMap]</span>
+<span class="sd">    :param iterations: Number of iterations to perform the operation before termination.</span>
+<span class="sd">    :type iterations: int, optional</span>
+<span class="sd">    :param method: The method to be used to optimize the UV parameterizations.</span>
+<span class="sd">    :type method: trimatic.OptimizeMethod, optional</span>
+<span class="sd">    :param preserve_uv_border: If set to True, the UV border will not be changed after the optimization.  </span>
+<span class="sd">    :type preserve_uv_border: bool, optional </span>
+
+<span class="sd">    :return: One or more optimized UV Maps. </span>
+<span class="sd">    :rtype: trimatic.UVMap | (trimatic.UVMap)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/uv/optimize_uv.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">UVRegion</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">UVMap</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;iterations&quot;</span><span class="p">,</span> <span class="n">iterations</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">optimize_uv</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">iterations</span><span class="p">,</span> <span class="n">method</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">preserve_uv_border</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="align_uv_automatic"><a class="viewcode-back" href="../../trimatic.rst/trimatic.uv.html#trimatic.uv.align_uv_automatic">[docs]</a><span class="k">def</span> <span class="nf">align_uv_automatic</span><span class="p">(</span><span class="n">uv_map</span><span class="p">,</span> <span class="n">size_u</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">size_v</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Align the UV region by four contour points automatically.</span>
+
+<span class="sd">    :param uv_map: A UV Map with UV Regions to be aligned.</span>
+<span class="sd">    :type uv_map: trimatic.UVMap</span>
+<span class="sd">    :param size_u: The length of the U axis of the aligned region in UV units. If both size_u and size_v are set to None,</span>
+<span class="sd">        the aligned region will result in a square region.</span>
+<span class="sd">    :type size_u: (float, optional)</span>
+<span class="sd">    :param size_v: The length of the V axis of the aligned region in UV units. If both size_u and size_v are set to None,</span>
+<span class="sd">        the aligned region will result in a square region.</span>
+<span class="sd">    :type size_v: (float, optional)</span>
+<span class="sd">    :return: UV Map</span>
+<span class="sd">    :rtype: trimatic.UVMap</span>
+<span class="sd">    :raises: ValueError | Runtime Error (When only one of the two parameters size_u and size_v is None)</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/uv/align_uv_automatic.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;uv_map&quot;</span><span class="p">,</span> <span class="n">uv_map</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">UVMap</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">((</span><span class="n">size_u</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">size_v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">size_u</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">size_v</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Parameters size_u and size_v must both be None or not None.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">size_u</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;size_u&quot;</span><span class="p">,</span> <span class="n">size_u</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">size_v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;size_v&quot;</span><span class="p">,</span> <span class="n">size_v</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">align_uv_automatic</span><span class="p">(</span><span class="n">uv_map</span><span class="p">,</span> <span class="n">size_u</span><span class="p">,</span> <span class="n">size_v</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

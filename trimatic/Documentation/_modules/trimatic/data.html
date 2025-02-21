@@ -1,0 +1,870 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>trimatic.data &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>trimatic.data</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for trimatic.data</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pymatic</span>
+<span class="kn">import</span> <span class="nn">trimatic.utils</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<div class="viewcode-block" id="get_angle_measurements"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.get_angle_measurements">[docs]</a><span class="k">def</span> <span class="nf">get_angle_measurements</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get all AngleMeasurement objects.</span>
+
+<span class="sd">    :return: Tuple of AngleMeasurement objects. Empty tuple if none are found. </span>
+<span class="sd">    :rtype: (trimatic.AngleMeasurement)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_angle_measurements</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_annotations"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.get_annotations">[docs]</a><span class="k">def</span> <span class="nf">get_annotations</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get all Annotation objects.</span>
+
+<span class="sd">    :return: Tuple of Annotation objects. Empty tuple if none are found. </span>
+<span class="sd">    :rtype: (trimatic.Annotation)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_annotations</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_arcs"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.get_arcs">[docs]</a><span class="k">def</span> <span class="nf">get_arcs</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get all Arc objects.</span>
+
+<span class="sd">    :return: Tuple of Arc objects. Empty tuple if none are found. </span>
+<span class="sd">    :rtype: (trimatic.Arc)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_arcs</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_cones"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.get_cones">[docs]</a><span class="k">def</span> <span class="nf">get_cones</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get all Cone objects.</span>
+
+<span class="sd">    :return: Tuple of Cone objects. Empty tuple if none are found. </span>
+<span class="sd">    :rtype: (trimatic.Cone)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_cones</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_cylinders"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.get_cylinders">[docs]</a><span class="k">def</span> <span class="nf">get_cylinders</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get all Cylinder objects.</span>
+
+<span class="sd">    :return: Tuple of Cylinder objects. Empty tuple if none are found. </span>
+<span class="sd">    :rtype: (trimatic.Cylinder)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_cylinders</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_diameter_measurements"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.get_diameter_measurements">[docs]</a><span class="k">def</span> <span class="nf">get_diameter_measurements</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get all DiameterMeasurement objects.</span>
+
+<span class="sd">    :return: Tuple of DiameterMeasurement objects. Empty tuple if none are found. </span>
+<span class="sd">    :rtype: (trimatic.DiameterMeasurement)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_diameter_measurements</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_distance_measurements"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.get_distance_measurements">[docs]</a><span class="k">def</span> <span class="nf">get_distance_measurements</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get all DistanceMeasurement objects.</span>
+
+<span class="sd">    :return: Tuple of DistanceMeasurement objects. Empty tuple if none are found. </span>
+<span class="sd">    :rtype: (trimatic.DistanceMeasurement)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_distance_measurements</span><span class="p">()</span></div>
+    
+<div class="viewcode-block" id="get_groups"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.get_groups">[docs]</a><span class="k">def</span> <span class="nf">get_groups</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get all groups present.</span>
+
+<span class="sd">    :return: Tuple of Group objects. Empty tuple if none are found.</span>
+<span class="sd">    :rtype: (trimatic.Group)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_groups</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="get_lines"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.get_lines">[docs]</a><span class="k">def</span> <span class="nf">get_lines</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get all Line objects.</span>
+
+<span class="sd">    :return: Tuple of Line objects. Empty tuple if none are found. </span>
+<span class="sd">    :rtype: (trimatic.Line)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_lines</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_objects"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.get_objects">[docs]</a><span class="k">def</span> <span class="nf">get_objects</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get all Objects.</span>
+
+<span class="sd">    :return: Tuple of all Objects. Empty tuple if none are found. </span>
+<span class="sd">    :rtype: (trimatic.Object)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_objects</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_parts"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.get_parts">[docs]</a><span class="k">def</span> <span class="nf">get_parts</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get all Part objects.</span>
+
+<span class="sd">    :return: Tuple of Part objects. Empty tuple if none are found. </span>
+<span class="sd">    :rtype: (trimatic.Part)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_parts</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_planes"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.get_planes">[docs]</a><span class="k">def</span> <span class="nf">get_planes</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get all Plane objects.</span>
+
+<span class="sd">    :return: Tuple of Plane objects. Empty tuple if none are found. </span>
+<span class="sd">    :rtype: (trimatic.Plane)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_planes</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_points"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.get_points">[docs]</a><span class="k">def</span> <span class="nf">get_points</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get all Point objects.</span>
+
+<span class="sd">    :return: Tuple of Point objects. Empty tuple if none are found. </span>
+<span class="sd">    :rtype: (trimatic.Point)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_points</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_spheres"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.get_spheres">[docs]</a><span class="k">def</span> <span class="nf">get_spheres</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get all Sphere objects.</span>
+
+<span class="sd">    :return: Tuple of Sphere objects. Empty tuple if none are found. </span>
+<span class="sd">    :rtype: (trimatic.Sphere)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_spheres</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="get_sketches"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.get_sketches">[docs]</a><span class="k">def</span> <span class="nf">get_sketches</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get all Sketches.</span>
+
+<span class="sd">    :return: Tuple of Sketches. Empty tuple if none are found. </span>
+<span class="sd">    :rtype: (trimatic.Sketch)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_sketches</span><span class="p">()</span></div>
+
+<span class="k">def</span> <span class="nf">get_ssms</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get all SSM objects.</span>
+
+<span class="sd">    :return: Tuple of SSM objects. Empty tuple if none are found. </span>
+<span class="sd">    :rtype: (trimatic.SSM)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_ssms</span><span class="p">()</span>
+
+<div class="viewcode-block" id="copy_to_part"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.copy_to_part">[docs]</a><span class="k">def</span> <span class="nf">copy_to_part</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">destination</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Copies surfaces, curves, and surface or curve sets from one part to another.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of objects.</span>
+<span class="sd">    :type entities: [ trimatic.Surface | trimatic.SurfaceSet | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles ]</span>
+<span class="sd">    :param destination: The part where the data has to be copied to. When None is specified, a new one will be created.</span>
+<span class="sd">    :type destination: trimatic.Part</span>
+<span class="sd">    :return: copied entities or newly created part when a new part was created.</span>
+<span class="sd">    :rtype: ( trimatic.Surface | trimatic.SurfaceSet | trimatic.Curve | trimatic.CurveSet ) | trimatic.Part</span>
+
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/data/copy_to_part.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">CurveSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span><span class="p">)</span> <span class="p">)</span>
+    <span class="k">if</span> <span class="n">destination</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;destination&quot;</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="p">)</span> <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">copy_to_part</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">destination</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="delete"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.delete">[docs]</a><span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Deletes the specified objects.</span>
+
+<span class="sd">    Deleting an object multiple times or attempting to access a deleted object will raise an AttributeError.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of parts, surfaces, surface sets, etc.</span>
+<span class="sd">    :type entities: trimatic.Object | [trimatic.Object] | (trimatic.Object)</span>
+<span class="sd">    :return: True if delete is successful.</span>
+<span class="sd">    :rtype: bool</span>
+<span class="sd">    :raises: RuntimeError, AttributeError</span>
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/data/delete.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="duplicate"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.duplicate">[docs]</a><span class="k">def</span> <span class="nf">duplicate</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Duplicates the specified entities.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of objects.</span>
+<span class="sd">    :type entities: trimatic.Object | [trimatic.Object] | (trimatic.Object)</span>
+<span class="sd">    :return: Duplicated entity or tuple of duplicated entities.</span>
+<span class="sd">    :rtype: trimatic.Object | (trimatic.Object)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/data/duplicate.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,)</span> <span class="o">+</span>  <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">CurveSet</span><span class="p">,)</span> <span class="o">+</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">root_level_types</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="TextAlignment"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.TextAlignment">[docs]</a><span class="k">class</span> <span class="nc">TextAlignment</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Text alignment methods.&quot;&quot;&quot;</span>
+
+    <span class="n">Left</span> <span class="o">=</span> <span class="s2">&quot;Left&quot;</span>
+    <span class="n">Right</span> <span class="o">=</span> <span class="s2">&quot;Right&quot;</span>
+    <span class="n">Center</span> <span class="o">=</span> <span class="s2">&quot;Center&quot;</span></div>
+
+<div class="viewcode-block" id="TriangulationAccuracy"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.TriangulationAccuracy">[docs]</a><span class="k">class</span> <span class="nc">TriangulationAccuracy</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Accuracy of triangulation.&quot;&quot;&quot;</span>
+
+    <span class="n">Very_Coarse</span> <span class="o">=</span> <span class="s2">&quot;Very coarse&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Very coarse level.&quot;&quot;&quot;</span>
+
+    <span class="n">Coarse</span> <span class="o">=</span> <span class="s2">&quot;Coarse&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Coarse level.&quot;&quot;&quot;</span>
+
+    <span class="n">Medium</span> <span class="o">=</span> <span class="s2">&quot;Medium&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Medium level.&quot;&quot;&quot;</span>
+
+    <span class="n">Fine</span> <span class="o">=</span> <span class="s2">&quot;Fine&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fine level.&quot;&quot;&quot;</span>
+
+    <span class="n">Very_Fine</span> <span class="o">=</span> <span class="s2">&quot;Very fine&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Very fine level.&quot;&quot;&quot;</span></div>
+    
+<div class="viewcode-block" id="HollowType"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.HollowType">[docs]</a><span class="k">class</span> <span class="nc">HollowType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;Hollow type.&quot;&quot;&quot;</span>
+      
+      <span class="n">Inside</span> <span class="o">=</span> <span class="s2">&quot;Inside&quot;</span>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;Creates an extra shell to give the part a thickness on the outside.&quot;&quot;&quot;</span>
+      
+      <span class="n">Outside</span> <span class="o">=</span> <span class="s2">&quot;Outside&quot;</span>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;Creates an extra shell to give the part a thickness on the inside.&quot;&quot;&quot;</span>
+      
+      <span class="n">Both</span> <span class="o">=</span> <span class="s2">&quot;Both&quot;</span>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;Creates an extra shell that gives the part a thickness in both directions.&quot;&quot;&quot;</span></div>
+    
+<div class="viewcode-block" id="find_angle_measurement"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_angle_measurement">[docs]</a><span class="k">def</span> <span class="nf">find_angle_measurement</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds an AngleMeasurement object with a specific name.</span>
+
+<span class="sd">    :param name: Name to find.</span>
+<span class="sd">    :type name: string</span>
+<span class="sd">    :return: The first AngleMeasurement object found. None if no match is found.</span>
+<span class="sd">    :rtype: trimatic.AngleMeasurement</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_angle_measurement</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_angle_measurements"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_angle_measurements">[docs]</a><span class="k">def</span> <span class="nf">find_angle_measurements</span><span class="p">(</span><span class="n">regex</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds AngleMeasurement objects with names that match a specified regular expression. For more information on regular expressions we refer to section :ref:`finding_objects`.</span>
+
+<span class="sd">    :param regex: Regular expression to match.</span>
+<span class="sd">    :type regex: string</span>
+<span class="sd">    :return: Tuple of AngleMeasurement objects that match the specified expression. Empty tuple if no match is found. </span>
+<span class="sd">    :rtype: (trimatic.AngleMeasurement)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_angle_measurements</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_annotation"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_annotation">[docs]</a><span class="k">def</span> <span class="nf">find_annotation</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds an Annotation object with a specific name.</span>
+
+<span class="sd">    :param name: Name to find.</span>
+<span class="sd">    :type name: string</span>
+<span class="sd">    :return: The first Annotation object found. None if no match is found.</span>
+<span class="sd">    :rtype: trimatic.Annotation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_annotation</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_annotations"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_annotations">[docs]</a><span class="k">def</span> <span class="nf">find_annotations</span><span class="p">(</span><span class="n">regex</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds Annotation objects with names that match a specified regular expression. For more information on regular expressions we refer to section :ref:`finding_objects`.</span>
+
+<span class="sd">    :param regex: Regular expression to match.</span>
+<span class="sd">    :type regex: string</span>
+<span class="sd">    :return: Tuple of Annotation objects that match the specified expression. Empty tuple if no match is found.</span>
+<span class="sd">    :rtype: (trimatic.Annotation)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_annotations</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_arc"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_arc">[docs]</a><span class="k">def</span> <span class="nf">find_arc</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds an Arc object with a specific name.</span>
+
+<span class="sd">    :param name: Name to find.</span>
+<span class="sd">    :type name: string</span>
+<span class="sd">    :return: The first Arc object found. None if no match is found.</span>
+<span class="sd">    :rtype: trimatic.Arc</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_arc</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_arcs"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_arcs">[docs]</a><span class="k">def</span> <span class="nf">find_arcs</span><span class="p">(</span><span class="n">regex</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;finds Arc objects with names that match a specified regular expression. For more information on regular expressions we refer to section :ref:`finding_objects`.</span>
+
+<span class="sd">    :param regex: Regular expression to match.</span>
+<span class="sd">    :type regex: string</span>
+<span class="sd">    :return: Tuple of Arc objects that match the specified expression. Empty tuple if no match is found.</span>
+<span class="sd">    :rtype: (trimatic.Arc)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_arcs</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_cone"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_cone">[docs]</a><span class="k">def</span> <span class="nf">find_cone</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds a Cone object with a specific name.</span>
+
+<span class="sd">    :param name: Name to find.</span>
+<span class="sd">    :type name: string</span>
+<span class="sd">    :return: The first Cone object found. None if no match is found.</span>
+<span class="sd">    :rtype: trimatic.Cone</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_cone</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_cones"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_cones">[docs]</a><span class="k">def</span> <span class="nf">find_cones</span><span class="p">(</span><span class="n">regex</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds Cone objects with names that match a specified regular expression. For more information on regular expressions we refer to section :ref:`finding_objects`.</span>
+
+<span class="sd">    :param regex: Regular expression to match.</span>
+<span class="sd">    :type regex: string</span>
+<span class="sd">    :return: Tuple of Cone objects that match the specified expression. Empty tuple if no match is found.</span>
+<span class="sd">    :rtype: (trimatic.Cone)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_cones</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_cylinder"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_cylinder">[docs]</a><span class="k">def</span> <span class="nf">find_cylinder</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds a Cylinder object with a specific name.</span>
+
+<span class="sd">    :param name: Name to find.</span>
+<span class="sd">    :type name: string</span>
+<span class="sd">    :return: The first Cylinder object found. None if no match is found.</span>
+<span class="sd">    :rtype: trimatic.Cylinder</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_cylinder</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_cylinders"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_cylinders">[docs]</a><span class="k">def</span> <span class="nf">find_cylinders</span><span class="p">(</span><span class="n">regex</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds Cylinder objects with names that match a specified regular expression. For more information on regular expressions we refer to section :ref:`finding_objects`.</span>
+
+<span class="sd">    :param regex: Regular expression to match.</span>
+<span class="sd">    :type regex: string</span>
+<span class="sd">    :return: Tuple of Cylinder objects that match the specified expression. Empty tuple if no match is found.</span>
+<span class="sd">    :rtype: (trimatic.Cylinder)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_cylinders</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_distance_measurement"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_distance_measurement">[docs]</a><span class="k">def</span> <span class="nf">find_distance_measurement</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds a DistanceMeasurement object with a specific name.</span>
+
+<span class="sd">    :param name: Name to find.</span>
+<span class="sd">    :type name: string</span>
+<span class="sd">    :return: The first DistanceMeasure object found. None if no match is found.</span>
+<span class="sd">    :rtype: trimatic.DistanceMeasurement</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_distance_measurement</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_distance_measurements"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_distance_measurements">[docs]</a><span class="k">def</span> <span class="nf">find_distance_measurements</span><span class="p">(</span><span class="n">regex</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find DistanceMeasurement objects with names that match a specified regular expression. For more information on regular expressions we refer to section :ref:`finding_objects`.</span>
+
+<span class="sd">    :param regex: Regular expression to match.</span>
+<span class="sd">    :type regex: string</span>
+<span class="sd">    :return: Tuple of DistanceMeasurement objects that match the specified expression. Empty tuple if no match is found.</span>
+<span class="sd">    :rtype: (trimatic.DistanceMeasurement)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_distance_measurements</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_diameter_measurement"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_diameter_measurement">[docs]</a><span class="k">def</span> <span class="nf">find_diameter_measurement</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds a DiameterMeasurement object with a specific name.</span>
+
+<span class="sd">    :param name: Name to find.</span>
+<span class="sd">    :type name: string</span>
+<span class="sd">    :return: The first DiameterMeasurement object found. None if no match is found.</span>
+<span class="sd">    :rtype: trimatic.DiameterMeasurement</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_diameter_measurement</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_diameter_measurements"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_diameter_measurements">[docs]</a><span class="k">def</span> <span class="nf">find_diameter_measurements</span><span class="p">(</span><span class="n">regex</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find DiameterMeasurement objects with names that match a specified regular expression. For more information on regular expressions we refer to section :ref:`finding_objects`.</span>
+
+<span class="sd">    :param regex: Regular expression to match.</span>
+<span class="sd">    :type regex: string</span>
+<span class="sd">    :return: Tuple of DiameterMeasurement objects that match the specified expression. Empty tuple if no match is found.</span>
+<span class="sd">    :rtype: (trimatic.DiameterMeasurement)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_diameter_measurements</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="find_group"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_group">[docs]</a><span class="k">def</span> <span class="nf">find_group</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds a group with a specific name.</span>
+
+<span class="sd">    :param name: Name to find.</span>
+<span class="sd">    :type name: string</span>
+<span class="sd">    :return: The first group object found. None if no match is found.</span>
+<span class="sd">    :rtype: trimatic.Group</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_group</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="find_groups"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_groups">[docs]</a><span class="k">def</span> <span class="nf">find_groups</span><span class="p">(</span><span class="n">regex</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds groups with names that match a specified regular expression.</span>
+
+<span class="sd">    :param regex: Regular expression to match.</span>
+<span class="sd">    :type regex: string</span>
+<span class="sd">    :return: Tuple of group objects that match the specified expression. Empty tuple if no match is found.</span>
+<span class="sd">    :rtype: (trimatic.Group)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_groups</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_line"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_line">[docs]</a><span class="k">def</span> <span class="nf">find_line</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds a Line object with a specific name.</span>
+
+<span class="sd">    :param name: Name to find.</span>
+<span class="sd">    :type name: string</span>
+<span class="sd">    :return: The first Line object found. None if no match is found.</span>
+<span class="sd">    :rtype: trimatic.Line</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_line</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_lines"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_lines">[docs]</a><span class="k">def</span> <span class="nf">find_lines</span><span class="p">(</span><span class="n">regex</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find Line objects with names that match a specified regular expression. For more information on regular expressions we refer to section :ref:`finding_objects`.</span>
+
+<span class="sd">    :param regex: Regular expression to match.</span>
+<span class="sd">    :type regex: string</span>
+<span class="sd">    :return: Tuple of Line objects that match the specified expression. Empty tuple if no match is found.</span>
+<span class="sd">    :rtype: (trimatic.Line)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_lines</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_object"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_object">[docs]</a><span class="k">def</span> <span class="nf">find_object</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds an object with a specific name. </span>
+
+<span class="sd">    :param name: Name to find.</span>
+<span class="sd">    :type name: string</span>
+<span class="sd">    :return: The first Object found. None if no match is found.</span>
+<span class="sd">    :rtype: trimatic.Object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_object</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="find_objects_with_metadata"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_objects_with_metadata">[docs]</a><span class="k">def</span> <span class="nf">find_objects_with_metadata</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds objects whose metadata matches specified criteria. Objects without metadata will be ignored.</span>
+
+<span class="sd">    :param name: Name to find. When None is specified, name can be anything.</span>
+<span class="sd">    :type name: string</span>
+<span class="sd">    :param value: Value to find. When None is specified, value can be anything.</span>
+<span class="sd">    :type value: string</span>
+<span class="sd">    :return: The object(s) matching the search criteria.</span>
+<span class="sd">    :rtype: (trimatic.Object)</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/data/find_objects_with_metadata.py</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_objects_with_metadata</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_objects"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_objects">[docs]</a><span class="k">def</span> <span class="nf">find_objects</span><span class="p">(</span><span class="n">regex</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds objects with names that match a specified regular expression. For more information on regular expressions we refer to section :ref:`finding_objects`.</span>
+
+<span class="sd">    :param regex: Regular expression to match.\n</span>
+<span class="sd">    :type regex: string</span>
+<span class="sd">    :return: Tuple of Objects that match the specified expression. Empty tuple if no match is found.</span>
+<span class="sd">    :rtype: (trimatic.Object)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_objects</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_part"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_part">[docs]</a><span class="k">def</span> <span class="nf">find_part</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds a Part object with a specific name.</span>
+
+<span class="sd">    :param name: Name to find.</span>
+<span class="sd">    :type name: string</span>
+<span class="sd">    :return: The first Part object found. None if no match is found.</span>
+<span class="sd">    :rtype: trimatic.Part</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_parts"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_parts">[docs]</a><span class="k">def</span> <span class="nf">find_parts</span><span class="p">(</span><span class="n">regex</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds Part objects with names that match a specified regular expression. For more information on regular expressions we refer to section :ref:`finding_objects`.</span>
+
+<span class="sd">    :param regex: Regular expression to match.</span>
+<span class="sd">    :type regex: string</span>
+<span class="sd">    :return: Tuple of Part objects that match the specified expression. Empty tuple if no match is found.</span>
+<span class="sd">    :rtype: (trimatic.Part)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_parts</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_part_byguid"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_part_byguid">[docs]</a><span class="k">def</span> <span class="nf">find_part_byguid</span><span class="p">(</span><span class="n">guid</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds a Part object with a specific Globally Unique Identifier (GUID).</span>
+<span class="sd">    </span>
+<span class="sd">    This is the recommended method to search for Parts reliably. Names are not guaranteed to be unique, but every Part</span>
+<span class="sd">    with the same name will have a different GUID. This is especially useful when exchanging data between 3-matic and</span>
+<span class="sd">    Mimics.</span>
+
+<span class="sd">    :param guid: GUID to find.</span>
+<span class="sd">    :type guid: string</span>
+<span class="sd">    :return: The Part with a matching GUID. None if no match is found.</span>
+<span class="sd">    :rtype: trimatic.Part</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_part_byguid</span><span class="p">(</span><span class="n">guid</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_plane"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_plane">[docs]</a><span class="k">def</span> <span class="nf">find_plane</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds a Plane object with a specific name.</span>
+
+<span class="sd">    :param name: Name to find.</span>
+<span class="sd">    :type name: string</span>
+<span class="sd">    :return: The first Plane object found. None if no match is found.</span>
+<span class="sd">    :rtype: trimatic.Plane</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_plane</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_planes"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_planes">[docs]</a><span class="k">def</span> <span class="nf">find_planes</span><span class="p">(</span><span class="n">regex</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;finds planes whose name match a regular expression. For more information on regular expressions we refer to section :ref:`finding_objects`.</span>
+<span class="sd">    Find Plane objects with names that match a specified regular expression.</span>
+
+<span class="sd">    :param regex: Regular expression to match.</span>
+<span class="sd">    :type regex: string</span>
+<span class="sd">    :return: Tuple of Plane objects that match the specified expression. Empty tuple if no match is found.</span>
+<span class="sd">    :rtype: (trimatic.Plane)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_planes</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_point"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_point">[docs]</a><span class="k">def</span> <span class="nf">find_point</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds a Point object with a specific name.</span>
+
+<span class="sd">    :param name: Name to find.</span>
+<span class="sd">    :type name: string</span>
+<span class="sd">    :return: The first Point object found. None if no match is found.</span>
+<span class="sd">    :rtype: trimatic.Point</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_point</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_points"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_points">[docs]</a><span class="k">def</span> <span class="nf">find_points</span><span class="p">(</span><span class="n">regex</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find Point objects with names that match a specified regular expression. For more information on regular expressions we refer to section :ref:`finding_objects`.</span>
+
+<span class="sd">    :param regex: Regular expression to match.</span>
+<span class="sd">    :type regex: string</span>
+<span class="sd">    :return: Tuple of Point objects that match the specified expression. Empty tuple if no match is found.</span>
+<span class="sd">    :rtype: (trimatic.Point)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_points</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_sketch"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_sketch">[docs]</a><span class="k">def</span> <span class="nf">find_sketch</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds a Sketch with a specific name.</span>
+
+<span class="sd">    :param name: Name to find.</span>
+<span class="sd">    :type name: string</span>
+<span class="sd">    :return: The first Sketch found. None if no match is found.</span>
+<span class="sd">    :rtype: trimatic.Sketch</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_sketch</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_sketches"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_sketches">[docs]</a><span class="k">def</span> <span class="nf">find_sketches</span><span class="p">(</span><span class="n">regex</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find Sketches with names that match a specified regular expression. For more information on regular expressions we refer to section :ref:`finding_objects`.</span>
+
+<span class="sd">    :param regex: Regular expression to match.</span>
+<span class="sd">    :type regex: string</span>
+<span class="sd">    :return: Tuple of Sketches that match the specified expression. Empty tuple if no match is found.</span>
+<span class="sd">    :rtype: (trimatic.Sketch)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_sketches</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="find_sphere"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_sphere">[docs]</a><span class="k">def</span> <span class="nf">find_sphere</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds a Sphere object with a specific name.</span>
+
+<span class="sd">    :param name: Name to find.</span>
+<span class="sd">    :type name: string</span>
+<span class="sd">    :return: The first Sphere object found. None if no match is found.</span>
+<span class="sd">    :rtype: trimatic.Sphere</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_sphere</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_spheres"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.find_spheres">[docs]</a><span class="k">def</span> <span class="nf">find_spheres</span><span class="p">(</span><span class="n">regex</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find Sphere objects with names that match a specified regular expression. For more information on regular expressions we refer to section :ref:`finding_objects`.</span>
+
+<span class="sd">    :param regex: Regular expression to match.</span>
+<span class="sd">    :type regex: string</span>
+<span class="sd">    :return: Tuple of Sphere objects that match the specified expression. Empty tuple if no match is found.</span>
+<span class="sd">    :rtype: (trimatic.Sphere)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_spheres</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span></div>
+
+<span class="k">def</span> <span class="nf">find_ssm</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds a SSM object with a specific name.</span>
+
+<span class="sd">    :param name: Name to find.</span>
+<span class="sd">    :type name: string</span>
+<span class="sd">    :return: The first SSM object found. None if no match is found.</span>
+<span class="sd">    :rtype: trimatic.SSM</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_ssm</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">find_ssms</span><span class="p">(</span><span class="n">regex</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find SSM objects with names that match a specified regular expression. For more information on regular expressions we refer to section :ref:`finding_objects`.</span>
+
+<span class="sd">    :param regex: Regular expression to match.</span>
+<span class="sd">    :type regex: string</span>
+<span class="sd">    :return: Tuple of SSM objects that match the specified expression. Empty tuple if no match is found.</span>
+<span class="sd">    :rtype: (trimatic.SSM)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">find_ssms</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span>
+
+<div class="viewcode-block" id="merge"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.merge">[docs]</a><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Merges the specified entities. You can only merge entities of the same type: surfaces with surfaces, parts with parts or graphs with graphs. You can pass either a single entity or multiple entities to merge. For </span>
+<span class="sd">    example, you can (i) merge a single SurfaceSet which merges all surfaces in the SurfaceSet, or (ii) merge multiple SurfaceSets, which merges the SurfaceSets into one.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of objects.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.Graph | trimatic.GraphSet | trimatic.UVRegion | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.Graph | trimatic.GraphSet | trimatic.UVRegion]</span>
+<span class="sd">    :return: merged entities.</span>
+<span class="sd">    :rtype: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.Graph | trimatic.GraphSet | trimatic.UVRegion</span>
+<span class="sd">    :raises: RuntimeError</span>
+
+<span class="sd">    :example: </span>
+
+<span class="sd">    .. literalinclude:: example/data/merge.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">GraphSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">UVRegion</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="get_metadata"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.get_metadata">[docs]</a><span class="k">def</span> <span class="nf">get_metadata</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets project level metadata.</span>
+
+<span class="sd">    :return: The project level metadata object.</span>
+<span class="sd">    :rtype: trimatic.Metadata</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="move_to_part"><a class="viewcode-back" href="../../trimatic.rst/trimatic.data.html#trimatic.data.move_to_part">[docs]</a><span class="k">def</span> <span class="nf">move_to_part</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">destination</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Moves surfaces, curves, and surface or curve sets from one part to another.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of objects.</span>
+<span class="sd">    :type entities: [ trimatic.Surface | trimatic.SurfaceSet | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles]</span>
+<span class="sd">    :param destination: The part where the data has to be moved to. When None is specified, a new one will be created.</span>
+<span class="sd">    :type destination: trimatic.Part</span>
+<span class="sd">    :return: moved entities or newly created part when a new part was created.</span>
+<span class="sd">    :rtype: ( trimatic.Surface | trimatic.SurfaceSet | trimatic.Curve | trimatic.CurveSet ) | trimatic.Part</span>
+
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/data/move_to_part.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">CurveSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span><span class="p">)</span> <span class="p">)</span>
+    <span class="k">if</span> <span class="n">destination</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;destination&quot;</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="p">)</span> <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">move_to_part</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">destination</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

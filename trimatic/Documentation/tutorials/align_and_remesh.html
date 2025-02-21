@@ -1,0 +1,319 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. Align and remesh &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="Tutorials" href="index.html"/>
+        <link rel="next" title="6. Fracture plate" href="hand_plate.html"/>
+        <link rel="prev" title="4. Non manifold assembly" href="non_manifold_assembly.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="working_with_marking.html">1. Working with Marking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="measurements.html">2. Measurements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preparation_for_fea.html">3. Preparation for FEA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="non_manifold_assembly.html">4. Non manifold assembly</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. Align and remesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hand_plate.html">6. Fracture plate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="working_with_metadata.html">7. Working with Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchtop.html">8. Benchtop model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_a_lattice.html">9. Creating a lattice structure</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+      
+    <li>5. Align and remesh</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/align_and_remesh.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="align-and-remesh">
+<h1>5. Align and remesh<a class="headerlink" href="#align-and-remesh" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial shows how to align two objects that are not positioned correctly after importing in 3-matic.
+Furthermore, additional operations and remeshing are performed for the preparation of the 3D model. The project Aorta_Hollow.mxp that is located in the 3-matic installation folder under the folder <cite>DemoFiles</cite> is used.</p>
+<p>The completed script can be found in the 3-matic installation folder in <code class="file docutils literal"><span class="pre">DemoFiles\scripts\Align</span> <span class="pre">and</span> <span class="pre">remesh.py</span></code>.
+We will describe the different steps in the script in more detail.</p>
+<p>The first step is to import the project from the path that is located locally. In case that you have selected a different installation location, the input path must be modified.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1">#Open the project Aorta_Hollow</span>
+<span class="n">application_exe</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">()</span>
+<span class="n">application_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">application_exe</span><span class="p">)</span>
+<span class="n">demopath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">application_path</span><span class="p">,</span> <span class="s2">&quot;DemoFiles&quot;</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">demopath</span><span class="p">,</span> <span class="s2">&quot;Aorta_Hollow.mxp&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/Input.png"><img alt="../_images/Input.png" class="align-center" src="../_images/Input.png" style="width: 200px; height: 200px;" /></a>
+<p>In the following step, the part, Aorta, is located and 3 points are created in predefined locations. Those points are used to create a datum plane that will be used for the parts’ alignment. The aortic datum plane is calculated and renamed.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Find the part Aorta</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="c1"># Create 3 points that will help to create the correct datum plane</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Select Point 1&quot;</span><span class="p">)</span>
+<span class="n">p1_coords</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">indicate_coordinate</span><span class="p">()</span>
+<span class="n">p1</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_point</span><span class="p">(</span><span class="n">p1_coords</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Select Point 2&quot;</span><span class="p">)</span>
+<span class="n">p2_coords</span> <span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">indicate_coordinate</span><span class="p">()</span>
+<span class="n">p2</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_point</span><span class="p">(</span><span class="n">p2_coords</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Select Point 3&quot;</span><span class="p">)</span>
+<span class="n">p3_coords</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">indicate_coordinate</span><span class="p">()</span>
+<span class="n">p3</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_point</span><span class="p">(</span><span class="n">p3_coords</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/Pt1.png"><img alt="../_images/Pt1.png" class="align-center" src="../_images/Pt1.png" style="width: 250px; height: 250px;" /></a>
+<a class="reference internal image-reference" href="../_images/Pt2.png"><img alt="../_images/Pt2.png" class="align-center" src="../_images/Pt2.png" style="width: 250px; height: 250px;" /></a>
+<a class="reference internal image-reference" href="../_images/Pt3.png"><img alt="../_images/Pt3.png" class="align-center" src="../_images/Pt3.png" style="width: 220px; height: 220px;" /></a>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1">#Create the aortic plane</span>
+<span class="n">aor_plane</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_3_points</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">p3</span><span class="p">)</span>
+<span class="n">aor_plane</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Aortic plane&quot;</span>
+</pre></div>
+</div>
+<p>The next step is to import the part, Flange. To align this part with the Aorta, a plane is fitted to the top and bottom surfaces of the flange respectively. Firstly, the part is located and its surfaces are assigned to a variable. Then, a plane is fitted to the top and bottom surfaces and renamed.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Import the flange</span>
+<span class="n">flange_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">demopath</span><span class="p">,</span> <span class="s2">&quot;Flange.stl&quot;</span><span class="p">)</span>
+<span class="n">flange</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">import_part_stl</span><span class="p">(</span><span class="n">flange_path</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">surfaces</span> <span class="o">=</span> <span class="n">flange</span><span class="o">.</span><span class="n">get_surfaces</span><span class="p">()</span>
+<span class="c1"># Find the top and the bottom surfaces of the Flange</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">surfaces</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Top-0&quot;</span><span class="p">:</span>
+                <span class="c1"># Fit a plane to the top surface</span>
+                <span class="n">fl_t_plane</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_fit</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+                <span class="n">fl_t_plane</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Flange top plane&quot;</span>
+        <span class="k">elif</span> <span class="n">s</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Bottom&quot;</span><span class="p">:</span>
+                <span class="c1"># Fit a plane to the bottom surface</span>
+                <span class="n">fl_b_plane</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_fit</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+                <span class="n">fl_b_plane</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Flange bottom plane&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+                <span class="k">continue</span>
+</pre></div>
+</div>
+<p>In the next step, the midplane of the flange will be used for the alignment with the Aorta. The midplane is calculated based on the top and bottom planes. Then, using the plane to plane align functionality, the flange is aligned with the Aorta.
+After the repositioning, a local offset is applied to the internal surface (Mantle) of the flange to narrow the nozzle.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Find the midplane</span>
+<span class="n">avg_fl_plane</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_average_existing</span><span class="p">([</span><span class="n">fl_t_plane</span><span class="p">,</span><span class="n">fl_b_plane</span><span class="p">])</span>
+<span class="n">avg_fl_plane</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Mid flange plane&quot;</span>
+<span class="c1"># Plane to plane align the flange to the aorta</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">plane_to_plane_align</span><span class="p">(</span><span class="n">aor_plane</span><span class="p">,</span><span class="n">avg_fl_plane</span><span class="p">,[</span><span class="n">flange</span><span class="p">,</span><span class="n">fl_b_plane</span><span class="p">,</span><span class="n">fl_t_plane</span><span class="p">],</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># Apply local offset to the inner surface</span>
+<span class="n">surfaces_pairs</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">surfaces</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Mantle&quot;</span><span class="p">:</span>
+                <span class="n">surfaces_pairs</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">area</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>
+
+<span class="n">min_area</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">surfaces_pairs</span><span class="p">)</span>
+<span class="n">inner_surface</span> <span class="o">=</span> <span class="n">surfaces_pairs</span><span class="p">[</span><span class="n">min_area</span><span class="p">]</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">local_offset</span><span class="p">(</span><span class="n">surface_entities</span><span class="o">=</span><span class="n">inner_surface</span><span class="p">,</span> <span class="n">offset_distance</span><span class="o">=</span><span class="mf">3.5</span><span class="p">)</span>
+
+<span class="c1"># Hide entities which are not needed</span>
+<span class="n">entities</span><span class="o">=</span><span class="p">[</span><span class="n">aor_plane</span><span class="p">,</span><span class="n">fl_b_plane</span><span class="p">,</span><span class="n">fl_t_plane</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">p3</span><span class="p">,</span><span class="n">avg_fl_plane</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">entities</span><span class="p">:</span>
+        <span class="n">i</span><span class="o">.</span><span class="n">visible</span><span class="o">=</span><span class="kc">False</span>
+</pre></div>
+</div>
+<p>The final step is to unite the two parts into one, rename and remesh it.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Boolean union</span>
+<span class="n">union</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">boolean_union</span><span class="p">([</span><span class="n">flange</span><span class="p">,</span><span class="n">p</span><span class="p">])</span>
+<span class="n">union</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;3D model&quot;</span>
+<span class="c1"># Remesh 3D model</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">uniform_remesh</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">union</span><span class="p">,</span> <span class="n">target_triangle_edge_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">split_edge_factor</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">preserve_surface_contours</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="hand_plate.html" class="btn btn-neutral float-right" title="6. Fracture plate" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="non_manifold_assembly.html" class="btn btn-neutral" title="4. Non manifold assembly" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

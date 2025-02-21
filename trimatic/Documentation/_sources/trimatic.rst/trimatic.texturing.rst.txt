@@ -1,0 +1,8 @@
+texturing
+=========
+
+.. automodule:: trimatic.texturing
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

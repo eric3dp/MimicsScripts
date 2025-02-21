@@ -1,0 +1,18 @@
+.. _external_IDE:
+
+######################
+External IDE
+######################
+
+
+.. toctree:: 
+   :numbered:
+
+
+   Introduction.rst
+   Installation_guide_for_rpyc.rst
+   JetBrains_PyCharm.rst
+   Eclipse_and_Pydev.rst
+   Microsoft_Visual_Studio.rst
+   Using_an_External_IDE.rst
+   

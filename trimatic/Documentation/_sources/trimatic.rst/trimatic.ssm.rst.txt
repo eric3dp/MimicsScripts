@@ -1,0 +1,8 @@
+ssm
+===
+
+.. automodule:: trimatic.ssm
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

@@ -1,0 +1,9 @@
+Create a statistical shape model
+----------------------------------
+
+In this scripting tutorial, we will be creating a statistical shape model similar to Exercise 1 from Chapter 10: SSM in the 3-matic tutorial. 
+The script can be found in the 3-matic installation folder in :file:`DemoFiles\\scripts\\Statistical shape model creation.py`. 
+The script starts from a user prepared file that can be found in :file:`DemoFiles\\SSM femur.mxp` . The script automatically 
+imports the input project. The script showcases many API functions and implements a full workflow. For further details 
+we refer to the comments in the Python script.
+

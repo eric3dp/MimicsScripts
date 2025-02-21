@@ -1,0 +1,20 @@
+Using an External IDE
+-----------------------
+
+
+Once Python and an external IDE are properly installed, it is possible to run and debug 3-matic scripts via this external IDE.
+This functionality is accessible via the **Script -> Listener** from the menu bar in 3-matic.
+
+Once activated, “3-matic script listener is active on port 15000” will appear in the logger, as shown below.
+This indicates that the previously configured connection to the external IDE is active and 3-matic scripts can be run and debugged.
+
+.. image:: 3matic_script_listener_is_active.png
+   :scale: 100 %
+   :align: center
+
+Once the work with the external IDE is complete, you can then toggle the listener off. This will close the connection and produce a logger message “3-matic script listener is deactivated”.
+
+.. image:: 3matic_script_listener_is_stopped.png
+   :scale: 100 %
+   :align: center
+

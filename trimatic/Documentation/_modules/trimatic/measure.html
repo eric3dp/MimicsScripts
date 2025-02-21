@@ -1,0 +1,360 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>trimatic.measure &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>trimatic.measure</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for trimatic.measure</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pymatic</span>
+<span class="kn">import</span> <span class="nn">trimatic.utils</span>
+
+<span class="kn">from</span> <span class="nn">trimatic.data</span> <span class="kn">import</span> <span class="n">TextAlignment</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<div class="viewcode-block" id="MeasurementCoordinates"><a class="viewcode-back" href="../../trimatic.rst/trimatic.measure.html#trimatic.measure.MeasurementCoordinates">[docs]</a><span class="k">class</span> <span class="nc">MeasurementCoordinates</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Measure coordinates method.&quot;&quot;&quot;</span>
+
+    <span class="n">XYZ</span> <span class="o">=</span> <span class="s2">&quot;XYZ&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Measure coordinates XYZ method.&quot;&quot;&quot;</span>
+
+    <span class="n">XY</span> <span class="o">=</span> <span class="s2">&quot;XY&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Measure coordinates XY method.&quot;&quot;&quot;</span>
+
+    <span class="n">XZ</span> <span class="o">=</span> <span class="s2">&quot;XZ&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Measure coordinates XZ method.&quot;&quot;&quot;</span>
+
+    <span class="n">YZ</span> <span class="o">=</span> <span class="s2">&quot;YZ&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Measure coordinates YZ method.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="create_angle_measurement_line_to_line"><a class="viewcode-back" href="../../trimatic.rst/trimatic.measure.html#trimatic.measure.create_angle_measurement_line_to_line">[docs]</a><span class="k">def</span> <span class="nf">create_angle_measurement_line_to_line</span><span class="p">(</span><span class="n">line_from</span><span class="p">,</span> <span class="n">line_to</span><span class="p">,</span> <span class="n">measurement_coordinates</span> <span class="o">=</span> <span class="n">MeasurementCoordinates</span><span class="o">.</span><span class="n">XYZ</span><span class="p">,</span> <span class="n">user_defined_cs</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">leader_line_length</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates an angle measurement from one line to another line.</span>
+
+<span class="sd">    :param line_from: The first line.</span>
+<span class="sd">    :type line_from: trimatic.Line</span>
+<span class="sd">    :param line_to: The second line.</span>
+<span class="sd">    :type line_to: trimatic.Line</span>
+<span class="sd">    :param measurement_coordinates: Choose to measure the angle in all 3 axes or only one plane.</span>
+<span class="sd">    :type measurement_coordinates: trimatic.MeasurementCoordinates, optional</span>
+<span class="sd">    :param user_defined_cs:  Single entity of trimatic.CoordinateSystem. If this parameter is not valid, then the world coordinate system will be applied. The measurement will be taken based on the coordinate system of the selected entity.</span>
+<span class="sd">    :type user_defined_cs: trimatic.CoordinateSystem, optional</span>
+<span class="sd">    :param leader_line_length: The length of the leader lines. When None, the length is computed automatically.</span>
+<span class="sd">    :type leader_line_length: float, optional</span>
+<span class="sd">    :return: Created measurement.</span>
+<span class="sd">    :rtype: trimatic.AngleMeasurement</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/measure/create_angle_measurement_line_to_line.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;line_from&quot;</span><span class="p">,</span> <span class="n">line_from</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Line</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;line_to&quot;</span><span class="p">,</span> <span class="n">line_to</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Line</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;measurement_coordinates&quot;</span><span class="p">,</span> <span class="n">measurement_coordinates</span><span class="p">,</span> <span class="p">(</span><span class="n">MeasurementCoordinates</span><span class="p">,))</span>
+    <span class="k">if</span> <span class="n">leader_line_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;leader_line_length&quot;</span><span class="p">,</span> <span class="n">leader_line_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user_defined_cs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;user_defined_cs&quot;</span><span class="p">,</span> <span class="n">user_defined_cs</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">CoordinateSystem</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_angle_measurement_line_to_line</span><span class="p">(</span><span class="n">line_from</span><span class="p">,</span> <span class="n">line_to</span><span class="p">,</span> <span class="n">measurement_coordinates</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">user_defined_cs</span><span class="p">,</span> <span class="n">leader_line_length</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_angle_measurement_3points"><a class="viewcode-back" href="../../trimatic.rst/trimatic.measure.html#trimatic.measure.create_angle_measurement_3points">[docs]</a><span class="k">def</span> <span class="nf">create_angle_measurement_3points</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">,</span> <span class="n">measurement_coordinates</span> <span class="o">=</span> <span class="n">MeasurementCoordinates</span><span class="o">.</span><span class="n">XYZ</span><span class="p">,</span> <span class="n">user_defined_cs</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates an angle measurement between 3 points. The position of the angle measurement is defined by the sum of the center-point1 vector and the center-point2 vector.</span>
+
+<span class="sd">    :param center: Center point of the measurement.</span>
+<span class="sd">    :type center: [float] | (float) | trimatic.Point</span>
+<span class="sd">    :param point1: Point1 of the measurement.</span>
+<span class="sd">    :type point1: [float] | (float) | trimatic.Point</span>
+<span class="sd">    :param point2: Point2 of the measurement.</span>
+<span class="sd">    :type point2: [float] | (float) | trimatic.Point</span>
+<span class="sd">    :param measurement_coordinates: Choose to measure the angle in all 3 axes or only one plane.</span>
+<span class="sd">    :type measurement_coordinates: trimatic.MeasurementCoordinates, optional</span>
+<span class="sd">    :param user_defined_cs:  Single entity of trimatic.CoordinateSystem. If this parameter is not valid, then the world coordinate system will be applied. The measurement will be taken based on the coordinate system of the selected entity.</span>
+<span class="sd">    :type user_defined_cs: trimatic.CoordinateSystem, optional</span>
+<span class="sd">    :return: Created measurement.</span>
+<span class="sd">    :rtype: trimatic.AngleMeasurement</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/measure/create_angle_measurement_3points.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;measurement_coordinates&quot;</span><span class="p">,</span> <span class="n">measurement_coordinates</span><span class="p">,</span> <span class="p">(</span><span class="n">MeasurementCoordinates</span><span class="p">,))</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user_defined_cs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;user_defined_cs&quot;</span><span class="p">,</span> <span class="n">user_defined_cs</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">CoordinateSystem</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_angle_measurement_3points</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">center</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point1</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point2</span><span class="p">),</span> <span class="n">measurement_coordinates</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">user_defined_cs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_annotation"><a class="viewcode-back" href="../../trimatic.rst/trimatic.measure.html#trimatic.measure.create_annotation">[docs]</a><span class="k">def</span> <span class="nf">create_annotation</span><span class="p">(</span><span class="n">point_anchor</span><span class="p">,</span> <span class="n">point_text</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">alignment</span> <span class="o">=</span> <span class="n">TextAlignment</span><span class="o">.</span><span class="n">Left</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates an annotation.</span>
+
+<span class="sd">    :param point_anchor: The point to annotate.</span>
+<span class="sd">    :type point_anchor: trimatic.Point</span>
+<span class="sd">    :param point_text: The anchor point of the text.</span>
+<span class="sd">    :type point_text: trimatic.Point</span>
+<span class="sd">    :param text: The text of the annotation.</span>
+<span class="sd">    :type text: string</span>
+<span class="sd">    :param alignment: The text alignment of the annotation.</span>
+<span class="sd">    :type alignment: trimatic.TextAlignment, optional</span>
+<span class="sd">    :return: Created annotation.</span>
+<span class="sd">    :rtype: trimatic.Annotation </span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/measure/create_annotation.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_annotation</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point_anchor</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point_text</span><span class="p">),</span> <span class="n">text</span><span class="p">,</span> <span class="n">alignment</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_diameter_measurement"><a class="viewcode-back" href="../../trimatic.rst/trimatic.measure.html#trimatic.measure.create_diameter_measurement">[docs]</a><span class="k">def</span> <span class="nf">create_diameter_measurement</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">,</span> <span class="n">point3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Measures diameter using 3 points method.</span>
+
+<span class="sd">    :param point1: First point.</span>
+<span class="sd">    :type point1: trimatic.Point</span>
+<span class="sd">    :param point2: Second point.</span>
+<span class="sd">    :type point2: trimatic.Point</span>
+<span class="sd">    :param point3: Third point.</span>
+<span class="sd">    :type point3: trimatic.Point</span>
+<span class="sd">    :return: Created diameter measurement.</span>
+<span class="sd">    :rtype: trimatic.DiameterMeasurement</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/measure/create_diameter_measurement.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_diameter_measurement</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point1</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point2</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point3</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="create_distance_measurement"><a class="viewcode-back" href="../../trimatic.rst/trimatic.measure.html#trimatic.measure.create_distance_measurement">[docs]</a><span class="k">def</span> <span class="nf">create_distance_measurement</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">,</span> <span class="n">measurement_coordinates</span> <span class="o">=</span> <span class="n">MeasurementCoordinates</span><span class="o">.</span><span class="n">XYZ</span><span class="p">,</span> <span class="n">user_defined_cs</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Measures the distance between 2 points.</span>
+
+<span class="sd">    :param point1: Creates first point.</span>
+<span class="sd">    :type point1: [float] | (float) | trimatic.Point</span>
+<span class="sd">    :param point2: Creates second point.</span>
+<span class="sd">    :type point2: [float] | (float) | trimatic.Point</span>
+<span class="sd">    :param measurement_coordinates: Specify coordinates to measure the angle in all 3 axes or only one plane.</span>
+<span class="sd">    :type measurement_coordinates: trimatic.MeasurementCoordinates, optional</span>
+<span class="sd">    :param user_defined_cs:  Single entity of trimatic.CoordinateSystem. When this parameter is None, the world coordinate system will be applied. The measurement will be taken based on the coordinate system of the selected entity.</span>
+<span class="sd">    :type user_defined_cs: trimatic.CoordinateSystem, optional</span>
+<span class="sd">    :return: Created measurement.</span>
+<span class="sd">    :rtype: trimatic.DistanceMeasurement</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/measure/create_distance_measurement.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;measurement_coordinates&quot;</span><span class="p">,</span> <span class="n">measurement_coordinates</span><span class="p">,</span> <span class="p">(</span><span class="n">MeasurementCoordinates</span><span class="p">,))</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user_defined_cs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;user_defined_cs&quot;</span><span class="p">,</span> <span class="n">user_defined_cs</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">CoordinateSystem</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_distance_measurement</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point1</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point2</span><span class="p">),</span>
+                                               <span class="n">measurement_coordinates</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">user_defined_cs</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

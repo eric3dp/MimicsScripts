@@ -1,0 +1,1447 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>trimatic.file &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>trimatic.file</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for trimatic.file</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pymatic</span>
+<span class="kn">import</span> <span class="nn">trimatic.utils</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<div class="viewcode-block" id="exit"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.exit">[docs]</a><span class="k">def</span> <span class="nf">exit</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exits 3-matic. Calling this function has the same effect as closing 3-matic&#39;s main window. </span>
+<span class="sd">    When called through an external IDE setup, </span>
+<span class="sd">    an exception can be raised in case the connection to 3-matic was closed before being able to receive the answer to the function call.</span>
+<span class="sd">    </span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/exit.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ExportOption"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.ExportOption">[docs]</a><span class="k">class</span> <span class="nc">ExportOption</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Export Option.&quot;&quot;&quot;</span>
+
+    <span class="n">surface_mesh</span> <span class="o">=</span> <span class="s2">&quot;Export surface mesh&quot;</span>
+    <span class="n">volume_mesh</span> <span class="o">=</span> <span class="s2">&quot;Export volume mesh&quot;</span>
+    <span class="n">surface_and_volume_mesh</span> <span class="o">=</span> <span class="s2">&quot;Export surface and volume mesh&quot;</span></div>
+
+<div class="viewcode-block" id="FaceSplitMethod"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.FaceSplitMethod">[docs]</a><span class="k">class</span> <span class="nc">FaceSplitMethod</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Face Split Method.&quot;&quot;&quot;</span>
+
+    <span class="n">split_by_surface</span> <span class="o">=</span> <span class="s2">&quot;By surface&quot;</span>
+    <span class="n">split_by_part</span> <span class="o">=</span> <span class="s2">&quot;By part&quot;</span>
+    <span class="n">split_by_surface_set</span> <span class="o">=</span> <span class="s2">&quot;By surface set&quot;</span>
+    <span class="n">split_by_shell</span> <span class="o">=</span> <span class="s2">&quot;By shell&quot;</span></div>
+
+<div class="viewcode-block" id="TypeOfElement"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.TypeOfElement">[docs]</a><span class="k">class</span> <span class="nc">TypeOfElement</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+      <span class="n">element_type_C3D10</span> <span class="o">=</span> <span class="s2">&quot;C3D10&quot;</span>
+      <span class="n">element_type_C3D10M</span> <span class="o">=</span> <span class="s2">&quot;C3D10M&quot;</span></div>
+
+<div class="viewcode-block" id="TypeOfBeam"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.TypeOfBeam">[docs]</a><span class="k">class</span> <span class="nc">TypeOfBeam</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+      <span class="n">beam_type_linear</span> <span class="o">=</span> <span class="s2">&quot;Linear&quot;</span>
+      <span class="n">beam_type_quadratic</span> <span class="o">=</span> <span class="s2">&quot;Quadratic&quot;</span></div>
+
+<div class="viewcode-block" id="export_3mf"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_3mf">[docs]</a><span class="k">def</span> <span class="nf">export_3mf</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the specified parts to a 3mf file.</span>
+
+<span class="sd">    :param entities: Part or list of parts to export.</span>
+<span class="sd">    :type entities: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :param filename: Filename</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :return: Filename of the file that was written.</span>
+<span class="sd">    :rtype: string</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_3mf.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_file_saveable</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid file name&#39;</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_3mf</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">filename</span> <span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_abaqus"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_abaqus">[docs]</a><span class="k">def</span> <span class="nf">export_abaqus</span><span class="p">(</span>
+        <span class="n">entities</span><span class="p">,</span> 
+        <span class="n">output_directory</span><span class="p">,</span>
+        <span class="n">export_surface</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">volume_element_type</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">graph_beam_type</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">face_split_method</span> <span class="o">=</span> <span class="n">FaceSplitMethod</span><span class="o">.</span><span class="n">split_by_surface</span><span class="p">,</span>
+        <span class="n">create_assembly</span> <span class="o">=</span> <span class="kc">True</span>
+     <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the specified parts as ABAQUS files.</span>
+
+<span class="sd">    :param entities: Part or list of parts to export.</span>
+<span class="sd">    :type entities: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :param output_directory: Destination path to save the files. One file is created per part. The file name will be the name of the part followed by the extension &#39;.inp&#39;.</span>
+<span class="sd">    :type output_directory: string</span>
+<span class="sd">    :param export_surface: A boolean value which indicates whether the surface needs to be exported.</span>
+<span class="sd">    :type export_surface: bool, optional</span>
+<span class="sd">    :param volume_element_type: A value which indicates the type of volume mesh for exporting. When specifying None, the volume is not exported.</span>
+<span class="sd">    :type volume_element_type:  trimatic.TypeOfElement, optional</span>
+<span class="sd">    :param graph_beam_type: A value which indicates the type of graph structure for exporting. When specifying None, the graph structure is not exported.</span>
+<span class="sd">    :type  graph_beam_type: trimatic.TypeOfBeam, optional</span>
+<span class="sd">    :param face_split_method: A value which indicates the face split method.</span>
+<span class="sd">    :type face_split_method: trimatic.FaceSplitMethod, optional</span>
+<span class="sd">    :param create_assembly: A boolean value which indicates wheather an assembly needs to be created.</span>
+<span class="sd">    :type create_assembly: bool, optional</span>
+<span class="sd">    :return: Tuple of paths to the ABAQUS files.</span>
+<span class="sd">    :rtype: (string)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_abaqus.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_folder_path_is_valid</span><span class="p">(</span><span class="n">output_directory</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;face_split_method&quot;</span><span class="p">,</span> <span class="n">face_split_method</span><span class="p">,</span> <span class="p">(</span><span class="n">FaceSplitMethod</span><span class="p">,))</span>
+
+    <span class="n">volume_element_type_value</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">graph_beam_type_value</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">volume_element_type</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+       <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;volume_element_type&quot;</span><span class="p">,</span> <span class="n">volume_element_type</span><span class="p">,</span> <span class="p">(</span><span class="n">TypeOfElement</span><span class="p">,))</span>
+       <span class="n">volume_element_type_value</span> <span class="o">=</span> <span class="n">volume_element_type</span><span class="o">.</span><span class="n">value</span>
+
+    <span class="k">if</span> <span class="n">graph_beam_type</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+       <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;graph_beam_type&quot;</span><span class="p">,</span> <span class="n">graph_beam_type</span><span class="p">,</span> <span class="p">(</span><span class="n">TypeOfBeam</span><span class="p">,))</span>
+       <span class="n">graph_beam_type_value</span> <span class="o">=</span> <span class="n">graph_beam_type</span><span class="o">.</span><span class="n">value</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_abaqus</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">output_directory</span><span class="p">,</span> 
+                                 <span class="n">export_surface</span><span class="p">,</span> <span class="n">face_split_method</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">volume_element_type_value</span><span class="p">,</span> 
+                                 <span class="n">graph_beam_type_value</span><span class="p">,</span> <span class="n">create_assembly</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_abaqus_single_output"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_abaqus_single_output">[docs]</a><span class="k">def</span> <span class="nf">export_abaqus_single_output</span><span class="p">(</span>
+        <span class="n">entities</span><span class="p">,</span> 
+        <span class="n">filename</span><span class="p">,</span>
+        <span class="n">export_surface</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">volume_element_type</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">graph_beam_type</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">face_split_method</span> <span class="o">=</span> <span class="n">FaceSplitMethod</span><span class="o">.</span><span class="n">split_by_surface</span>
+     <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the specified parts and/or points to a single ABAQUS file.</span>
+<span class="sd">    An assembly will be created.</span>
+
+<span class="sd">    :param entities: One or more parts and/or points to export.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Point | (trimatic.Part | trimatic.Point)</span>
+<span class="sd">    :param filename: The output filename of the file with extension &#39;.inp&#39;.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :param export_surface: A boolean value which indicates whether the surface needs to be exported.</span>
+<span class="sd">    :type export_surface: bool, optional</span>
+<span class="sd">    :param volume_element_type: A value which indicates the type of volume mesh for exporting. When specifying None, the volume is not exported.</span>
+<span class="sd">    :type volume_element_type:  trimatic.TypeOfElement, optional</span>
+<span class="sd">    :param graph_beam_type: A value which indicates the type of graph structure for exporting. When specifying None, the graph structure is not exported.</span>
+<span class="sd">    :type  graph_beam_type: trimatic.TypeOfBeam, optional</span>
+<span class="sd">    :param face_split_method: A value which indicates face split method.</span>
+<span class="sd">    :type face_split_method: trimatic.FaceSplitMethod, optional</span>
+<span class="sd">    :return: Tuple of paths to the ABAQUS files.</span>
+<span class="sd">    :rtype: (string)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_abaqus_single_output.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_file_saveable</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid file name&#39;</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Point</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;face_split_method&quot;</span><span class="p">,</span> <span class="n">face_split_method</span><span class="p">,</span> <span class="p">(</span><span class="n">FaceSplitMethod</span><span class="p">,))</span>
+
+    <span class="n">volume_element_type_value</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">graph_beam_type_value</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">volume_element_type</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+       <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;volume_element_type&quot;</span><span class="p">,</span> <span class="n">volume_element_type</span><span class="p">,</span> <span class="p">(</span><span class="n">TypeOfElement</span><span class="p">,))</span>
+       <span class="n">volume_element_type_value</span> <span class="o">=</span> <span class="n">volume_element_type</span><span class="o">.</span><span class="n">value</span>
+
+    <span class="k">if</span> <span class="n">graph_beam_type</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+       <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;graph_beam_type&quot;</span><span class="p">,</span> <span class="n">graph_beam_type</span><span class="p">,</span> <span class="p">(</span><span class="n">TypeOfBeam</span><span class="p">,))</span>
+       <span class="n">graph_beam_type_value</span> <span class="o">=</span> <span class="n">graph_beam_type</span><span class="o">.</span><span class="n">value</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_abaqus_single_output</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">filename</span><span class="p">,</span> 
+                                               <span class="n">export_surface</span><span class="p">,</span> <span class="n">face_split_method</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">volume_element_type_value</span><span class="p">,</span> 
+                                               <span class="n">graph_beam_type_value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_analysis"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_analysis">[docs]</a><span class="k">def</span> <span class="nf">export_analysis</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">output_directory</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports one or more analyses to file(s).</span>
+
+<span class="sd">    :param entities: Analysis to export</span>
+<span class="sd">    :type entities: trimatic.Analysis | [trimatic.Analysis]</span>
+<span class="sd">    :param output_directory: Directory to export to. Unique file names will be generated based on the name of the analysis.</span>
+<span class="sd">    :type output_directory: string</span>
+<span class="sd">    :return: Tuple of paths to the written files.</span>
+<span class="sd">    :rtype: (string)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_analysis.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_folder_path_is_valid</span><span class="p">(</span><span class="n">output_directory</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Analysis</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_analysis</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">output_directory</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_ansys"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_ansys">[docs]</a><span class="k">def</span> <span class="nf">export_ansys</span><span class="p">(</span>
+        <span class="n">entities</span><span class="p">,</span> 
+        <span class="n">output_directory</span><span class="p">,</span> 
+        <span class="n">export_option</span> <span class="o">=</span> <span class="n">ExportOption</span><span class="o">.</span><span class="n">surface_mesh</span><span class="p">,</span> 
+        <span class="n">face_split_method</span> <span class="o">=</span> <span class="n">FaceSplitMethod</span><span class="o">.</span><span class="n">split_by_surface</span><span class="p">,</span> 
+     <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the specified parts as an ANSYS file</span>
+
+<span class="sd">    :param entities: Part or list of parts to export.</span>
+<span class="sd">    :type entities: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :param output_directory: Destination path to save the file(s). One file is created per part. The file name will be the name of the part followed by the extension &#39;.cdb&#39;.</span>
+<span class="sd">    :type output_directory: string</span>
+<span class="sd">    :param export_option: A value which indicates whether the surface mesh, the volume mesh, or both, need to be exported.</span>
+<span class="sd">    :type export_option: trimatic.ExportOption, optional</span>
+<span class="sd">    :param face_split_method: A value which indicates face split method (when surfaces are exported).</span>
+<span class="sd">    :type face_split_method: trimatic.FaceSplitMethod, optional</span>
+<span class="sd">    :return: Tuple of paths to the ansys files.</span>
+<span class="sd">    :rtype: (string)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_ansys.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_folder_path_is_valid</span><span class="p">(</span><span class="n">output_directory</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;export_option&quot;</span><span class="p">,</span> <span class="n">export_option</span><span class="p">,</span> <span class="p">(</span><span class="n">ExportOption</span><span class="p">,))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;face_split_method&quot;</span><span class="p">,</span> <span class="n">face_split_method</span><span class="p">,</span> <span class="p">(</span><span class="n">FaceSplitMethod</span><span class="p">,))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_ansys</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">output_directory</span><span class="p">,</span> 
+                                 <span class="n">export_option</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">face_split_method</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_comsol"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_comsol">[docs]</a><span class="k">def</span> <span class="nf">export_comsol</span><span class="p">(</span>
+        <span class="n">entities</span><span class="p">,</span> 
+        <span class="n">output_directory</span><span class="p">,</span> 
+        <span class="n">export_option</span> <span class="o">=</span> <span class="n">ExportOption</span><span class="o">.</span><span class="n">surface_mesh</span><span class="p">,</span> 
+        <span class="n">face_split_method</span> <span class="o">=</span> <span class="n">FaceSplitMethod</span><span class="o">.</span><span class="n">split_by_surface</span>
+     <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the specified parts as a comsol file.</span>
+
+<span class="sd">    :param entities: Part or list of parts to export.</span>
+<span class="sd">    :type entities: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :param output_directory: Destination path to save the files. One file is created per part. The file name will be the name of the part followed by the extension &#39;.mphxt&#39;.</span>
+<span class="sd">    :type output_directory: string</span>
+<span class="sd">    :param export_option: A value which indicates whether the surface mesh, the volume mesh, or both, need to be exported.</span>
+<span class="sd">    :type export_option: trimatic.ExportOption, optional</span>
+<span class="sd">    :param face_split_method: A value which indicates face split method (when surfaces are exported).</span>
+<span class="sd">    :type face_split_method: trimatic.FaceSplitMethod, optional</span>
+<span class="sd">    :return: Tuple of paths to the comsol files.</span>
+<span class="sd">    :rtype: (string)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_comsol.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_folder_path_is_valid</span><span class="p">(</span><span class="n">output_directory</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;export_option&quot;</span><span class="p">,</span> <span class="n">export_option</span><span class="p">,</span> <span class="p">(</span><span class="n">ExportOption</span><span class="p">,))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;face_split_method&quot;</span><span class="p">,</span> <span class="n">face_split_method</span><span class="p">,</span> <span class="p">(</span><span class="n">FaceSplitMethod</span><span class="p">,))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_comsol</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">output_directory</span><span class="p">,</span> 
+                                 <span class="n">export_option</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">face_split_method</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_curves_and_primitives"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_curves_and_primitives">[docs]</a><span class="k">def</span> <span class="nf">export_curves_and_primitives</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports curves and primitives to an XML file.</span>
+
+<span class="sd">    :param entities: One or more curves and/or primitives to export.</span>
+<span class="sd">    :type entities: trimatic.Curve | trimatic.Line | trimatic.Point | trimatic.Plane | trimatic.Arc | trimatic.Cylinder | trimatic.Cone | trimatic.Sphere | [trimatic.Curve | trimatic.Line | trimatic.Point | trimatic.Plane | trimatic.Arc | trimatic.Cylinder | trimatic.Cone | trimatic.Sphere]</span>
+<span class="sd">    :param filename: Filename</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :return: Name of the written file.</span>
+<span class="sd">    :rtype: string</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_curves_and_primitives.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Line</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Point</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Plane</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Arc</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Cylinder</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Cone</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Sphere</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_file_saveable</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid file name&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_curves_and_primitives</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_fluent"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_fluent">[docs]</a><span class="k">def</span> <span class="nf">export_fluent</span><span class="p">(</span>
+        <span class="n">entities</span><span class="p">,</span> 
+        <span class="n">output_directory</span><span class="p">,</span> 
+        <span class="n">export_option</span> <span class="o">=</span> <span class="n">ExportOption</span><span class="o">.</span><span class="n">surface_mesh</span><span class="p">,</span> 
+        <span class="n">face_split_method</span> <span class="o">=</span> <span class="n">FaceSplitMethod</span><span class="o">.</span><span class="n">split_by_surface</span>
+     <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the specified parts as FLUENT files.</span>
+
+<span class="sd">    :param entities: Part or list of parts to export.</span>
+<span class="sd">    :type entities: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :param output_directory: Destination path to save the files. One file is created per part. The file name will be the name  of the part followed by the extension &#39;.msh&#39;.</span>
+<span class="sd">    :type output_directory: string</span>
+<span class="sd">    :param export_option: A value which indicates whether the surface mesh, the volume mesh, or both, need to be exported.</span>
+<span class="sd">    :type export_option: trimatic.ExportOption, optional</span>
+<span class="sd">    :param face_split_method: A value which indicates face split method (when surfaces are exported).</span>
+<span class="sd">    :type face_split_method: trimatic.FaceSplitMethod, optional</span>
+<span class="sd">    :return: Tuple of paths to the FLUENT files.</span>
+<span class="sd">    :rtype: (string)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_fluent.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_folder_path_is_valid</span><span class="p">(</span><span class="n">output_directory</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;export_option&quot;</span><span class="p">,</span> <span class="n">export_option</span><span class="p">,</span> <span class="p">(</span><span class="n">ExportOption</span><span class="p">,))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;face_split_method&quot;</span><span class="p">,</span> <span class="n">face_split_method</span><span class="p">,</span> <span class="p">(</span><span class="n">FaceSplitMethod</span><span class="p">,))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_fluent</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">output_directory</span><span class="p">,</span> 
+                                 <span class="n">export_option</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">face_split_method</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_iges"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_iges">[docs]</a><span class="k">def</span> <span class="nf">export_iges</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">output_directory</span><span class="p">,</span> <span class="n">patching</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the specified parts to iges files.</span>
+
+<span class="sd">    :param entities: Part or list of parts to export.</span>
+<span class="sd">    :type entities: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :param output_directory: Destination path to save the file(s).</span>
+<span class="sd">    :type output_directory: string</span>
+<span class="sd">    :param patching: If True, the part will first be subdivided in patches with default parameters. If you want more control over patching, use trimatic.automatic_rectangular_patching.</span>
+<span class="sd">    :type patching: bool, optional</span>
+<span class="sd">    :return: Names of written files.</span>
+<span class="sd">    :rtype: (string)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_iges.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_folder_path_is_valid</span><span class="p">(</span><span class="n">output_directory</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_iges</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">output_directory</span><span class="p">,</span> <span class="n">patching</span> <span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_mdck"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_mdck">[docs]</a><span class="k">def</span> <span class="nf">export_mdck</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Export a single MDCK file.</span>
+
+<span class="sd">    :param entities: Part or list of parts to export.</span>
+<span class="sd">    :type entities: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :param filename: Filename</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :return: Filename of the file that was written.</span>
+<span class="sd">    :rtype: string</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_mdck.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_file_saveable</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid file name&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_mdck</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_measurements_to_xml"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_measurements_to_xml">[docs]</a><span class="k">def</span> <span class="nf">export_measurements_to_xml</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports measurements to an XML file.</span>
+
+<span class="sd">    :param entities: One or more measurements to export.</span>
+<span class="sd">    :type entities: trimatic.Annotation | trimatic.AngleMeasurement | trimatic.DiameterMeasurement | trimatic.DistanceMeasurement | [trimatic.Annotation | trimatic.AngleMeasurement | trimatic.DiameterMeasurement | trimatic.DistanceMeasurement]</span>
+<span class="sd">    :param filename: Filename</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :return: Filename of the file that was written.</span>
+<span class="sd">    :rtype: string</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_measurements_to_xml.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Annotation</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">AngleMeasurement</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">DiameterMeasurement</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">DistanceMeasurement</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_file_saveable</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid file name&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_measurements_to_xml</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_nastran"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_nastran">[docs]</a><span class="k">def</span> <span class="nf">export_nastran</span><span class="p">(</span>
+        <span class="n">entities</span><span class="p">,</span> 
+        <span class="n">output_directory</span><span class="p">,</span>
+        <span class="n">export_surface</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">export_volume</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">export_graph</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">face_split_method</span> <span class="o">=</span> <span class="n">FaceSplitMethod</span><span class="o">.</span><span class="n">split_by_surface</span>
+     <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the specified parts as Nastran files.</span>
+
+<span class="sd">    :param entities: Part or list of parts to export.</span>
+<span class="sd">    :type entities: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :param output_directory: Destination path to save the files. One file is created per part. The file name will be the name of the part followed by the extension &#39;.nas&#39;.</span>
+<span class="sd">    :type output_directory: string</span>
+<span class="sd">    :param export_surface: A boolean value which indicates whether the surface(s) need to be exported.</span>
+<span class="sd">    :type export_surface: bool, optional</span>
+<span class="sd">    :param export_volume: A boolean value which indicates whether the volume(s) need to be exported. </span>
+<span class="sd">    :type export_volume:  bool, optional</span>
+<span class="sd">    :param export_graph: A boolean value which indicates whether the graphs need to be exported.</span>
+<span class="sd">    :type export_graph: bool, optional</span>
+<span class="sd">    :param face_split_method: A value which indicates the face split method.</span>
+<span class="sd">    :type face_split_method: trimatic.FaceSplitMethod, optional</span>
+<span class="sd">    :return: Tuple of paths to the Nastran files.</span>
+<span class="sd">    :rtype: (string)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_nastran.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_folder_path_is_valid</span><span class="p">(</span><span class="n">output_directory</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;face_split_method&quot;</span><span class="p">,</span> <span class="n">face_split_method</span><span class="p">,</span> <span class="p">(</span><span class="n">FaceSplitMethod</span><span class="p">,))</span>
+        
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_nastran</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">output_directory</span><span class="p">,</span> 
+                                 <span class="n">export_surface</span><span class="p">,</span> <span class="n">export_volume</span><span class="p">,</span> <span class="n">export_graph</span><span class="p">,</span> <span class="n">face_split_method</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_obj"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_obj">[docs]</a><span class="k">def</span> <span class="nf">export_obj</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">units</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the specified parts to an .obj file.</span>
+
+<span class="sd">    :param entities: Part or list of parts to export.</span>
+<span class="sd">    :type entities: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :param filename: Filename</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :param units: Units to which file must be written. 1 for mm, 1000 for meters, etc.</span>
+<span class="sd">    :type units: float, optional</span>
+<span class="sd">    :return: Filename of the file that was written.</span>
+<span class="sd">    :rtype: string</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_obj.py	</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s1">&#39;units&#39;</span><span class="p">,</span> <span class="n">units</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_obj</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">filename</span><span class="p">,</span> <span class="n">units</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_patran"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_patran">[docs]</a><span class="k">def</span> <span class="nf">export_patran</span><span class="p">(</span>
+        <span class="n">entities</span><span class="p">,</span> 
+        <span class="n">output_directory</span><span class="p">,</span>
+        <span class="n">export_surface</span> <span class="o">=</span> <span class="kc">True</span>
+     <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the specified parts as Patran files.</span>
+
+<span class="sd">    :param entities: Part or list of parts to export.</span>
+<span class="sd">    :type entities: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :param output_directory: Destination path to save the files. One file is created per part. The file name will be the name of the part followed by the extension &#39;.out&#39;.</span>
+<span class="sd">    :type output_directory: string</span>
+<span class="sd">    :param export_surface: A boolean value which indicates whether the surface(s) need to be exported. If False, only the volume(s) will be exported.</span>
+<span class="sd">    :type export_surface: bool, optional</span>
+<span class="sd">    :return: Tuple of paths to the Patran files.</span>
+<span class="sd">    :rtype: (string)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_patran.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_folder_path_is_valid</span><span class="p">(</span><span class="n">output_directory</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_patran</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">output_directory</span><span class="p">,</span> 
+                                 <span class="n">export_surface</span> <span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_pdf"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_pdf">[docs]</a><span class="k">def</span> <span class="nf">export_pdf</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">header_image</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">header_height</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="n">footer_image</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">footer_height</span> <span class="o">=</span> <span class="mi">40</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the specified entities to 3D pdf file.</span>
+
+<span class="sd">    :param entities: Entities to export.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Line | trimatic.Point | trimatic.Plane | trimatic.Annotation | trimatic.DiameterMeasurement | trimatic.DistanceMeasurement | trimatic.AngleMeasurement | [trimatic.Object]</span>
+<span class="sd">    :param filename: Filename</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :param header_image: Filename of image to be used for header.</span>
+<span class="sd">    :type header_image: string, optional</span>
+<span class="sd">    :param header_height: Height of the header in mm.</span>
+<span class="sd">    :type header_height: float, optional</span>
+<span class="sd">    :param footer_image: Filename of image to be used for the footer.</span>
+<span class="sd">    :type footer_image: string, optional</span>
+<span class="sd">    :param footer_height: Height of the footer in mm.</span>
+<span class="sd">    :type footer_height: float, optional</span>
+<span class="sd">    :return: Filename of the file that was written.</span>
+<span class="sd">    :rtype: string</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_pdf.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Line</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Point</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Plane</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Annotation</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">DiameterMeasurement</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">DistanceMeasurement</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">AngleMeasurement</span> <span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_pdf</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">filename</span><span class="p">,</span> <span class="n">header_image</span><span class="p">,</span> <span class="n">header_height</span><span class="p">,</span> <span class="n">footer_image</span><span class="p">,</span> <span class="n">footer_height</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_screen_capture"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_screen_capture">[docs]</a><span class="k">def</span> <span class="nf">export_screen_capture</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the Work Area to an image file. The format is determined by the file name extension. </span>
+<span class="sd">    Supported formats/extensions are: .bmp, .jpeg, .gif, .png, and .tiff.</span>
+
+<span class="sd">    :param filename: Filename</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :return: Upon success, returns the name of the written file.</span>
+<span class="sd">    :rtype: string</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_screen_capture.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+    <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_file_saveable</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid file name&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_screen_capture</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_step"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_step">[docs]</a><span class="k">def</span> <span class="nf">export_step</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">output_directory</span><span class="p">,</span> <span class="n">patching</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the specified parts to step files.</span>
+
+<span class="sd">    :param entities: Part or list of parts to export.</span>
+<span class="sd">    :type entities: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :param output_directory: Destination path to save the file(s).</span>
+<span class="sd">    :type output_directory: string</span>
+<span class="sd">    :param patching: If True, the part will first be subdivided into patches with default parameters. If you want more control over the patching, it is recommended to use trimatic.automatic_rectangular_patching.</span>
+<span class="sd">    :type patching: bool, optional</span>
+<span class="sd">    :return: Names of written files.</span>
+<span class="sd">    :rtype: (string)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_step.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_folder_path_is_valid</span><span class="p">(</span><span class="n">output_directory</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_step</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">output_directory</span><span class="p">,</span> <span class="n">patching</span> <span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_stl_binary"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_stl_binary">[docs]</a><span class="k">def</span> <span class="nf">export_stl_binary</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">output_directory</span><span class="p">,</span> <span class="n">include_color</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the specified part(s) as a binary STL file.</span>
+
+<span class="sd">    :param entities: Part or list of parts to export.</span>
+<span class="sd">    :type entities: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :param output_directory: Destination path to save the file(s).</span>
+<span class="sd">    :type output_directory: string</span>
+<span class="sd">    :param include_color: If True, triangle color information is included in the exported part.</span>
+<span class="sd">    :type include_color: bool, optional</span>
+<span class="sd">    :return: Tuple of paths to the STL files.</span>
+<span class="sd">    :rtype: (string)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_stl_binary.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_folder_path_is_valid</span><span class="p">(</span><span class="n">output_directory</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_stl_binary</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">output_directory</span><span class="p">,</span> <span class="n">include_color</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="export_stl_ascii"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_stl_ascii">[docs]</a><span class="k">def</span> <span class="nf">export_stl_ascii</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">output_directory</span><span class="p">,</span> <span class="n">include_surface_structure</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the specified part(s) as an ASCII STL file.</span>
+
+<span class="sd">    :param entities: Part or list of parts to export.</span>
+<span class="sd">    :type entities: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :param output_directory: Destination path to save the file(s).</span>
+<span class="sd">    :type output_directory: string</span>
+<span class="sd">    :param include_surface_structure: If True, surfaces information is included in the export.</span>
+<span class="sd">    :type include_surface_structure: bool, optional</span>
+<span class="sd">    :return: Tuple of paths to the STL files.</span>
+<span class="sd">    :rtype: (string)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_stl_ascii.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_folder_path_is_valid</span><span class="p">(</span><span class="n">output_directory</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_stl_ascii</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">output_directory</span><span class="p">,</span> <span class="n">include_surface_structure</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_transformation_matrix"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_transformation_matrix">[docs]</a><span class="k">def</span> <span class="nf">export_transformation_matrix</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">target_entity</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the transformation between two entities to a text file.</span>
+
+<span class="sd">    This function allows you to export a .txt file containing the transformation matrix that aligns the object coordinate system of an entity (start position) to that of a target entity (final position). </span>
+<span class="sd">    A summary of the rotations and translations described by the matrix is also included.</span>
+
+<span class="sd">    :param entity: Entity whose OCS is the start position.</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :param target_entity: Entity whose OCS is the final position.</span>
+<span class="sd">    :type target_entity: trimatic.Part</span>
+<span class="sd">    :param filename: Filename</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :return: Filename of the file that was written.</span>
+<span class="sd">    :rtype: string</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_transformation_matrix.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;target_entity&quot;</span><span class="p">,</span> <span class="n">target_entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_file_saveable</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid file name&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_transformation_matrix</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">target_entity</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_vrml"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_vrml">[docs]</a><span class="k">def</span> <span class="nf">export_vrml</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">units</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the specified parts to a .vrml file.</span>
+
+<span class="sd">    :param entities: Part or list of parts to export.</span>
+<span class="sd">    :type entities: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :param filename: Filename</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :param units: Units to which file must be written. 1 for mm, 1000 for meters, etc.</span>
+<span class="sd">    :type units: float, optional</span>
+<span class="sd">    :return: Filename of the file that was written.</span>
+<span class="sd">    :rtype: string</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_vrml.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_file_saveable</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid file name&#39;</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s1">&#39;units&#39;</span><span class="p">,</span> <span class="n">units</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_vrml</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">filename</span><span class="p">,</span> <span class="n">units</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_x3d"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_x3d">[docs]</a><span class="k">def</span> <span class="nf">export_x3d</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the specified parts to a X3D file.</span>
+
+<span class="sd">    :param entities: Part or list of parts to export.</span>
+<span class="sd">    :type entities: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :param filename: Filename</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :return: Filename of the file that was written.</span>
+<span class="sd">    :rtype: string</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_x3d.py</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_file_saveable</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid file name&#39;</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_x3d</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">filename</span> <span class="p">)</span></div>
+
+<div class="viewcode-block" id="export_zpr"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.export_zpr">[docs]</a><span class="k">def</span> <span class="nf">export_zpr</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">output_directory</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exports the specified parts as ZPR files.</span>
+
+<span class="sd">    :param entities: Part or list of parts to export. Colors defined on surfaces will be exported.</span>
+<span class="sd">    :type entities: trimatic.Part | (trimatic.Part)</span>
+<span class="sd">    :param output_directory: Destination path to save the files. One file is created per part. The file name will be the name of the part followed by the extension &#39;.zpr&#39;.</span>
+<span class="sd">    :type output_directory: string</span>
+<span class="sd">    :return: Tuple of the path to the ZPR files.</span>
+<span class="sd">    :rtype: (string)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/export_zpr.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_folder_path_is_valid</span><span class="p">(</span><span class="n">output_directory</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">export_zpr</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">output_directory</span> <span class="p">)</span></div>
+
+<div class="viewcode-block" id="get_application_path"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.get_application_path">[docs]</a><span class="k">def</span> <span class="nf">get_application_path</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets the path where 3-matic is installed. This can be useful, for example to locate the DemoFiles folder or the UnitCellLibrary.</span>
+
+<span class="sd">    :return: The full path to the application executable file.</span>
+<span class="sd">    :rtype: string</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/get_application_path.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="import_3dm"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.import_3dm">[docs]</a><span class="k">def</span> <span class="nf">import_3dm</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">surface_accuracy</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a single .3dm file.</span>
+
+<span class="sd">    :param filename: Path to the file to import.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :param surface_accuracy: The maximum allowed distance deviation between the CAD file and the triangulation.</span>
+<span class="sd">    :type surface_accuracy: float, optional</span>
+
+<span class="sd">    :return: Tuple with imported parts.</span>
+<span class="sd">    :rtype: (trimatic.Part)</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_3dm.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s1">&#39;surface_accuracy&#39;</span><span class="p">,</span> <span class="n">surface_accuracy</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_3dm</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">surface_accuracy</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="import_3mf"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.import_3mf">[docs]</a><span class="k">def</span> <span class="nf">import_3mf</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a 3mf file.</span>
+
+<span class="sd">    :param filename: Path to the file to import.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :return: Tuple with imported parts.</span>
+<span class="sd">    :rtype: (trimatic.Part)</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_3mf.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_3mf</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<span class="k">def</span> <span class="nf">import_adam</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import an ADaM file.</span>
+
+<span class="sd">    :param filename: Path to the file to import.</span>
+<span class="sd">    :type filename: string</span>
+
+<span class="sd">    :return: imported SSM object.</span>
+<span class="sd">    :rtype: trimatic.SSM</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_adam.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_adam</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
+
+<div class="viewcode-block" id="import_catia5"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.import_catia5">[docs]</a><span class="k">def</span> <span class="nf">import_catia5</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">surface_accuracy</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a single .CATPart or .CATProduct file.</span>
+
+<span class="sd">    :param filename: Path to the file to import.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :param surface_accuracy: The maximum allowed distance deviation between the CAD file and the triangulation.</span>
+<span class="sd">    :type surface_accuracy: float, optional</span>
+
+<span class="sd">    :return: Tuple with imported parts.</span>
+<span class="sd">    :rtype: (trimatic.Part)</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_catia5.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s1">&#39;surface_accuracy&#39;</span><span class="p">,</span> <span class="n">surface_accuracy</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_catia5</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">surface_accuracy</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="import_iges"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.import_iges">[docs]</a><span class="k">def</span> <span class="nf">import_iges</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">surface_accuracy</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">layer_to_part</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a single .igs or .iges file.</span>
+
+<span class="sd">    :param filename: Path to the file to import.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :param surface_accuracy: The maximum allowed distance deviation between the CAD file and the triangulation.</span>
+<span class="sd">    :type surface_accuracy: float, optional</span>
+<span class="sd">    :param layer_to_part: When True: all the entities which are grouped in one layer, will be grouped in one part.</span>
+<span class="sd">    :type layer_to_part: bool, optional</span>
+
+<span class="sd">    :return: Tuple with imported parts.</span>
+<span class="sd">    :rtype: (trimatic.Part)</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_iges.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s1">&#39;surface_accuracy&#39;</span><span class="p">,</span> <span class="n">surface_accuracy</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_iges</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">surface_accuracy</span><span class="p">,</span> <span class="n">layer_to_part</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="import_magics"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.import_magics">[docs]</a><span class="k">def</span> <span class="nf">import_magics</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a single .magics file.</span>
+
+<span class="sd">    :param filename: Path to the file to import.</span>
+<span class="sd">    :type filename: string</span>
+
+<span class="sd">    :return: Tuple with imported parts.</span>
+<span class="sd">    :rtype: (trimatic.Part)</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError</span>
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_magics.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_magics</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="import_mdck"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.import_mdck">[docs]</a><span class="k">def</span> <span class="nf">import_mdck</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a single MDCK file.</span>
+
+<span class="sd">    :param filename: Path to the file to import.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :return: Tuple with imported parts.</span>
+<span class="sd">    :rtype: (trimatic.Part)</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_mdck.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_mdck</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="import_obj"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.import_obj">[docs]</a><span class="k">def</span> <span class="nf">import_obj</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">units</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a single obj file.</span>
+
+<span class="sd">    :param filename: Path to the file to import.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :param units: Units in which file was written. 1 for mm, 1000 for meters, etc.</span>
+<span class="sd">    :type units: float, optional</span>
+
+<span class="sd">    :return: Tuple with imported parts.</span>
+<span class="sd">    :rtype: (trimatic.Part)</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_obj.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s1">&#39;units&#39;</span><span class="p">,</span> <span class="n">units</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_obj</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">units</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="import_part_stl"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.import_part_stl">[docs]</a><span class="k">def</span> <span class="nf">import_part_stl</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">fix_normals</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a single STL file.</span>
+
+<span class="sd">    :param filename: Path to the file to import.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :param fix_normals: If True, triangles that are detected to have inverted normals are flipped.</span>
+<span class="sd">    :type fix_normals: bool, optional</span>
+<span class="sd">    :return: Imported part</span>
+<span class="sd">    :rtype: trimatic.Part</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_part_stl.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_part_stl</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">fix_normals</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="import_part_stl_split_by_angle"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.import_part_stl_split_by_angle">[docs]</a><span class="k">def</span> <span class="nf">import_part_stl_split_by_angle</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">fix_normals</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">wireframe_angle</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a single STL file and automatically split the surfaces according to the specified wireframe angle.</span>
+
+<span class="sd">    :param filename: Path to the file to import.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :param fix_normals: If True, triangles that are detected to have inverted normals are flipped.</span>
+<span class="sd">    :type fix_normals: bool, optional</span>
+<span class="sd">    :param wireframe_angle: Minimum angle between adjacent triangles for a common edge to be treated as the</span>
+<span class="sd">        wireframe for splitting.</span>
+<span class="sd">    :type wireframe_angle: float, optional</span>
+<span class="sd">    :return: Imported part</span>
+<span class="sd">    :rtype: trimatic.Part</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_part_stl_split_by_angle.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_part_stl_split_by_angle</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">fix_normals</span><span class="p">,</span> <span class="n">wireframe_angle</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="import_part_stl_split_by_color"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.import_part_stl_split_by_color">[docs]</a><span class="k">def</span> <span class="nf">import_part_stl_split_by_color</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">fix_normals</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">keep_surface_color</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a single STL file and automatically split the surfaces according to color.</span>
+
+<span class="sd">    :param filename: Path to the file to import.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :param fix_normals: If True, triangles that are detected to have inverted normals are flipped.</span>
+<span class="sd">    :type fix_normals: bool, optional</span>
+<span class="sd">    :param keep_surface_color: If True, the surface color of the STL will be preserved after import.</span>
+<span class="sd">    :type keep_surface_color: bool, optional</span>
+<span class="sd">    :return: Imported part</span>
+<span class="sd">    :rtype: trimatic.Part</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_part_stl_split_by_color.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_part_stl_split_by_color</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">fix_normals</span><span class="p">,</span> <span class="n">keep_surface_color</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="import_pro_engineer"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.import_pro_engineer">[docs]</a><span class="k">def</span> <span class="nf">import_pro_engineer</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">surface_accuracy</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a single .prt or .asm file.</span>
+
+<span class="sd">    :param filename: Path to the file to import.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :param surface_accuracy: The maximum allowed distance deviation between the CAD file and the triangulation.</span>
+<span class="sd">    :type surface_accuracy: float, optional</span>
+
+<span class="sd">    :return: Tuple with imported parts.</span>
+<span class="sd">    :rtype: (trimatic.Part)</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_pro_engineer.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s1">&#39;surface_accuracy&#39;</span><span class="p">,</span> <span class="n">surface_accuracy</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_pro_engineer</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">surface_accuracy</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="import_solidworks"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.import_solidworks">[docs]</a><span class="k">def</span> <span class="nf">import_solidworks</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">surface_accuracy</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a single .sldprt or .sldasm file.</span>
+
+<span class="sd">    :param filename: Path to the file to import.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :param surface_accuracy: The maximum allowed distance deviation between the CAD file and the triangulation.</span>
+<span class="sd">    :type surface_accuracy: float, optional</span>
+
+<span class="sd">    :return: Tuple with imported parts.</span>
+<span class="sd">    :rtype: (trimatic.Part)</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_solidworks.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s1">&#39;surface_accuracy&#39;</span><span class="p">,</span> <span class="n">surface_accuracy</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_solidworks</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">surface_accuracy</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="import_step"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.import_step">[docs]</a><span class="k">def</span> <span class="nf">import_step</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">surface_accuracy</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a single .stp or .step file.</span>
+
+<span class="sd">    :param filename: Path to the file to import.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :param surface_accuracy: The maximum allowed distance deviation between the CAD file and the triangulation.</span>
+<span class="sd">    :type surface_accuracy: float, optional</span>
+
+<span class="sd">    :return: Tuple with imported parts.</span>
+<span class="sd">    :rtype: (trimatic.Part)</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_step.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s1">&#39;surface_accuracy&#39;</span><span class="p">,</span> <span class="n">surface_accuracy</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_step</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">surface_accuracy</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="import_unigraphics_parasolid"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.import_unigraphics_parasolid">[docs]</a><span class="k">def</span> <span class="nf">import_unigraphics_parasolid</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">surface_accuracy</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">layer_to_part</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a single .prt or .x_t or .x_b file.</span>
+
+<span class="sd">    :param filename: Path to the file to import.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :param surface_accuracy: The maximum allowed distance deviation between the CAD file and the triangulation.</span>
+<span class="sd">    :type surface_accuracy: float, optional</span>
+<span class="sd">    :param layer_to_part: When True: all the entities which are grouped in one layer, will be grouped in one part.</span>
+<span class="sd">    :type layer_to_part: bool, optional</span>
+
+<span class="sd">    :return: Tuple with imported parts.</span>
+<span class="sd">    :rtype: (trimatic.Part)</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_unigraphics_parasolid.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s1">&#39;surface_accuracy&#39;</span><span class="p">,</span> <span class="n">surface_accuracy</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_unigraphics_parasolid</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">surface_accuracy</span><span class="p">,</span> <span class="n">layer_to_part</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="import_vrml"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.import_vrml">[docs]</a><span class="k">def</span> <span class="nf">import_vrml</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">units</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a single .wrl file.</span>
+
+<span class="sd">    :param filename: Path to the file to import.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :param units: Units in which file was written. 1 for mm, 1000 for meters, etc.</span>
+<span class="sd">    :type units: float, optional</span>
+
+<span class="sd">    :return: Tuple with imported parts.</span>
+<span class="sd">    :rtype: (trimatic.Part)</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError</span>
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_vrml.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s1">&#39;units&#39;</span><span class="p">,</span> <span class="n">units</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_vrml</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">units</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="import_x3d"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.import_x3d">[docs]</a><span class="k">def</span> <span class="nf">import_x3d</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a single .x3d file.</span>
+
+<span class="sd">    :param filename: Path to the file to import.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :return: Tuple with imported parts.</span>
+<span class="sd">    :rtype: (trimatic.Part)</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError</span>
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_x3d.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_x3d</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="import_xml"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.import_xml">[docs]</a><span class="k">def</span> <span class="nf">import_xml</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import analytical primitives or polydata from an XML file. When importing polydata, curves will be created. A new part will be created to contain the curves.</span>
+
+<span class="sd">    :param filename: Path to the file to import.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :return: Imported entities</span>
+<span class="sd">    :rtype: (trimatic.Part | trimatic.Line | trimatic.Point | trimatic.Plane | trimatic.Arc | trimatic.Cylinder | trimatic.Sphere)</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_xml.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_xml</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="new_project"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.new_project">[docs]</a><span class="k">def</span> <span class="nf">new_project</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Starts a new project. </span>
+<span class="sd">    </span>
+<span class="sd">    Be advised that the current project will be closed without saving.</span>
+
+<span class="sd">    :return: True if a new project was successfully created.</span>
+<span class="sd">    :rtype: bool</span>
+<span class="sd">    :raises: RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/new_project.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">new_project</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="open_project"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.open_project">[docs]</a><span class="k">def</span> <span class="nf">open_project</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Opens a 3-matic or Magics project file. </span>
+<span class="sd">    </span>
+<span class="sd">    Be advised that the current project will be closed without saving.</span>
+
+<span class="sd">    :param filename: Path of the mxp/magics file.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :return: True if a new project was successfully created.</span>
+<span class="sd">    :rtype: bool</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/open_project.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_file_type</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;.mxp&#39;</span><span class="p">,</span> <span class="s1">&#39;.magics&#39;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="import_project"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.import_project">[docs]</a><span class="k">def</span> <span class="nf">import_project</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Imports a 3-matic or Mimics project file. </span>
+<span class="sd">    </span>
+<span class="sd">    Entities from the imported file are merged into what is currently opened.</span>
+
+<span class="sd">    :param filename: Path to mxp/mcs file.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :return: Tuple of imported objects.</span>
+<span class="sd">    :rtype: (trimatic.Object)</span>
+<span class="sd">    :raises: FileNotFoundError, RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/import_project.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_file_type</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;.mxp&#39;</span><span class="p">,</span> <span class="s1">&#39;.mcs&#39;</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_project</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="save_project"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.save_project">[docs]</a><span class="k">def</span> <span class="nf">save_project</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Saves current project. </span>
+<span class="sd">    </span>
+<span class="sd">    If the file already exists, the file is overwritten.</span>
+
+<span class="sd">    :param filename: Path to the file to write. When None is specified, the filename of the currently opened project is used.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :return: Path of written filename.</span>
+<span class="sd">    :rtype: string</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/save_project.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+    <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_file_saveable</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">save_project</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;unable to save file &#39;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="clear"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.clear">[docs]</a><span class="k">def</span> <span class="nf">clear</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clears the object tree and the log window.</span>
+
+<span class="sd">    :return: True when the clear operation was successful.</span>
+<span class="sd">    :rtype: bool</span>
+<span class="sd">    :raises: RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/clear.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">new_project</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="get_project_filename"><a class="viewcode-back" href="../../trimatic.rst/trimatic.file.html#trimatic.file.get_project_filename">[docs]</a><span class="k">def</span> <span class="nf">get_project_filename</span><span class="p">():</span>   
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the full path of the currently opened project.</span>
+
+<span class="sd">    :return: path + filename</span>
+<span class="sd">    :rtype: string</span>
+<span class="sd">    :raises: RuntimeError</span>
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/file/get_project_filename.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+	
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_project_filename</span><span class="p">()</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,1462 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>remesh &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="trimatic modules" href="trimatic.html"/>
+        <link rel="next" title="sketch" href="trimatic.sketch.html"/>
+        <link rel="prev" title="preferences" href="trimatic.preferences.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">trimatic API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="trimatic.html">trimatic modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="trimatic.data.html">data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.types.html">types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.align.html">align</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.analyze.html">analyze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.cad_link.html">cadlink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.curve.html">curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.design.html">design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.file.html">file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.finish.html">finish</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.fix.html">fix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.group.html">group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.interactive.html">interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.lattice.html">lattice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.logging.html">logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.mark.html">mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.measure.html">measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.preferences.html">preferences</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">remesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.sketch.html">sketch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.surface.html">surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.texturing.html">texturing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.uv.html">uv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.view.html">view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.subscription.html">subscription</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">trimatic API</a> &raquo;</li>
+      
+          <li><a href="trimatic.html">trimatic modules</a> &raquo;</li>
+      
+    <li>remesh</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/trimatic.rst/trimatic.remesh.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-trimatic.remesh">
+<span id="remesh"></span><h1>remesh<a class="headerlink" href="#module-trimatic.remesh" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="trimatic.remesh.ElementType">
+<em class="property">class </em><code class="descname">ElementType</code><a class="reference internal" href="../_modules/trimatic/remesh.html#ElementType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.remesh.ElementType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Volume mesh element type.</p>
+<dl class="attribute">
+<dt id="trimatic.remesh.ElementType.Tet10">
+<code class="descname">Tet10</code><em class="property"> = 'Tet 10'</em><a class="headerlink" href="#trimatic.remesh.ElementType.Tet10" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tet 10 volume mesh element type.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ElementType.Tet4">
+<code class="descname">Tet4</code><em class="property"> = 'Tet 4'</em><a class="headerlink" href="#trimatic.remesh.ElementType.Tet4" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tet 4 volume mesh element type.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ElementType.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Volume mesh element type.'</em><a class="headerlink" href="#trimatic.remesh.ElementType.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ElementType.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.remesh'</em><a class="headerlink" href="#trimatic.remesh.ElementType.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.remesh.ElementType.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.remesh.ElementType.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.remesh.ElementType._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.remesh.ElementType._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ElementType._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'Tet10': &lt;ElementType.Tet10: 'Tet 10'&gt;, 'Tet4': &lt;ElementType.Tet4: 'Tet 4'&gt;}</em><a class="headerlink" href="#trimatic.remesh.ElementType._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ElementType._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['Tet4', 'Tet10']</em><a class="headerlink" href="#trimatic.remesh.ElementType._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ElementType._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.remesh.ElementType._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ElementType._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'Tet 10': &lt;ElementType.Tet10: 'Tet 10'&gt;, 'Tet 4': &lt;ElementType.Tet4: 'Tet 4'&gt;}</em><a class="headerlink" href="#trimatic.remesh.ElementType._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="trimatic.remesh.ShapeMeasures">
+<em class="property">class </em><code class="descname">ShapeMeasures</code><a class="reference internal" href="../_modules/trimatic/remesh.html#ShapeMeasures"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.remesh.ShapeMeasures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Measures for adaptive_remesh_expert.</p>
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasures.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Measures for adaptive_remesh_expert.'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasures.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasures.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.remesh'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasures.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.remesh.ShapeMeasures.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.remesh.ShapeMeasures.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.remesh.ShapeMeasures._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.remesh.ShapeMeasures._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasures._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'angle_ratio_n': &lt;ShapeMeasures.angle_ratio_n: 'Angle ratio (N)'&gt;, 'edge_ratio_n': &lt;ShapeMeasures.edge_ratio_n: 'Edge ratio (min/max) (N)'&gt;, 'equi_angle_skewness_n': &lt;ShapeMeasures.equi_angle_skewness_n: 'Equi-angle skewness (N)'&gt;, 'height_base_a': &lt;ShapeMeasures.height_base_a: 'Height/Base (A)'&gt;, 'height_base_n': &lt;ShapeMeasures.height_base_n: 'Height/Base (N)'&gt;, 'maximum_face_angle_n': &lt;ShapeMeasures.maximum_face_angle_n: 'Maximum face angle (N)'&gt;, 'minimum_face_angle_a': &lt;ShapeMeasures.minimum_face_angle_a: 'Minimum face angle (A)'&gt;, 'minimum_face_angle_n': &lt;ShapeMeasures.minimum_face_angle_n: 'Minimum face angle (N)'&gt;, 'rin_rout': &lt;ShapeMeasures.rin_rout: 'R-in/R-out (N)'&gt;, 'skewness_n': &lt;ShapeMeasures.skewness_n: 'Skewness (N)'&gt;, 'stretch_n': &lt;ShapeMeasures.stretch_n: 'Stretch (N)'&gt;}</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasures._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasures._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['rin_rout', 'height_base_n', 'height_base_a', 'skewness_n', 'minimum_face_angle_n', 'maximum_face_angle_n', 'minimum_face_angle_a', 'angle_ratio_n', 'edge_ratio_n', 'equi_angle_skewness_n', 'stretch_n']</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasures._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasures._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.remesh.ShapeMeasures._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasures._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'Angle ratio (N)': &lt;ShapeMeasures.angle_ratio_n: 'Angle ratio (N)'&gt;, 'Edge ratio (min/max) (N)': &lt;ShapeMeasures.edge_ratio_n: 'Edge ratio (min/max) (N)'&gt;, 'Equi-angle skewness (N)': &lt;ShapeMeasures.equi_angle_skewness_n: 'Equi-angle skewness (N)'&gt;, 'Height/Base (A)': &lt;ShapeMeasures.height_base_a: 'Height/Base (A)'&gt;, 'Height/Base (N)': &lt;ShapeMeasures.height_base_n: 'Height/Base (N)'&gt;, 'Maximum face angle (N)': &lt;ShapeMeasures.maximum_face_angle_n: 'Maximum face angle (N)'&gt;, 'Minimum face angle (A)': &lt;ShapeMeasures.minimum_face_angle_a: 'Minimum face angle (A)'&gt;, 'Minimum face angle (N)': &lt;ShapeMeasures.minimum_face_angle_n: 'Minimum face angle (N)'&gt;, 'R-in/R-out (N)': &lt;ShapeMeasures.rin_rout: 'R-in/R-out (N)'&gt;, 'Skewness (N)': &lt;ShapeMeasures.skewness_n: 'Skewness (N)'&gt;, 'Stretch (N)': &lt;ShapeMeasures.stretch_n: 'Stretch (N)'&gt;}</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasures._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasures.angle_ratio_n">
+<code class="descname">angle_ratio_n</code><em class="property"> = 'Angle ratio (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasures.angle_ratio_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasures.edge_ratio_n">
+<code class="descname">edge_ratio_n</code><em class="property"> = 'Edge ratio (min/max) (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasures.edge_ratio_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasures.equi_angle_skewness_n">
+<code class="descname">equi_angle_skewness_n</code><em class="property"> = 'Equi-angle skewness (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasures.equi_angle_skewness_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasures.height_base_a">
+<code class="descname">height_base_a</code><em class="property"> = 'Height/Base (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasures.height_base_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasures.height_base_n">
+<code class="descname">height_base_n</code><em class="property"> = 'Height/Base (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasures.height_base_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasures.maximum_face_angle_n">
+<code class="descname">maximum_face_angle_n</code><em class="property"> = 'Maximum face angle (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasures.maximum_face_angle_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasures.minimum_face_angle_a">
+<code class="descname">minimum_face_angle_a</code><em class="property"> = 'Minimum face angle (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasures.minimum_face_angle_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasures.minimum_face_angle_n">
+<code class="descname">minimum_face_angle_n</code><em class="property"> = 'Minimum face angle (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasures.minimum_face_angle_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasures.rin_rout">
+<code class="descname">rin_rout</code><em class="property"> = 'R-in/R-out (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasures.rin_rout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasures.skewness_n">
+<code class="descname">skewness_n</code><em class="property"> = 'Skewness (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasures.skewness_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasures.stretch_n">
+<code class="descname">stretch_n</code><em class="property"> = 'Stretch (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasures.stretch_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="trimatic.remesh.ShapeMeasuresAll">
+<em class="property">class </em><code class="descname">ShapeMeasuresAll</code><a class="reference internal" href="../_modules/trimatic/remesh.html#ShapeMeasuresAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Measures for remesh, analyze mesh etc.</p>
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Measures for remesh, analyze mesh etc.'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.remesh'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.remesh.ShapeMeasuresAll.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.remesh.ShapeMeasuresAll._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'abaqus_shape_factor_n': &lt;ShapeMeasuresAll.abaqus_shape_factor_n: 'Abaqus shape factor (N)'&gt;, 'angle_ratio_n': &lt;ShapeMeasuresAll.angle_ratio_n: 'Angle ratio (N)'&gt;, 'ansys_element_quality_n': &lt;ShapeMeasuresAll.ansys_element_quality_n: 'Ansys element quality (N)'&gt;, 'aspect_ratio_a': &lt;ShapeMeasuresAll.aspect_ratio_a: 'Aspect ratio (A)'&gt;, 'edge_ratio_a': &lt;ShapeMeasuresAll.edge_ratio_a: 'Edge ratio (max/min) (A)'&gt;, 'edge_ratio_n': &lt;ShapeMeasuresAll.edge_ratio_n: 'Edge ratio (min/max) (N)'&gt;, 'equi_angle_skewness_n': &lt;ShapeMeasuresAll.equi_angle_skewness_n: 'Equi-angle skewness (N)'&gt;, 'fluent_orthogonal_quality_n': &lt;ShapeMeasuresAll.fluent_orthogonal_quality_n: 'Fluent orthogonal quality (N)'&gt;, 'height_base_a': &lt;ShapeMeasuresAll.height_base_a: 'Height/Base (A)'&gt;, 'height_base_n': &lt;ShapeMeasuresAll.height_base_n: 'Height/Base (N)'&gt;, 'jacobian_a': &lt;ShapeMeasuresAll.jacobian_a: 'Jacobian (A)'&gt;, 'jacobian_n': &lt;ShapeMeasuresAll.jacobian_n: 'Jacobian (N)'&gt;, 'jacobian_ratio_a': &lt;ShapeMeasuresAll.jacobian_ratio_a: 'Jacobian Ratio (A)'&gt;, 'maximum_dihedral_angle_a': &lt;ShapeMeasuresAll.maximum_dihedral_angle_a: 'Maximum dihedral angle (A)'&gt;, 'maximum_edge_length_a': &lt;ShapeMeasuresAll.maximum_edge_length_a: 'Maximum edge length (A)'&gt;, 'maximum_face_angle_a': &lt;ShapeMeasuresAll.maximum_face_angle_a: 'Maximum face angle (A)'&gt;, 'maximum_face_angle_n': &lt;ShapeMeasuresAll.maximum_face_angle_n: 'Maximum face angle (N)'&gt;, 'maximum_volume_a': &lt;ShapeMeasuresAll.maximum_volume_a: 'Maximum volume (A)'&gt;, 'mean_ratio_n': &lt;ShapeMeasuresAll.mean_ratio_n: 'Mean ratio (N)'&gt;, 'minimum_dihedral_angle_a': &lt;ShapeMeasuresAll.minimum_dihedral_angle_a: 'Minimum dihedral angle (A)'&gt;, 'minimum_edge_length_a': &lt;ShapeMeasuresAll.minimum_edge_length_a: 'Minimum edge length (A)'&gt;, 'minimum_face_angle_a': &lt;ShapeMeasuresAll.minimum_face_angle_a: 'Minimum face angle (A)'&gt;, 'minimum_face_angle_n': &lt;ShapeMeasuresAll.minimum_face_angle_n: 'Minimum face angle (N)'&gt;, 'minimum_volume_a': &lt;ShapeMeasuresAll.minimum_volume_a: 'Minimum volume (A)'&gt;, 'r_in_edge_n': &lt;ShapeMeasuresAll.r_in_edge_n: 'R-in/Edge (N)'&gt;, 'r_out_edge_a': &lt;ShapeMeasuresAll.r_out_edge_a: 'R-out/Edge (A)'&gt;, 'rin_rout': &lt;ShapeMeasuresAll.rin_rout: 'R-in/R-out (N)'&gt;, 'skewness_n': &lt;ShapeMeasuresAll.skewness_n: 'Skewness (N)'&gt;, 'stretch_n': &lt;ShapeMeasuresAll.stretch_n: 'Stretch (N)'&gt;}</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['rin_rout', 'height_base_n', 'height_base_a', 'skewness_n', 'minimum_face_angle_n', 'maximum_face_angle_n', 'minimum_face_angle_a', 'angle_ratio_n', 'edge_ratio_n', 'equi_angle_skewness_n', 'stretch_n', 'minimum_edge_length_a', 'maximum_edge_length_a', 'edge_ratio_a', 'abaqus_shape_factor_n', 'ansys_element_quality_n', 'fluent_orthogonal_quality_n', 'maximum_face_angle_a', 'r_in_edge_n', 'r_out_edge_a', 'mean_ratio_n', 'aspect_ratio_a', 'jacobian_a', 'jacobian_n', 'jacobian_ratio_a', 'minimum_volume_a', 'maximum_volume_a', 'minimum_dihedral_angle_a', 'maximum_dihedral_angle_a']</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'Abaqus shape factor (N)': &lt;ShapeMeasuresAll.abaqus_shape_factor_n: 'Abaqus shape factor (N)'&gt;, 'Angle ratio (N)': &lt;ShapeMeasuresAll.angle_ratio_n: 'Angle ratio (N)'&gt;, 'Ansys element quality (N)': &lt;ShapeMeasuresAll.ansys_element_quality_n: 'Ansys element quality (N)'&gt;, 'Aspect ratio (A)': &lt;ShapeMeasuresAll.aspect_ratio_a: 'Aspect ratio (A)'&gt;, 'Edge ratio (max/min) (A)': &lt;ShapeMeasuresAll.edge_ratio_a: 'Edge ratio (max/min) (A)'&gt;, 'Edge ratio (min/max) (N)': &lt;ShapeMeasuresAll.edge_ratio_n: 'Edge ratio (min/max) (N)'&gt;, 'Equi-angle skewness (N)': &lt;ShapeMeasuresAll.equi_angle_skewness_n: 'Equi-angle skewness (N)'&gt;, 'Fluent orthogonal quality (N)': &lt;ShapeMeasuresAll.fluent_orthogonal_quality_n: 'Fluent orthogonal quality (N)'&gt;, 'Height/Base (A)': &lt;ShapeMeasuresAll.height_base_a: 'Height/Base (A)'&gt;, 'Height/Base (N)': &lt;ShapeMeasuresAll.height_base_n: 'Height/Base (N)'&gt;, 'Jacobian (A)': &lt;ShapeMeasuresAll.jacobian_a: 'Jacobian (A)'&gt;, 'Jacobian (N)': &lt;ShapeMeasuresAll.jacobian_n: 'Jacobian (N)'&gt;, 'Jacobian Ratio (A)': &lt;ShapeMeasuresAll.jacobian_ratio_a: 'Jacobian Ratio (A)'&gt;, 'Maximum dihedral angle (A)': &lt;ShapeMeasuresAll.maximum_dihedral_angle_a: 'Maximum dihedral angle (A)'&gt;, 'Maximum edge length (A)': &lt;ShapeMeasuresAll.maximum_edge_length_a: 'Maximum edge length (A)'&gt;, 'Maximum face angle (A)': &lt;ShapeMeasuresAll.maximum_face_angle_a: 'Maximum face angle (A)'&gt;, 'Maximum face angle (N)': &lt;ShapeMeasuresAll.maximum_face_angle_n: 'Maximum face angle (N)'&gt;, 'Maximum volume (A)': &lt;ShapeMeasuresAll.maximum_volume_a: 'Maximum volume (A)'&gt;, 'Mean ratio (N)': &lt;ShapeMeasuresAll.mean_ratio_n: 'Mean ratio (N)'&gt;, 'Minimum dihedral angle (A)': &lt;ShapeMeasuresAll.minimum_dihedral_angle_a: 'Minimum dihedral angle (A)'&gt;, 'Minimum edge length (A)': &lt;ShapeMeasuresAll.minimum_edge_length_a: 'Minimum edge length (A)'&gt;, 'Minimum face angle (A)': &lt;ShapeMeasuresAll.minimum_face_angle_a: 'Minimum face angle (A)'&gt;, 'Minimum face angle (N)': &lt;ShapeMeasuresAll.minimum_face_angle_n: 'Minimum face angle (N)'&gt;, 'Minimum volume (A)': &lt;ShapeMeasuresAll.minimum_volume_a: 'Minimum volume (A)'&gt;, 'R-in/Edge (N)': &lt;ShapeMeasuresAll.r_in_edge_n: 'R-in/Edge (N)'&gt;, 'R-in/R-out (N)': &lt;ShapeMeasuresAll.rin_rout: 'R-in/R-out (N)'&gt;, 'R-out/Edge (A)': &lt;ShapeMeasuresAll.r_out_edge_a: 'R-out/Edge (A)'&gt;, 'Skewness (N)': &lt;ShapeMeasuresAll.skewness_n: 'Skewness (N)'&gt;, 'Stretch (N)': &lt;ShapeMeasuresAll.stretch_n: 'Stretch (N)'&gt;}</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.abaqus_shape_factor_n">
+<code class="descname">abaqus_shape_factor_n</code><em class="property"> = 'Abaqus shape factor (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.abaqus_shape_factor_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.angle_ratio_n">
+<code class="descname">angle_ratio_n</code><em class="property"> = 'Angle ratio (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.angle_ratio_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.ansys_element_quality_n">
+<code class="descname">ansys_element_quality_n</code><em class="property"> = 'Ansys element quality (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.ansys_element_quality_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.aspect_ratio_a">
+<code class="descname">aspect_ratio_a</code><em class="property"> = 'Aspect ratio (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.aspect_ratio_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.edge_ratio_a">
+<code class="descname">edge_ratio_a</code><em class="property"> = 'Edge ratio (max/min) (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.edge_ratio_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.edge_ratio_n">
+<code class="descname">edge_ratio_n</code><em class="property"> = 'Edge ratio (min/max) (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.edge_ratio_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.equi_angle_skewness_n">
+<code class="descname">equi_angle_skewness_n</code><em class="property"> = 'Equi-angle skewness (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.equi_angle_skewness_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.fluent_orthogonal_quality_n">
+<code class="descname">fluent_orthogonal_quality_n</code><em class="property"> = 'Fluent orthogonal quality (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.fluent_orthogonal_quality_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.height_base_a">
+<code class="descname">height_base_a</code><em class="property"> = 'Height/Base (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.height_base_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.height_base_n">
+<code class="descname">height_base_n</code><em class="property"> = 'Height/Base (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.height_base_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.jacobian_a">
+<code class="descname">jacobian_a</code><em class="property"> = 'Jacobian (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.jacobian_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.jacobian_n">
+<code class="descname">jacobian_n</code><em class="property"> = 'Jacobian (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.jacobian_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.jacobian_ratio_a">
+<code class="descname">jacobian_ratio_a</code><em class="property"> = 'Jacobian Ratio (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.jacobian_ratio_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.maximum_dihedral_angle_a">
+<code class="descname">maximum_dihedral_angle_a</code><em class="property"> = 'Maximum dihedral angle (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.maximum_dihedral_angle_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.maximum_edge_length_a">
+<code class="descname">maximum_edge_length_a</code><em class="property"> = 'Maximum edge length (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.maximum_edge_length_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.maximum_face_angle_a">
+<code class="descname">maximum_face_angle_a</code><em class="property"> = 'Maximum face angle (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.maximum_face_angle_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.maximum_face_angle_n">
+<code class="descname">maximum_face_angle_n</code><em class="property"> = 'Maximum face angle (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.maximum_face_angle_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.maximum_volume_a">
+<code class="descname">maximum_volume_a</code><em class="property"> = 'Maximum volume (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.maximum_volume_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.mean_ratio_n">
+<code class="descname">mean_ratio_n</code><em class="property"> = 'Mean ratio (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.mean_ratio_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.minimum_dihedral_angle_a">
+<code class="descname">minimum_dihedral_angle_a</code><em class="property"> = 'Minimum dihedral angle (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.minimum_dihedral_angle_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.minimum_edge_length_a">
+<code class="descname">minimum_edge_length_a</code><em class="property"> = 'Minimum edge length (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.minimum_edge_length_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.minimum_face_angle_a">
+<code class="descname">minimum_face_angle_a</code><em class="property"> = 'Minimum face angle (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.minimum_face_angle_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.minimum_face_angle_n">
+<code class="descname">minimum_face_angle_n</code><em class="property"> = 'Minimum face angle (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.minimum_face_angle_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.minimum_volume_a">
+<code class="descname">minimum_volume_a</code><em class="property"> = 'Minimum volume (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.minimum_volume_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.r_in_edge_n">
+<code class="descname">r_in_edge_n</code><em class="property"> = 'R-in/Edge (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.r_in_edge_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.r_out_edge_a">
+<code class="descname">r_out_edge_a</code><em class="property"> = 'R-out/Edge (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.r_out_edge_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.rin_rout">
+<code class="descname">rin_rout</code><em class="property"> = 'R-in/R-out (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.rin_rout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.skewness_n">
+<code class="descname">skewness_n</code><em class="property"> = 'Skewness (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.skewness_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAll.stretch_n">
+<code class="descname">stretch_n</code><em class="property"> = 'Stretch (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAll.stretch_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface">
+<em class="property">class </em><code class="descname">ShapeMeasuresAnalyzeMeshQualitySurface</code><a class="reference internal" href="../_modules/trimatic/remesh.html#ShapeMeasuresAnalyzeMeshQualitySurface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Measures for analyze_mesh_quality_surface.</p>
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Measures for analyze_mesh_quality_surface.'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.remesh'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'abaqus_shape_factor_n': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.abaqus_shape_factor_n: 'Abaqus shape factor (N)'&gt;, 'angle_ratio_n': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.angle_ratio_n: 'Angle ratio (N)'&gt;, 'ansys_element_quality_n': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.ansys_element_quality_n: 'Ansys element quality (N)'&gt;, 'edge_ratio_a': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.edge_ratio_a: 'Edge ratio (max/min) (A)'&gt;, 'edge_ratio_n': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.edge_ratio_n: 'Edge ratio (min/max) (N)'&gt;, 'equi_angle_skewness_n': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.equi_angle_skewness_n: 'Equi-angle skewness (N)'&gt;, 'fluent_orthogonal_quality_n': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.fluent_orthogonal_quality_n: 'Fluent orthogonal quality (N)'&gt;, 'height_base_a': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.height_base_a: 'Height/Base (A)'&gt;, 'height_base_n': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.height_base_n: 'Height/Base (N)'&gt;, 'maximum_edge_length_a': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.maximum_edge_length_a: 'Maximum edge length (A)'&gt;, 'maximum_face_angle_a': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.maximum_face_angle_a: 'Maximum face angle (A)'&gt;, 'maximum_face_angle_n': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.maximum_face_angle_n: 'Maximum face angle (N)'&gt;, 'minimum_edge_length_a': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.minimum_edge_length_a: 'Minimum edge length (A)'&gt;, 'minimum_face_angle_a': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.minimum_face_angle_a: 'Minimum face angle (A)'&gt;, 'minimum_face_angle_n': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.minimum_face_angle_n: 'Minimum face angle (N)'&gt;, 'rin_rout': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.rin_rout: 'R-in/R-out (N)'&gt;, 'skewness_n': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.skewness_n: 'Skewness (N)'&gt;, 'stretch_n': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.stretch_n: 'Stretch (N)'&gt;}</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['rin_rout', 'height_base_n', 'minimum_face_angle_n', 'maximum_face_angle_n', 'minimum_face_angle_a', 'edge_ratio_n', 'equi_angle_skewness_n', 'minimum_edge_length_a', 'maximum_edge_length_a', 'edge_ratio_a', 'abaqus_shape_factor_n', 'ansys_element_quality_n', 'fluent_orthogonal_quality_n', 'maximum_face_angle_a', 'angle_ratio_n', 'stretch_n', 'height_base_a', 'skewness_n']</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'Abaqus shape factor (N)': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.abaqus_shape_factor_n: 'Abaqus shape factor (N)'&gt;, 'Angle ratio (N)': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.angle_ratio_n: 'Angle ratio (N)'&gt;, 'Ansys element quality (N)': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.ansys_element_quality_n: 'Ansys element quality (N)'&gt;, 'Edge ratio (max/min) (A)': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.edge_ratio_a: 'Edge ratio (max/min) (A)'&gt;, 'Edge ratio (min/max) (N)': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.edge_ratio_n: 'Edge ratio (min/max) (N)'&gt;, 'Equi-angle skewness (N)': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.equi_angle_skewness_n: 'Equi-angle skewness (N)'&gt;, 'Fluent orthogonal quality (N)': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.fluent_orthogonal_quality_n: 'Fluent orthogonal quality (N)'&gt;, 'Height/Base (A)': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.height_base_a: 'Height/Base (A)'&gt;, 'Height/Base (N)': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.height_base_n: 'Height/Base (N)'&gt;, 'Maximum edge length (A)': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.maximum_edge_length_a: 'Maximum edge length (A)'&gt;, 'Maximum face angle (A)': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.maximum_face_angle_a: 'Maximum face angle (A)'&gt;, 'Maximum face angle (N)': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.maximum_face_angle_n: 'Maximum face angle (N)'&gt;, 'Minimum edge length (A)': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.minimum_edge_length_a: 'Minimum edge length (A)'&gt;, 'Minimum face angle (A)': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.minimum_face_angle_a: 'Minimum face angle (A)'&gt;, 'Minimum face angle (N)': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.minimum_face_angle_n: 'Minimum face angle (N)'&gt;, 'R-in/R-out (N)': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.rin_rout: 'R-in/R-out (N)'&gt;, 'Skewness (N)': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.skewness_n: 'Skewness (N)'&gt;, 'Stretch (N)': &lt;ShapeMeasuresAnalyzeMeshQualitySurface.stretch_n: 'Stretch (N)'&gt;}</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.abaqus_shape_factor_n">
+<code class="descname">abaqus_shape_factor_n</code><em class="property"> = 'Abaqus shape factor (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.abaqus_shape_factor_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.angle_ratio_n">
+<code class="descname">angle_ratio_n</code><em class="property"> = 'Angle ratio (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.angle_ratio_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.ansys_element_quality_n">
+<code class="descname">ansys_element_quality_n</code><em class="property"> = 'Ansys element quality (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.ansys_element_quality_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.edge_ratio_a">
+<code class="descname">edge_ratio_a</code><em class="property"> = 'Edge ratio (max/min) (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.edge_ratio_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.edge_ratio_n">
+<code class="descname">edge_ratio_n</code><em class="property"> = 'Edge ratio (min/max) (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.edge_ratio_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.equi_angle_skewness_n">
+<code class="descname">equi_angle_skewness_n</code><em class="property"> = 'Equi-angle skewness (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.equi_angle_skewness_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.fluent_orthogonal_quality_n">
+<code class="descname">fluent_orthogonal_quality_n</code><em class="property"> = 'Fluent orthogonal quality (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.fluent_orthogonal_quality_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.height_base_a">
+<code class="descname">height_base_a</code><em class="property"> = 'Height/Base (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.height_base_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.height_base_n">
+<code class="descname">height_base_n</code><em class="property"> = 'Height/Base (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.height_base_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.maximum_edge_length_a">
+<code class="descname">maximum_edge_length_a</code><em class="property"> = 'Maximum edge length (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.maximum_edge_length_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.maximum_face_angle_a">
+<code class="descname">maximum_face_angle_a</code><em class="property"> = 'Maximum face angle (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.maximum_face_angle_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.maximum_face_angle_n">
+<code class="descname">maximum_face_angle_n</code><em class="property"> = 'Maximum face angle (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.maximum_face_angle_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.minimum_edge_length_a">
+<code class="descname">minimum_edge_length_a</code><em class="property"> = 'Minimum edge length (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.minimum_edge_length_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.minimum_face_angle_a">
+<code class="descname">minimum_face_angle_a</code><em class="property"> = 'Minimum face angle (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.minimum_face_angle_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.minimum_face_angle_n">
+<code class="descname">minimum_face_angle_n</code><em class="property"> = 'Minimum face angle (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.minimum_face_angle_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.rin_rout">
+<code class="descname">rin_rout</code><em class="property"> = 'R-in/R-out (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.rin_rout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.skewness_n">
+<code class="descname">skewness_n</code><em class="property"> = 'Skewness (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.skewness_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.stretch_n">
+<code class="descname">stretch_n</code><em class="property"> = 'Stretch (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface.stretch_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume">
+<em class="property">class </em><code class="descname">ShapeMeasuresAnalyzeMeshQualityVolume</code><a class="reference internal" href="../_modules/trimatic/remesh.html#ShapeMeasuresAnalyzeMeshQualityVolume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Measures for analyze_mesh_quality_volume.</p>
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Measures for analyze_mesh_quality_volume.'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.remesh'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'abaqus_shape_factor_n': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.abaqus_shape_factor_n: 'Abaqus shape factor (N)'&gt;, 'ansys_element_quality_n': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.ansys_element_quality_n: 'Ansys element quality (N)'&gt;, 'aspect_ratio_a': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.aspect_ratio_a: 'Aspect ratio (A)'&gt;, 'edge_ratio_a': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.edge_ratio_a: 'Edge ratio (max/min) (A)'&gt;, 'edge_ratio_n': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.edge_ratio_n: 'Edge ratio (min/max) (N)'&gt;, 'equi_angle_skewness_n': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.equi_angle_skewness_n: 'Equi-angle skewness (N)'&gt;, 'fluent_orthogonal_quality_n': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.fluent_orthogonal_quality_n: 'Fluent orthogonal quality (N)'&gt;, 'height_base_n': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.height_base_n: 'Height/Base (N)'&gt;, 'jacobian_a': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.jacobian_a: 'Jacobian (A)'&gt;, 'jacobian_n': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.jacobian_n: 'Jacobian (N)'&gt;, 'jacobian_ratio_a': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.jacobian_ratio_a: 'Jacobian Ratio (A)'&gt;, 'maximum_dihedral_angle_a': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.maximum_dihedral_angle_a: 'Maximum dihedral angle (A)'&gt;, 'maximum_edge_length_a': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.maximum_edge_length_a: 'Maximum edge length (A)'&gt;, 'maximum_face_angle_a': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.maximum_face_angle_a: 'Maximum face angle (A)'&gt;, 'maximum_face_angle_n': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.maximum_face_angle_n: 'Maximum face angle (N)'&gt;, 'maximum_volume_a': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.maximum_volume_a: 'Maximum volume (A)'&gt;, 'mean_ratio_n': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.mean_ratio_n: 'Mean ratio (N)'&gt;, 'minimum_dihedral_angle_a': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.minimum_dihedral_angle_a: 'Minimum dihedral angle (A)'&gt;, 'minimum_edge_length_a': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.minimum_edge_length_a: 'Minimum edge length (A)'&gt;, 'minimum_face_angle_a': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.minimum_face_angle_a: 'Minimum face angle (A)'&gt;, 'minimum_face_angle_n': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.minimum_face_angle_n: 'Minimum face angle (N)'&gt;, 'minimum_volume_a': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.minimum_volume_a: 'Minimum volume (A)'&gt;, 'r_in_edge_n': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.r_in_edge_n: 'R-in/Edge (N)'&gt;, 'r_out_edge_a': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.r_out_edge_a: 'R-out/Edge (A)'&gt;, 'rin_rout': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.rin_rout: 'R-in/R-out (N)'&gt;}</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['rin_rout', 'height_base_n', 'minimum_face_angle_n', 'maximum_face_angle_n', 'minimum_face_angle_a', 'edge_ratio_n', 'equi_angle_skewness_n', 'minimum_edge_length_a', 'maximum_edge_length_a', 'edge_ratio_a', 'abaqus_shape_factor_n', 'ansys_element_quality_n', 'fluent_orthogonal_quality_n', 'maximum_face_angle_a', 'r_in_edge_n', 'r_out_edge_a', 'mean_ratio_n', 'aspect_ratio_a', 'jacobian_a', 'jacobian_n', 'jacobian_ratio_a', 'minimum_volume_a', 'maximum_volume_a', 'minimum_dihedral_angle_a', 'maximum_dihedral_angle_a']</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'Abaqus shape factor (N)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.abaqus_shape_factor_n: 'Abaqus shape factor (N)'&gt;, 'Ansys element quality (N)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.ansys_element_quality_n: 'Ansys element quality (N)'&gt;, 'Aspect ratio (A)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.aspect_ratio_a: 'Aspect ratio (A)'&gt;, 'Edge ratio (max/min) (A)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.edge_ratio_a: 'Edge ratio (max/min) (A)'&gt;, 'Edge ratio (min/max) (N)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.edge_ratio_n: 'Edge ratio (min/max) (N)'&gt;, 'Equi-angle skewness (N)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.equi_angle_skewness_n: 'Equi-angle skewness (N)'&gt;, 'Fluent orthogonal quality (N)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.fluent_orthogonal_quality_n: 'Fluent orthogonal quality (N)'&gt;, 'Height/Base (N)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.height_base_n: 'Height/Base (N)'&gt;, 'Jacobian (A)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.jacobian_a: 'Jacobian (A)'&gt;, 'Jacobian (N)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.jacobian_n: 'Jacobian (N)'&gt;, 'Jacobian Ratio (A)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.jacobian_ratio_a: 'Jacobian Ratio (A)'&gt;, 'Maximum dihedral angle (A)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.maximum_dihedral_angle_a: 'Maximum dihedral angle (A)'&gt;, 'Maximum edge length (A)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.maximum_edge_length_a: 'Maximum edge length (A)'&gt;, 'Maximum face angle (A)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.maximum_face_angle_a: 'Maximum face angle (A)'&gt;, 'Maximum face angle (N)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.maximum_face_angle_n: 'Maximum face angle (N)'&gt;, 'Maximum volume (A)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.maximum_volume_a: 'Maximum volume (A)'&gt;, 'Mean ratio (N)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.mean_ratio_n: 'Mean ratio (N)'&gt;, 'Minimum dihedral angle (A)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.minimum_dihedral_angle_a: 'Minimum dihedral angle (A)'&gt;, 'Minimum edge length (A)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.minimum_edge_length_a: 'Minimum edge length (A)'&gt;, 'Minimum face angle (A)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.minimum_face_angle_a: 'Minimum face angle (A)'&gt;, 'Minimum face angle (N)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.minimum_face_angle_n: 'Minimum face angle (N)'&gt;, 'Minimum volume (A)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.minimum_volume_a: 'Minimum volume (A)'&gt;, 'R-in/Edge (N)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.r_in_edge_n: 'R-in/Edge (N)'&gt;, 'R-in/R-out (N)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.rin_rout: 'R-in/R-out (N)'&gt;, 'R-out/Edge (A)': &lt;ShapeMeasuresAnalyzeMeshQualityVolume.r_out_edge_a: 'R-out/Edge (A)'&gt;}</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.abaqus_shape_factor_n">
+<code class="descname">abaqus_shape_factor_n</code><em class="property"> = 'Abaqus shape factor (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.abaqus_shape_factor_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.ansys_element_quality_n">
+<code class="descname">ansys_element_quality_n</code><em class="property"> = 'Ansys element quality (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.ansys_element_quality_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.aspect_ratio_a">
+<code class="descname">aspect_ratio_a</code><em class="property"> = 'Aspect ratio (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.aspect_ratio_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.edge_ratio_a">
+<code class="descname">edge_ratio_a</code><em class="property"> = 'Edge ratio (max/min) (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.edge_ratio_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.edge_ratio_n">
+<code class="descname">edge_ratio_n</code><em class="property"> = 'Edge ratio (min/max) (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.edge_ratio_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.equi_angle_skewness_n">
+<code class="descname">equi_angle_skewness_n</code><em class="property"> = 'Equi-angle skewness (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.equi_angle_skewness_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.fluent_orthogonal_quality_n">
+<code class="descname">fluent_orthogonal_quality_n</code><em class="property"> = 'Fluent orthogonal quality (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.fluent_orthogonal_quality_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.height_base_n">
+<code class="descname">height_base_n</code><em class="property"> = 'Height/Base (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.height_base_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.jacobian_a">
+<code class="descname">jacobian_a</code><em class="property"> = 'Jacobian (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.jacobian_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.jacobian_n">
+<code class="descname">jacobian_n</code><em class="property"> = 'Jacobian (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.jacobian_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.jacobian_ratio_a">
+<code class="descname">jacobian_ratio_a</code><em class="property"> = 'Jacobian Ratio (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.jacobian_ratio_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.maximum_dihedral_angle_a">
+<code class="descname">maximum_dihedral_angle_a</code><em class="property"> = 'Maximum dihedral angle (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.maximum_dihedral_angle_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.maximum_edge_length_a">
+<code class="descname">maximum_edge_length_a</code><em class="property"> = 'Maximum edge length (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.maximum_edge_length_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.maximum_face_angle_a">
+<code class="descname">maximum_face_angle_a</code><em class="property"> = 'Maximum face angle (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.maximum_face_angle_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.maximum_face_angle_n">
+<code class="descname">maximum_face_angle_n</code><em class="property"> = 'Maximum face angle (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.maximum_face_angle_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.maximum_volume_a">
+<code class="descname">maximum_volume_a</code><em class="property"> = 'Maximum volume (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.maximum_volume_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.mean_ratio_n">
+<code class="descname">mean_ratio_n</code><em class="property"> = 'Mean ratio (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.mean_ratio_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.minimum_dihedral_angle_a">
+<code class="descname">minimum_dihedral_angle_a</code><em class="property"> = 'Minimum dihedral angle (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.minimum_dihedral_angle_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.minimum_edge_length_a">
+<code class="descname">minimum_edge_length_a</code><em class="property"> = 'Minimum edge length (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.minimum_edge_length_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.minimum_face_angle_a">
+<code class="descname">minimum_face_angle_a</code><em class="property"> = 'Minimum face angle (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.minimum_face_angle_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.minimum_face_angle_n">
+<code class="descname">minimum_face_angle_n</code><em class="property"> = 'Minimum face angle (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.minimum_face_angle_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.minimum_volume_a">
+<code class="descname">minimum_volume_a</code><em class="property"> = 'Minimum volume (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.minimum_volume_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.r_in_edge_n">
+<code class="descname">r_in_edge_n</code><em class="property"> = 'R-in/Edge (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.r_in_edge_n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.r_out_edge_a">
+<code class="descname">r_out_edge_a</code><em class="property"> = 'R-out/Edge (A)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.r_out_edge_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.rin_rout">
+<code class="descname">rin_rout</code><em class="property"> = 'R-in/R-out (N)'</em><a class="headerlink" href="#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume.rin_rout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.remesh.adaptive_remesh">
+<code class="descname">adaptive_remesh</code><span class="sig-paren">(</span><em>*args</em>, <em>entities</em>, <em>target_triangle_edge_length=1.0</em>, <em>preserve_surface_contours=False</em>, <em>local_remesh_parameters=()</em>, <em>local_growth_rate: float = 25</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/remesh.html#adaptive_remesh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.remesh.adaptive_remesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies adaptive remesh on the specified entities.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles</em><em>]</em>) – Either single object or heterogeneous list of parts, surfaces, surface sets.</li>
+<li><strong>target_triangle_edge_length</strong> (<em>float</em><em>, </em><em>optional</em>) – The approximate triangle edge length in the output.</li>
+<li><strong>preserve_surface_contours</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the geometry along surface contours will be unchanged.</li>
+<li><strong>local_remesh_parameters</strong> (<em>(</em><em>(</em><em>trimatic.Object</em><em>, </em><em>float</em><em>, </em><em>float</em><em>)</em><em>,</em><em>)</em><em>, </em><em>optional</em>) – Tuple of tuples containing the info 
+(entity, maximum triangle edge length, influence area).</li>
+<li><strong>local_growth_rate</strong> (<em>float</em><em>, </em><em>optional</em>) – Controls the rate of triangle edge length growth (in percentage) as the
+distance from the selected entities increases. Ignored if local_remesh_parameters is empty.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Remeshed entities</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_part</span><span class="p">((</span><span class="n">trimatic</span><span class="o">.</span><span class="n">compute_center_of_gravity</span><span class="p">(</span><span class="n">p</span><span class="p">)),</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">adaptive_remesh</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">p</span><span class="p">,</span><span class="n">target_triangle_edge_length</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">local_remesh_parameters</span><span class="o">=</span><span class="p">((</span><span class="n">s</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.2</span><span class="p">),))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.remesh.adaptive_remesh_expert">
+<code class="descname">adaptive_remesh_expert</code><span class="sig-paren">(</span><em>*args</em>, <em>entities</em>, <em>shape_measure=&lt;ShapeMeasures.skewness_n: 'Skewness (N)'&gt;</em>, <em>shape_quality_threshold=0.3</em>, <em>maximum_geometrical_error=0.1732</em>, <em>minimum_triangle_edge_length=0</em>, <em>maximum_triangle_edge_length=1.7321</em>, <em>number_of_iterations=3</em>, <em>skip_bad_edges=False</em>, <em>preserve_surface_contours=False</em>, <em>preserve_sharp_edges=False</em>, <em>local_remesh_parameters=()</em>, <em>local_growth_rate=25</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/remesh.html#adaptive_remesh_expert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.remesh.adaptive_remesh_expert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies adaptive remesh on the specified entities with advanced control parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles</em><em>]</em>) – Either single object or heterogeneous list of parts, surfaces, surface sets.</li>
+<li><strong>shape_measure</strong> (<em>trimatic.ShapeMeasures</em><em>, </em><em>optional</em>) – Method of determining the quality of the triangles in the resulting mesh.</li>
+<li><strong>shape_quality_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – The minimum value that triangles need to meet for the selected shape measure.</li>
+<li><strong>maximum_geometrical_error</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum distance deviation between the original entity and the output.</li>
+<li><strong>minimum_triangle_edge_length</strong> (<em>float | None</em><em>, </em><em>optional</em>) – The minimum triangle edge length in the output. Set to None to disable.</li>
+<li><strong>maximum_triangle_edge_length</strong> (<em>float | None</em><em>, </em><em>optional</em>) – The maximum triangle edge length in the output. Set to None to disable.</li>
+<li><strong>number_of_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – Increases the number of passes for higher quality but increases computation time.</li>
+<li><strong>skip_bad_edges</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, bad edges will not be moved.</li>
+<li><strong>preserve_surface_contours</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the geometry along surface contours will be unchanged.</li>
+<li><strong>preserve_sharp_edges</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, sharp edges will be preserved.</li>
+<li><strong>local_remesh_parameters</strong> (<em>(</em><em>(</em><em>trimatic.Object</em><em>, </em><em>float</em><em>, </em><em>float</em><em>)</em><em>,</em><em>)</em><em>, </em><em>optional</em>) – Tuple of tuples containing the info
+(entity, maximum triangle edge length, influence area).</li>
+<li><strong>local_growth_rate</strong> (<em>float</em><em>, </em><em>optional</em>) – Controls the rate of triangle edge length growth (in percentage) as the
+distance from the selected entities increases. Ignored if local_remesh_parameters is empty.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Remeshed entities</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">aorta</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">adaptive_remesh_expert</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">aorta</span><span class="p">,</span><span class="n">shape_measure</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">ShapeMeasures</span><span class="o">.</span><span class="n">height_base_n</span><span class="p">,</span> <span class="n">maximum_triangle_edge_length</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.remesh.analyze_mesh_quality_surface">
+<code class="descname">analyze_mesh_quality_surface</code><span class="sig-paren">(</span><em>part</em>, <em>shape_measure=&lt;ShapeMeasuresAnalyzeMeshQualitySurface.skewness_n: 'Skewness (N)'&gt;</em>, <em>shape_quality_threshold=0.3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/remesh.html#analyze_mesh_quality_surface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.remesh.analyze_mesh_quality_surface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Analyzes (surface) mesh quality and returns simple analysis (% below quality threshold).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>part</strong> (<em>trimatic.Part</em>) – Part to analyze.</li>
+<li><strong>shape_measure</strong> (<em>trimatic.ShapeMeasuresAnalyzeMeshQualitySurface</em><em>, </em><em>optional</em>) – Method of determining the quality value in the analysis.</li>
+<li><strong>shape_quality_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – The threshold value that triangles need to meet for the selected shape measure.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of analysis results containing (shape measure, shape quality threshold, number of elements not
+meeting threshold, value of element with lowest quality, True/False to indicate if the mesh passed the quality check).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(string, float, int, float, bool)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">aorta</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">adaptive_remesh_expert</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">aorta</span><span class="p">,</span><span class="n">shape_measure</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">ShapeMeasures</span><span class="o">.</span><span class="n">height_base_n</span><span class="p">,</span> <span class="n">maximum_triangle_edge_length</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">analyze_mesh_quality_surface</span><span class="p">(</span><span class="n">aorta</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">ShapeMeasuresAnalyzeMeshQualitySurface</span><span class="o">.</span><span class="n">height_base_n</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.remesh.analyze_mesh_quality_volume">
+<code class="descname">analyze_mesh_quality_volume</code><span class="sig-paren">(</span><em>part</em>, <em>shape_measure=&lt;ShapeMeasuresAnalyzeMeshQualityVolume.aspect_ratio_a: 'Aspect ratio (A)'&gt;</em>, <em>shape_quality_threshold=100</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/remesh.html#analyze_mesh_quality_volume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.remesh.analyze_mesh_quality_volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Analyzes (volume) mesh quality and returns simple analysis (% below quality threshold).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>part</strong> (<em>trimatic.Part</em>) – Part to analyze.</li>
+<li><strong>shape_measure</strong> (<em>trimatic.ShapeMeasuresAnalyzeMeshQualityVolume</em><em>, </em><em>optional</em>) – Method of determining the quality value in the analysis.</li>
+<li><strong>shape_quality_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – The threshold value that triangles need to meet for the selected shape
+measure.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of analysis results containing (shape measure, shape quality threshold, number of elements not
+meeting threshold, value of element with lowest quality, True/False to indicate if the mesh passed the quality check).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(string, float, int, float, bool)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">aorta</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">adaptive_remesh_expert</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">aorta</span><span class="p">,</span><span class="n">shape_measure</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">ShapeMeasures</span><span class="o">.</span><span class="n">height_base_n</span><span class="p">,</span> <span class="n">maximum_triangle_edge_length</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_volume_mesh</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">element_type</span><span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">ElementType</span><span class="o">.</span><span class="n">Tet4</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">analyze_mesh_quality_volume</span><span class="p">(</span><span class="n">aorta</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.remesh.compute_quality_histogram_surface">
+<code class="descname">compute_quality_histogram_surface</code><span class="sig-paren">(</span><em>part</em>, <em>shape_measure=&lt;ShapeMeasuresAnalyzeMeshQualitySurface.skewness_n: 'Skewness (N)'&gt;</em>, <em>bin_size=0.1</em>, <em>upper_limit=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/remesh.html#compute_quality_histogram_surface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.remesh.compute_quality_histogram_surface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Analyzes (surface) mesh quality and returns the histogram data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>part</strong> (<em>trimatic.Part</em>) – Part to analyze.</li>
+<li><strong>shape_measure</strong> (<em>trimatic.ShapeMeasuresAnalyzeMeshQualitySurface</em><em>, </em><em>optional</em>) – Method of determining the quality value in the analysis.</li>
+<li><strong>bin_size</strong> (<em>float</em><em>, </em><em>optional</em>) – Width of each interval of the histogram.</li>
+<li><strong>upper_limit</strong> (<em>float</em><em>, </em><em>optional</em>) – The upper limit of the histogram. Values beyond this are excluded from the analysis.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of histogram bins. Each bin is a tuple containing (minimum bin value, maximum bin value, number of
+elements in bin).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">((float, float, int))</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">aorta</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">adaptive_remesh_expert</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">aorta</span><span class="p">,</span><span class="n">shape_measure</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">ShapeMeasures</span><span class="o">.</span><span class="n">height_base_n</span><span class="p">,</span> <span class="n">maximum_triangle_edge_length</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">compute_quality_histogram_surface</span><span class="p">(</span><span class="n">aorta</span><span class="p">,</span><span class="n">trimatic</span><span class="o">.</span><span class="n">ShapeMeasuresAnalyzeMeshQualitySurface</span><span class="o">.</span><span class="n">height_base_n</span><span class="p">,</span><span class="n">bin_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.remesh.compute_quality_histogram_volume">
+<code class="descname">compute_quality_histogram_volume</code><span class="sig-paren">(</span><em>part</em>, <em>shape_measure=&lt;ShapeMeasuresAnalyzeMeshQualityVolume.aspect_ratio_a: 'Aspect ratio (A)'&gt;</em>, <em>bin_size=0.1</em>, <em>upper_limit=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/remesh.html#compute_quality_histogram_volume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.remesh.compute_quality_histogram_volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Analyzes (volume) mesh quality and returns the histogram data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>part</strong> (<em>trimatic.Part</em>) – Part to analyze.</li>
+<li><strong>shape_measure</strong> (<em>trimatic.ShapeMeasuresAnalyzeMeshQualitySurface</em><em>, </em><em>optional</em>) – Method of determining the quality value in the analysis.</li>
+<li><strong>bin_size</strong> (<em>float</em><em>, </em><em>optional</em>) – Width of each interval of the histogram.</li>
+<li><strong>upper_limit</strong> (<em>float</em><em>, </em><em>optional</em>) – The upper limit of the histogram. Values beyond this are excluded from the analysis.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of histogram bins. Each bin is a tuple containing (minimum bin value, maximum bin value, number of
+elements in bin).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">((float, float, int))</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">aorta</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">adaptive_remesh_expert</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">aorta</span><span class="p">,</span><span class="n">shape_measure</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">ShapeMeasures</span><span class="o">.</span><span class="n">height_base_n</span><span class="p">,</span> <span class="n">maximum_triangle_edge_length</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_volume_mesh</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">element_type</span><span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">ElementType</span><span class="o">.</span><span class="n">Tet4</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">compute_quality_histogram_volume</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">trimatic</span><span class="o">.</span><span class="n">ShapeMeasuresAnalyzeMeshQualityVolume</span><span class="o">.</span><span class="n">height_base_n</span><span class="p">,</span><span class="n">bin_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.remesh.create_non_manifold_assembly_grid">
+<code class="descname">create_non_manifold_assembly_grid</code><span class="sig-paren">(</span><em>main_entity</em>, <em>intersecting_entities</em>, <em>grid_resolution=0.1</em>, <em>grid_presmoothing_iterations=2</em>, <em>point_smoothing=0.5</em>, <em>smooth_contours=True</em>, <em>post_smoothing_compensation=False</em>, <em>reduce_triangles=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/remesh.html#create_non_manifold_assembly_grid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.remesh.create_non_manifold_assembly_grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an assembly using a grid conversion method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>main_entity</strong> (<em>trimatic.Part</em>) – Main entity.</li>
+<li><strong>intersecting_entities</strong> (<em>trimatic.Part |</em><em> [</em><em>trimatic.Part</em><em>]</em>) – One or more intersecting entities. If more than one entity is specified, the assembly 
+will be created according to the order in the list.</li>
+<li><strong>grid_resolution</strong> (<em>float</em><em>, </em><em>optional</em>) – Size of the grid used for conversion.</li>
+<li><strong>grid_presmoothing_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of times the grid will be smoothed before converting the
+parts to a grid structure.</li>
+<li><strong>point_smoothing</strong> (<em>float</em><em>, </em><em>optional</em>) – Strength of the grid smoothing.</li>
+<li><strong>smooth_contours</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, bad contours in the resulting assembly will be smoothed.</li>
+<li><strong>post_smoothing_compensation</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the smoothing performed after the assembly creation uses a
+shrinkage compensation. This is useful for thin regions.</li>
+<li><strong>reduce_triangles</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the number of triangles of the output assembly will be reduced while
+preserving overall quality.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Resulting non-manifold assembly part.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">(</span><span class="n">point_1</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">point_2</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">radius</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_non_manifold_assembly_grid</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="n">cylinder</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.remesh.create_non_manifold_assembly_intersection">
+<code class="descname">create_non_manifold_assembly_intersection</code><span class="sig-paren">(</span><em>main_entity</em>, <em>intersecting_entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/remesh.html#create_non_manifold_assembly_intersection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.remesh.create_non_manifold_assembly_intersection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an assembly based on the intersection of the parts.</p>
+<p>The result contains non-manifold connections at the intersecting areas. The link with the original entities is also 
+preserved via the names of the surface sets. If the name of these surface sets remain unchanged, the original parts
+structure can be restored using Split Non-manifold Assembly.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>main_entity</strong> (<em>trimatic.Part</em>) – Main entity</li>
+<li><strong>intersecting_entities</strong> (<em>trimatic.Part |</em><em> [</em><em>trimatic.Part</em><em>]</em>) – One or more intersecting entities. If more than one entity is specified, the assembly 
+will be created according to the order in the list.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Resulting non-manifold assembly part.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">(</span><span class="n">point_1</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">point_2</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span><span class="n">radius</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_non_manifold_assembly_intersection</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="n">cylinder</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.remesh.create_volume_mesh">
+<code class="descname">create_volume_mesh</code><span class="sig-paren">(</span><em>part</em>, <em>element_type=&lt;ElementType.Tet4: 'Tet 4'&gt;</em>, <em>project_midpoint_entity=None</em>, <em>maximum_edge_length=None</em>, <em>solid_volume_only=False</em>, <em>group_by_materials=False</em>, <em>local_remesh_parameters=()</em>, <em>local_growth_rate=25</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/remesh.html#create_volume_mesh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.remesh.create_volume_mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a volume mesh from a triangulated surface.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>part</strong> (<em>trimatic.Part</em>) – Single part.</li>
+<li><strong>element_type</strong> (<em>trimatic.ElementType</em><em>, </em><em>optional</em>) – Element type of the volume mesh.</li>
+<li><strong>project_midpoint_entity</strong> (<em>trimatic.Part | None</em><em>, </em><em>optional</em>) – Target entity to project midpoints of Tet10 elements. Set to None to disable.</li>
+<li><strong>maximum_edge_length</strong> (<em>float | None</em><em>, </em><em>optional</em>) – The maximum triangle edge length in the output. Set to None to disable.</li>
+<li><strong>solid_volume_only</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, will create a volume based on solid part only.</li>
+<li><strong>group_by_materials</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, volumes will be grouped based on the surface name information.</li>
+<li><strong>local_remesh_parameters</strong> (<em>(</em><em>(</em><em>trimatic.Object</em><em>, </em><em>float</em><em>, </em><em>float</em><em>)</em><em>,</em><em>)</em><em>, </em><em>optional</em>) – Tuple of tuples containing the info
+(entity, maximum triangle edge length, influence area).</li>
+<li><strong>local_growth_rate</strong> (<em>float</em><em>, </em><em>optional</em>) – Controls the rate of tetrahedra growth (in percentage) as the
+distance from the selected entities increases. Ignored if local_remesh_parameters is empty.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Volume mesh.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.VolumeMesh</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">adaptive_remesh_expert</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">p</span><span class="p">,</span><span class="n">shape_measure</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">ShapeMeasures</span><span class="o">.</span><span class="n">height_base_n</span><span class="p">,</span> <span class="n">maximum_triangle_edge_length</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_volume_mesh</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">element_type</span><span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">ElementType</span><span class="o">.</span><span class="n">Tet4</span><span class="p">,</span> <span class="n">maximum_edge_length</span> <span class="o">=</span> <span class="mf">3.0000</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.remesh.quality_preserving_reduce_triangles">
+<code class="descname">quality_preserving_reduce_triangles</code><span class="sig-paren">(</span><em>*args</em>, <em>entities</em>, <em>shape_measure=&lt;ShapeMeasures.skewness_n: 'Skewness (N)'&gt;</em>, <em>shape_quality_threshold=0.3</em>, <em>maximum_geometrical_error=0.1732</em>, <em>maximum_triangle_edge_length=None</em>, <em>number_of_iterations=3</em>, <em>skip_bad_edges=False</em>, <em>preserve_surface_contours=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/remesh.html#quality_preserving_reduce_triangles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.remesh.quality_preserving_reduce_triangles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduces number of triangles in a high-quality mesh while preserving its quality.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em>] </em><em>|</em><em> (</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em>)</em>) – Either single object or heterogeneous list of parts, surfaces, surface sets.</li>
+<li><strong>shape_measure</strong> (<em>trimatic.ShapeMeasures</em><em>, </em><em>optional</em>) – Method of determining the quality of the triangles in the resulting mesh.</li>
+<li><strong>shape_quality_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – The minimum value that triangles need to meet for the selected shape measure.</li>
+<li><strong>maximum_geometrical_error</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum distance deviation between the original entity and the output.</li>
+<li><strong>maximum_triangle_edge_length</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum triangle edge length in the output. Set to None to disable.</li>
+<li><strong>number_of_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – Increases the number of passes for higher quality but increases computation time.</li>
+<li><strong>skip_bad_edges</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, bad edges will not be moved.</li>
+<li><strong>preserve_surface_contours</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the geometry along surface contours will be unchanged.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Remeshed entities.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">aorta</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">quality_preserving_reduce_triangles</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">aorta</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.remesh.split_non_manifold_assembly_surface">
+<code class="descname">split_non_manifold_assembly_surface</code><span class="sig-paren">(</span><em>entity</em>, <em>interface_entity=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/remesh.html#split_non_manifold_assembly_surface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.remesh.split_non_manifold_assembly_surface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Splits a non-manifold assembly into it’s surface parts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entity</strong> (<em>trimatic.Part</em>) – Entity to split.</li>
+<li><strong>interface_entity</strong> (<em>trimatic.SurfaceSet</em><em>, </em><em>optional</em>) – When interface_entity is None, the assembly will be split based on surface set names
+created by the Create Non-manifold Assembly operation. When  interface_entity is not None, this is the surface set
+that contains the interface surfaces between the two different parts of the assembly.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Split parts.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">(</span><span class="n">point_1</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">point_2</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">],</span> <span class="n">x_extent</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">non_manifold_part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_non_manifold_assembly_intersection</span><span class="p">(</span><span class="n">main_entity</span><span class="o">=</span><span class="n">cylinder</span><span class="p">,</span> <span class="n">intersecting_entities</span><span class="o">=</span><span class="n">box</span><span class="p">)</span>
+<span class="n">split_manifold_part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">split_non_manifold_assembly_surface</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">non_manifold_part</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.remesh.split_non_manifold_assembly_volume">
+<code class="descname">split_non_manifold_assembly_volume</code><span class="sig-paren">(</span><em>entity</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/remesh.html#split_non_manifold_assembly_volume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.remesh.split_non_manifold_assembly_volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Splits a non-manifold assembly into its volume parts.</p>
+<p>The assembly will be split based on its volume meshes; for this method, the input entity must contain at least 2 volume meshes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entity</strong> (<em>trimatic.Part</em>) – Entity to split</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Split parts.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Part)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_extent</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">box2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_extent</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">non_manifold_part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_non_manifold_assembly_intersection</span><span class="p">(</span><span class="n">main_entity</span><span class="o">=</span><span class="n">box1</span><span class="p">,</span> <span class="n">intersecting_entities</span><span class="o">=</span><span class="n">box2</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_volume_mesh</span><span class="p">(</span><span class="n">part</span><span class="o">=</span><span class="n">non_manifold_part</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">split_non_manifold_assembly_volume</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">non_manifold_part</span><span class="p">)</span>
+
+
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.remesh.uniform_remesh">
+<code class="descname">uniform_remesh</code><span class="sig-paren">(</span><em>*args</em>, <em>entities</em>, <em>target_triangle_edge_length=1.0</em>, <em>preserve_sharp_edge_angle=None</em>, <em>preserve_surface_contours=False</em>, <em>split_edge_factor=0.2</em>, <em>skip_bad_edges=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/remesh.html#uniform_remesh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.remesh.uniform_remesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies uniform remesh on the specified entities.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles</em><em>]</em>) – Either single object or heterogeneous list of parts, surfaces or surface sets.</li>
+<li><strong>target_triangle_edge_length</strong> (<em>float</em><em>, </em><em>optional</em>) – The approximate triangle edge length in the output.</li>
+<li><strong>preserve_sharp_edge_angle</strong> (<em>float</em><em>, </em><em>optional</em>) – Edges with angles greater than this value will be preserved. Set to None to disable.</li>
+<li><strong>preserve_surface_contours</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the geometry along surface contours will be unchanged.</li>
+<li><strong>split_edge_factor</strong> (<em>float | None</em><em>, </em><em>optional</em>) – Controls the size of the minimum edge length during the subdivision of large triangles.</li>
+<li><strong>skip_bad_edges</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the bad edges will not be modified during the operation.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Remeshed entities.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">aorta</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">uniform_remesh</span><span class="p">(</span><span class="n">entities</span> <span class="o">=</span> <span class="n">aorta</span><span class="p">,</span><span class="n">target_triangle_edge_length</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trimatic.sketch.html" class="btn btn-neutral float-right" title="sketch" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="trimatic.preferences.html" class="btn btn-neutral" title="preferences" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

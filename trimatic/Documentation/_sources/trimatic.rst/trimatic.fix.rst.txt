@@ -1,0 +1,8 @@
+fix
+===
+
+.. automodule:: trimatic.fix
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

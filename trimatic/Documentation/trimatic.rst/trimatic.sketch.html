@@ -1,0 +1,434 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sketch &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="trimatic modules" href="trimatic.html"/>
+        <link rel="next" title="surface" href="trimatic.surface.html"/>
+        <link rel="prev" title="remesh" href="trimatic.remesh.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">trimatic API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="trimatic.html">trimatic modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="trimatic.data.html">data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.types.html">types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.align.html">align</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.analyze.html">analyze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.cad_link.html">cadlink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.curve.html">curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.design.html">design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.file.html">file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.finish.html">finish</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.fix.html">fix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.group.html">group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.interactive.html">interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.lattice.html">lattice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.logging.html">logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.mark.html">mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.measure.html">measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.preferences.html">preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.remesh.html">remesh</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">sketch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.surface.html">surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.texturing.html">texturing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.uv.html">uv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.view.html">view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.subscription.html">subscription</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">trimatic API</a> &raquo;</li>
+      
+          <li><a href="trimatic.html">trimatic modules</a> &raquo;</li>
+      
+    <li>sketch</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/trimatic.rst/trimatic.sketch.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-trimatic.sketch">
+<span id="sketch"></span><h1>sketch<a class="headerlink" href="#module-trimatic.sketch" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="trimatic.sketch.create_sketch">
+<code class="descname">create_sketch</code><span class="sig-paren">(</span><em>planes</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/sketch.html#create_sketch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.sketch.create_sketch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a sketch from one or more existing plane(s).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>planes</strong> (<em>trimatic.Plane |</em><em> [</em><em>trimatic.Plane</em><em>]</em>) – Planes that define the sketch. When multiple planes are specified, they are averaged.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValueError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">sketch</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Sketch</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">tmp_plane_for_sketch</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_3_points</span><span class="p">(</span><span class="n">point1</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">point2</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">point3</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">sketch1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sketch</span><span class="p">(</span><span class="n">planes</span><span class="o">=</span><span class="n">tmp_plane_for_sketch</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">tmp_plane_for_sketch</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.sketch.import_intersection">
+<code class="descname">import_intersection</code><span class="sig-paren">(</span><em>sketch</em>, <em>entities</em>, <em>construction=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/sketch.html#import_intersection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.sketch.import_intersection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imports entities into a sketch by making intersections.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Curve | trimatic.CurveSet | trimatic.Surface | trimatic.SurfaceSet | trimatic.Part | trimatic.Plane | trimatic.Arc | trimatic.Line | trimatic.Point | trimatic.SurfaceBorder | trimatic.SurfaceContour |</em><em> [</em><em>trimatic.Curve | trimatic.CurveSet | trimatic.Surface | trimatic.SurfaceSet | trimatic.Part | trimatic.Plane | trimatic.Arc | trimatic.Line | trimatic.Point | trimatic.SurfaceBorder | trimatic.SurfaceContour</em><em>]</em>) – One or more entities to intersect with.</li>
+<li><strong>sketch</strong> (<em>trimatic.Sketch</em>) – Target sketch for import.</li>
+<li><strong>construction</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, geometry is imported as construction.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">sketch</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Sketch</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">(</span><span class="n">point_1</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">point_2</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">sketch1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sketch</span><span class="p">(</span><span class="n">planes</span><span class="o">=</span><span class="n">cylinder</span><span class="o">.</span><span class="n">object_coordinate_system</span><span class="o">.</span><span class="n">zx_plane</span><span class="o">.</span><span class="n">convert_to_plane</span><span class="p">())</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_intersection</span><span class="p">(</span><span class="n">sketch</span><span class="o">=</span><span class="n">sketch1</span><span class="p">,</span> <span class="n">entities</span><span class="o">=</span><span class="n">cylinder</span><span class="p">,</span> <span class="n">construction</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.sketch.import_outline">
+<code class="descname">import_outline</code><span class="sig-paren">(</span><em>sketch</em>, <em>entities</em>, <em>construction=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/sketch.html#import_outline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.sketch.import_outline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imports outline of entities into a sketch.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Surface | trimatic.SurfaceSet | trimatic.Part |</em><em> [</em><em>trimatic.Surface | trimatic.SurfaceSet | trimatic.Part</em><em>]</em>) – One or more entities to compute outline.</li>
+<li><strong>sketch</strong> (<em>trimatic.Sketch</em>) – Target sketch for import.</li>
+<li><strong>construction</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, geometry is imported as construction.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">sketch</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Sketch</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">),</span> <span class="n">x_extent</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">sketch</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sketch</span><span class="p">(</span><span class="n">planes</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">object_coordinate_system</span><span class="o">.</span><span class="n">xy_plane</span><span class="o">.</span><span class="n">convert_to_plane</span><span class="p">())</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">sketch</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">surface_front</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Front&quot;</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_outline</span><span class="p">(</span><span class="n">sketch</span><span class="o">=</span><span class="n">sketch</span><span class="p">,</span> <span class="n">entities</span><span class="o">=</span><span class="n">surface_front</span><span class="p">,</span> <span class="n">construction</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.sketch.import_projection">
+<code class="descname">import_projection</code><span class="sig-paren">(</span><em>sketch</em>, <em>entities</em>, <em>construction=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/sketch.html#import_projection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.sketch.import_projection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Projects entities onto a sketch.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Curve | trimatic.CurveSet | trimatic.Arc | trimatic.Line | trimatic.Point | trimatic.SurfaceBorder | trimatic.SurfaceContour |</em><em> [</em><em>trimatic.Curve | trimatic.CurveSet | trimatic.Arc | trimatic.Line | trimatic.Point | trimatic.SurfaceBorder | trimatic.SurfaceContour</em><em>]</em>) – One or more entities to project.</li>
+<li><strong>sketch</strong> (<em>trimatic.Sketch</em>) – Sketch to project onto.</li>
+<li><strong>construction</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, geometry is imported as construction.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">sketch</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Sketch</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">),</span> <span class="n">x_extent</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">sketch1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sketch</span><span class="p">(</span><span class="n">planes</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">object_coordinate_system</span><span class="o">.</span><span class="n">xy_plane</span><span class="o">.</span><span class="n">convert_to_plane</span><span class="p">())</span>
+<span class="n">surface_left</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Left&quot;</span><span class="p">)</span>
+<span class="n">border_left</span> <span class="o">=</span> <span class="n">surface_left</span><span class="o">.</span><span class="n">get_border</span><span class="p">()</span>
+<span class="n">sketch1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">import_projection</span><span class="p">(</span><span class="n">sketch</span><span class="o">=</span><span class="n">sketch1</span><span class="p">,</span> <span class="n">entities</span><span class="o">=</span><span class="p">[</span><span class="n">border_left</span><span class="p">],</span> <span class="n">construction</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.sketch.sketch_to_curves">
+<code class="descname">sketch_to_curves</code><span class="sig-paren">(</span><em>sketch</em>, <em>add_to=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/sketch.html#sketch_to_curves"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.sketch.sketch_to_curves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a sketch to curves.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sketch</strong> (<em>trimatic.Sketch</em>) – Sketch to export.</li>
+<li><strong>add_to</strong> (<em>trimatic.Part</em><em>, </em><em>optional</em>) – Target part to add the resulting curve to. If set to None, a new part is created.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Part that contains the output curves.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">prim1</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">(</span><span class="n">point_1</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">point_2</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plane1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_3_points</span><span class="p">(</span><span class="n">point1</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">point2</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">),</span> <span class="n">point3</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+<span class="n">sketch1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sketch</span><span class="p">(</span><span class="n">planes</span><span class="o">=</span><span class="n">plane1</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_intersection</span><span class="p">(</span><span class="n">sketch1</span><span class="p">,</span> <span class="n">prim1</span><span class="p">,</span> <span class="n">construction</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">curve1</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">sketch</span><span class="o">.</span><span class="n">sketch_to_curves</span><span class="p">(</span><span class="n">sketch1</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span> <span class="p">(</span><span class="n">prim1</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span> <span class="p">(</span><span class="n">plane1</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span> <span class="p">(</span><span class="n">sketch1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trimatic.surface.html" class="btn btn-neutral float-right" title="surface" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="trimatic.remesh.html" class="btn btn-neutral" title="remesh" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

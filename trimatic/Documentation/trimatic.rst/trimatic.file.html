@@ -1,0 +1,2191 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>file &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="trimatic modules" href="trimatic.html"/>
+        <link rel="next" title="finish" href="trimatic.finish.html"/>
+        <link rel="prev" title="design" href="trimatic.design.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">trimatic API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="trimatic.html">trimatic modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="trimatic.data.html">data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.types.html">types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.align.html">align</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.analyze.html">analyze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.cad_link.html">cadlink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.curve.html">curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.design.html">design</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.finish.html">finish</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.fix.html">fix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.group.html">group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.interactive.html">interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.lattice.html">lattice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.logging.html">logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.mark.html">mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.measure.html">measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.preferences.html">preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.remesh.html">remesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.sketch.html">sketch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.surface.html">surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.texturing.html">texturing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.uv.html">uv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.view.html">view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.subscription.html">subscription</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">trimatic API</a> &raquo;</li>
+      
+          <li><a href="trimatic.html">trimatic modules</a> &raquo;</li>
+      
+    <li>file</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/trimatic.rst/trimatic.file.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-trimatic.file">
+<span id="file"></span><h1>file<a class="headerlink" href="#module-trimatic.file" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="trimatic.file.ExportOption">
+<em class="property">class </em><code class="descname">ExportOption</code><a class="reference internal" href="../_modules/trimatic/file.html#ExportOption"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.ExportOption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Export Option.</p>
+<dl class="attribute">
+<dt id="trimatic.file.ExportOption.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Export Option.'</em><a class="headerlink" href="#trimatic.file.ExportOption.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.ExportOption.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.file'</em><a class="headerlink" href="#trimatic.file.ExportOption.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.file.ExportOption.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.file.ExportOption.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.file.ExportOption._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.file.ExportOption._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.ExportOption._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'surface_and_volume_mesh': &lt;ExportOption.surface_and_volume_mesh: 'Export surface and volume mesh'&gt;, 'surface_mesh': &lt;ExportOption.surface_mesh: 'Export surface mesh'&gt;, 'volume_mesh': &lt;ExportOption.volume_mesh: 'Export volume mesh'&gt;}</em><a class="headerlink" href="#trimatic.file.ExportOption._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.ExportOption._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['surface_mesh', 'volume_mesh', 'surface_and_volume_mesh']</em><a class="headerlink" href="#trimatic.file.ExportOption._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.ExportOption._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.file.ExportOption._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.ExportOption._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'Export surface and volume mesh': &lt;ExportOption.surface_and_volume_mesh: 'Export surface and volume mesh'&gt;, 'Export surface mesh': &lt;ExportOption.surface_mesh: 'Export surface mesh'&gt;, 'Export volume mesh': &lt;ExportOption.volume_mesh: 'Export volume mesh'&gt;}</em><a class="headerlink" href="#trimatic.file.ExportOption._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.ExportOption.surface_and_volume_mesh">
+<code class="descname">surface_and_volume_mesh</code><em class="property"> = 'Export surface and volume mesh'</em><a class="headerlink" href="#trimatic.file.ExportOption.surface_and_volume_mesh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.ExportOption.surface_mesh">
+<code class="descname">surface_mesh</code><em class="property"> = 'Export surface mesh'</em><a class="headerlink" href="#trimatic.file.ExportOption.surface_mesh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.ExportOption.volume_mesh">
+<code class="descname">volume_mesh</code><em class="property"> = 'Export volume mesh'</em><a class="headerlink" href="#trimatic.file.ExportOption.volume_mesh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="trimatic.file.FaceSplitMethod">
+<em class="property">class </em><code class="descname">FaceSplitMethod</code><a class="reference internal" href="../_modules/trimatic/file.html#FaceSplitMethod"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.FaceSplitMethod" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Face Split Method.</p>
+<dl class="attribute">
+<dt id="trimatic.file.FaceSplitMethod.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Face Split Method.'</em><a class="headerlink" href="#trimatic.file.FaceSplitMethod.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.FaceSplitMethod.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.file'</em><a class="headerlink" href="#trimatic.file.FaceSplitMethod.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.file.FaceSplitMethod.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.file.FaceSplitMethod.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.file.FaceSplitMethod._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.file.FaceSplitMethod._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.FaceSplitMethod._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'split_by_part': &lt;FaceSplitMethod.split_by_part: 'By part'&gt;, 'split_by_shell': &lt;FaceSplitMethod.split_by_shell: 'By shell'&gt;, 'split_by_surface': &lt;FaceSplitMethod.split_by_surface: 'By surface'&gt;, 'split_by_surface_set': &lt;FaceSplitMethod.split_by_surface_set: 'By surface set'&gt;}</em><a class="headerlink" href="#trimatic.file.FaceSplitMethod._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.FaceSplitMethod._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['split_by_surface', 'split_by_part', 'split_by_surface_set', 'split_by_shell']</em><a class="headerlink" href="#trimatic.file.FaceSplitMethod._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.FaceSplitMethod._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.file.FaceSplitMethod._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.FaceSplitMethod._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'By part': &lt;FaceSplitMethod.split_by_part: 'By part'&gt;, 'By shell': &lt;FaceSplitMethod.split_by_shell: 'By shell'&gt;, 'By surface': &lt;FaceSplitMethod.split_by_surface: 'By surface'&gt;, 'By surface set': &lt;FaceSplitMethod.split_by_surface_set: 'By surface set'&gt;}</em><a class="headerlink" href="#trimatic.file.FaceSplitMethod._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.FaceSplitMethod.split_by_part">
+<code class="descname">split_by_part</code><em class="property"> = 'By part'</em><a class="headerlink" href="#trimatic.file.FaceSplitMethod.split_by_part" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.FaceSplitMethod.split_by_shell">
+<code class="descname">split_by_shell</code><em class="property"> = 'By shell'</em><a class="headerlink" href="#trimatic.file.FaceSplitMethod.split_by_shell" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.FaceSplitMethod.split_by_surface">
+<code class="descname">split_by_surface</code><em class="property"> = 'By surface'</em><a class="headerlink" href="#trimatic.file.FaceSplitMethod.split_by_surface" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.FaceSplitMethod.split_by_surface_set">
+<code class="descname">split_by_surface_set</code><em class="property"> = 'By surface set'</em><a class="headerlink" href="#trimatic.file.FaceSplitMethod.split_by_surface_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="trimatic.file.TypeOfBeam">
+<em class="property">class </em><code class="descname">TypeOfBeam</code><a class="reference internal" href="../_modules/trimatic/file.html#TypeOfBeam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.TypeOfBeam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="attribute">
+<dt id="trimatic.file.TypeOfBeam.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'An enumeration.'</em><a class="headerlink" href="#trimatic.file.TypeOfBeam.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.TypeOfBeam.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.file'</em><a class="headerlink" href="#trimatic.file.TypeOfBeam.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.file.TypeOfBeam.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.file.TypeOfBeam.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.file.TypeOfBeam._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.file.TypeOfBeam._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.TypeOfBeam._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'beam_type_linear': &lt;TypeOfBeam.beam_type_linear: 'Linear'&gt;, 'beam_type_quadratic': &lt;TypeOfBeam.beam_type_quadratic: 'Quadratic'&gt;}</em><a class="headerlink" href="#trimatic.file.TypeOfBeam._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.TypeOfBeam._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['beam_type_linear', 'beam_type_quadratic']</em><a class="headerlink" href="#trimatic.file.TypeOfBeam._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.TypeOfBeam._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.file.TypeOfBeam._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.TypeOfBeam._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'Linear': &lt;TypeOfBeam.beam_type_linear: 'Linear'&gt;, 'Quadratic': &lt;TypeOfBeam.beam_type_quadratic: 'Quadratic'&gt;}</em><a class="headerlink" href="#trimatic.file.TypeOfBeam._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.TypeOfBeam.beam_type_linear">
+<code class="descname">beam_type_linear</code><em class="property"> = 'Linear'</em><a class="headerlink" href="#trimatic.file.TypeOfBeam.beam_type_linear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.TypeOfBeam.beam_type_quadratic">
+<code class="descname">beam_type_quadratic</code><em class="property"> = 'Quadratic'</em><a class="headerlink" href="#trimatic.file.TypeOfBeam.beam_type_quadratic" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="trimatic.file.TypeOfElement">
+<em class="property">class </em><code class="descname">TypeOfElement</code><a class="reference internal" href="../_modules/trimatic/file.html#TypeOfElement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.TypeOfElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="attribute">
+<dt id="trimatic.file.TypeOfElement.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'An enumeration.'</em><a class="headerlink" href="#trimatic.file.TypeOfElement.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.TypeOfElement.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.file'</em><a class="headerlink" href="#trimatic.file.TypeOfElement.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.file.TypeOfElement.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.file.TypeOfElement.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.file.TypeOfElement._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.file.TypeOfElement._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.TypeOfElement._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'element_type_C3D10': &lt;TypeOfElement.element_type_C3D10: 'C3D10'&gt;, 'element_type_C3D10M': &lt;TypeOfElement.element_type_C3D10M: 'C3D10M'&gt;}</em><a class="headerlink" href="#trimatic.file.TypeOfElement._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.TypeOfElement._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['element_type_C3D10', 'element_type_C3D10M']</em><a class="headerlink" href="#trimatic.file.TypeOfElement._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.TypeOfElement._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.file.TypeOfElement._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.TypeOfElement._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'C3D10': &lt;TypeOfElement.element_type_C3D10: 'C3D10'&gt;, 'C3D10M': &lt;TypeOfElement.element_type_C3D10M: 'C3D10M'&gt;}</em><a class="headerlink" href="#trimatic.file.TypeOfElement._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.TypeOfElement.element_type_C3D10">
+<code class="descname">element_type_C3D10</code><em class="property"> = 'C3D10'</em><a class="headerlink" href="#trimatic.file.TypeOfElement.element_type_C3D10" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.file.TypeOfElement.element_type_C3D10M">
+<code class="descname">element_type_C3D10M</code><em class="property"> = 'C3D10M'</em><a class="headerlink" href="#trimatic.file.TypeOfElement.element_type_C3D10M" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.clear">
+<code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears the object tree and the log window.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True when the clear operation was successful.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">RuntimeError</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.exit">
+<code class="descname">exit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#exit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.exit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exits 3-matic. Calling this function has the same effect as closing 3-matic’s main window. 
+When called through an external IDE setup, 
+an exception can be raised in case the connection to 3-matic was closed before being able to receive the answer to the function call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Click OK to create a box. Click cancel to close 3-matic.&quot;</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Example&quot;</span>
+
+<span class="k">if</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">message_box</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span><span class="n">with_cancel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_3mf">
+<code class="descname">export_3mf</code><span class="sig-paren">(</span><em>entities</em>, <em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_3mf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_3mf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the specified parts to a 3mf file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> (</em><em>trimatic.Part</em><em>)</em>) – Part or list of parts to export.</li>
+<li><strong>filename</strong> (<em>string</em>) – Filename</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Filename of the file that was written.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">string</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_3mf</span><span class="p">(</span><span class="n">box</span><span class="p">,</span><span class="n">filename</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\MedData\box_3mf_example.3mf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_abaqus">
+<code class="descname">export_abaqus</code><span class="sig-paren">(</span><em>entities</em>, <em>output_directory</em>, <em>export_surface=True</em>, <em>volume_element_type=None</em>, <em>graph_beam_type=None</em>, <em>face_split_method=&lt;FaceSplitMethod.split_by_surface: 'By surface'&gt;</em>, <em>create_assembly=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_abaqus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_abaqus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the specified parts as ABAQUS files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> (</em><em>trimatic.Part</em><em>)</em>) – Part or list of parts to export.</li>
+<li><strong>output_directory</strong> (<em>string</em>) – Destination path to save the files. One file is created per part. The file name will be the name of the part followed by the extension ‘.inp’.</li>
+<li><strong>export_surface</strong> (<em>bool</em><em>, </em><em>optional</em>) – A boolean value which indicates whether the surface needs to be exported.</li>
+<li><strong>volume_element_type</strong> (<em>trimatic.TypeOfElement</em><em>, </em><em>optional</em>) – A value which indicates the type of volume mesh for exporting. When specifying None, the volume is not exported.</li>
+<li><strong>graph_beam_type</strong> (<em>trimatic.TypeOfBeam</em><em>, </em><em>optional</em>) – A value which indicates the type of graph structure for exporting. When specifying None, the graph structure is not exported.</li>
+<li><strong>face_split_method</strong> (<em>trimatic.FaceSplitMethod</em><em>, </em><em>optional</em>) – A value which indicates the face split method.</li>
+<li><strong>create_assembly</strong> (<em>bool</em><em>, </em><em>optional</em>) – A boolean value which indicates wheather an assembly needs to be created.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of paths to the ABAQUS files.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(string)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">adaptive_remesh_expert</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">box</span><span class="p">,</span><span class="n">shape_measure</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">ShapeMeasures</span><span class="o">.</span><span class="n">height_base_n</span><span class="p">,</span> <span class="n">maximum_triangle_edge_length</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_volume_mesh</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">element_type</span><span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">ElementType</span><span class="o">.</span><span class="n">Tet4</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_abaqus</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;C:\MedData&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">TypeOfElement</span><span class="o">.</span><span class="n">element_type_C3D10</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">FaceSplitMethod</span><span class="o">.</span><span class="n">split_by_surface</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_abaqus_single_output">
+<code class="descname">export_abaqus_single_output</code><span class="sig-paren">(</span><em>entities</em>, <em>filename</em>, <em>export_surface=True</em>, <em>volume_element_type=None</em>, <em>graph_beam_type=None</em>, <em>face_split_method=&lt;FaceSplitMethod.split_by_surface: 'By surface'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_abaqus_single_output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_abaqus_single_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the specified parts and/or points to a single ABAQUS file.
+An assembly will be created.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Point |</em><em> (</em><em>trimatic.Part | trimatic.Point</em><em>)</em>) – One or more parts and/or points to export.</li>
+<li><strong>filename</strong> (<em>string</em>) – The output filename of the file with extension ‘.inp’.</li>
+<li><strong>export_surface</strong> (<em>bool</em><em>, </em><em>optional</em>) – A boolean value which indicates whether the surface needs to be exported.</li>
+<li><strong>volume_element_type</strong> (<em>trimatic.TypeOfElement</em><em>, </em><em>optional</em>) – A value which indicates the type of volume mesh for exporting. When specifying None, the volume is not exported.</li>
+<li><strong>graph_beam_type</strong> (<em>trimatic.TypeOfBeam</em><em>, </em><em>optional</em>) – A value which indicates the type of graph structure for exporting. When specifying None, the graph structure is not exported.</li>
+<li><strong>face_split_method</strong> (<em>trimatic.FaceSplitMethod</em><em>, </em><em>optional</em>) – A value which indicates face split method.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of paths to the ABAQUS files.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(string)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_point</span><span class="p">(</span><span class="n">coords</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">adaptive_remesh_expert</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">box</span><span class="p">,</span><span class="n">shape_measure</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">ShapeMeasures</span><span class="o">.</span><span class="n">height_base_n</span><span class="p">,</span> <span class="n">maximum_triangle_edge_length</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_volume_mesh</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">element_type</span><span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">ElementType</span><span class="o">.</span><span class="n">Tet4</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_abaqus_single_output</span><span class="p">([</span><span class="n">box</span><span class="p">,</span> <span class="n">p1</span><span class="p">],</span> <span class="s1">&#39;C:\MedData\Export Abaqus.inp&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">TypeOfElement</span><span class="o">.</span><span class="n">element_type_C3D10</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">FaceSplitMethod</span><span class="o">.</span><span class="n">split_by_surface</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_analysis">
+<code class="descname">export_analysis</code><span class="sig-paren">(</span><em>entities</em>, <em>output_directory</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_analysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_analysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports one or more analyses to file(s).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Analysis |</em><em> [</em><em>trimatic.Analysis</em><em>]</em>) – Analysis to export</li>
+<li><strong>output_directory</strong> (<em>string</em>) – Directory to export to. Unique file names will be generated based on the name of the analysis.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of paths to the written files.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(string)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">sphere</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">analysis</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_part_comparison_analysis</span><span class="p">(</span><span class="n">sphere</span><span class="p">,</span> <span class="n">cylinder</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_analysis</span><span class="p">(</span><span class="n">analysis</span><span class="p">,</span> <span class="s2">&quot;C:\MedData&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_ansys">
+<code class="descname">export_ansys</code><span class="sig-paren">(</span><em>entities</em>, <em>output_directory</em>, <em>export_option=&lt;ExportOption.surface_mesh: 'Export surface mesh'&gt;</em>, <em>face_split_method=&lt;FaceSplitMethod.split_by_surface: 'By surface'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_ansys"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_ansys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the specified parts as an ANSYS file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> (</em><em>trimatic.Part</em><em>)</em>) – Part or list of parts to export.</li>
+<li><strong>output_directory</strong> (<em>string</em>) – Destination path to save the file(s). One file is created per part. The file name will be the name of the part followed by the extension ‘.cdb’.</li>
+<li><strong>export_option</strong> (<em>trimatic.ExportOption</em><em>, </em><em>optional</em>) – A value which indicates whether the surface mesh, the volume mesh, or both, need to be exported.</li>
+<li><strong>face_split_method</strong> (<em>trimatic.FaceSplitMethod</em><em>, </em><em>optional</em>) – A value which indicates face split method (when surfaces are exported).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of paths to the ansys files.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(string)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_ansys</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">box</span><span class="p">,</span> <span class="n">output_directory</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;C:\MedData&#39;</span><span class="p">,</span> <span class="n">face_split_method</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">FaceSplitMethod</span><span class="o">.</span><span class="n">split_by_surface</span><span class="p">,</span> <span class="n">export_option</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">ExportOption</span><span class="o">.</span><span class="n">surface_mesh</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_comsol">
+<code class="descname">export_comsol</code><span class="sig-paren">(</span><em>entities</em>, <em>output_directory</em>, <em>export_option=&lt;ExportOption.surface_mesh: 'Export surface mesh'&gt;</em>, <em>face_split_method=&lt;FaceSplitMethod.split_by_surface: 'By surface'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_comsol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_comsol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the specified parts as a comsol file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> (</em><em>trimatic.Part</em><em>)</em>) – Part or list of parts to export.</li>
+<li><strong>output_directory</strong> (<em>string</em>) – Destination path to save the files. One file is created per part. The file name will be the name of the part followed by the extension ‘.mphxt’.</li>
+<li><strong>export_option</strong> (<em>trimatic.ExportOption</em><em>, </em><em>optional</em>) – A value which indicates whether the surface mesh, the volume mesh, or both, need to be exported.</li>
+<li><strong>face_split_method</strong> (<em>trimatic.FaceSplitMethod</em><em>, </em><em>optional</em>) – A value which indicates face split method (when surfaces are exported).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of paths to the comsol files.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(string)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_comsol</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">box</span><span class="p">,</span> <span class="n">output_directory</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;C:\MedData&#39;</span><span class="p">,</span> <span class="n">face_split_method</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">FaceSplitMethod</span><span class="o">.</span><span class="n">split_by_surface</span><span class="p">,</span> <span class="n">export_option</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">ExportOption</span><span class="o">.</span><span class="n">surface_mesh</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_curves_and_primitives">
+<code class="descname">export_curves_and_primitives</code><span class="sig-paren">(</span><em>entities</em>, <em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_curves_and_primitives"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_curves_and_primitives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports curves and primitives to an XML file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Curve | trimatic.Line | trimatic.Point | trimatic.Plane | trimatic.Arc | trimatic.Cylinder | trimatic.Cone | trimatic.Sphere |</em><em> [</em><em>trimatic.Curve | trimatic.Line | trimatic.Point | trimatic.Plane | trimatic.Arc | trimatic.Cylinder | trimatic.Cone | trimatic.Sphere</em><em>]</em>) – One or more curves and/or primitives to export.</li>
+<li><strong>filename</strong> (<em>string</em>) – Filename</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Name of the written file.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">string</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">curve</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_curve</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)])</span>
+<span class="n">point</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_point</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">line</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_line</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">point</span><span class="p">)</span>
+<span class="n">plane</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_normal_origin</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">point</span><span class="p">)</span>
+<span class="n">arc</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_arc_normal_center_radius</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mf">6.54</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">point</span><span class="p">)</span>
+<span class="n">cone</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cone</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sphere</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_center_radius</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_curves_and_primitives</span><span class="p">([</span><span class="n">curve</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">plane</span><span class="p">,</span> <span class="n">arc</span><span class="p">,</span> <span class="n">cone</span><span class="p">,</span> <span class="n">sphere</span><span class="p">],</span> <span class="s1">&#39;C:\MedData\curve_and_primitives.xml&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_fluent">
+<code class="descname">export_fluent</code><span class="sig-paren">(</span><em>entities</em>, <em>output_directory</em>, <em>export_option=&lt;ExportOption.surface_mesh: 'Export surface mesh'&gt;</em>, <em>face_split_method=&lt;FaceSplitMethod.split_by_surface: 'By surface'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_fluent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_fluent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the specified parts as FLUENT files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> (</em><em>trimatic.Part</em><em>)</em>) – Part or list of parts to export.</li>
+<li><strong>output_directory</strong> (<em>string</em>) – Destination path to save the files. One file is created per part. The file name will be the name  of the part followed by the extension ‘.msh’.</li>
+<li><strong>export_option</strong> (<em>trimatic.ExportOption</em><em>, </em><em>optional</em>) – A value which indicates whether the surface mesh, the volume mesh, or both, need to be exported.</li>
+<li><strong>face_split_method</strong> (<em>trimatic.FaceSplitMethod</em><em>, </em><em>optional</em>) – A value which indicates face split method (when surfaces are exported).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of paths to the FLUENT files.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(string)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_fluent</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">cylinder</span><span class="p">,</span> <span class="n">output_directory</span><span class="o">=</span><span class="s2">&quot;C:\MedData&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_iges">
+<code class="descname">export_iges</code><span class="sig-paren">(</span><em>entities</em>, <em>output_directory</em>, <em>patching=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_iges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_iges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the specified parts to iges files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> (</em><em>trimatic.Part</em><em>)</em>) – Part or list of parts to export.</li>
+<li><strong>output_directory</strong> (<em>string</em>) – Destination path to save the file(s).</li>
+<li><strong>patching</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the part will first be subdivided in patches with default parameters. If you want more control over patching, use trimatic.automatic_rectangular_patching.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Names of written files.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(string)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_iges</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">cylinder</span><span class="p">,</span> <span class="n">output_directory</span><span class="o">=</span><span class="s2">&quot;C:\MedData&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_mdck">
+<code class="descname">export_mdck</code><span class="sig-paren">(</span><em>entities</em>, <em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_mdck"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_mdck" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export a single MDCK file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> (</em><em>trimatic.Part</em><em>)</em>) – Part or list of parts to export.</li>
+<li><strong>filename</strong> (<em>string</em>) – Filename</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Filename of the file that was written.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">string</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_mdck</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">box</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\MedData\Box.mdck&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_measurements_to_xml">
+<code class="descname">export_measurements_to_xml</code><span class="sig-paren">(</span><em>entities</em>, <em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_measurements_to_xml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_measurements_to_xml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports measurements to an XML file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Annotation | trimatic.AngleMeasurement | trimatic.DiameterMeasurement | trimatic.DistanceMeasurement |</em><em> [</em><em>trimatic.Annotation | trimatic.AngleMeasurement | trimatic.DiameterMeasurement | trimatic.DistanceMeasurement</em><em>]</em>) – One or more measurements to export.</li>
+<li><strong>filename</strong> (<em>string</em>) – Filename</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Filename of the file that was written.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">string</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">line_from</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_line</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+<span class="n">line_to</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_line</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+<span class="n">angle_measurement</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_angle_measurement_line_to_line</span><span class="p">(</span><span class="n">line_from</span><span class="p">,</span> <span class="n">line_to</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MeasurementCoordinates</span><span class="o">.</span><span class="n">XYZ</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_measurements_to_xml</span><span class="p">(</span><span class="n">angle_measurement</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData\test.xml&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_nastran">
+<code class="descname">export_nastran</code><span class="sig-paren">(</span><em>entities</em>, <em>output_directory</em>, <em>export_surface=True</em>, <em>export_volume=False</em>, <em>export_graph=False</em>, <em>face_split_method=&lt;FaceSplitMethod.split_by_surface: 'By surface'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_nastran"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_nastran" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the specified parts as Nastran files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> (</em><em>trimatic.Part</em><em>)</em>) – Part or list of parts to export.</li>
+<li><strong>output_directory</strong> (<em>string</em>) – Destination path to save the files. One file is created per part. The file name will be the name of the part followed by the extension ‘.nas’.</li>
+<li><strong>export_surface</strong> (<em>bool</em><em>, </em><em>optional</em>) – A boolean value which indicates whether the surface(s) need to be exported.</li>
+<li><strong>export_volume</strong> (<em>bool</em><em>, </em><em>optional</em>) – A boolean value which indicates whether the volume(s) need to be exported.</li>
+<li><strong>export_graph</strong> (<em>bool</em><em>, </em><em>optional</em>) – A boolean value which indicates whether the graphs need to be exported.</li>
+<li><strong>face_split_method</strong> (<em>trimatic.FaceSplitMethod</em><em>, </em><em>optional</em>) – A value which indicates the face split method.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of paths to the Nastran files.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(string)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_nastran</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">box</span><span class="p">,</span> <span class="n">output_directory</span><span class="o">=</span><span class="s2">&quot;C:\MedData&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_obj">
+<code class="descname">export_obj</code><span class="sig-paren">(</span><em>entities</em>, <em>filename</em>, <em>units=1000</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_obj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_obj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the specified parts to an .obj file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> (</em><em>trimatic.Part</em><em>)</em>) – Part or list of parts to export.</li>
+<li><strong>filename</strong> (<em>string</em>) – Filename</li>
+<li><strong>units</strong> (<em>float</em><em>, </em><em>optional</em>) – Units to which file must be written. 1 for mm, 1000 for meters, etc.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Filename of the file that was written.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">string</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">myfilename</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\MedData\box.obj&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_obj</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">box</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">myfilename</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_patran">
+<code class="descname">export_patran</code><span class="sig-paren">(</span><em>entities</em>, <em>output_directory</em>, <em>export_surface=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_patran"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_patran" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the specified parts as Patran files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> (</em><em>trimatic.Part</em><em>)</em>) – Part or list of parts to export.</li>
+<li><strong>output_directory</strong> (<em>string</em>) – Destination path to save the files. One file is created per part. The file name will be the name of the part followed by the extension ‘.out’.</li>
+<li><strong>export_surface</strong> (<em>bool</em><em>, </em><em>optional</em>) – A boolean value which indicates whether the surface(s) need to be exported. If False, only the volume(s) will be exported.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of paths to the Patran files.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(string)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_patran</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">box</span><span class="p">,</span> <span class="n">output_directory</span><span class="o">=</span><span class="s2">&quot;C:\MedData&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_pdf">
+<code class="descname">export_pdf</code><span class="sig-paren">(</span><em>entities</em>, <em>filename</em>, <em>header_image=None</em>, <em>header_height=40</em>, <em>footer_image=None</em>, <em>footer_height=40</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_pdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the specified entities to 3D pdf file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Line | trimatic.Point | trimatic.Plane | trimatic.Annotation | trimatic.DiameterMeasurement | trimatic.DistanceMeasurement | trimatic.AngleMeasurement |</em><em> [</em><em>trimatic.Object</em><em>]</em>) – Entities to export.</li>
+<li><strong>filename</strong> (<em>string</em>) – Filename</li>
+<li><strong>header_image</strong> (<em>string</em><em>, </em><em>optional</em>) – Filename of image to be used for header.</li>
+<li><strong>header_height</strong> (<em>float</em><em>, </em><em>optional</em>) – Height of the header in mm.</li>
+<li><strong>footer_image</strong> (<em>string</em><em>, </em><em>optional</em>) – Filename of image to be used for the footer.</li>
+<li><strong>footer_height</strong> (<em>float</em><em>, </em><em>optional</em>) – Height of the footer in mm.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Filename of the file that was written.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">string</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">myfilename</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData\test.pdf&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_pdf</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">myfilename</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_screen_capture">
+<code class="descname">export_screen_capture</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_screen_capture"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_screen_capture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the Work Area to an image file. The format is determined by the file name extension. 
+Supported formats/extensions are: .bmp, .jpeg, .gif, .png, and .tiff.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>string</em>) – Filename</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Upon success, returns the name of the written file.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValueError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">myfilename</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData\box.jpg&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_screen_capture</span><span class="p">(</span><span class="n">myfilename</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_step">
+<code class="descname">export_step</code><span class="sig-paren">(</span><em>entities</em>, <em>output_directory</em>, <em>patching=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the specified parts to step files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> (</em><em>trimatic.Part</em><em>)</em>) – Part or list of parts to export.</li>
+<li><strong>output_directory</strong> (<em>string</em>) – Destination path to save the file(s).</li>
+<li><strong>patching</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the part will first be subdivided into patches with default parameters. If you want more control over the patching, it is recommended to use trimatic.automatic_rectangular_patching.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Names of written files.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(string)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_step</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_stl_ascii">
+<code class="descname">export_stl_ascii</code><span class="sig-paren">(</span><em>entities</em>, <em>output_directory</em>, <em>include_surface_structure=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_stl_ascii"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_stl_ascii" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the specified part(s) as an ASCII STL file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> (</em><em>trimatic.Part</em><em>)</em>) – Part or list of parts to export.</li>
+<li><strong>output_directory</strong> (<em>string</em>) – Destination path to save the file(s).</li>
+<li><strong>include_surface_structure</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, surfaces information is included in the export.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of paths to the STL files.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(string)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_stl_ascii</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_stl_binary">
+<code class="descname">export_stl_binary</code><span class="sig-paren">(</span><em>entities</em>, <em>output_directory</em>, <em>include_color=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_stl_binary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_stl_binary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the specified part(s) as a binary STL file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> (</em><em>trimatic.Part</em><em>)</em>) – Part or list of parts to export.</li>
+<li><strong>output_directory</strong> (<em>string</em>) – Destination path to save the file(s).</li>
+<li><strong>include_color</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, triangle color information is included in the exported part.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of paths to the STL files.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(string)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_stl_binary</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_transformation_matrix">
+<code class="descname">export_transformation_matrix</code><span class="sig-paren">(</span><em>entity</em>, <em>target_entity</em>, <em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_transformation_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_transformation_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the transformation between two entities to a text file.</p>
+<p>This function allows you to export a .txt file containing the transformation matrix that aligns the object coordinate system of an entity (start position) to that of a target entity (final position). 
+A summary of the rotations and translations described by the matrix is also included.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entity</strong> (<em>trimatic.Part</em>) – Entity whose OCS is the start position.</li>
+<li><strong>target_entity</strong> (<em>trimatic.Part</em>) – Entity whose OCS is the final position.</li>
+<li><strong>filename</strong> (<em>string</em>) – Filename</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Filename of the file that was written.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">string</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">part_1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">part_2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">part_1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">myfilename</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData\matrix.txt&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_transformation_matrix</span><span class="p">(</span><span class="n">part_1</span><span class="p">,</span> <span class="n">part_2</span><span class="p">,</span> <span class="n">myfilename</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_vrml">
+<code class="descname">export_vrml</code><span class="sig-paren">(</span><em>entities</em>, <em>filename</em>, <em>units=1000</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_vrml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_vrml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the specified parts to a .vrml file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> (</em><em>trimatic.Part</em><em>)</em>) – Part or list of parts to export.</li>
+<li><strong>filename</strong> (<em>string</em>) – Filename</li>
+<li><strong>units</strong> (<em>float</em><em>, </em><em>optional</em>) – Units to which file must be written. 1 for mm, 1000 for meters, etc.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Filename of the file that was written.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">string</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">myfilename</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData\box.wrl&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_vrml</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">box</span><span class="p">,</span><span class="n">filename</span><span class="o">=</span><span class="n">myfilename</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_x3d">
+<code class="descname">export_x3d</code><span class="sig-paren">(</span><em>entities</em>, <em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_x3d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_x3d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the specified parts to a X3D file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> (</em><em>trimatic.Part</em><em>)</em>) – Part or list of parts to export.</li>
+<li><strong>filename</strong> (<em>string</em>) – Filename</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Filename of the file that was written.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">string</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">myfilename</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData\box.x3d&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_x3d</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">box</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">myfilename</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.export_zpr">
+<code class="descname">export_zpr</code><span class="sig-paren">(</span><em>entities</em>, <em>output_directory</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#export_zpr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.export_zpr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the specified parts as ZPR files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> (</em><em>trimatic.Part</em><em>)</em>) – Part or list of parts to export. Colors defined on surfaces will be exported.</li>
+<li><strong>output_directory</strong> (<em>string</em>) – Destination path to save the files. One file is created per part. The file name will be the name of the part followed by the extension ‘.zpr’.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of the path to the ZPR files.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(string)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_zpr</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.get_application_path">
+<code class="descname">get_application_path</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#get_application_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.get_application_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the path where 3-matic is installed. This can be useful, for example to locate the DemoFiles folder or the UnitCellLibrary.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The full path to the application executable file.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Full path = &quot;</span> <span class="o">+</span> <span class="n">path</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3-matic installation folder is: &quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.get_project_filename">
+<code class="descname">get_project_filename</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#get_project_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.get_project_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the full path of the currently opened project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">path + filename</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">RuntimeError</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Heart.mxp&quot;</span><span class="p">)</span>
+<span class="n">projfilename</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">get_project_filename</span><span class="p">()</span>
+<span class="n">basename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">projfilename</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">newpath</span> <span class="o">=</span> <span class="s2">&quot;C:</span><span class="se">\\</span><span class="s2">MedData</span><span class="se">\\</span><span class="s2">&quot;</span>
+<span class="n">backupname</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">basename</span><span class="p">)</span>
+<span class="n">backupname</span> <span class="o">+=</span> <span class="sa">r</span><span class="s2">&quot;_backup&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">save_project</span><span class="p">(</span><span class="n">newpath</span> <span class="o">+</span> <span class="n">backupname</span> <span class="o">+</span> <span class="n">ext</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.import_3dm">
+<code class="descname">import_3dm</code><span class="sig-paren">(</span><em>filename</em>, <em>surface_accuracy=0.01</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#import_3dm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.import_3dm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a single .3dm file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>string</em>) – Path to the file to import.</li>
+<li><strong>surface_accuracy</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum allowed distance deviation between the CAD file and the triangulation.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple with imported parts.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">FileNotFoundError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_3dm</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\Users\Name\MyFiles\Example_folder\example_file.3dm&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.import_3mf">
+<code class="descname">import_3mf</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#import_3mf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.import_3mf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a 3mf file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>string</em>) – Path to the file to import.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple with imported parts.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Part)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">FileNotFoundError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_3mf</span><span class="p">(</span><span class="n">box</span><span class="p">,</span><span class="n">filename</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\MedData\box_3mf_example.3mf&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_3mf</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\MedData\box_3mf_example.3mf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.import_catia5">
+<code class="descname">import_catia5</code><span class="sig-paren">(</span><em>filename</em>, <em>surface_accuracy=0.01</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#import_catia5"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.import_catia5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a single .CATPart or .CATProduct file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>string</em>) – Path to the file to import.</li>
+<li><strong>surface_accuracy</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum allowed distance deviation between the CAD file and the triangulation.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple with imported parts.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">FileNotFoundError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_catia5</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\Users\Name\MyFiles\Example_folder\example_file.CATPro&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.import_iges">
+<code class="descname">import_iges</code><span class="sig-paren">(</span><em>filename</em>, <em>surface_accuracy=0.01</em>, <em>layer_to_part=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#import_iges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.import_iges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a single .igs or .iges file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>string</em>) – Path to the file to import.</li>
+<li><strong>surface_accuracy</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum allowed distance deviation between the CAD file and the triangulation.</li>
+<li><strong>layer_to_part</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True: all the entities which are grouped in one layer, will be grouped in one part.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple with imported parts.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">FileNotFoundError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_iges</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\plate.igs&quot;</span><span class="p">,</span> <span class="n">surface_accuracy</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.import_magics">
+<code class="descname">import_magics</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#import_magics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.import_magics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a single .magics file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>string</em>) – Path to the file to import.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple with imported parts.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Part)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">FileNotFoundError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_magics</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\Users\Name\MyFiles\Example_folder\example_file.magics&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.import_mdck">
+<code class="descname">import_mdck</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#import_mdck"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.import_mdck" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a single MDCK file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>string</em>) – Path to the file to import.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple with imported parts.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Part)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">FileNotFoundError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">my_filename</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData\box_mdck_example.mdck&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_mdck</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">box</span><span class="p">,</span><span class="n">filename</span><span class="o">=</span><span class="n">my_filename</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_mdck</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">my_filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.import_obj">
+<code class="descname">import_obj</code><span class="sig-paren">(</span><em>filename</em>, <em>units=1000</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#import_obj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.import_obj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a single obj file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>string</em>) – Path to the file to import.</li>
+<li><strong>units</strong> (<em>float</em><em>, </em><em>optional</em>) – Units in which file was written. 1 for mm, 1000 for meters, etc.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple with imported parts.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">FileNotFoundError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">path</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\MedData\box.obj&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_obj</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">box</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_obj</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.import_part_stl">
+<code class="descname">import_part_stl</code><span class="sig-paren">(</span><em>filename</em>, <em>fix_normals=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#import_part_stl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.import_part_stl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a single STL file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>string</em>) – Path to the file to import.</li>
+<li><strong>fix_normals</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, triangles that are detected to have inverted normals are flipped.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Imported part</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">FileNotFoundError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_part_stl</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Bad.stl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.import_part_stl_split_by_angle">
+<code class="descname">import_part_stl_split_by_angle</code><span class="sig-paren">(</span><em>filename</em>, <em>fix_normals=False</em>, <em>wireframe_angle=30</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#import_part_stl_split_by_angle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.import_part_stl_split_by_angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a single STL file and automatically split the surfaces according to the specified wireframe angle.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>string</em>) – Path to the file to import.</li>
+<li><strong>fix_normals</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, triangles that are detected to have inverted normals are flipped.</li>
+<li><strong>wireframe_angle</strong> (<em>float</em><em>, </em><em>optional</em>) – Minimum angle between adjacent triangles for a common edge to be treated as the
+wireframe for splitting.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Imported part</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">FileNotFoundError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">myfilename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Flange.stl&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_part_stl_split_by_angle</span><span class="p">(</span><span class="n">myfilename</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="mi">60</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.import_part_stl_split_by_color">
+<code class="descname">import_part_stl_split_by_color</code><span class="sig-paren">(</span><em>filename</em>, <em>fix_normals=False</em>, <em>keep_surface_color=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#import_part_stl_split_by_color"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.import_part_stl_split_by_color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a single STL file and automatically split the surfaces according to color.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>string</em>) – Path to the file to import.</li>
+<li><strong>fix_normals</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, triangles that are detected to have inverted normals are flipped.</li>
+<li><strong>keep_surface_color</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the surface color of the STL will be preserved after import.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Imported part</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">FileNotFoundError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">myfilename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Flange.stl&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_part_stl_split_by_color</span><span class="p">(</span><span class="n">myfilename</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.import_pro_engineer">
+<code class="descname">import_pro_engineer</code><span class="sig-paren">(</span><em>filename</em>, <em>surface_accuracy=0.01</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#import_pro_engineer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.import_pro_engineer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a single .prt or .asm file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>string</em>) – Path to the file to import.</li>
+<li><strong>surface_accuracy</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum allowed distance deviation between the CAD file and the triangulation.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple with imported parts.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">FileNotFoundError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_pro_engineer</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\Users\Name\MyFiles\Example_folder\example_file.prt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.import_project">
+<code class="descname">import_project</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#import_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.import_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imports a 3-matic or Mimics project file.</p>
+<p>Entities from the imported file are merged into what is currently opened.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>string</em>) – Path to mxp/mcs file.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple of imported objects.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Object)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">FileNotFoundError, RuntimeError, ValueError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">myfilename</span>  <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData\DemoFiles\Femur.mcs&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_project</span><span class="p">(</span><span class="n">myfilename</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.import_solidworks">
+<code class="descname">import_solidworks</code><span class="sig-paren">(</span><em>filename</em>, <em>surface_accuracy=0.01</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#import_solidworks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.import_solidworks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a single .sldprt or .sldasm file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>string</em>) – Path to the file to import.</li>
+<li><strong>surface_accuracy</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum allowed distance deviation between the CAD file and the triangulation.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple with imported parts.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">FileNotFoundError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_solidworks</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\Users\Name\MyFiles\Example_folder\example_file.sldprt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.import_step">
+<code class="descname">import_step</code><span class="sig-paren">(</span><em>filename</em>, <em>surface_accuracy=0.01</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#import_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.import_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a single .stp or .step file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>string</em>) – Path to the file to import.</li>
+<li><strong>surface_accuracy</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum allowed distance deviation between the CAD file and the triangulation.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple with imported parts.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">FileNotFoundError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">part</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;box_step_example&quot;</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_step</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">part</span><span class="p">)</span>
+
+<span class="n">my_filename</span> <span class="o">=</span>  <span class="sa">r</span><span class="s2">&quot;C:\MedData\box_step_example.step&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_step</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">my_filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.import_unigraphics_parasolid">
+<code class="descname">import_unigraphics_parasolid</code><span class="sig-paren">(</span><em>filename</em>, <em>surface_accuracy=0.01</em>, <em>layer_to_part=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#import_unigraphics_parasolid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.import_unigraphics_parasolid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a single .prt or .x_t or .x_b file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>string</em>) – Path to the file to import.</li>
+<li><strong>surface_accuracy</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum allowed distance deviation between the CAD file and the triangulation.</li>
+<li><strong>layer_to_part</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True: all the entities which are grouped in one layer, will be grouped in one part.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple with imported parts.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">FileNotFoundError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_unigraphics_parasolid</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\Users\Name\MyFiles\Example_folder\example_file.prt &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.import_vrml">
+<code class="descname">import_vrml</code><span class="sig-paren">(</span><em>filename</em>, <em>units=1000</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#import_vrml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.import_vrml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a single .wrl file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>string</em>) – Path to the file to import.</li>
+<li><strong>units</strong> (<em>float</em><em>, </em><em>optional</em>) – Units in which file was written. 1 for mm, 1000 for meters, etc.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple with imported parts.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">FileNotFoundError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">myfilename</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData\box.wrl&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_vrml</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">box</span><span class="p">,</span><span class="n">filename</span><span class="o">=</span><span class="n">myfilename</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_vrml</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">myfilename</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.import_x3d">
+<code class="descname">import_x3d</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#import_x3d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.import_x3d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a single .x3d file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>string</em>) – Path to the file to import.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple with imported parts.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Part)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">FileNotFoundError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">myfilename</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData\box.x3d&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_x3d</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">box</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">myfilename</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_x3d</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">myfilename</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.import_xml">
+<code class="descname">import_xml</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#import_xml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.import_xml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import analytical primitives or polydata from an XML file. When importing polydata, curves will be created. A new part will be created to contain the curves.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>string</em>) – Path to the file to import.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Imported entities</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(trimatic.Part | trimatic.Line | trimatic.Point | trimatic.Plane | trimatic.Arc | trimatic.Cylinder | trimatic.Sphere)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">FileNotFoundError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">sphere</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_center_radius</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mf">2.5</span><span class="p">)</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;C:\MedData\curve_and_primitives.xml&#39;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">export_curves_and_primitives</span><span class="p">(</span><span class="n">sphere</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">import_xml</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.new_project">
+<code class="descname">new_project</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#new_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.new_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts a new project.</p>
+<p>Be advised that the current project will be closed without saving.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if a new project was successfully created.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">RuntimeError</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">new_project</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.open_project">
+<code class="descname">open_project</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#open_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.open_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Opens a 3-matic or Magics project file.</p>
+<p>Be advised that the current project will be closed without saving.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>string</em>) – Path of the mxp/magics file.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if a new project was successfully created.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">FileNotFoundError, RuntimeError, ValueError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.file.save_project">
+<code class="descname">save_project</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/file.html#save_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.file.save_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves current project.</p>
+<p>If the file already exists, the file is overwritten.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>string</em>) – Path to the file to write. When None is specified, the filename of the currently opened project is used.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Path of written filename.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValueError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">myfilename</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData\my_project.mxp&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">save_project</span><span class="p">(</span><span class="n">myfilename</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trimatic.finish.html" class="btn btn-neutral float-right" title="finish" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="trimatic.design.html" class="btn btn-neutral" title="design" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

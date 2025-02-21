@@ -1,0 +1,18 @@
+Introduction
+==========================
+
+3-matic scripting now supports direct integration with external IDEs. This new functionality allows you to write, run and debug 3-matic scripts through external IDEs like PyCharm and Eclipse.
+
+External IDEs facilitates you to:
+
+•	Manage complex scripts with multiple files
+•	Code editing and refactoring tools
+•	Package and environment management
+
+3-matic’s direct integration with external IDEs is primarily focused on enabling you to write and debug scripts in a polished Python environment. However, there is a delay in running scripts through an external IDE. Therefore, it is recommended that you run scripts through 3-matic for normal operations.
+
+Moreover, you will avoid small differences in Python types in some advanced use cases. In the following use cases, you can find different behavior of a script in 3-matic vs external IDE.
+
+.. image:: ide_performance.png
+   :scale: 100 %
+   :align: center

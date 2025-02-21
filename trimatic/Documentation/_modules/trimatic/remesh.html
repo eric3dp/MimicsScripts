@@ -1,0 +1,811 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>trimatic.remesh &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>trimatic.remesh</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for trimatic.remesh</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pymatic</span>
+<span class="kn">import</span> <span class="nn">trimatic.utils</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<div class="viewcode-block" id="ShapeMeasuresAll"><a class="viewcode-back" href="../../trimatic.rst/trimatic.remesh.html#trimatic.remesh.ShapeMeasuresAll">[docs]</a><span class="k">class</span> <span class="nc">ShapeMeasuresAll</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Measures for remesh, analyze mesh etc.&quot;&quot;&quot;</span>
+
+    <span class="n">rin_rout</span> <span class="o">=</span> <span class="s2">&quot;R-in/R-out (N)&quot;</span>
+    <span class="n">height_base_n</span> <span class="o">=</span> <span class="s2">&quot;Height/Base (N)&quot;</span>
+    <span class="n">height_base_a</span> <span class="o">=</span> <span class="s2">&quot;Height/Base (A)&quot;</span>
+    <span class="n">skewness_n</span> <span class="o">=</span> <span class="s2">&quot;Skewness (N)&quot;</span>
+    <span class="n">minimum_face_angle_n</span> <span class="o">=</span> <span class="s2">&quot;Minimum face angle (N)&quot;</span>
+    <span class="n">maximum_face_angle_n</span> <span class="o">=</span> <span class="s2">&quot;Maximum face angle (N)&quot;</span>
+    <span class="n">minimum_face_angle_a</span> <span class="o">=</span> <span class="s2">&quot;Minimum face angle (A)&quot;</span>
+    <span class="n">angle_ratio_n</span> <span class="o">=</span> <span class="s2">&quot;Angle ratio (N)&quot;</span>
+    <span class="n">edge_ratio_n</span> <span class="o">=</span> <span class="s2">&quot;Edge ratio (min/max) (N)&quot;</span>
+    <span class="n">equi_angle_skewness_n</span> <span class="o">=</span> <span class="s2">&quot;Equi-angle skewness (N)&quot;</span>
+    <span class="n">stretch_n</span> <span class="o">=</span> <span class="s2">&quot;Stretch (N)&quot;</span>
+    <span class="c1">#analysis</span>
+    <span class="n">minimum_edge_length_a</span> <span class="o">=</span> <span class="s2">&quot;Minimum edge length (A)&quot;</span>
+    <span class="n">maximum_edge_length_a</span> <span class="o">=</span> <span class="s2">&quot;Maximum edge length (A)&quot;</span>
+    <span class="n">edge_ratio_a</span> <span class="o">=</span> <span class="s2">&quot;Edge ratio (max/min) (A)&quot;</span>
+    <span class="n">abaqus_shape_factor_n</span> <span class="o">=</span> <span class="s2">&quot;Abaqus shape factor (N)&quot;</span>
+    <span class="n">ansys_element_quality_n</span> <span class="o">=</span> <span class="s2">&quot;Ansys element quality (N)&quot;</span>
+    <span class="n">fluent_orthogonal_quality_n</span> <span class="o">=</span> <span class="s2">&quot;Fluent orthogonal quality (N)&quot;</span>
+    <span class="n">maximum_face_angle_a</span> <span class="o">=</span> <span class="s2">&quot;Maximum face angle (A)&quot;</span>
+    <span class="c1">#volume specific</span>
+
+    <span class="n">r_in_edge_n</span> <span class="o">=</span> <span class="s2">&quot;R-in/Edge (N)&quot;</span>
+    <span class="n">r_out_edge_a</span> <span class="o">=</span> <span class="s2">&quot;R-out/Edge (A)&quot;</span>
+    <span class="n">mean_ratio_n</span> <span class="o">=</span> <span class="s2">&quot;Mean ratio (N)&quot;</span>
+    <span class="n">aspect_ratio_a</span> <span class="o">=</span> <span class="s2">&quot;Aspect ratio (A)&quot;</span>
+    <span class="n">jacobian_a</span> <span class="o">=</span> <span class="s2">&quot;Jacobian (A)&quot;</span>
+    <span class="n">jacobian_n</span> <span class="o">=</span> <span class="s2">&quot;Jacobian (N)&quot;</span>
+    <span class="n">jacobian_ratio_a</span> <span class="o">=</span> <span class="s2">&quot;Jacobian Ratio (A)&quot;</span>
+    <span class="n">minimum_volume_a</span> <span class="o">=</span> <span class="s2">&quot;Minimum volume (A)&quot;</span>
+    <span class="n">maximum_volume_a</span> <span class="o">=</span> <span class="s2">&quot;Maximum volume (A)&quot;</span>
+    <span class="n">minimum_dihedral_angle_a</span> <span class="o">=</span> <span class="s2">&quot;Minimum dihedral angle (A)&quot;</span>
+    <span class="n">maximum_dihedral_angle_a</span> <span class="o">=</span> <span class="s2">&quot;Maximum dihedral angle (A)&quot;</span></div>
+
+<div class="viewcode-block" id="ShapeMeasures"><a class="viewcode-back" href="../../trimatic.rst/trimatic.remesh.html#trimatic.remesh.ShapeMeasures">[docs]</a><span class="k">class</span> <span class="nc">ShapeMeasures</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Measures for adaptive_remesh_expert.&quot;&quot;&quot;</span>
+
+    <span class="n">rin_rout</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">rin_rout</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">height_base_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">height_base_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">height_base_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">height_base_a</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">skewness_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">skewness_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">minimum_face_angle_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">minimum_face_angle_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">maximum_face_angle_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">maximum_face_angle_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">minimum_face_angle_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">minimum_face_angle_a</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">angle_ratio_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">angle_ratio_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">edge_ratio_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">edge_ratio_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">equi_angle_skewness_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">equi_angle_skewness_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">stretch_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">stretch_n</span><span class="o">.</span><span class="n">value</span></div>
+
+<div class="viewcode-block" id="ShapeMeasuresAnalyzeMeshQualitySurface"><a class="viewcode-back" href="../../trimatic.rst/trimatic.remesh.html#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualitySurface">[docs]</a><span class="k">class</span> <span class="nc">ShapeMeasuresAnalyzeMeshQualitySurface</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Measures for analyze_mesh_quality_surface.&quot;&quot;&quot;</span>
+
+    <span class="n">rin_rout</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">rin_rout</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">height_base_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">height_base_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">minimum_face_angle_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">minimum_face_angle_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">maximum_face_angle_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">maximum_face_angle_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">minimum_face_angle_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">minimum_face_angle_a</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">edge_ratio_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">edge_ratio_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">equi_angle_skewness_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">equi_angle_skewness_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">minimum_edge_length_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">minimum_edge_length_a</span><span class="o">.</span><span class="n">value</span> 
+    <span class="n">maximum_edge_length_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">maximum_edge_length_a</span><span class="o">.</span><span class="n">value</span> 
+    <span class="n">edge_ratio_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">edge_ratio_a</span><span class="o">.</span><span class="n">value</span> 
+    <span class="n">abaqus_shape_factor_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">abaqus_shape_factor_n</span><span class="o">.</span><span class="n">value</span> 
+    <span class="n">ansys_element_quality_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">ansys_element_quality_n</span><span class="o">.</span><span class="n">value</span> 
+    <span class="n">fluent_orthogonal_quality_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">fluent_orthogonal_quality_n</span><span class="o">.</span><span class="n">value</span> 
+    <span class="n">maximum_face_angle_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">maximum_face_angle_a</span><span class="o">.</span><span class="n">value</span> 
+    <span class="c1">#surface specific</span>
+    <span class="n">angle_ratio_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">angle_ratio_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">stretch_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">stretch_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">height_base_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">height_base_a</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">skewness_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">skewness_n</span><span class="o">.</span><span class="n">value</span></div>
+
+<div class="viewcode-block" id="ShapeMeasuresAnalyzeMeshQualityVolume"><a class="viewcode-back" href="../../trimatic.rst/trimatic.remesh.html#trimatic.remesh.ShapeMeasuresAnalyzeMeshQualityVolume">[docs]</a><span class="k">class</span> <span class="nc">ShapeMeasuresAnalyzeMeshQualityVolume</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Measures for analyze_mesh_quality_volume.&quot;&quot;&quot;</span>
+
+    <span class="n">rin_rout</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">rin_rout</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">height_base_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">height_base_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">minimum_face_angle_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">minimum_face_angle_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">maximum_face_angle_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">maximum_face_angle_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">minimum_face_angle_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">minimum_face_angle_a</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">edge_ratio_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">edge_ratio_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">equi_angle_skewness_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">equi_angle_skewness_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">minimum_edge_length_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">minimum_edge_length_a</span><span class="o">.</span><span class="n">value</span> 
+    <span class="n">maximum_edge_length_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">maximum_edge_length_a</span><span class="o">.</span><span class="n">value</span> 
+    <span class="n">edge_ratio_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">edge_ratio_a</span><span class="o">.</span><span class="n">value</span> 
+    <span class="n">abaqus_shape_factor_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">abaqus_shape_factor_n</span><span class="o">.</span><span class="n">value</span> 
+    <span class="n">ansys_element_quality_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">ansys_element_quality_n</span><span class="o">.</span><span class="n">value</span> 
+    <span class="n">fluent_orthogonal_quality_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">fluent_orthogonal_quality_n</span><span class="o">.</span><span class="n">value</span> 
+    <span class="n">maximum_face_angle_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">maximum_face_angle_a</span><span class="o">.</span><span class="n">value</span> 
+    <span class="c1">#volume specific</span>
+    <span class="n">r_in_edge_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">r_in_edge_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">r_out_edge_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">r_out_edge_a</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">mean_ratio_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">mean_ratio_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">aspect_ratio_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">aspect_ratio_a</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">jacobian_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">jacobian_a</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">jacobian_n</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">jacobian_n</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">jacobian_ratio_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">jacobian_ratio_a</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">minimum_volume_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">minimum_volume_a</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">maximum_volume_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">maximum_volume_a</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">minimum_dihedral_angle_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">minimum_dihedral_angle_a</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">maximum_dihedral_angle_a</span> <span class="o">=</span> <span class="n">ShapeMeasuresAll</span><span class="o">.</span><span class="n">maximum_dihedral_angle_a</span><span class="o">.</span><span class="n">value</span></div>
+
+<div class="viewcode-block" id="adaptive_remesh"><a class="viewcode-back" href="../../trimatic.rst/trimatic.remesh.html#trimatic.remesh.adaptive_remesh">[docs]</a><span class="k">def</span> <span class="nf">adaptive_remesh</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="c1">#&#39;force named parameters&#39;</span>
+    <span class="n">entities</span><span class="p">,</span> 
+    <span class="n">target_triangle_edge_length</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">preserve_surface_contours</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> 
+    <span class="n">local_remesh_parameters</span> <span class="o">=</span> <span class="p">(()),</span> 
+    <span class="n">local_growth_rate</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">25</span> 
+    <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Applies adaptive remesh on the specified entities.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of parts, surfaces, surface sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles]</span>
+<span class="sd">    :param target_triangle_edge_length: The approximate triangle edge length in the output.</span>
+<span class="sd">    :type target_triangle_edge_length: float, optional</span>
+<span class="sd">    :param preserve_surface_contours: If True, the geometry along surface contours will be unchanged.</span>
+<span class="sd">    :type preserve_surface_contours: bool, optional</span>
+<span class="sd">    :param local_remesh_parameters: Tuple of tuples containing the info </span>
+<span class="sd">        (entity, maximum triangle edge length, influence area).</span>
+<span class="sd">    :type local_remesh_parameters: ((trimatic.Object, float, float),), optional</span>
+<span class="sd">    :param local_growth_rate: Controls the rate of triangle edge length growth (in percentage) as the</span>
+<span class="sd">        distance from the selected entities increases. Ignored if local_remesh_parameters is empty.</span>
+<span class="sd">    :type local_growth_rate: float, optional</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+<span class="sd">    :return: Remeshed entities</span>
+<span class="sd">    :rtype: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles)</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/remesh/adaptive_remesh.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;target_triangle_edge_length&quot;</span><span class="p">,</span> <span class="n">target_triangle_edge_length</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">adaptive_remesh</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">target_triangle_edge_length</span><span class="p">,</span> <span class="n">preserve_surface_contours</span><span class="p">,</span> <span class="n">local_remesh_parameters</span><span class="p">,</span> <span class="n">local_growth_rate</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="adaptive_remesh_expert"><a class="viewcode-back" href="../../trimatic.rst/trimatic.remesh.html#trimatic.remesh.adaptive_remesh_expert">[docs]</a><span class="k">def</span> <span class="nf">adaptive_remesh_expert</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="c1">#&#39;force named parameters&#39;</span>
+    <span class="n">entities</span><span class="p">,</span>
+    <span class="n">shape_measure</span> <span class="o">=</span> <span class="n">ShapeMeasures</span><span class="o">.</span><span class="n">skewness_n</span><span class="p">,</span> 
+    <span class="n">shape_quality_threshold</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">maximum_geometrical_error</span> <span class="o">=</span> <span class="mf">0.1732</span><span class="p">,</span>
+    <span class="n">minimum_triangle_edge_length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">maximum_triangle_edge_length</span> <span class="o">=</span> <span class="mf">1.7321</span><span class="p">,</span> 
+    <span class="n">number_of_iterations</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> 
+    <span class="n">skip_bad_edges</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> 
+    <span class="n">preserve_surface_contours</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> 
+    <span class="n">preserve_sharp_edges</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">local_remesh_parameters</span> <span class="o">=</span> <span class="p">(()),</span> 
+    <span class="n">local_growth_rate</span> <span class="o">=</span> <span class="mi">25</span>
+    <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Applies adaptive remesh on the specified entities with advanced control parameters.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of parts, surfaces, surface sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles]</span>
+<span class="sd">    :param shape_measure: Method of determining the quality of the triangles in the resulting mesh.</span>
+<span class="sd">    :type shape_measure: trimatic.ShapeMeasures, optional</span>
+<span class="sd">    :param shape_quality_threshold: The minimum value that triangles need to meet for the selected shape measure.</span>
+<span class="sd">    :type shape_quality_threshold: float, optional</span>
+<span class="sd">    :param maximum_geometrical_error: The maximum distance deviation between the original entity and the output.</span>
+<span class="sd">    :type maximum_geometrical_error: float, optional</span>
+<span class="sd">    :param minimum_triangle_edge_length: The minimum triangle edge length in the output. Set to None to disable.  </span>
+<span class="sd">    :type minimum_triangle_edge_length: float | None, optional</span>
+<span class="sd">    :param maximum_triangle_edge_length: The maximum triangle edge length in the output. Set to None to disable.</span>
+<span class="sd">    :type maximum_triangle_edge_length: float | None, optional</span>
+<span class="sd">    :param number_of_iterations: Increases the number of passes for higher quality but increases computation time.</span>
+<span class="sd">    :type number_of_iterations: int, optional</span>
+<span class="sd">    :param skip_bad_edges: If True, bad edges will not be moved.</span>
+<span class="sd">    :type skip_bad_edges: bool, optional</span>
+<span class="sd">    :param preserve_surface_contours: If True, the geometry along surface contours will be unchanged.</span>
+<span class="sd">    :type preserve_surface_contours: bool, optional</span>
+<span class="sd">    :param preserve_sharp_edges: If True, sharp edges will be preserved.</span>
+<span class="sd">    :type preserve_sharp_edges: bool, optional</span>
+<span class="sd">    :param local_remesh_parameters: Tuple of tuples containing the info</span>
+<span class="sd">        (entity, maximum triangle edge length, influence area).</span>
+<span class="sd">    :type local_remesh_parameters: ((trimatic.Object, float, float),), optional</span>
+<span class="sd">    :param local_growth_rate: Controls the rate of triangle edge length growth (in percentage) as the</span>
+<span class="sd">        distance from the selected entities increases. Ignored if local_remesh_parameters is empty.</span>
+<span class="sd">    :type local_growth_rate: float, optional</span>
+<span class="sd">    :return: Remeshed entities</span>
+<span class="sd">    :rtype: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/remesh/adaptive_remesh_expert.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">pymatic_entities</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">minimum_triangle_edge_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;minimum_triangle_edge_length&quot;</span><span class="p">,</span> <span class="n">minimum_triangle_edge_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">maximum_triangle_edge_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;maximum_triangle_edge_length&quot;</span><span class="p">,</span> <span class="n">maximum_triangle_edge_length</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">minimum_triangle_edge_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">minimum_triangle_edge_length</span> <span class="o">&gt;</span> <span class="n">maximum_triangle_edge_length</span><span class="o">/</span><span class="mf">2.</span> <span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Minimum triangle edge length should be smaller than half the maximum triangle edge length&quot;</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;shape_measure&quot;</span><span class="p">,</span> <span class="n">shape_measure</span><span class="p">,</span> <span class="p">(</span><span class="n">ShapeMeasures</span><span class="p">,))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;shape_quality_threshold&quot;</span><span class="p">,</span><span class="n">shape_quality_threshold</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_iterations&quot;</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">pymatic_entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span><span class="p">))</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">local_remesh_parameters</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>  <span class="c1"># parameters are non-empty</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pymatic_entities</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Local remesh parameters should be empty when multiple entities are passed&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">local_remesh_parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">tuple</span> <span class="ow">or</span> <span class="nb">list</span><span class="p">):</span> <span class="c1">#Tuple of tuples, check max edge length of all</span>
+            <span class="k">for</span> <span class="n">parameters</span> <span class="ow">in</span> <span class="n">local_remesh_parameters</span><span class="p">:</span>
+                <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;maximum_triangle_edge_length&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1">#only one tuple</span>
+            <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;maximum_triangle_edge_length&quot;</span><span class="p">,</span> <span class="n">local_remesh_parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">adaptive_remesh_expert</span><span class="p">(</span><span class="n">pymatic_entities</span><span class="p">,</span> <span class="n">shape_measure</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">shape_quality_threshold</span><span class="p">,</span> <span class="n">maximum_geometrical_error</span><span class="p">,</span> <span class="n">minimum_triangle_edge_length</span><span class="p">,</span> <span class="n">maximum_triangle_edge_length</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="p">,</span> <span class="n">skip_bad_edges</span><span class="p">,</span> <span class="n">preserve_surface_contours</span><span class="p">,</span> <span class="n">preserve_sharp_edges</span><span class="p">,</span> <span class="n">local_remesh_parameters</span><span class="p">,</span> <span class="n">local_growth_rate</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="analyze_mesh_quality_surface"><a class="viewcode-back" href="../../trimatic.rst/trimatic.remesh.html#trimatic.remesh.analyze_mesh_quality_surface">[docs]</a><span class="k">def</span> <span class="nf">analyze_mesh_quality_surface</span><span class="p">(</span>
+    <span class="n">part</span><span class="p">,</span>
+    <span class="n">shape_measure</span> <span class="o">=</span> <span class="n">ShapeMeasuresAnalyzeMeshQualitySurface</span><span class="o">.</span><span class="n">skewness_n</span><span class="p">,</span> 
+    <span class="n">shape_quality_threshold</span> <span class="o">=</span> <span class="mf">0.3</span>
+    <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analyzes (surface) mesh quality and returns simple analysis (% below quality threshold).</span>
+
+<span class="sd">    :param part: Part to analyze.</span>
+<span class="sd">    :type part: trimatic.Part</span>
+<span class="sd">    :param shape_measure: Method of determining the quality value in the analysis.</span>
+<span class="sd">    :type shape_measure: trimatic.ShapeMeasuresAnalyzeMeshQualitySurface, optional</span>
+<span class="sd">    :param shape_quality_threshold: The threshold value that triangles need to meet for the selected shape measure.</span>
+<span class="sd">    :type shape_quality_threshold: float, optional</span>
+<span class="sd">    :return: Tuple of analysis results containing (shape measure, shape quality threshold, number of elements not</span>
+<span class="sd">        meeting threshold, value of element with lowest quality, True/False to indicate if the mesh passed the quality check).</span>
+<span class="sd">    :rtype: (string, float, int, float, bool)</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/remesh/analyze_mesh_quality_surface.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;shape_measure&quot;</span><span class="p">,</span> <span class="n">shape_measure</span><span class="p">,</span> <span class="p">(</span><span class="n">ShapeMeasuresAnalyzeMeshQualitySurface</span><span class="p">,))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;shape_quality_threshold&quot;</span><span class="p">,</span> <span class="n">shape_quality_threshold</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">analyze_mesh_quality_surface</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">shape_measure</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">shape_quality_threshold</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="analyze_mesh_quality_volume"><a class="viewcode-back" href="../../trimatic.rst/trimatic.remesh.html#trimatic.remesh.analyze_mesh_quality_volume">[docs]</a><span class="k">def</span> <span class="nf">analyze_mesh_quality_volume</span><span class="p">(</span>
+    <span class="n">part</span><span class="p">,</span>
+    <span class="n">shape_measure</span> <span class="o">=</span> <span class="n">ShapeMeasuresAnalyzeMeshQualityVolume</span><span class="o">.</span><span class="n">aspect_ratio_a</span><span class="p">,</span> 
+    <span class="n">shape_quality_threshold</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analyzes (volume) mesh quality and returns simple analysis (% below quality threshold).</span>
+
+<span class="sd">    :param part: Part to analyze.</span>
+<span class="sd">    :type part: trimatic.Part</span>
+<span class="sd">    :param shape_measure: Method of determining the quality value in the analysis.</span>
+<span class="sd">    :type shape_measure: trimatic.ShapeMeasuresAnalyzeMeshQualityVolume, optional</span>
+<span class="sd">    :param shape_quality_threshold: The threshold value that triangles need to meet for the selected shape</span>
+<span class="sd">        measure.</span>
+<span class="sd">    :type shape_quality_threshold: float, optional</span>
+<span class="sd">    :return: Tuple of analysis results containing (shape measure, shape quality threshold, number of elements not</span>
+<span class="sd">        meeting threshold, value of element with lowest quality, True/False to indicate if the mesh passed the quality check).</span>
+<span class="sd">    :rtype: (string, float, int, float, bool)</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/remesh/analyze_mesh_quality_volume.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;shape_measure&quot;</span><span class="p">,</span> <span class="n">shape_measure</span><span class="p">,</span> <span class="p">(</span><span class="n">ShapeMeasuresAnalyzeMeshQualityVolume</span><span class="p">,))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;shape_quality_threshold&quot;</span><span class="p">,</span> <span class="n">shape_quality_threshold</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">analyze_mesh_quality_volume</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">shape_measure</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">shape_quality_threshold</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="compute_quality_histogram_surface"><a class="viewcode-back" href="../../trimatic.rst/trimatic.remesh.html#trimatic.remesh.compute_quality_histogram_surface">[docs]</a><span class="k">def</span> <span class="nf">compute_quality_histogram_surface</span><span class="p">(</span>
+    <span class="n">part</span><span class="p">,</span>
+    <span class="n">shape_measure</span> <span class="o">=</span> <span class="n">ShapeMeasuresAnalyzeMeshQualitySurface</span><span class="o">.</span><span class="n">skewness_n</span><span class="p">,</span>
+    <span class="n">bin_size</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">upper_limit</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analyzes (surface) mesh quality and returns the histogram data.</span>
+
+<span class="sd">    :param part: Part to analyze.</span>
+<span class="sd">    :type part: trimatic.Part</span>
+<span class="sd">    :param shape_measure: Method of determining the quality value in the analysis.</span>
+<span class="sd">    :type shape_measure: trimatic.ShapeMeasuresAnalyzeMeshQualitySurface, optional</span>
+<span class="sd">    :param bin_size: Width of each interval of the histogram.</span>
+<span class="sd">    :type bin_size: float, optional</span>
+<span class="sd">    :param upper_limit: The upper limit of the histogram. Values beyond this are excluded from the analysis.</span>
+<span class="sd">    :type upper_limit: float, optional</span>
+<span class="sd">    :return: Tuple of histogram bins. Each bin is a tuple containing (minimum bin value, maximum bin value, number of</span>
+<span class="sd">        elements in bin).</span>
+<span class="sd">    :rtype: ((float, float, int))</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/remesh/compute_quality_histogram_surface.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;shape_measure&quot;</span><span class="p">,</span> <span class="n">shape_measure</span><span class="p">,</span> <span class="p">(</span><span class="n">ShapeMeasuresAnalyzeMeshQualitySurface</span><span class="p">,))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;bin_size&quot;</span><span class="p">,</span> <span class="n">bin_size</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">upper_limit</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;upper_limit&quot;</span><span class="p">,</span> <span class="n">upper_limit</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">compute_quality_histogram_surface</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">shape_measure</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">bin_size</span><span class="p">,</span> <span class="n">upper_limit</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="compute_quality_histogram_volume"><a class="viewcode-back" href="../../trimatic.rst/trimatic.remesh.html#trimatic.remesh.compute_quality_histogram_volume">[docs]</a><span class="k">def</span> <span class="nf">compute_quality_histogram_volume</span><span class="p">(</span>
+    <span class="n">part</span><span class="p">,</span>
+    <span class="n">shape_measure</span> <span class="o">=</span> <span class="n">ShapeMeasuresAnalyzeMeshQualityVolume</span><span class="o">.</span><span class="n">aspect_ratio_a</span><span class="p">,</span>
+    <span class="n">bin_size</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">upper_limit</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analyzes (volume) mesh quality and returns the histogram data.</span>
+
+<span class="sd">    :param part: Part to analyze.</span>
+<span class="sd">    :type part: trimatic.Part</span>
+<span class="sd">    :param shape_measure: Method of determining the quality value in the analysis.</span>
+<span class="sd">    :type shape_measure: trimatic.ShapeMeasuresAnalyzeMeshQualitySurface, optional</span>
+<span class="sd">    :param bin_size: Width of each interval of the histogram.</span>
+<span class="sd">    :type bin_size: float, optional</span>
+<span class="sd">    :param upper_limit: The upper limit of the histogram. Values beyond this are excluded from the analysis.</span>
+<span class="sd">    :type upper_limit: float, optional</span>
+<span class="sd">    :return: Tuple of histogram bins. Each bin is a tuple containing (minimum bin value, maximum bin value, number of</span>
+<span class="sd">        elements in bin).</span>
+<span class="sd">    :rtype: ((float, float, int))</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/remesh/compute_quality_histogram_volume.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;shape_measure&quot;</span><span class="p">,</span> <span class="n">shape_measure</span><span class="p">,</span> <span class="p">(</span><span class="n">ShapeMeasuresAnalyzeMeshQualityVolume</span><span class="p">,))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;bin_size&quot;</span><span class="p">,</span> <span class="n">bin_size</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">upper_limit</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;upper_limit&quot;</span><span class="p">,</span> <span class="n">upper_limit</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">compute_quality_histogram_volume</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">shape_measure</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">bin_size</span><span class="p">,</span> <span class="n">upper_limit</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_non_manifold_assembly_intersection"><a class="viewcode-back" href="../../trimatic.rst/trimatic.remesh.html#trimatic.remesh.create_non_manifold_assembly_intersection">[docs]</a><span class="k">def</span> <span class="nf">create_non_manifold_assembly_intersection</span><span class="p">(</span><span class="n">main_entity</span><span class="p">,</span> <span class="n">intersecting_entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates an assembly based on the intersection of the parts.</span>
+
+<span class="sd">    The result contains non-manifold connections at the intersecting areas. The link with the original entities is also </span>
+<span class="sd">    preserved via the names of the surface sets. If the name of these surface sets remain unchanged, the original parts</span>
+<span class="sd">    structure can be restored using Split Non-manifold Assembly.</span>
+
+<span class="sd">    :param main_entity: Main entity</span>
+<span class="sd">    :type main_entity: trimatic.Part</span>
+<span class="sd">    :param intersecting_entities: One or more intersecting entities. If more than one entity is specified, the assembly </span>
+<span class="sd">        will be created according to the order in the list.</span>
+<span class="sd">    :type intersecting_entities: trimatic.Part | [trimatic.Part]</span>
+<span class="sd">    :return: Resulting non-manifold assembly part.</span>
+<span class="sd">    :rtype: trimatic.Part</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/remesh/create_non_manifold_assembly_intersection.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;main_entity&quot;</span><span class="p">,</span> <span class="n">main_entity</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;intersecting_entities&quot;</span><span class="p">,</span> <span class="n">intersecting_entities</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_non_manifold_assembly_intersection</span><span class="p">(</span><span class="n">main_entity</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">intersecting_entities</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="create_non_manifold_assembly_grid"><a class="viewcode-back" href="../../trimatic.rst/trimatic.remesh.html#trimatic.remesh.create_non_manifold_assembly_grid">[docs]</a><span class="k">def</span> <span class="nf">create_non_manifold_assembly_grid</span><span class="p">(</span>
+        <span class="n">main_entity</span><span class="p">,</span>
+        <span class="n">intersecting_entities</span><span class="p">,</span>
+        <span class="n">grid_resolution</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">grid_presmoothing_iterations</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="n">point_smoothing</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">smooth_contours</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">post_smoothing_compensation</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">reduce_triangles</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates an assembly using a grid conversion method.</span>
+
+<span class="sd">    :param main_entity: Main entity.</span>
+<span class="sd">    :type main_entity: trimatic.Part</span>
+<span class="sd">    :param intersecting_entities: One or more intersecting entities. If more than one entity is specified, the assembly </span>
+<span class="sd">        will be created according to the order in the list.</span>
+<span class="sd">    :type intersecting_entities: trimatic.Part | [trimatic.Part]</span>
+<span class="sd">    :param grid_resolution: Size of the grid used for conversion.</span>
+<span class="sd">    :type grid_resolution: float, optional</span>
+<span class="sd">    :param grid_presmoothing_iterations: Number of times the grid will be smoothed before converting the</span>
+<span class="sd">        parts to a grid structure.</span>
+<span class="sd">    :type grid_presmoothing_iterations: int, optional</span>
+<span class="sd">    :param point_smoothing: Strength of the grid smoothing.</span>
+<span class="sd">    :type point_smoothing: float, optional</span>
+<span class="sd">    :param smooth_contours: If True, bad contours in the resulting assembly will be smoothed.</span>
+<span class="sd">    :type smooth_contours: bool, optional</span>
+<span class="sd">    :param post_smoothing_compensation: If True, the smoothing performed after the assembly creation uses a</span>
+<span class="sd">        shrinkage compensation. This is useful for thin regions.</span>
+<span class="sd">    :type post_smoothing_compensation: bool, optional</span>
+<span class="sd">    :param reduce_triangles: If True, the number of triangles of the output assembly will be reduced while</span>
+<span class="sd">        preserving overall quality.</span>
+<span class="sd">    :type reduce_triangles: bool, optional</span>
+<span class="sd">    :return: Resulting non-manifold assembly part.</span>
+<span class="sd">    :rtype: trimatic.Part</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/remesh/create_non_manifold_assembly_grid.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;main_entity&quot;</span><span class="p">,</span> <span class="n">main_entity</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;intersecting_entities&quot;</span><span class="p">,</span> <span class="n">intersecting_entities</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;grid_resolution&quot;</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;grid_presmoothing_iterations&quot;</span><span class="p">,</span> <span class="n">grid_presmoothing_iterations</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;point_smoothing&quot;</span><span class="p">,</span> <span class="n">point_smoothing</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_non_manifold_assembly_grid</span><span class="p">(</span>
+        <span class="n">main_entity</span><span class="p">,</span> 
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">intersecting_entities</span><span class="p">),</span>
+        <span class="n">grid_resolution</span><span class="p">,</span>
+        <span class="n">grid_presmoothing_iterations</span><span class="p">,</span>
+        <span class="n">point_smoothing</span><span class="p">,</span>
+        <span class="n">smooth_contours</span><span class="p">,</span>
+        <span class="n">post_smoothing_compensation</span><span class="p">,</span>
+        <span class="n">reduce_triangles</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ElementType"><a class="viewcode-back" href="../../trimatic.rst/trimatic.remesh.html#trimatic.remesh.ElementType">[docs]</a><span class="k">class</span> <span class="nc">ElementType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Volume mesh element type.&quot;&quot;&quot;</span>
+
+    <span class="n">Tet4</span> <span class="o">=</span> <span class="s2">&quot;Tet 4&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tet 4 volume mesh element type.&quot;&quot;&quot;</span>
+
+    <span class="n">Tet10</span> <span class="o">=</span> <span class="s2">&quot;Tet 10&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tet 10 volume mesh element type.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="create_volume_mesh"><a class="viewcode-back" href="../../trimatic.rst/trimatic.remesh.html#trimatic.remesh.create_volume_mesh">[docs]</a><span class="k">def</span> <span class="nf">create_volume_mesh</span><span class="p">(</span>
+    <span class="n">part</span><span class="p">,</span>
+    <span class="n">element_type</span> <span class="o">=</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">Tet4</span><span class="p">,</span>
+    <span class="n">project_midpoint_entity</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">maximum_edge_length</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">solid_volume_only</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">group_by_materials</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">local_remesh_parameters</span> <span class="o">=</span> <span class="p">(()),</span>
+    <span class="n">local_growth_rate</span> <span class="o">=</span> <span class="mi">25</span>
+    <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a volume mesh from a triangulated surface.</span>
+
+<span class="sd">    :param part: Single part.</span>
+<span class="sd">    :type part: trimatic.Part</span>
+<span class="sd">    :param element_type: Element type of the volume mesh.</span>
+<span class="sd">    :type element_type: trimatic.ElementType, optional</span>
+<span class="sd">    :param project_midpoint_entity: Target entity to project midpoints of Tet10 elements. Set to None to disable.</span>
+<span class="sd">    :type project_midpoint_entity: trimatic.Part | None, optional</span>
+<span class="sd">    :param maximum_edge_length: The maximum triangle edge length in the output. Set to None to disable.</span>
+<span class="sd">    :type maximum_edge_length: float | None, optional</span>
+<span class="sd">    :param solid_volume_only: If True, will create a volume based on solid part only.</span>
+<span class="sd">    :type solid_volume_only: bool, optional</span>
+<span class="sd">    :param group_by_materials: If True, volumes will be grouped based on the surface name information.</span>
+<span class="sd">    :type group_by_materials: bool, optional</span>
+<span class="sd">    :param local_remesh_parameters: Tuple of tuples containing the info</span>
+<span class="sd">        (entity, maximum triangle edge length, influence area).</span>
+<span class="sd">    :type local_remesh_parameters: ((trimatic.Object, float, float),), optional</span>
+<span class="sd">    :param local_growth_rate: Controls the rate of tetrahedra growth (in percentage) as the</span>
+<span class="sd">        distance from the selected entities increases. Ignored if local_remesh_parameters is empty.</span>
+<span class="sd">    :type local_growth_rate: float, optional</span>
+<span class="sd">    :return: Volume mesh.</span>
+<span class="sd">    :rtype: trimatic.VolumeMesh</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/remesh/create_volume_mesh.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="k">if</span> <span class="n">element_type</span> <span class="ow">is</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">Tet10</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;project_midpoint_entity&quot;</span><span class="p">,</span> <span class="n">project_midpoint_entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;project_midpoint_entity&quot;</span><span class="p">,</span> <span class="n">project_midpoint_entity</span><span class="p">,</span> <span class="p">(</span><span class="kc">None</span><span class="p">,),</span> <span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">maximum_edge_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;maximum_edge_length&quot;</span><span class="p">,</span> <span class="n">maximum_edge_length</span><span class="p">)</span>
+    
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;part&quot;</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;element_type&quot;</span><span class="p">,</span> <span class="n">element_type</span><span class="p">,</span> <span class="p">(</span><span class="n">ElementType</span><span class="p">,))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;local_growth_rate&quot;</span><span class="p">,</span> <span class="n">local_growth_rate</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_volume_mesh</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">element_type</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">project_midpoint_entity</span><span class="p">,</span> <span class="n">maximum_edge_length</span><span class="p">,</span> <span class="n">solid_volume_only</span><span class="p">,</span> <span class="n">group_by_materials</span><span class="p">,</span> <span class="n">local_remesh_parameters</span><span class="p">,</span> <span class="n">local_growth_rate</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="quality_preserving_reduce_triangles"><a class="viewcode-back" href="../../trimatic.rst/trimatic.remesh.html#trimatic.remesh.quality_preserving_reduce_triangles">[docs]</a><span class="k">def</span> <span class="nf">quality_preserving_reduce_triangles</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="c1">#&#39;force named parameters&#39;</span>
+    <span class="n">entities</span><span class="p">,</span>
+    <span class="n">shape_measure</span> <span class="o">=</span> <span class="n">ShapeMeasures</span><span class="o">.</span><span class="n">skewness_n</span><span class="p">,</span>
+    <span class="n">shape_quality_threshold</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">maximum_geometrical_error</span> <span class="o">=</span> <span class="mf">0.1732</span><span class="p">,</span>
+    <span class="n">maximum_triangle_edge_length</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">number_of_iterations</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">skip_bad_edges</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">preserve_surface_contours</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reduces number of triangles in a high-quality mesh while preserving its quality.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of parts, surfaces, surface sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet] | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet)</span>
+<span class="sd">    :param shape_measure: Method of determining the quality of the triangles in the resulting mesh.</span>
+<span class="sd">    :type shape_measure: trimatic.ShapeMeasures, optional</span>
+<span class="sd">    :param shape_quality_threshold: The minimum value that triangles need to meet for the selected shape measure.</span>
+<span class="sd">    :type shape_quality_threshold: float, optional</span>
+<span class="sd">    :param maximum_geometrical_error: The maximum distance deviation between the original entity and the output.</span>
+<span class="sd">    :type maximum_geometrical_error: float, optional</span>
+<span class="sd">    :param maximum_triangle_edge_length: The maximum triangle edge length in the output. Set to None to disable.</span>
+<span class="sd">    :type maximum_triangle_edge_length: float, optional</span>
+<span class="sd">    :param number_of_iterations: Increases the number of passes for higher quality but increases computation time.</span>
+<span class="sd">    :type number_of_iterations: int, optional</span>
+<span class="sd">    :param skip_bad_edges: If True, bad edges will not be moved.</span>
+<span class="sd">    :type skip_bad_edges: bool, optional</span>
+<span class="sd">    :param preserve_surface_contours: If True, the geometry along surface contours will be unchanged.</span>
+<span class="sd">    :type preserve_surface_contours: bool, optional</span>
+<span class="sd">    :return: Remeshed entities.</span>
+<span class="sd">    :rtype: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet)</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/remesh/quality_preserving_reduce_triangles.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">pymatic_entities</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">pymatic_entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">maximum_triangle_edge_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;maximum_triangle_edge_length&quot;</span><span class="p">,</span> <span class="n">maximum_triangle_edge_length</span><span class="p">)</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;shape_measure&quot;</span><span class="p">,</span> <span class="n">shape_measure</span><span class="p">,</span> <span class="p">(</span><span class="n">ShapeMeasures</span><span class="p">,))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;shape_quality_threshold&quot;</span><span class="p">,</span><span class="n">shape_quality_threshold</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_iterations&quot;</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">quality_preserving_reduce_triangles</span><span class="p">(</span><span class="n">pymatic_entities</span><span class="p">,</span> <span class="n">shape_measure</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">shape_quality_threshold</span><span class="p">,</span> <span class="n">maximum_geometrical_error</span><span class="p">,</span>  <span class="n">maximum_triangle_edge_length</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="p">,</span> <span class="n">skip_bad_edges</span><span class="p">,</span> <span class="n">preserve_surface_contours</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="split_non_manifold_assembly_surface"><a class="viewcode-back" href="../../trimatic.rst/trimatic.remesh.html#trimatic.remesh.split_non_manifold_assembly_surface">[docs]</a><span class="k">def</span> <span class="nf">split_non_manifold_assembly_surface</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">interface_entity</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Splits a non-manifold assembly into it&#39;s surface parts.</span>
+
+<span class="sd">    :param entity: Entity to split.</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :param interface_entity: When interface_entity is None, the assembly will be split based on surface set names</span>
+<span class="sd">        created by the Create Non-manifold Assembly operation. When  interface_entity is not None, this is the surface set</span>
+<span class="sd">        that contains the interface surfaces between the two different parts of the assembly.</span>
+<span class="sd">    :type interface_entity: trimatic.SurfaceSet, optional</span>
+<span class="sd">    :return: Split parts.</span>
+<span class="sd">    :rtype: (trimatic.Part)</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/remesh/split_non_manifold_assembly_surface.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">interface_entity</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;interface_entity&quot;</span><span class="p">,</span> <span class="n">interface_entity</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">split_non_manifold_assembly_surface</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">interface_entity</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="split_non_manifold_assembly_volume"><a class="viewcode-back" href="../../trimatic.rst/trimatic.remesh.html#trimatic.remesh.split_non_manifold_assembly_volume">[docs]</a><span class="k">def</span> <span class="nf">split_non_manifold_assembly_volume</span><span class="p">(</span><span class="n">entity</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Splits a non-manifold assembly into its volume parts.</span>
+
+<span class="sd">    The assembly will be split based on its volume meshes; for this method, the input entity must contain at least 2 volume meshes.</span>
+
+<span class="sd">    :param entity: Entity to split</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :return: Split parts.</span>
+<span class="sd">    :rtype: (trimatic.Part)</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/remesh/split_non_manifold_assembly_volume.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">split_non_manifold_assembly_volume</span><span class="p">(</span><span class="n">entity</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="uniform_remesh"><a class="viewcode-back" href="../../trimatic.rst/trimatic.remesh.html#trimatic.remesh.uniform_remesh">[docs]</a><span class="k">def</span> <span class="nf">uniform_remesh</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="c1">#&#39;force named parameters&#39;</span>
+    <span class="n">entities</span><span class="p">,</span>
+    <span class="n">target_triangle_edge_length</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">preserve_sharp_edge_angle</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">preserve_surface_contours</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">split_edge_factor</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">skip_bad_edges</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Applies uniform remesh on the specified entities.</span>
+<span class="sd"> </span>
+<span class="sd">    :param entities: Either single object or heterogeneous list of parts, surfaces or surface sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles]</span>
+<span class="sd">    :param target_triangle_edge_length: The approximate triangle edge length in the output.</span>
+<span class="sd">    :type target_triangle_edge_length: float, optional </span>
+<span class="sd">    :param preserve_sharp_edge_angle: Edges with angles greater than this value will be preserved. Set to None to disable.</span>
+<span class="sd">    :type preserve_sharp_edge_angle: float, optional</span>
+<span class="sd">    :param preserve_surface_contours: If True, the geometry along surface contours will be unchanged.</span>
+<span class="sd">    :type preserve_surface_contours: bool, optional</span>
+<span class="sd">    :param split_edge_factor: Controls the size of the minimum edge length during the subdivision of large triangles.</span>
+<span class="sd">    :type split_edge_factor: float | None, optional</span>
+<span class="sd">    :param skip_bad_edges: If True, the bad edges will not be modified during the operation.</span>
+<span class="sd">    :type skip_bad_edges: bool, optional</span>
+<span class="sd">    :return: Remeshed entities.</span>
+<span class="sd">    :rtype: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/remesh/uniform_remesh.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;target_triangle_edge_length&quot;</span><span class="p">,</span> <span class="n">target_triangle_edge_length</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">preserve_sharp_edge_angle</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;preserve_sharp_edge_angle&quot;</span><span class="p">,</span> <span class="n">preserve_sharp_edge_angle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;split_edge_factor&quot;</span><span class="p">,</span> <span class="n">split_edge_factor</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_resolution</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">uniform_remesh</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">target_triangle_edge_length</span><span class="p">,</span> <span class="n">preserve_sharp_edge_angle</span><span class="p">,</span> <span class="n">preserve_surface_contours</span><span class="p">,</span> <span class="n">split_edge_factor</span><span class="p">,</span> <span class="n">skip_bad_edges</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,1482 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>design &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="trimatic modules" href="trimatic.html"/>
+        <link rel="next" title="file" href="trimatic.file.html"/>
+        <link rel="prev" title="curve" href="trimatic.curve.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">trimatic API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="trimatic.html">trimatic modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="trimatic.data.html">data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.types.html">types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.align.html">align</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.analyze.html">analyze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.cad_link.html">cadlink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.curve.html">curve</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.file.html">file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.finish.html">finish</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.fix.html">fix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.group.html">group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.interactive.html">interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.lattice.html">lattice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.logging.html">logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.mark.html">mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.measure.html">measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.preferences.html">preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.remesh.html">remesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.sketch.html">sketch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.surface.html">surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.texturing.html">texturing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.uv.html">uv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.view.html">view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.subscription.html">subscription</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">trimatic API</a> &raquo;</li>
+      
+          <li><a href="trimatic.html">trimatic modules</a> &raquo;</li>
+      
+    <li>design</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/trimatic.rst/trimatic.design.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-trimatic.design">
+<span id="design"></span><h1>design<a class="headerlink" href="#module-trimatic.design" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="trimatic.design.boolean_intersection">
+<code class="descname">boolean_intersection</code><span class="sig-paren">(</span><em>entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#boolean_intersection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.boolean_intersection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a part representing an intersection of two or more parts or graphs.</p>
+<p>New part will be created and the original parts will be removed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entities</strong> (<em>[</em><em>trimatic.Part | trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – The parts or graphs used in the intersection operation.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Intersected part.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Part</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">RuntimeError, ValueError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">(</span><span class="n">point_1</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">point_2</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span><span class="n">radius</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">boolean_intersection</span><span class="p">([</span><span class="n">box</span><span class="p">,</span> <span class="n">cylinder</span><span class="p">])</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.boolean_subtraction">
+<code class="descname">boolean_subtraction</code><span class="sig-paren">(</span><em>entities</em>, <em>subtracting_entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#boolean_subtraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.boolean_subtraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subtracts single part or list of parts or graphs from another part or list of parts.</p>
+<p>New parts will be created and the original parts will be removed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>[</em><em>trimatic.Part | trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Boolean subtraction is performed on these parts or graphs.</li>
+<li><strong>subtracting_entities</strong> (<em>trimatic.Part |</em><em> [</em><em>trimatic.Part</em><em>]</em>) – The subtraction is performed with these parts.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Resulting part after subtraction.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | (trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">(</span><span class="n">point_1</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">point_2</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span><span class="n">radius</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">boolean_subtraction</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="n">cylinder</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.boolean_union">
+<code class="descname">boolean_union</code><span class="sig-paren">(</span><em>entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#boolean_union"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.boolean_union" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a part representing an union of two or more parts or graphs.</p>
+<p>New part will be created and the original parts will be removed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entities</strong> (<em>[</em><em>trimatic.Part | trimatic.Graph | trimatic.GraphSet</em><em>]</em>) – Boolean union is performed on these parts or graphs.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">United part.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Part</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">RuntimeError, ValueError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">(</span><span class="n">point_1</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">point_2</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span><span class="n">radius</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">boolean_union</span><span class="p">([</span><span class="n">box</span><span class="p">,</span> <span class="n">cylinder</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.circular_sweep">
+<code class="descname">circular_sweep</code><span class="sig-paren">(</span><em>sweep_paths</em>, <em>sweep_diameter=1.0</em>, <em>accuracy=0.01</em>, <em>round_begin=False</em>, <em>round_end=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#circular_sweep"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.circular_sweep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a tubular structure along a path, with options to add round endpoints.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sweep_paths</strong> (<em>trimatic.Curve | trimatic.CurveSet | trimatic.SurfaceBorder | trimatic.SurfaceContour |</em><em> [</em><em>trimatic.Curve | trimatic.CurveSet | trimatic.SurfaceBorder | trimatic.SurfaceContour</em><em>]</em>) – Paths to create circular sweeps.</li>
+<li><strong>sweep_diameter</strong> (<em>float</em><em>, </em><em>optional</em>) – Defines the diameter of the tubular shape of the sweep.</li>
+<li><strong>accuracy</strong> (<em>float</em><em>, </em><em>optional</em>) – Defines the accuracy of the tubular shape in a polygon mesh.</li>
+<li><strong>round_begin</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, the beginning part of the runner will be rounded.</li>
+<li><strong>round_end</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, the ending part of the runner will be rounded.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The resulting runner part.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">70</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+
+<span class="n">border</span> <span class="o">=</span> <span class="n">cylinder</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Top&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get_border</span><span class="p">()</span>
+<span class="n">border_as_curve</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">convert_to_curve</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">border</span><span class="p">,</span> <span class="n">add_to</span><span class="o">=</span><span class="n">cylinder</span><span class="p">)</span>
+
+<span class="n">iso_curves</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_iso_curves</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">border_as_curve</span><span class="p">,</span> <span class="n">interval_distance</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">number_of_copies</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">curve</span> <span class="ow">in</span> <span class="n">iso_curves</span><span class="p">:</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">circular_sweep</span><span class="p">(</span><span class="n">sweep_paths</span><span class="o">=</span><span class="n">curve</span><span class="p">,</span> <span class="n">sweep_diameter</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.convert_analytical_to_mesh">
+<code class="descname">convert_analytical_to_mesh</code><span class="sig-paren">(</span><em>entities</em>, <em>tolerance=0.01</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#convert_analytical_to_mesh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.convert_analytical_to_mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>This operation allows you to convert existing analytical primitives to a triangulated part.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entities</strong> (<em>trimatic.Cone | trimatic.Cylinder | trimatic.Plane | trimatic.Sphere |</em><em> [</em><em>trimatic.Cone | trimatic.Cylinder | trimatic.Plane | trimatic.Sphere</em><em>]</em>) – The analytical primitives to convert.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Triangulated parts.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Part | (trimatic.Part)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">RuntimeError, ValueError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">23.5</span>
+<span class="n">analytical_sphere</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_center_radius</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+<span class="n">sphere_converted</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">convert_analytical_to_mesh</span><span class="p">(</span><span class="n">analytical_sphere</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.create_box_around_part">
+<code class="descname">create_box_around_part</code><span class="sig-paren">(</span><em>part</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#create_box_around_part"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.create_box_around_part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a box corresponding to the bounding box of a part.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>part</strong> (<em>trimatic.Part</em>) – Part to create box around.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Created box.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Part</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">RuntimeError, ValueError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">65.3</span>
+<span class="n">sphere</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_part</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
+<span class="n">new_part2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_around_part</span><span class="p">(</span><span class="n">sphere</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.create_box_part">
+<code class="descname">create_box_part</code><span class="sig-paren">(</span><em>corner_point</em>, <em>x_extent</em>, <em>y_extent</em>, <em>z_extent</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#create_box_part"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.create_box_part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a box with the corner point method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>corner_point</strong> (<em>trimatic.Point</em>) – Corner point that is shared by the Back, Left and Bottom surface of the box.</li>
+<li><strong>x_extent</strong> (<em>float</em>) – Length of the box along positive x axis.</li>
+<li><strong>y_extent</strong> (<em>float</em>) – Length of the box along positive y axis.</li>
+<li><strong>z_extent</strong> (<em>float</em>) – Length of the box along positive z axis.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Created box.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">90</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mf">35.4</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.create_cone_part">
+<code class="descname">create_cone_part</code><span class="sig-paren">(</span><em>*args</em>, <em>origin</em>, <em>direction</em>, <em>height</em>, <em>bottom_radius</em>, <em>top_radius=0</em>, <em>tolerance=0.01</em>, <em>target_edge_length=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#create_cone_part"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.create_cone_part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a cone by specifying its axis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>origin</strong> (<em>trimatic.Point</em>) – Origin of the axis of the cone (center of bottom of the cone).</li>
+<li><strong>direction</strong> (<em>trimatic.Point</em>) – Up axis direction of the cone.</li>
+<li><strong>height</strong> (<em>float</em>) – Height of the cone.</li>
+<li><strong>bottom_radius</strong> (<em>float</em>) – Bottom radius of the cone.</li>
+<li><strong>top_radius</strong> (<em>float</em><em>, </em><em>optional</em>) – Top radius of the cone.</li>
+<li><strong>tolerance</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum error allowed between the mathematical cone and its triangulated representation.</li>
+<li><strong>target_edge_length</strong> (<em>float</em><em>, </em><em>optional</em>) – Targeted triangle edge length of the cone. If 0, no target edge length will be defined.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Created cone.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">orig</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">dir</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">btm_r</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_cone_part</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="n">orig</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="nb">dir</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">h</span><span class="p">,</span> <span class="n">bottom_radius</span><span class="o">=</span><span class="n">btm_r</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.create_connections_automatic">
+<code class="descname">create_connections_automatic</code><span class="sig-paren">(</span><em>*args</em>, <em>entities</em>, <em>target_entity=None</em>, <em>min_radius=1</em>, <em>max_radius=5</em>, <em>max_length=50</em>, <em>distance=50</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#create_connections_automatic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.create_connections_automatic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates cylindrical connections among parts. Connections are represented by analytical cylinders.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> [</em><em>trimatic.Part</em><em>]</em>) – Parts to be connected.</li>
+<li><strong>target_entity</strong> (<em>trimatic.Part</em><em>, </em><em>optional</em>) – A Part to connect entities with. If None, connections will be created among entities, else, between each entity and target_entity.</li>
+<li><strong>min_radius</strong> (<em>float</em><em>, </em><em>optional</em>) – Minimum radius that will be assigned to a connection.</li>
+<li><strong>max_radius</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum radius that will be assigned to a connection.</li>
+<li><strong>max_length</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum allowed length for connections.</li>
+<li><strong>target_distance</strong> (<em>float</em><em>, </em><em>optional</em>) – Approximate distance between connections.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Created connections.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Cylinder | (trimatic.Cylinder)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">application_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">application_path</span><span class="p">,</span> <span class="s2">&quot;DemoFiles&quot;</span><span class="p">,</span> <span class="s2">&quot;Aorta_Hollow.mxp&quot;</span><span class="p">))</span>
+<span class="n">aorta</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">box</span><span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">(</span><span class="mi">156</span><span class="p">,</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span><span class="o">-</span><span class="mi">90</span><span class="p">),</span> <span class="n">x_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mi">160</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_connections_automatic</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">aorta</span><span class="p">,</span> <span class="n">target_entity</span><span class="o">=</span><span class="n">box</span><span class="p">,</span> <span class="n">min_radius</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_radius</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.create_cylinder_part">
+<code class="descname">create_cylinder_part</code><span class="sig-paren">(</span><em>point_1</em>, <em>point_2</em>, <em>radius</em>, <em>tolerance=0.01</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#create_cylinder_part"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.create_cylinder_part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a cylinder using 2 points method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>point_1</strong> (<em>trimatic.Point</em>) – The center point of the bottom surface of the cylinder.</li>
+<li><strong>point_2</strong> (<em>trimatic.Point</em>) – The center point of the top surface of the cylinder.</li>
+<li><strong>radius</strong> (<em>float</em>) – Radius of the cylinder.</li>
+<li><strong>tolerance</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum error allowed between the mathematical cylinder and its triangulated representation.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Created cylinder.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">63</span><span class="p">,</span><span class="mf">56.7</span><span class="p">,</span><span class="o">-</span><span class="mi">23</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">65.1</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.create_part">
+<code class="descname">create_part</code><span class="sig-paren">(</span><em>vertices</em>, <em>triangles</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#create_part"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.create_part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates Part from given vertices and triangles indices.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>vertices</strong> (<em>[</em><em>trimatic.Point</em><em>] </em><em>|</em><em> (</em><em>trimatic.Point</em><em>)</em>) – List or tuple of vertices to create part.</li>
+<li><strong>triangles</strong> (<em>[</em><em>(</em><em>int</em><em>, </em><em>int</em><em>, </em><em>int</em><em>)</em><em>] </em><em>|</em><em> (</em><em>(</em><em>int</em><em>, </em><em>int</em><em>, </em><em>int</em><em>)</em><em>)</em>) – List or tuple of tuples of 3 indices that form triangles to create a part.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Created Part.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">vertices</span> <span class="o">=</span> <span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">))</span>
+<span class="n">triangles</span> <span class="o">=</span> <span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_part</span><span class="p">(</span><span class="n">triangles</span><span class="o">=</span><span class="n">triangles</span><span class="p">,</span> <span class="n">vertices</span><span class="o">=</span><span class="n">vertices</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.create_part_by_surfaces">
+<code class="descname">create_part_by_surfaces</code><span class="sig-paren">(</span><em>surfaces</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#create_part_by_surfaces"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.create_part_by_surfaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a part with list or tuple, of lists or tuples containing the information of vertices, triangles, and name for a surface.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>surfaces</strong> (<em>[</em><em>[</em><em>vertices</em><em>, </em><em>triangles</em><em>, </em><em>surface name</em><em>]</em><em>,</em><em>] </em><em>|</em><em> (</em><em>(</em><em>vertices</em><em>, </em><em>triangles</em><em>, </em><em>surface name</em><em>)</em><em>,</em><em>) </em><em>|</em><em> [</em><em>(</em><em>vertices</em><em>, </em><em>triangles</em><em>, </em><em>surface name</em><em>)</em><em>,</em><em>] </em><em>|</em><em> (</em><em>[</em><em>vertices</em><em>, </em><em>triangles</em><em>, </em><em>surface name</em><em>]</em><em>,</em><em>)</em><em>)</em>) – <strong>vertices</strong> (<em>[trimatic.Point]|(trimatic.Point)</em>) is a list or tuple of vertices to form a surface of a part;
+<strong>triangles</strong> (<em>[(int, int, int)]|(int, int, int)</em>) is a list or tuple of 3 indices that form triangles to create a surface of a part; and,
+<strong>surface name</strong> (<em>string</em>) is a string that gives name to a surface of a part.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Created part with surfaces.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Part</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValueError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">vertices1</span> <span class="o">=</span> <span class="p">((</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.3301</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">2.4999</span><span class="p">,</span> <span class="mf">4.3301</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+<span class="n">triangles1</span> <span class="o">=</span> <span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">vertices2</span> <span class="o">=</span> <span class="p">((</span><span class="o">-</span><span class="mf">2.4999</span><span class="p">,</span> <span class="mf">4.3301</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">))</span>
+<span class="n">triangles2</span> <span class="o">=</span> <span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),)</span>
+<span class="n">vertices3</span> <span class="o">=</span> <span class="p">((</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.3301</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">2.4999</span><span class="p">,</span> <span class="mf">4.3301</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">))</span>
+<span class="n">triangles3</span> <span class="o">=</span> <span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),)</span>
+<span class="n">vertices4</span> <span class="o">=</span> <span class="p">((</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.3301</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">))</span>
+<span class="n">triangles4</span> <span class="o">=</span> <span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_part_by_surfaces</span><span class="p">(</span><span class="n">surfaces</span><span class="o">=</span><span class="p">((</span><span class="n">vertices1</span><span class="p">,</span> <span class="n">triangles1</span><span class="p">,</span> <span class="s2">&quot;Bottom&quot;</span><span class="p">),</span>
+                                           <span class="p">(</span><span class="n">vertices2</span><span class="p">,</span> <span class="n">triangles2</span><span class="p">,</span> <span class="s2">&quot;Mantle Surface 1&quot;</span><span class="p">),</span>
+                                           <span class="p">(</span><span class="n">vertices3</span><span class="p">,</span> <span class="n">triangles3</span><span class="p">,</span> <span class="s2">&quot;Mantle Surface 2&quot;</span><span class="p">),</span>
+                                           <span class="p">(</span><span class="n">vertices4</span><span class="p">,</span> <span class="n">triangles4</span><span class="p">,</span> <span class="s2">&quot;Surface&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.create_pyramid">
+<code class="descname">create_pyramid</code><span class="sig-paren">(</span><em>*args</em>, <em>bottom_point</em>, <em>top_point</em>, <em>bottom_radius</em>, <em>top_radius=0</em>, <em>number_of_faces=3</em>, <em>target_edge_length=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#create_pyramid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.create_pyramid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a pyramid by specifying its bottom point and top point.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>bottom_point</strong> (<em>trimatic.Point</em>) – Center of the bottom face of the pyramid.</li>
+<li><strong>top_point</strong> (<em>trimatic.Point</em>) – Center of the top face of the pyramid.</li>
+<li><strong>bottom_radius</strong> (<em>float</em>) – Bottom radius of the pyramid.</li>
+<li><strong>top_radius</strong> (<em>float</em><em>, </em><em>optional</em>) – Top radius of the pyramid.</li>
+<li><strong>number_of_faces</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of faces in the mantle of the pyramid.</li>
+<li><strong>target_edge_length</strong> (<em>float</em><em>, </em><em>optional</em>) – Targeted triangle edge length of the pyramid. If 0, no target edge length will be defined.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Created pyramid.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">btm_r</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_pyramid</span><span class="p">(</span><span class="n">bottom_point</span><span class="o">=</span><span class="n">p1</span><span class="p">,</span> <span class="n">top_point</span><span class="o">=</span><span class="n">p2</span><span class="p">,</span> <span class="n">bottom_radius</span><span class="o">=</span><span class="n">btm_r</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.create_pyramid_part">
+<code class="descname">create_pyramid_part</code><span class="sig-paren">(</span><em>*args</em>, <em>origin</em>, <em>direction</em>, <em>height</em>, <em>bottom_radius</em>, <em>top_radius=0</em>, <em>number_of_faces=3</em>, <em>target_edge_length=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#create_pyramid_part"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.create_pyramid_part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a pyramid by specifying its axis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>origin</strong> (<em>trimatic.Point</em>) – Origin of the axis of the pyramid (center of bottom of the pyramid).</li>
+<li><strong>direction</strong> (<em>trimatic.Point</em>) – Up axis direction of the pyramid.</li>
+<li><strong>height</strong> (<em>float</em>) – Height of the pyramid.</li>
+<li><strong>bottom_radius</strong> (<em>float</em>) – Bottom radius of the pyramid.</li>
+<li><strong>top_radius</strong> (<em>float</em><em>, </em><em>optional</em>) – Top radius of the pyramid.</li>
+<li><strong>number_of_faces</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of faces in the mantle of the pyramid.</li>
+<li><strong>target_edge_length</strong> (<em>float</em><em>, </em><em>optional</em>) – Targeted triangle edge length of the pyramid. If 0, no target edge length will be defined.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Created pyramid.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">orig</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">dir</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">btm_r</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_pyramid_part</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="n">orig</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="nb">dir</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">h</span><span class="p">,</span> <span class="n">bottom_radius</span><span class="o">=</span><span class="n">btm_r</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.create_sphere_part">
+<code class="descname">create_sphere_part</code><span class="sig-paren">(</span><em>point_center</em>, <em>radius</em>, <em>tolerance=0.01</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#create_sphere_part"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.create_sphere_part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a sphere using center and radius method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>point_center</strong> (<em>trimatic.Point</em>) – The center point of sphere.</li>
+<li><strong>radius</strong> (<em>float</em>) – The radius of the sphere.</li>
+<li><strong>tolerance</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum error allowed between the mathematical sphere and its triangulated representation.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Created sphere.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">65.3</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_part</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.cut">
+<code class="descname">cut</code><span class="sig-paren">(</span><em>entities</em>, <em>cutting_entity</em>, <em>clearance=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#cut"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.cut" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cuts one or more parts with another part or a plane.</p>
+<p>New parts will be created and the original entities will be removed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Graph | trimatic.GraphSet |</em><em> [</em><em>trimatic.Part | trimatic.Graph | trimatic.GraphSet</em><em> ]</em>) – Entities to cut.</li>
+<li><strong>cutting_entity</strong> (<em>trimatic.Part | trimatic.Plane</em>) – Single part or single plane.</li>
+<li><strong>clearance</strong> (<em>float</em><em>, </em><em>optional</em>) – The gap length between the split entities. Set to 0 for no clearance.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Resulting parts after cut.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">pl</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_fit</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">pl</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.extend_surface_curved">
+<code class="descname">extend_surface_curved</code><span class="sig-paren">(</span><em>entities</em>, <em>distance=1.0</em>, <em>solid=False</em>, <em>accuracy=&lt;TriangulationAccuracy.Coarse: 'Coarse'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#extend_surface_curved"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.extend_surface_curved" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extends a surface.</p>
+<p>Extends a surface using curved tangential method. The extension is tangential to the surface and tries to follow the curvature of the surface.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Curve | trimatic.Surface | trimatic.SurfaceContour | trimatic.SurfaceBorder |</em><em> [</em><em>trimatic.Curve | trimatic.Surface | trimatic.SurfaceContour | trimatic.SurfaceBorder</em><em>] </em><em>|</em><em> (</em><em>trimatic.Curve | trimatic.Surface | trimatic.SurfaceContour | trimatic.SurfaceBorder</em><em>)</em>) – Either single object or a heterogeneous list of objects.</li>
+<li><strong>distance</strong> (<em>float</em><em>, </em><em>optional</em>) – Distance of extension.</li>
+<li><strong>solid</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, then neighbour triangles will be moved too.</li>
+<li><strong>accuracy</strong> (<em>trimatic.TriangulationAccuracy</em><em>, </em><em>optional</em>) – Accuracy of triangulation.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Extended surfaces.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Surface | (trimatic.Surface)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">(</span><span class="n">point_1</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">point_2</span><span class="o">=</span><span class="p">(</span><span class="mi">63</span><span class="p">,</span><span class="mf">56.7</span><span class="p">,</span><span class="o">-</span><span class="mi">23</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mf">65.1</span><span class="p">)</span>
+<span class="n">mantle</span> <span class="o">=</span> <span class="n">cylinder</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Mantle&quot;</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">extend_surface_curved</span><span class="p">(</span><span class="n">mantle</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.extend_surface_linear">
+<code class="descname">extend_surface_linear</code><span class="sig-paren">(</span><em>entities</em>, <em>distance=1.0</em>, <em>solid=False</em>, <em>segments=1</em>, <em>smoothing_distance=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#extend_surface_linear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.extend_surface_linear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extends a surface.</p>
+<p>Extends a surface using linear tangential method. The extension is tangential to the surface and straight.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Curve | trimatic.Surface | trimatic.SurfaceContour | trimatic.SurfaceBorder |</em><em> [</em><em>trimatic.Curve | trimatic.Surface | trimatic.SurfaceContour | trimatic.SurfaceBorder</em><em>] </em><em>|</em><em> (</em><em>trimatic.Curve | trimatic.Surface | trimatic.SurfaceContour | trimatic.SurfaceBorder</em><em>)</em>) – Either single object or a heterogeneous list of objects.</li>
+<li><strong>distance</strong> (<em>float</em><em>, </em><em>optional</em>) – Length of extension.</li>
+<li><strong>solid</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the triangles on the neighboring surfaces will remain connected.</li>
+<li><strong>segments</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of segments in an extension part.</li>
+<li><strong>smoothing_distance</strong> (<em>float</em><em>, </em><em>optional</em>) – The smoothing distance will avoid wrinkles and overlays at the corners. It is advised to keep this parameter identical to the distance parameter.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Extended surfaces.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Surface | (trimatic.Surface)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">x_extent</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mf">4.0</span><span class="p">)</span>
+<span class="n">top_surface</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Top&quot;</span><span class="p">)</span>
+<span class="n">extend_surface</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">extend_surface_linear</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">top_surface</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.extrude">
+<code class="descname">extrude</code><span class="sig-paren">(</span><em>*args</em>, <em>entities</em>, <em>direction</em>, <em>depth1=1</em>, <em>upto_entities1=None</em>, <em>draft_angle1=0</em>, <em>draft_outwards1=False</em>, <em>depth2=None</em>, <em>upto_entities2=None</em>, <em>draft_angle2=0</em>, <em>draft_outwards2=False</em>, <em>solid=True</em>, <em>part_to_cut=None</em>, <em>flip_side_to_cut=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#extrude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.extrude" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extrudes curves, curve sets or sketch to create a part.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Curve | trimatic.CurveSet | trimatic.Sketch | trimatic.SurfaceBorder | trimatic.SurfaceContour |</em><em> [</em><em>trimatic.Curve | trimatic.CurveSet | trimatic.Sketch | trimatic.SurfaceBorder | trimatic.SurfaceContour</em><em>]</em>) – Either single object or a heterogeneous list of curve like entities.</li>
+<li><strong>direction</strong> (<em>trimatic.Point</em>) – Direction to extrude the curves.</li>
+<li><strong>depth1</strong> (<em>float</em><em>, </em><em>optional</em>) – Depth for extrude along selected direction. Note that this value is ignored when upto_entities1 is not None.</li>
+<li><strong>upto_entities1</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em>]</em><em>, </em><em>optional</em>) – When specified, the extrude will be done up to the entities specified.</li>
+<li><strong>draft_angle1</strong> (<em>float</em><em>, </em><em>optional</em>) – Draft or taper applied to the extrusion. For example, draft applied during extrusion of a circle results in a cone.</li>
+<li><strong>draft_outwards1</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the draft angle will be oriented outwards.</li>
+<li><strong>depth2</strong> (<em>float</em><em>, </em><em>optional</em>) – Depth for extrude along opposite of the selected direction. Note that this value is ignored when upto_entities2 is not None.</li>
+<li><strong>upto_entities2</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em>]</em><em>, </em><em>optional</em>) – When specified, the extrude will be done up to the entities spcified for the opposite direction.</li>
+<li><strong>draft_angle2</strong> (<em>float</em><em>, </em><em>optional</em>) – Draft or taper applied to the opposite extrusion.</li>
+<li><strong>draft_outwards2</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the draft angle will be oriented outwards.</li>
+<li><strong>solid</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, a bottom and top surface will be created when performed on a closed curve. When curves are not closed, RuntimeError will be raised.</li>
+<li><strong>part_to_cut</strong> (<em>trimatic.Part</em><em>, </em><em>optional</em>) – When specified, the extrude will cut material from this part. This corresponds to method “Cut Extrude” in GUI.</li>
+<li><strong>flip_side_to_cut</strong> (<em>trimatic.Part</em><em>, </em><em>optional</em>) – When True, the cut will preserve outside, whereas when False the cut will preserve the inside. This paramter only has effect when part_to_cut is specified.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Resulting part after extrude.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> 
+<span class="n">surface</span> <span class="o">=</span> <span class="n">part</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Top&quot;</span><span class="p">)</span>
+<span class="n">border</span> <span class="o">=</span> <span class="n">surface</span><span class="o">.</span><span class="n">get_border</span><span class="p">()</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">design</span><span class="o">.</span><span class="n">extrude</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">border</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">draft_angle1</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.hollow">
+<code class="descname">hollow</code><span class="sig-paren">(</span><em>*args</em>, <em>entities</em>, <em>hollow_type=&lt;HollowType.Inside: 'Inside'&gt;</em>, <em>distance=1.0</em>, <em>smallest_detail=0.3</em>, <em>smooth_factor=0.5</em>, <em>reduce=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#hollow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.hollow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an extra shell that gives the part a thickness.
+New shells will be created and the original entities will be removed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface |</em><em> [</em><em>trimatic.Part | trimatic.Surface</em><em>]</em>) – Either single object or a heterogeneous list of parts or surfaces.</li>
+<li><strong>hollow_type</strong> (<em>trimatic.HollowType</em><em>, </em><em>optional</em>) – Define whether a new surface is created on the inside, outside or both side of the input entity. Hollowing an open entity on both sides will result in an enveloping surface.</li>
+<li><strong>distance</strong> (<em>float</em><em>, </em><em>optional</em>) – The overall thickness of the part after the operation.</li>
+<li><strong>smallest_detail</strong> (<em>float</em><em>, </em><em>optional</em>) – Targeted size of triangles of the newly created surface.</li>
+<li><strong>smooth_factor</strong> (<em>float</em><em>, </em><em>optional</em>) – Strength of smoothing of the created surfaces</li>
+<li><strong>reduce</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, triangle reduction will be applied on the newly created surface.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Newly created surface(s).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Surface | (trimatic.Surface)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">hollow</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> 
+                <span class="n">hollow_type</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">HollowType</span><span class="o">.</span><span class="n">Both</span><span class="p">,</span>
+                <span class="n">distance</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                <span class="n">reduce</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">smallest_detail</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                <span class="n">smooth_factor</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.local_offset">
+<code class="descname">local_offset</code><span class="sig-paren">(</span><em>surface_entities</em>, <em>offset_distance=1.0</em>, <em>diminishing_distance=5.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#local_offset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.local_offset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs offset on a local area (surfaces).</p>
+<p>The offset will be zero at the surface border and increase over a given distance (diminishing distance) to the set maximum offset distance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>surface_entities</strong> (<em>trimatic.Surface | trimatic.SurfaceSet | trimatic.SurfaceContour | trimatic.MarkedTriangles|</em><em> [</em><em>trimatic.Surface | trimatic.SurfaceSet | trimatic.SurfaceContour | trimatic.MarkedTriangles</em><em>]</em>) – Either single entity or a heterogeneous list of surface or surface sets.</li>
+<li><strong>offset_distance</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum distance for local offset, which is applied a given distance from surface border.
+For external offset, specify positive distance. For internal offset, specify negative distance.</li>
+<li><strong>diminishing_distance</strong> (<em>float</em><em>, </em><em>optional</em>) – The transitioning distance between surface border and the maximum offset distance. The offset will be zero at
+the surface border and increases over this distance to the given distance.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Surface after operation.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Surface | (trimatic.Surface)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_surfaces</span><span class="p">()</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">local_offset</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.loft">
+<code class="descname">loft</code><span class="sig-paren">(</span><em>entity1</em>, <em>entity2</em>, <em>merge=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#loft"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.loft" title="Permalink to this definition">¶</a></dt>
+<dd><p>Surface loft operation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entity1</strong> (<em>trimatic.Curve | trimatic.Surface | trimatic.SurfaceContour</em>) – Bad Contour, Curve or Surface to start the loft. For surfaces, only surfaces with one contour are allowed. Surfaces with only bad contour(s) are not allowed.
+For curves, only closed curves are allowed.</li>
+<li><strong>entity2</strong> (<em>trimatic.Curve | trimatic.Surface | trimatic.SurfaceContour</em>) – Bad Contour, Curve or Surface to end the loft. Same restrictions as for entity1 apply.</li>
+<li><strong>merge</strong> (<em>bool</em><em>, </em><em>optional</em>) – When False, a new part is created and it contains the loft surface with two side surfaces.
+When True, only loft surface is created and it will be merged with the original parts to which the seleted entities belong to. These original parts will be removed.
+If surface is selected as input, the selected surface will be removed from the original part to create a solid result.
+Remark: If curve is selected, this parameter has no effect. The result will be as with merge = False.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Resulting surface(s) after loft</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.Surface)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">cylinder1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">(</span><span class="n">point_1</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="n">point_2</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span><span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">top_surface</span> <span class="o">=</span> <span class="n">cylinder1</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Top&quot;</span><span class="p">)</span>
+<span class="n">cylinder2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">(</span><span class="n">point_1</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="n">point_2</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">30</span><span class="p">),</span><span class="n">radius</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">bottom_surface</span> <span class="o">=</span> <span class="n">cylinder2</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Bottom&quot;</span><span class="p">)</span>
+<span class="n">loft_part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">loft</span><span class="p">(</span><span class="n">entity1</span><span class="o">=</span><span class="n">top_surface</span><span class="p">,</span> <span class="n">entity2</span><span class="o">=</span><span class="n">bottom_surface</span><span class="p">,</span> <span class="n">merge</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.move_surface">
+<code class="descname">move_surface</code><span class="sig-paren">(</span><em>entities</em>, <em>direction=None</em>, <em>distance=1.0</em>, <em>solid=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#move_surface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.move_surface" title="Permalink to this definition">¶</a></dt>
+<dd><p>This operation will move selected surface in a defined direction and over a defined distance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Surface | trimatic.SurfaceSet |</em><em> [</em><em>trimatic.Surface | trimatic.SurfaceSet</em><em>]</em>) – One or more surfaces or surface sets.</li>
+<li><strong>direction</strong> (<em>trimatic.Point</em><em>, </em><em>optional</em>) – The direction vector according to which the selected surfaces will be moved. When None is specified, automatic directions per surface are chosen.</li>
+<li><strong>distance</strong> (<em>float</em><em>, </em><em>optional</em>) – The distance over which the selected surfaces will be moved. Positive distance corresponds to outside movement when direction is None.</li>
+<li><strong>solid</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the triangles on the neighboring surfaces will remain connected.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Newly created surfaces.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.SurfaceSet)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">x_extent</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mf">4.0</span><span class="p">)</span>
+<span class="n">top_surface</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Top&quot;</span><span class="p">)</span>
+<span class="n">moved_surface</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">move_surface</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">distance</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">entities</span><span class="o">=</span><span class="n">top_surface</span><span class="p">,</span> <span class="n">solid</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.surface_construction">
+<code class="descname">surface_construction</code><span class="sig-paren">(</span><em>entities</em>, <em>guiding_lines=None</em>, <em>grid_size=3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#surface_construction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.surface_construction" title="Permalink to this definition">¶</a></dt>
+<dd><p>The surface construction allows you to construct new surfaces.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Curve | trimatic.SurfaceContour |</em><em> [</em><em>trimatic.Curve | trimatic.SurfaceContour</em><em>]</em>) – Possible entities: Bad contour, curve (attached along a bad contour or partially attached along a bad contour).
+Remark: the entity should be closed and the entity may not lie in a flat plane.</li>
+<li><strong>guiding_lines</strong> (<em>trimatic.Curve | trimatic.CurveSet | trimatic.Sketch |</em><em> [</em><em>trimatic.Curve | trimatic.CurveSet | trimatic.Sketch</em><em>]</em><em>, </em><em>optional</em>) – The guiding lines are optional. They only guide the newly constructed surface, which means that the newly constructed surface is not per definition going through the guides.</li>
+<li><strong>grid_size</strong> (<em>float</em><em>, </em><em>optional</em>) – The size of the triangles that will create the surface.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Resulting surfaces.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.Surface)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">x_extent</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mf">4.0</span><span class="p">)</span>
+<span class="n">left_surface</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Left&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">left_surface</span><span class="p">)</span>
+<span class="n">bad_contour</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">get_bad_contours</span><span class="p">()</span>
+<span class="n">constructed_surface</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">surface_construction</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">bad_contour</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.sweep">
+<code class="descname">sweep</code><span class="sig-paren">(</span><em>*args</em>, <em>profile</em>, <em>path</em>, <em>follow_surface_left=False</em>, <em>follow_surface_right=False</em>, <em>segment_angle=10</em>, <em>surface_segmentation_profile_based=False</em>, <em>surface_segmentation_path_based_direction_angle=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#sweep"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.sweep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sweeps a profile along a path to create a part.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>profile</strong> (<em>trimatic.Sketch</em>) – The profile to be swept.</li>
+<li><strong>path</strong> (<em>trimatic.Curve</em>) – The path to follow.</li>
+<li><strong>follow_surface_left</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, the orientation of the sweep profile during the sweep will follow the surface, so the orientation is preserved with respect to the surface left from the path. This is only possible for attached curves.</li>
+<li><strong>follow_surface_right</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, the orientation of the sweep profile during the sweep will follow the surface, so the orientation is preserved with respect to the surface right from the path. This is only possible for attached curves.</li>
+<li><strong>segment_angle</strong> (<em>float</em><em>, </em><em>optional</em>) – When the path makes curves, the triangulated surface that originates from the sweep can never make a perfect round. Defining this parameter, you determine the deviation between the triangulated surface and a ‘perfect’ round. The bigger the angle, the fewer segments, the rougher the approximation.</li>
+<li><strong>surface_segmentation_profile_based</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, an additional ‘longitudinal’ segmentation is done: each segment of the profile becomes a surface when it is swept around.</li>
+<li><strong>surface_segmentation_path_based_direction_angle</strong> (<em>float</em><em>, </em><em>optional</em>) – When specified, an additional ‘transversal’ segmentation is done: the surface is segmented when the direction of the path changes. You can set the value of an angle. When the direction changes more than this angle, the surface is split.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Resulting part.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">plane</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_3_points</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">sketch</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sketch</span><span class="p">(</span><span class="n">planes</span><span class="o">=</span><span class="n">plane</span><span class="p">)</span>
+<span class="n">sphere</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_part</span><span class="p">(</span><span class="n">point_center</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_intersection</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">sphere</span><span class="p">,</span> <span class="n">sketch</span><span class="o">=</span><span class="n">sketch</span><span class="p">,</span> <span class="n">construction</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">curve</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_curve</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="p">[(</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">)])</span>
+<span class="n">sweep_part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">sweep</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">curve</span><span class="p">,</span><span class="n">profile</span><span class="o">=</span><span class="n">sketch</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.sweep_loft">
+<code class="descname">sweep_loft</code><span class="sig-paren">(</span><em>start_profile</em>, <em>path</em>, <em>end_profile</em>, <em>intermediate_profiles=None</em>, <em>detail=0.5</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#sweep_loft"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.sweep_loft" title="Permalink to this definition">¶</a></dt>
+<dd><p>With the Sweep-loft function, you can sweep multiple profiles along a path. Please take the following conditions into account to get a good result:</p>
+<ol class="lowerroman simple">
+<li>Profiles must be closed (both planar and non-planar profiles are allowed).</li>
+<li>Preferably the path is coincident with the center of the profile . The profile and the path are perpendicular to each other.</li>
+<li>Selected profiles must not intersect with each other.</li>
+</ol>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>start_profile</strong> (<em>trimatic.Sketch | trimatic.Curve | trimatic.SurfaceContour</em>) – The starting profile.</li>
+<li><strong>end_profile</strong> (<em>trimatic.Sketch | trimatic.Curve | trimatic.SurfaceContour</em>) – The ending profile.</li>
+<li><strong>intermediate_profiles</strong> (<em>trimatic.Sketch | trimatic.Curve | trimatic.SurfaceContour |</em><em> [</em><em>trimatic.Sketch | trimatic.Curve | trimatic.SurfaceContour</em><em>]</em>) – The intermediate profile(s).</li>
+<li><strong>path</strong> (<em>trimatic.Curve</em>) – The path to follow.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Resulting part.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">(</span><span class="n">point_1</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="n">point_2</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span><span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">cylinder_top_surface</span> <span class="o">=</span> <span class="n">cylinder</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Top&quot;</span><span class="p">)</span>
+<span class="n">top_surface_contour</span> <span class="o">=</span> <span class="n">cylinder_top_surface</span><span class="o">.</span><span class="n">get_border</span><span class="p">()</span><span class="o">.</span><span class="n">get_contours</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">x_extent</span><span class="o">=</span><span class="mf">6.0</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mf">6.0</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mf">6.0</span><span class="p">)</span>
+<span class="n">box_surface</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Back&quot;</span><span class="p">)</span>
+<span class="n">front_surface_contour</span> <span class="o">=</span> <span class="n">box_surface</span><span class="o">.</span><span class="n">get_border</span><span class="p">()</span><span class="o">.</span><span class="n">get_contours</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">curve</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_curve</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">)])</span>
+<span class="n">sweep_loft_part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">sweep_loft</span><span class="p">(</span><span class="n">start_profile</span><span class="o">=</span><span class="n">top_surface_contour</span><span class="p">,</span><span class="n">end_profile</span><span class="o">=</span><span class="n">front_surface_contour</span><span class="p">,</span><span class="n">path</span><span class="o">=</span><span class="n">curve</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.uniform_offset">
+<code class="descname">uniform_offset</code><span class="sig-paren">(</span><em>entities</em>, <em>distance</em>, <em>maximum_edge_length=0.6</em>, <em>solid=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#uniform_offset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.uniform_offset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs uniform offset on selected entities.</p>
+<p>Preserve sharp features is assumed checked OFF. New parts will be created and the original entities will be removed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em>]</em>) – Either single object or a heterogeneous list of parts, surface, or surface set.</li>
+<li><strong>distance</strong> (<em>float</em>) – Offset distance. For external offset, specify positive distance and for internal offset, specify negative distance.</li>
+<li><strong>maximum_edge_length</strong> (<em>float</em><em>, </em><em>optional</em>) – Targeted maximum edge length of created triangles.</li>
+<li><strong>solid</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, a solid is created. Useful when performing offset on an open part so that the result will be a closed part.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Resulting parts after uniform offset.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | (trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">uniform_offset</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">p</span><span class="p">,</span><span class="n">distance</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">maximum_edge_length</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.uniform_offset_preserve_sharp_features">
+<code class="descname">uniform_offset_preserve_sharp_features</code><span class="sig-paren">(</span><em>entities</em>, <em>distance</em>, <em>solid=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#uniform_offset_preserve_sharp_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.uniform_offset_preserve_sharp_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs uniform offset on selected entities.</p>
+<p>Preserve sharp features is assumed checked ON. New parts will be created and the original entities will be removed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em>]</em>) – Either single object or a heterogeneous list of parts, surface, or surface set.</li>
+<li><strong>distance</strong> (<em>float</em>) – Offset distance. For external offset, specify positive distance and for internal offset, specify negative distance.</li>
+<li><strong>solid</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, a solid is created. Useful when performing offset on an open part where the result will be a closed part.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Resulting parts after uniform offset.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | (trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">uniform_offset_preserve_sharp_features</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="n">part</span><span class="p">),</span><span class="n">distance</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">solid</span><span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.variable_offset">
+<code class="descname">variable_offset</code><span class="sig-paren">(</span><em>entity</em>, <em>base_thickness=-1.0</em>, <em>maximum_edge_length=0.6</em>, <em>influence_region=1.0</em>, <em>solid=False</em>, <em>local_thickness_parameters=()</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#variable_offset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.variable_offset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs variable offset on selected surface.</p>
+<p>New surface(s) will be created and the original surface will be removed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entity</strong> (<em>trimatic.Surface</em>) – Surface with a single contour.</li>
+<li><strong>base_thickness</strong> (<em>float</em><em>, </em><em>optional</em>) – The thickness or distance between the original and offset surfaces on the area which is not influenced by the Influence region. For external offset, specify positive value. For internal offset, specify negative value. Only accepts non-zero value.</li>
+<li><strong>maximum_edge_length</strong> (<em>float</em><em>, </em><em>optional</em>) – Targeted maximum edge length of created triangles.</li>
+<li><strong>influence_region</strong> (<em>float</em><em>, </em><em>optional</em>) – The distance of influence from the surface contour outline, inwards to the center of the surface.</li>
+<li><strong>solid</strong> (<em>bool</em><em>, </em><em>optional</em>) – if True, a solid is created. Useful when performing offset on an open part where the result will be a closed part.</li>
+<li><strong>local_thickness_parameters</strong> (<em>(</em><em>(</em><em>trimatic.Point</em><em>, </em><em>float</em><em>)</em><em>,</em><em>)</em><em>, </em><em>optional</em>) – Tuple of tuples containing the info (point, local thickness). The selected points must lie on the contour of the selected surface.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Surface(s) after variable offset.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Surface | (trimatic.Surface)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">surface</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">get_surfaces</span><span class="p">()[</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">border</span> <span class="o">=</span> <span class="n">surface</span><span class="o">.</span><span class="n">get_border</span><span class="p">()</span>
+<span class="n">contour</span> <span class="o">=</span> <span class="n">border</span><span class="o">.</span><span class="n">get_contours</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">local_thickness_parameters</span> <span class="o">=</span> <span class="p">((</span><span class="n">contour</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">),</span> <span class="p">(</span><span class="n">contour</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mf">2.0</span><span class="p">))</span>
+<span class="n">surfaces</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">variable_offset</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">surface</span><span class="p">,</span> <span class="n">base_thickness</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">influence_region</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">maximum_edge_length</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">solid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">local_thickness_parameters</span><span class="o">=</span><span class="n">local_thickness_parameters</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.wrap">
+<code class="descname">wrap</code><span class="sig-paren">(</span><em>*args</em>, <em>entities</em>, <em>gap_closing_distance=0</em>, <em>smallest_detail=1</em>, <em>protect_thin_walls=False</em>, <em>resulting_offset=0</em>, <em>reduce=True</em>, <em>preserve_sharp_features=False</em>, <em>preserve_surface_structure=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#wrap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.wrap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wraps part or surface to fix, smooth &amp; offset in one operation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles</em><em>]</em>) – Either single object or a list of parts, surface or surface sets.</li>
+<li><strong>gap_closing_distance</strong> (<em>float</em><em>, </em><em>optional</em>) – The size of gaps that will be closed</li>
+<li><strong>smallest_detail</strong> (<em>float</em><em>, </em><em>optional</em>) – Targeted size of triangles after the operation.</li>
+<li><strong>protect_thin_walls</strong> (<em>bool</em><em>, </em><em>optional</em>) – If False, there is no protection of thin walls. Depending on the smallest detail, it is possible that walls with a thickness within the same range are collapsed.
+If True, these thin walls will be preserved. This will however mean that the resulting model will be slightly thicker than the original, entirely depending on the smallest detail parameter that is chosen</li>
+<li><strong>resulting_offset</strong> (<em>float</em><em>, </em><em>optional</em>) – Offset that is applied to the parts or surfaces.</li>
+<li><strong>reduce</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, triangle reduction will be applied after wrapping.</li>
+<li><strong>preserve_sharp_features</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, sharp features will be preserved and not smoothed.</li>
+<li><strong>preserve_surface_structure</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the original surface structure and the surface color will be preserved. When input contains surfaces, we recommend using preserve_surface_structure = True.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Either single part or a list of parts after wrapping. If the input surfaces/surface sets belong to same part, new single part will be created.
+Otherwise new parts will be created based on the number of parts to which the input surfaces/ surface sets belong.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | (trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">part</span><span class="p">,</span> <span class="n">resulting_offset</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.design.wrap_get_additional_offset_to_protect_thin_walls">
+<code class="descname">wrap_get_additional_offset_to_protect_thin_walls</code><span class="sig-paren">(</span><em>smallest_detail=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/design.html#wrap_get_additional_offset_to_protect_thin_walls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.design.wrap_get_additional_offset_to_protect_thin_walls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets additional offset to protect thin walls.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>smallest_detail</strong> (<em>float</em><em>, </em><em>optional</em>) – Size of triangles on the newly created surface.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Minimum offset value.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValueError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">offset</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">wrap_get_additional_offset_to_protect_thin_walls</span><span class="p">(</span><span class="n">smallest_detail</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">part</span><span class="p">,</span> <span class="n">resulting_offset</span> <span class="o">=</span> <span class="n">offset</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trimatic.file.html" class="btn btn-neutral float-right" title="file" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="trimatic.curve.html" class="btn btn-neutral" title="curve" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

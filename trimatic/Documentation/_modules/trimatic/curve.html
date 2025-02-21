@@ -1,0 +1,654 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>trimatic.curve &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>trimatic.curve</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for trimatic.curve</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pymatic</span>
+<span class="kn">import</span> <span class="nn">trimatic.utils</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<div class="viewcode-block" id="attach_curve"><a class="viewcode-back" href="../../trimatic.rst/trimatic.curve.html#trimatic.curve.attach_curve">[docs]</a><span class="k">def</span> <span class="nf">attach_curve</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">target_entities</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">distance_threshold</span> <span class="o">=</span> <span class="mf">5.0000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Attaches curve(s) to the specified part(s)/surface(s). The curve is first attracted and then attached.</span>
+
+<span class="sd">    :param entities: Either single object or list of curves, curve sets or sketches.</span>
+<span class="sd">    :type entities: trimatic.Curve | trimatic.CurveSet | trimatic.Sketch | [trimatic.Curve | trimatic.CurveSet | trimatic.Sketch] | (trimatic.Curve | trimatic.CurveSet | trimatic.Sketch)</span>
+<span class="sd">    :param target_entities: The target entities that the curves will be attached to. If set to None, the</span>
+<span class="sd">      curves will be attached to the part they currently belong to.</span>
+<span class="sd">    :type target_entities: trimatic.Part | trimatic.Surface | [trimatic.Part | trimatic.Surface], optional</span>
+<span class="sd">    :param distance_threshold: Curve segments that are within the distance threshold will be attached.</span>
+<span class="sd">    :type distance_threshold: float, optional</span>
+<span class="sd">    :return: Attached curve(s).</span>
+<span class="sd">    :rtype: trimatic.Curve | (trimatic.Curve)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/curve/attach_curve.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">attract_curve</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span><span class="n">target_entities</span><span class="p">,</span><span class="n">distance_threshold</span><span class="p">,</span><span class="kc">True</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="attract_curve"><a class="viewcode-back" href="../../trimatic.rst/trimatic.curve.html#trimatic.curve.attract_curve">[docs]</a><span class="k">def</span> <span class="nf">attract_curve</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">target_entities</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">distance_threshold</span> <span class="o">=</span> <span class="mf">5.0000</span><span class="p">,</span> <span class="n">attach_curve</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Attracts curve(s) to the specified part(s)/surface(s).</span>
+
+<span class="sd">    If multiple curves are specified as input, operation will succeed if at least one of the curves is successfully</span>
+<span class="sd">    attracted.</span>
+
+<span class="sd">    :param entities: Either single object or list of curves, curve sets or sketches.</span>
+<span class="sd">    :type entities: trimatic.Curve | trimatic.CurveSet | trimatic.Sketch | [trimatic.Curve | trimatic.CurveSet | trimatic.Sketch] | (trimatic.Curve | trimatic.CurveSet | trimatic.Sketch)</span>
+<span class="sd">    :param target_entities: The target entities that the curves will be attracted to. If set to None, the</span>
+<span class="sd">        curves will be attracted to the part they currently belong to.</span>
+<span class="sd">    :type target_entities: trimatic.Part | trimatic.Surface | [trimatic.Part | trimatic.Surface], optional</span>
+<span class="sd">    :param distance_threshold: Curve segments that are within the distance threshold will be attracted.</span>
+<span class="sd">    :type distance_threshold: float, optional</span>
+<span class="sd">    :param attach_curve: If True, the target_entities will be retriangulated and the curve will be attached</span>
+<span class="sd">        to the part.</span>
+<span class="sd">    :type attach_curve: bool, optional</span>
+<span class="sd">    :return: Attracted curve(s).</span>
+<span class="sd">    :rtype: trimatic.Curve | (trimatic.Curve)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/curve/attract_curve.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">pymatic_entities</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">pymatic_entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">CurveSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Sketch</span><span class="p">))</span> 
+    <span class="n">pymatic_target_entities</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">target_entities</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;target_entities&quot;</span><span class="p">,</span> <span class="n">pymatic_target_entities</span><span class="p">,</span> <span class="p">(</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">),</span> <span class="n">allow_none_or_empty</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;distance_threshold&quot;</span><span class="p">,</span> <span class="n">distance_threshold</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">attract_curve</span><span class="p">(</span><span class="n">pymatic_entities</span><span class="p">,</span> <span class="n">pymatic_target_entities</span><span class="p">,</span> <span class="n">distance_threshold</span><span class="p">,</span> <span class="n">attach_curve</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="connect_curves"><a class="viewcode-back" href="../../trimatic.rst/trimatic.curve.html#trimatic.curve.connect_curves">[docs]</a><span class="k">def</span> <span class="nf">connect_curves</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">distance_threshold</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Connects curves together.If there is a small overlap, this will be removed.</span>
+
+<span class="sd">    If there is a small gap between the endings of two selected curves, they will be connected with a free curve, </span>
+<span class="sd">    if the gap is smaller than a specified distance.</span>
+
+<span class="sd">    :param entities: List of curves to connect.</span>
+<span class="sd">    :type entities: [trimatic.Curve]</span>
+<span class="sd">    :param distance_threshold: Curve endings that are within the distance threshold will be connected and merged.</span>
+<span class="sd">    :type distance_threshold: float, optional</span>
+<span class="sd">    :return: Connected curve.</span>
+<span class="sd">    :rtype: trimatic.Curve</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/curve/connect_curves.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">pymatic_entities</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">pymatic_entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,))</span> 
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_entities_only_contain_open_curves</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;distance_threshold&quot;</span><span class="p">,</span> <span class="n">distance_threshold</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_entities_must_be_multiple</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span><span class="n">entities</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">connect_curves</span><span class="p">(</span><span class="n">pymatic_entities</span><span class="p">,</span> <span class="n">distance_threshold</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="convert_to_curve"><a class="viewcode-back" href="../../trimatic.rst/trimatic.curve.html#trimatic.curve.convert_to_curve">[docs]</a><span class="k">def</span> <span class="nf">convert_to_curve</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">accuracy</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">add_to</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The analytical line and arc, but also all contours can be converted with this operation.</span>
+
+<span class="sd">    :param entities: Entities you like to convert.</span>
+<span class="sd">    :type entities: trimatic.Arc | trimatic.Line | trimatic.SurfaceBorder | trimatic.SurfaceContour | [trimatic.Arc | trimatic.Line | trimatic.SurfaceBorder | trimatic.SurfaceContour]</span>
+<span class="sd">    :param accuracy: The maximum deviation between the input entity and the output curve.</span>
+<span class="sd">    :type accuracy: float, optional</span>
+<span class="sd">    :param add_to: Target part to add the resulting curve to. If set to None, a new part is created.</span>
+<span class="sd">    :type add_to: trimatic.Part, optional</span>
+<span class="sd">    :return: If add_to is None, a part is created. Otherwise, a curve is created.</span>
+<span class="sd">    :rtype: trimatic.Part | trimatic.Curve | (trimatic.Curve)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/curve/convert_to_curve.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">pymatic_entities</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">pymatic_entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Arc</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Line</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceBorder</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceContour</span><span class="p">))</span> 
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;add_to&quot;</span><span class="p">,</span> <span class="n">add_to</span><span class="p">,(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,),</span> <span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">convert_to_curve</span><span class="p">(</span><span class="n">pymatic_entities</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">,</span> <span class="n">add_to</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="fit_centerline_curve"><a class="viewcode-back" href="../../trimatic.rst/trimatic.curve.html#trimatic.curve.fit_centerline_curve">[docs]</a><span class="k">def</span> <span class="nf">fit_centerline_curve</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">segment_length</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">detail</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates center line(s) for the given part. The center line is kept as a curve inside a curve set.</span>
+
+<span class="sd">    :param entity: Part for which center line is created.</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :param segment_length: Value defines the length of the different segments of the center line.</span>
+<span class="sd">    :type segment_length: float</span>
+<span class="sd">    :param detail: Value defines the accuracy of the center line definition.</span>
+<span class="sd">    :type detail: float</span>
+<span class="sd">    :return: If successful, a center line is returned. Otherwise, a runtime error is raised.</span>
+<span class="sd">    :rtype: trimatic.CurveSet</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/curve/fit_centerline_curve.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s1">&#39;entity&#39;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s1">&#39;segment_length&#39;</span><span class="p">,</span> <span class="n">segment_length</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_resolution</span><span class="p">())</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s1">&#39;detail&#39;</span><span class="p">,</span> <span class="n">detail</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_resolution</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">fit_centerline_curve</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">segment_length</span><span class="p">,</span> <span class="n">detail</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_curve"><a class="viewcode-back" href="../../trimatic.rst/trimatic.curve.html#trimatic.curve.create_curve">[docs]</a><span class="k">def</span> <span class="nf">create_curve</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">part</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a free curve from a list of points.</span>
+
+<span class="sd">    :param points: List of points representing the curve nodes. Points are specified with tuples of (x,y,z) coordinates. </span>
+<span class="sd">    :type points: [trimatic.Point]</span>
+<span class="sd">    :param part: Target part to add the resulting curve to. If set to None, a new part is created.</span>
+<span class="sd">    :type part: trimatic.Part, optional</span>
+<span class="sd">    :return: The curve.</span>
+<span class="sd">    :rtype: trimatic.Curve</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/curve/create_curve.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;part&quot;</span><span class="p">,</span> <span class="n">part</span><span class="p">,(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,),</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_curve</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_sequence_argument</span><span class="p">(</span><span class="n">points</span><span class="p">),</span><span class="n">part</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_geometry_curve_angle_based"><a class="viewcode-back" href="../../trimatic.rst/trimatic.curve.html#trimatic.curve.create_geometry_curve_angle_based">[docs]</a><span class="k">def</span> <span class="nf">create_geometry_curve_angle_based</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">angle</span> <span class="o">=</span> <span class="mf">30.0000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates curves on the common edge of two triangles that make an angle larger than the specified angle.</span>
+
+<span class="sd">    :param entities: Either single object or list of parts, surfaces or surface sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet]</span>
+<span class="sd">    :param angle: If the angle between the normal of two triangles is bigger than the defined threshold, a curve is </span>
+<span class="sd">        created on the common edge.</span>
+<span class="sd">    :type angle: float, optional</span>
+<span class="sd">    :return: The created geometry curves.</span>
+<span class="sd">    :rtype: trimatic.Curve | (trimatic.Curve)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/curve/create_geometry_curve_angle_based.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">pymatic_entities</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">pymatic_entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span><span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">))</span> 
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_geometry_curve_angle_based</span><span class="p">(</span><span class="n">pymatic_entities</span><span class="p">,</span> <span class="n">angle</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CurvatureType"><a class="viewcode-back" href="../../trimatic.rst/trimatic.curve.html#trimatic.curve.CurvatureType">[docs]</a><span class="k">class</span> <span class="nc">CurvatureType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Curvature type for curvature based geometry curve.&quot;&quot;&quot;</span>
+
+    <span class="n">gaussian</span> <span class="o">=</span> <span class="s2">&quot;Gaussian&quot;</span>
+    <span class="n">mean</span> <span class="o">=</span> <span class="s2">&quot;Mean&quot;</span>
+    <span class="n">minimal</span> <span class="o">=</span> <span class="s2">&quot;Minimal&quot;</span>
+    <span class="n">maximal</span> <span class="o">=</span> <span class="s2">&quot;Maximal&quot;</span></div>
+
+<div class="viewcode-block" id="create_geometry_curve_curvature_based"><a class="viewcode-back" href="../../trimatic.rst/trimatic.curve.html#trimatic.curve.create_geometry_curve_curvature_based">[docs]</a><span class="k">def</span> <span class="nf">create_geometry_curve_curvature_based</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">curvature_type</span> <span class="o">=</span> <span class="n">CurvatureType</span><span class="o">.</span><span class="n">maximal</span><span class="p">,</span> <span class="n">radius_threshold</span> <span class="o">=</span> <span class="mf">16.0000</span><span class="p">,</span> <span class="n">sharp_edge_threshold</span> <span class="o">=</span> <span class="mf">30.0000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates curves where the surface has a curvature specified by the input parameters.</span>
+
+<span class="sd">    :param entities: Either single object or list of parts, surfaces or surface sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet]</span>
+<span class="sd">    :param curvature_type: Method used to calculate curvature information.</span>
+<span class="sd">    :type curvature_type: trimatic.CurvatureType, optional</span>
+<span class="sd">    :param radius_threshold: Threshold of the average triangle curvature. A curve is created on the common edge of two </span>
+<span class="sd">        triangles when one triangle has a curvature smaller than the threshold and the other triangle has a curvature </span>
+<span class="sd">        bigger than the threshold.</span>
+<span class="sd">    :type radius_threshold: float, optional</span>
+<span class="sd">    :param sharp_edge_threshold: If the angle between two triangles is smaller than the defined threshold, the common </span>
+<span class="sd">        edge is considered sharp. Whether a curve is created on the comon triangle edge depends on the radius threshold.</span>
+<span class="sd">    :type sharp_edge_threshold: float, optional</span>
+<span class="sd">    :return: The created geometry curves.</span>
+<span class="sd">    :rtype: trimatic.Curve | (trimatic.Curve)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/curve/create_geometry_curve_curvature_based.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">pymatic_entities</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">pymatic_entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span><span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">))</span> 
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;curvature_type&quot;</span><span class="p">,</span> <span class="n">curvature_type</span><span class="p">,</span> <span class="p">(</span><span class="n">CurvatureType</span><span class="p">,))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;radius_threshold&quot;</span><span class="p">,</span> <span class="n">radius_threshold</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;sharp_edge_threshold&quot;</span><span class="p">,</span> <span class="n">sharp_edge_threshold</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_geometry_curve_curvature_based</span><span class="p">(</span><span class="n">pymatic_entities</span><span class="p">,</span> <span class="n">curvature_type</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">radius_threshold</span><span class="p">,</span> <span class="n">sharp_edge_threshold</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_geometry_curve_draft_based"><a class="viewcode-back" href="../../trimatic.rst/trimatic.curve.html#trimatic.curve.create_geometry_curve_draft_based">[docs]</a><span class="k">def</span> <span class="nf">create_geometry_curve_draft_based</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">draft_angle</span> <span class="o">=</span> <span class="mf">0.0000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates curves where the surface changes direction specified by the draft direction.</span>
+
+<span class="sd">    :param entities: Either single object or list of parts, surfaces or surface sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet]</span>
+<span class="sd">    :param direction: Direction vector, specified as a tuple of (x,y,z). The direction towards which the draft is defined.</span>
+<span class="sd">    :type direction: (float, float, float)</span>
+<span class="sd">    :param draft_angle: If the angle w.r.t. the draft direction is bigger than the defined threshold, the triangle is </span>
+<span class="sd">        considered drafted.</span>
+<span class="sd">    :type draft_angle: float, optional</span>
+<span class="sd">    :return: The created geometry curves.</span>
+<span class="sd">    :rtype: trimatic.Curve | (trimatic.Curve)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/curve/create_geometry_curve_draft_based.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">pymatic_entities</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">pymatic_entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span><span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">))</span> 
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_vector_not_equal</span><span class="p">(</span><span class="s2">&quot;direction&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_between</span><span class="p">(</span><span class="s2">&quot;draft_angle&quot;</span><span class="p">,</span> <span class="n">draft_angle</span><span class="p">,</span> <span class="o">-</span><span class="mf">90.0000</span><span class="p">,</span> <span class="mf">90.0000</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_geometry_curve_draft_based</span><span class="p">(</span><span class="n">pymatic_entities</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">direction</span><span class="p">),</span> <span class="n">draft_angle</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_intersection_curve"><a class="viewcode-back" href="../../trimatic.rst/trimatic.curve.html#trimatic.curve.create_intersection_curve">[docs]</a><span class="k">def</span> <span class="nf">create_intersection_curve</span><span class="p">(</span><span class="n">entity_set1</span><span class="p">,</span> <span class="n">entity_set2</span><span class="p">,</span> <span class="n">intersection_curve_in</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates curves representing the intersection lines of two sets of entities.</span>
+
+<span class="sd">    :param entity_set1: First set of entities. Either single object or heterogeneous list of parts, surfaces, or surface</span>
+<span class="sd">        sets.</span>
+<span class="sd">    :type entity_set1: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet]</span>
+<span class="sd">    :param entity_set2: Second set of entities. Either single object or heterogeneous list of parts, surfaces, surface</span>
+<span class="sd">        sets, or planes.</span>
+<span class="sd">    :type entity_set2: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.Plane | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.Plane]</span>
+<span class="sd">    :param intersection_curve_in: Flag to determine which entity set will contain the output curves. 0 for</span>
+<span class="sd">        entity from first set, 1 for entity from second set and 2 for both entities.</span>
+<span class="sd">    :type intersection_curve_in: int, optional</span>
+<span class="sd">    :return: Intersection curves. Empty tuple if no intersection exists.</span>
+<span class="sd">    :rtype: trimatic.Curve | (trimatic.Curve)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/curve/create_intersection_curve.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_entity_sets_do_not_contain_equal_entities</span><span class="p">(</span><span class="s2">&quot;entity_set1&quot;</span><span class="p">,</span> <span class="s2">&quot;entity_set2&quot;</span><span class="p">,</span> <span class="n">entity_set1</span><span class="p">,</span> <span class="n">entity_set2</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_entity_set_does_not_have_surface_or_surface_set_of_another_entity_set</span><span class="p">(</span><span class="s2">&quot;entity_set1&quot;</span><span class="p">,</span> <span class="s2">&quot;entity_set2&quot;</span><span class="p">,</span> <span class="n">entity_set1</span><span class="p">,</span> <span class="n">entity_set2</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_entity_set_does_not_have_surface_or_surface_set_of_another_entity_set</span><span class="p">(</span><span class="s2">&quot;entity_set2&quot;</span><span class="p">,</span> <span class="s2">&quot;entity_set1&quot;</span><span class="p">,</span> <span class="n">entity_set2</span><span class="p">,</span> <span class="n">entity_set1</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity_set1&quot;</span><span class="p">,</span> <span class="n">entity_set1</span><span class="p">,</span>
+                              <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity_set2&quot;</span><span class="p">,</span> <span class="n">entity_set2</span><span class="p">,</span>
+                              <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Plane</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_intersection_curve</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entity_set1</span><span class="p">),</span>
+                                             <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entity_set2</span><span class="p">),</span>
+                                             <span class="n">intersection_curve_in</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DirectionMethod"><a class="viewcode-back" href="../../trimatic.rst/trimatic.curve.html#trimatic.curve.DirectionMethod">[docs]</a><span class="k">class</span> <span class="nc">DirectionMethod</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Method for direction of isocurves.&quot;&quot;&quot;</span>
+
+    <span class="n">inside</span> <span class="o">=</span> <span class="s2">&quot;Inside&quot;</span>
+    <span class="n">outside</span> <span class="o">=</span> <span class="s2">&quot;Outside&quot;</span>
+    <span class="n">both</span> <span class="o">=</span> <span class="s2">&quot;Both&quot;</span></div>
+
+<div class="viewcode-block" id="create_iso_curves"><a class="viewcode-back" href="../../trimatic.rst/trimatic.curve.html#trimatic.curve.create_iso_curves">[docs]</a><span class="k">def</span> <span class="nf">create_iso_curves</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">interval_distance</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">number_of_copies</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">direction</span> <span class="o">=</span> <span class="n">DirectionMethod</span><span class="o">.</span><span class="n">outside</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates isocurves from the specified attached curves.</span>
+
+<span class="sd">    :param entities: One or more reference curves.</span>
+<span class="sd">    :type entities: trimatic.Curve | trimatic.SurfaceContour | [trimatic.Curve | trimatic.SurfaceContour]</span>
+<span class="sd">    :param interval_distance: Distance at which the isocurve will be created from the reference.</span>
+<span class="sd">    :type interval_distance: float, optional</span>
+<span class="sd">    :param number_of_copies: Number of isocurves that should be created in the defined direction.</span>
+<span class="sd">    :type number_of_copies: int, optional</span>
+<span class="sd">    :param direction: Direction at which the isocurve will be created.</span>
+<span class="sd">    :type direction: trimatic.DirectionMethod, optional</span>
+<span class="sd">    :return: The created isocurves.</span>
+<span class="sd">    :rtype: trimatic.Curve | (trimatic.Curve)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/curve/create_iso_curves.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">pymatic_entities</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">pymatic_entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceContour</span><span class="p">))</span> 
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;interval_distance&quot;</span><span class="p">,</span> <span class="n">interval_distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_copies&quot;</span><span class="p">,</span> <span class="n">number_of_copies</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;direction&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="p">(</span><span class="n">DirectionMethod</span><span class="p">,))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_iso_curves</span><span class="p">(</span><span class="n">pymatic_entities</span><span class="p">,</span> <span class="n">interval_distance</span><span class="p">,</span> <span class="n">number_of_copies</span><span class="p">,</span> <span class="n">direction</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="filter_curve"><a class="viewcode-back" href="../../trimatic.rst/trimatic.curve.html#trimatic.curve.filter_curve">[docs]</a><span class="k">def</span> <span class="nf">filter_curve</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">sharp_angle_threshold</span> <span class="o">=</span> <span class="mf">20.0</span><span class="p">,</span> <span class="n">small_edge_threshold</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">treat_as_free_curve</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Filters curves.</span>
+
+<span class="sd">    :param entities: Entities to filter.</span>
+<span class="sd">    :type entities: trimatic.Curve | trimatic.SurfaceBorder | trimatic.SurfaceContour | [trimatic.Curve | trimatic.SurfaceBorder | trimatic.SurfaceContour]</span>
+<span class="sd">    :param sharp_angle_threshold: Curve segments with angles smaller than the threshold will be removed.</span>
+<span class="sd">    :type sharp_angle_threshold: float, optional</span>
+<span class="sd">    :param small_edge_threshold: Curve segments with edges smaller than the threshold will be removed.</span>
+<span class="sd">    :type small_edge_threshold: float, optional</span>
+<span class="sd">    :param treat_as_free_curve: If True, changes to the curve do not alter the underlying triangles of the part containing</span>
+<span class="sd">        the curve. </span>
+<span class="sd">    :type treat_as_free_curve: bool, optional</span>
+<span class="sd">    :return: Filtered entities.</span>
+<span class="sd">    :rtype: trimatic.Curve | (trimatic.Curve)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/curve/filter_curve.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+ 
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span>  <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceBorder</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceContour</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;sharp_angle_threshold&quot;</span><span class="p">,</span> <span class="n">sharp_angle_threshold</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;small_edge_threshold&quot;</span><span class="p">,</span> <span class="n">small_edge_threshold</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">filter_curve</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">sharp_angle_threshold</span><span class="p">,</span> <span class="n">small_edge_threshold</span><span class="p">,</span> <span class="n">treat_as_free_curve</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="project_curve"><a class="viewcode-back" href="../../trimatic.rst/trimatic.curve.html#trimatic.curve.project_curve">[docs]</a><span class="k">def</span> <span class="nf">project_curve</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">target_entities</span><span class="p">,</span> <span class="n">visibility_threshold</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Projects curve(s) to the specified part(s)/surface(s).</span>
+
+<span class="sd">    :param entities: Either single object or list of curves or sketches.</span>
+<span class="sd">    :type entities: trimatic.Curve | trimatic.Sketch |  [trimatic.Curve | trimatic.Sketch]</span>
+<span class="sd">    :param direction: Direction vector for the projection, specified as a tuple of (x,y,z).</span>
+<span class="sd">    :type direction: (float, float, float)</span>
+<span class="sd">    :param target_entities: The target entities that the curves will be projected to.</span>
+<span class="sd">    :type target_entities: trimatic.Part | trimatic.Surface | [trimatic.Part | trimatic.Surface]</span>
+<span class="sd">    :param visibility_threshold: If None, projected curve segments are connected along the part of the mesh in the</span>
+<span class="sd">        projection direction even if the region of the mesh is not visible from the original curve. The threshold value</span>
+<span class="sd">        determines the maximum distance between curve segments across non-visible regions that will be connected. </span>
+<span class="sd">    :type visibility_threshold: float | None, optional</span>
+<span class="sd">    :return: Projected curve(s).</span>
+<span class="sd">    :rtype: trimatic.Curve | (trimatic.Curve)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/curve/project_curve.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">pymatic_entities</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">pymatic_entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Sketch</span><span class="p">))</span> 
+    <span class="n">pymatic_target_entities</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">target_entities</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;target_entities&quot;</span><span class="p">,</span> <span class="n">pymatic_target_entities</span><span class="p">,</span> <span class="p">(</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">),</span> <span class="n">allow_none_or_empty</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">visibility_threshold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;visibility_threshold&quot;</span><span class="p">,</span> <span class="n">visibility_threshold</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_vector_not_equal</span><span class="p">(</span><span class="s2">&quot;direction&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">project_curve</span><span class="p">(</span><span class="n">pymatic_entities</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">direction</span><span class="p">),</span> <span class="n">pymatic_target_entities</span><span class="p">,</span> <span class="n">visibility_threshold</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="reduce_curve"><a class="viewcode-back" href="../../trimatic.rst/trimatic.curve.html#trimatic.curve.reduce_curve">[docs]</a><span class="k">def</span> <span class="nf">reduce_curve</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">geometrical_error</span> <span class="o">=</span> <span class="mf">0.1000</span><span class="p">,</span> <span class="n">treat_as_free_curve</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reduce the number of segments in a curve.</span>
+
+<span class="sd">        :param entities: Entities to be reduced.</span>
+<span class="sd">        :type entities: trimatic.SurfaceBorder | trimatic.SurfaceContour | trimatic.Curve | [trimatic.SurfaceBorder | trimatic.SurfaceContour | trimatic.Curve]</span>
+<span class="sd">        :param geometrical_error: Maximum error that can be produced by the reduction.</span>
+<span class="sd">        :type geometrical_error: float, optional</span>
+<span class="sd">        :param treat_as_free_curve: If True, changes to the curve do not alter the underlying triangles of the part containing the curve.</span>
+<span class="sd">        :type treat_as_free_curve: bool, optional</span>
+<span class="sd">        :return: Reduced entities.</span>
+<span class="sd">        :rtype: trimatic.Curve | (trimatic.Curve)</span>
+<span class="sd">        :raises: RuntimeError, ValueError</span>
+
+<span class="sd">        :example:</span>
+
+<span class="sd">        .. literalinclude:: example/curve/reduce_curve.py</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceBorder</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceContour</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;geometrical_error&quot;</span><span class="p">,</span> <span class="n">geometrical_error</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">reduce_curve</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">geometrical_error</span><span class="p">,</span> <span class="n">treat_as_free_curve</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="smooth_curve"><a class="viewcode-back" href="../../trimatic.rst/trimatic.curve.html#trimatic.curve.smooth_curve">[docs]</a><span class="k">def</span> <span class="nf">smooth_curve</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">smooth_factor</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">,</span> <span class="n">use_compensation</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">number_of_iterations</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">treat_as_free_curve</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Smooths curves.</span>
+
+<span class="sd">    :param entities: Entities to smooth.</span>
+<span class="sd">    :type entities: trimatic.Curve | trimatic.SurfaceBorder | trimatic.SurfaceContour | [trimatic.Curve | trimatic.SurfaceBorder | trimatic.SurfaceContour]</span>
+<span class="sd">    :param smooth_factor: Strength of the smoothing. 1.0 indicates maximum smoothing.</span>
+<span class="sd">    :type smooth_factor: float, optional</span>
+<span class="sd">    :param number_of_iterations: Increases the number of times smooth is repeated.</span>
+<span class="sd">    :type number_of_iterations: int, optional</span>
+<span class="sd">    :param use_compensation: If True, prevents reduction of a circular curve into a point.</span>
+<span class="sd">    :type use_compensation: bool, optional</span>
+<span class="sd">    :param treat_as_free_curve: If True, changes to the curve do not alter the underlying triangles of the part containing</span>
+<span class="sd">        the curve.</span>
+<span class="sd">    :type treat_as_free_curve: bool, optional</span>
+<span class="sd">    :return: Smoothed entities.</span>
+<span class="sd">    :rtype: trimatic.Curve | (trimatic.Curve)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/curve/smooth_curve.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span><span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceBorder</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceContour</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;smooth_factor&quot;</span><span class="p">,</span> <span class="n">smooth_factor</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;number_of_iterations&quot;</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">smooth_curve</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span><span class="n">smooth_factor</span><span class="p">,</span><span class="n">use_compensation</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="p">,</span> <span class="n">treat_as_free_curve</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="split_surfaces_by_curves"><a class="viewcode-back" href="../../trimatic.rst/trimatic.curve.html#trimatic.curve.split_surfaces_by_curves">[docs]</a><span class="k">def</span> <span class="nf">split_surfaces_by_curves</span><span class="p">(</span><span class="n">entities</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">curves</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Splits surfaces by curves.</span>
+
+<span class="sd">    :param entities: Entities to split. If set to None, the part(s) containing the curves will be split.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet] | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet) | None, optional</span>
+<span class="sd">    :param curves: Curves to use for the split. If set to None, all closed and attached curves are used to</span>
+<span class="sd">        split surfaces of the entities.</span>
+<span class="sd">    :type curves: trimatic.Curve | trimatic.CurveSet | [trimatic.Curve | trimatic.CurveSet] | (trimatic.Curve | trimatic.CurveSet), optional</span>
+<span class="sd">    :return: Split surfaces.</span>
+<span class="sd">    :rtype: trimatic.Surface | (trimatic.Surface)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/curve/split_surfaces_by_curves.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">pymatic_entities</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">pymatic_entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span><span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,),</span> <span class="kc">True</span><span class="p">)</span> 
+    <span class="n">pymatic_curves</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">curves</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;curves&quot;</span><span class="p">,</span> <span class="n">pymatic_curves</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span><span class="n">trimatic</span><span class="o">.</span><span class="n">CurveSet</span><span class="p">,),</span> <span class="kc">True</span><span class="p">)</span> 
+    <span class="k">if</span> <span class="n">entities</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">curves</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;entities and curves can&#39;t both be None&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">split_surfaces_by_curves</span><span class="p">(</span><span class="n">pymatic_entities</span><span class="p">,</span> <span class="n">pymatic_curves</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

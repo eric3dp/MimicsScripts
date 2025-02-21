@@ -1,0 +1,8 @@
+curve
+=====
+
+.. automodule:: trimatic.curve
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

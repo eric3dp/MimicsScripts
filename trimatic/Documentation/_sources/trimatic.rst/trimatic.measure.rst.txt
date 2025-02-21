@@ -1,0 +1,8 @@
+measure
+=======
+
+.. automodule:: trimatic.measure
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

@@ -1,0 +1,17 @@
+Overview
+==============
+Materialise 3-matic is a software that combines CAD tools with pre-processing (meshing) capabilities. 
+To do this, it works on triangulated (STL) files which makes it suitable for freeform 3D data, 
+like the anatomical data coming from the segmentation of medical images (from Mimics). 
+
+3-matic may be used to import anatomical data and other 3D objects in STL format or in various other CAD formats including: CATIA, IGES, STEP, etc. 
+Once objects are loaded, they can be used for many applications of Engineering on Anatomy such as: measuring, designing, modeling and 3D printing.
+
+The modules that can be obtained for 3-matic enable you to do thorough 3D measurements and analyses, design an implant or surgical guide, or prepare the mesh for finite element modeling. 
+Materialise also develops separate software for additive manufacturing that is ideal for preparing your medical models or devices for any 3D printing system. Contact us for more information.
+
+3-matic supports Python scripting. The 3-matic Python API makes it possible to script many 3-matic features. 
+You can write your own Python scripts and call the features from 3-matic. This allows you to automate your workflows. 
+3-matic comes with instructions for installing Python and includes a basic script editor and a basic scripting console.
+
+In this scripting guide 3-matic stands for Materialise 3-matic Medical when used with the Medical edition of the software and Materialise 3-matic in the other case.

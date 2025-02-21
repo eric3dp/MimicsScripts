@@ -1,0 +1,199 @@
+Creating a lattice structure
+-----------------------------
+
+In this tutorial, some basic features of the lattice module are presented. 
+The tutorial starts from the demo file pedal.mxp located in the 3-matic installation folder :file:`\\..\\DemoFiles`. 
+The unit cell to create the lattice is located in the 3-matic installation folder :file:`\\...\\UnitCellLibrary`. 
+Note that only the scriptable functionality is shown, for the full explanation of the lattice module, we refer to the general help documentation.
+
+**Step 1: Open the files**
+
+*Manual*: 
+
+  To open the project, launch 3-matic and select **File -> Open project**. 
+  Browse to the demo file :file:`\\...\\DemoFiles\\pedal.mxp` and open it. 
+  Open the dodecahedron unit cell via **File -> import part** :file:`\\...\\UnitCellLibrary\\Dodecahedron.mxp`.
+  The outer volume is the solid volume which will be printed as solid material. 
+  The inner volume is the volume to which the lattice needs to be applied. 
+  The dodecahedron is the unit cell which will be used to generate the porous structure in the inner volume.
+
+   .. image:: creating_a_lattice/open_files.png
+    :width: 360px
+    :height: 200px
+    :align: center
+
+*Scripting*:
+
+ The completed script can be found in the 3-matic installation folder in :file:`DemoFiles\\scripts\\Creating a lattice structure.py`.
+ The script can be run via **Script -> Run Script**. 
+ Alternatively, the script can be opened in the editor: **Script->Toggle Editor**. 
+ We will describe the different steps in the script in more detail. The next section shows the code-lines which opens the project files and assigns the entities to a variable:
+
+.. code-block:: python
+
+	import trimatic
+	import os
+	trimatic.new_project()
+	#Import pedal and unit graph from library
+	trimatic.import_project(os.path.dirname(trimatic.get_application_path()) + r"\DemoFiles\pedal.mxp")
+	unit_cell = trimatic.import_project(os.path.dirname(trimatic.get_application_path()) + r"\UnitCellLibrary\Dodecahedron.mxp")[0]
+	#Find the entities and assign them to variables
+	outer_volume = trimatic.find_part("Outer_Volume")
+	inner_volume = trimatic.find_part("Inner_Volume")
+
+**Step 2: Create unit cell based lattice**
+
+*Manual*: 
+
+First, create a unit cell based lattice: **Lattice -> Unit Cell Based Lattice**. 
+In order to select the loaded unit cell, the dodecahedron graph needs to be selected. 
+The unit cell is scaled by assigning a unit cell size of (3.464, 3.464, 3.464). 
+The next parameters are used:
+
+ .. image:: creating_a_lattice/Unit_cell_basedMan.png
+  :width: 720px
+  :height: 400px
+  :align: center
+  
+A new part called “Inner_Volume with graphs” is created. 
+Hide the inner volume: right-click **Inner_Volume -> Hide**. 
+Do the same for the dodecahedron unit cell: right-click **Dodecahedron -> Hide**. 
+Close-up of the result:
+
+ .. image:: creating_a_lattice/Unit_cell_basedEx.png
+  :width: 360px
+  :height: 200px
+  :align: center
+  
+*Scripting*:
+
+.. code-block:: python
+
+		#Scale the unit cell
+		dim = unit_cell.dimension_delta
+		scale_factor = tuple(3.464/c for c in dim)
+		trimatic.scale_factor(entities=unit_cell, factor=scale_factor)
+		#Create unit cell based lattice
+		graph_unit_cell = unit_cell.find_graph_set("Dodecahedron")
+		inner_volume_with_graphs = trimatic.unit_cell_based_lattice(entity=inner_volume, unit_cell=graph_unit_cell)
+		#Hide the Inner volume and dodecahedron unit cell
+		inner_volume.visible = False
+		unit_cell.visible = False
+	
+
+
+**Step 3: Attach graph to mesh**
+
+*Manual*: 
+
+The unit cell based lattice created in step 1 is attached to the outer surface in order to assure a good connection: **Lattice -> Attach Graph to Mesh**. 
+This operation allows users to create useful nodes, especially for finite element analysis (FEA) study which requires connections between graph nodes and triangle nodes (surface).
+The next parameters are used:
+
+ .. image:: creating_a_lattice/attach_graphMan.png
+  :width: 720px
+  :height: 400px
+  :align: center
+
+The Attach Graph to Mesh operation hides the part, “Inner_Volume with graphs” and creates a new part with the name, “Part with graph connections-001”.
+
+ .. image:: creating_a_lattice/attach_graphEx.png
+  :width: 720px
+  :height: 400px
+  :align: center
+
+*Scripting*:
+
+.. code-block:: python
+
+	#Attach graph to mesh
+	part_with_graph_connections= trimatic.attach_graph_to_mesh(graphs=inner_volume_with_graphs, entity=outer_volume, margin=0.5)
+	#Hide the outer volume and the inner volume with graphs part
+	inner_volume_with_graphs_part = inner_volume_with_graphs.get_parent()
+	inner_volume_with_graphs.visible = False
+	outer_volume.visible = False
+
+
+**Step 4: Filter graphs**
+
+*Manual*: 
+
+The next step filters the lattice from loose connections: **Lattice -> Filter -> Filter Loose Beams**. 
+This operation creates a new graph group containing the filtered graphs based on the assigned parameters. 
+The next parameters are used:
+
+ .. image:: creating_a_lattice/filterMan.png
+  :width: 630px
+  :height: 350px
+  :align: center
+
+The connection type “No connections” filters all the linear beams that don’t have any neighboring beams on any side and that are not connected to the surface.
+  
+ .. image:: creating_a_lattice/filterEx.png
+  :width: 720px
+  :height: 400px
+  :align: center
+  
+The graph entity “Filtered Loose Graph” can be selected and deleted. The same result can be achieved in one click by setting the filter mode to “Delete” when filtering the loose beams. 
+ 
+ .. image:: creating_a_lattice/filter_with_delete.png
+  :width: 630px
+  :height: 350px
+  :align: center
+ 
+*Scripting*:
+
+.. code-block:: python
+
+		trimatic.filter_loose_beams(entities=part_with_graph_connections, connection_threshold=0)
+		trimatic.delete(part_with_graph_connections.find_graph("Filtered Loose Graph"))
+
+
+
+**Step 5: Edit graph properties**
+
+*Manual*: 
+
+In order to prepare the lattice for 3D printing, a thickness needs to be assigned to the beams. This is achieved via the **Graph's properties page**.
+
+
+ .. image:: creating_a_lattice/edit_prop.png
+  :width: 630px
+  :height: 350px
+  :align: center
+
+The lattice changes color when a thickness is applied. 
+
+ .. image:: creating_a_lattice/edit_propEx.png
+  :width: 360px
+  :height: 200px
+  :align: center
+
+
+*Scripting*:
+
+.. code-block:: python
+
+		#Edit graph properties
+		trimatic.set_graph_properties(entities=part_with_graph_connections, thickness=0.5, accuracy=0.2)
+
+**Step 6: Convert lattice to mesh**
+
+*Manual*: 
+
+The last step before continuing in the 3D printing production pipeline is converting the lattice to a valid mesh: **Lattice -> Convert Lattice to Mesh**. 
+
+ .. image:: creating_a_lattice/convert_to_mesh.png
+  :width: 630px
+  :height: 350px
+  :align: center
+  
+  
+*Scripting* :
+
+.. code-block:: python
+
+		#Convert lattice to mesh
+		trimatic.convert_lattice_to_regular_mesh(entities=part_with_graph_connections, connection_thickness=0.025)
+
+
