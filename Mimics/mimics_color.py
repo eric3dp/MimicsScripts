@@ -1,10 +1,6 @@
 
 import mimics
 
-import trimatic
-
-selected = trimatic.get_selection()
-# Color values are RGB 0-1, so if on a scale of 1-255, divide by 255
 darkblue = (0,0.501960784,1)
 lightblue = (0.501960784, 1, 1)
 red = (1, 0, 0)
@@ -24,13 +20,23 @@ colormap = { # list of common parts and their associated colors
     "RV":lilac,
     "PDA":white,
 }
+selected = mimics.data.masks
 for x in selected: # loop through the selection and set the color when the key string matches
-    if isinstance(x, trimatic.Group):
-        for y in x.items:
-            for key,value in colormap.items():
+    for key, value in colormap.items():
+        if type(x) is tuple:
+            for y in x:
                 if y.name.startswith(key):
                     y.color = value
-    else:
-        for key,value in colormap.items():
+        else:
             if x.name.startswith(key):
                 x.color = value
+
+#     if isinstance(x, trimatic.Group):
+#         for y in x.items:
+#             for key,value in colormap.items():
+#                 if y.name.startswith(key):
+#                     y.color = value
+#     else:
+#         for key,value in colormap.items():
+#             if x.name.startswith(key):
+#                 x.color = value
