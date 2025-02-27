@@ -1,0 +1,773 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>align &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="trimatic modules" href="trimatic.html"/>
+        <link rel="next" title="analyze" href="trimatic.analyze.html"/>
+        <link rel="prev" title="types" href="trimatic.types.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">trimatic API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="trimatic.html">trimatic modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="trimatic.data.html">data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.types.html">types</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">align</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.analyze.html">analyze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.cad_link.html">cadlink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.curve.html">curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.design.html">design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.file.html">file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.finish.html">finish</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.fix.html">fix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.group.html">group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.interactive.html">interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.lattice.html">lattice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.logging.html">logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.mark.html">mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.measure.html">measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.preferences.html">preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.remesh.html">remesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.sketch.html">sketch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.surface.html">surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.texturing.html">texturing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.uv.html">uv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.view.html">view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.subscription.html">subscription</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">trimatic API</a> &raquo;</li>
+      
+          <li><a href="trimatic.html">trimatic modules</a> &raquo;</li>
+      
+    <li>align</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/trimatic.rst/trimatic.align.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-trimatic.align">
+<span id="align"></span><h1>align<a class="headerlink" href="#module-trimatic.align" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="trimatic.align.UpdateOCSMethod">
+<em class="property">class </em><code class="descname">UpdateOCSMethod</code><a class="reference internal" href="../_modules/trimatic/align.html#UpdateOCSMethod"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.align.UpdateOCSMethod" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Updates object coordinate system method.</p>
+<dl class="attribute">
+<dt id="trimatic.align.UpdateOCSMethod.Inertia_axes">
+<code class="descname">Inertia_axes</code><em class="property"> = 'Inertia axes'</em><a class="headerlink" href="#trimatic.align.UpdateOCSMethod.Inertia_axes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Part inertia axes update OCS method.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.align.UpdateOCSMethod.User_defined_CS">
+<code class="descname">User_defined_CS</code><em class="property"> = 'User defined coordinate system'</em><a class="headerlink" href="#trimatic.align.UpdateOCSMethod.User_defined_CS" title="Permalink to this definition">¶</a></dt>
+<dd><p>User-defined entity coordinate system update OCS method.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.align.UpdateOCSMethod.WCS">
+<code class="descname">WCS</code><em class="property"> = 'WCS'</em><a class="headerlink" href="#trimatic.align.UpdateOCSMethod.WCS" title="Permalink to this definition">¶</a></dt>
+<dd><p>World coordinate system update OCS method.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.align.UpdateOCSMethod.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Updates object coordinate system method.'</em><a class="headerlink" href="#trimatic.align.UpdateOCSMethod.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.align.UpdateOCSMethod.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.align'</em><a class="headerlink" href="#trimatic.align.UpdateOCSMethod.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.align.UpdateOCSMethod.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.align.UpdateOCSMethod.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.align.UpdateOCSMethod._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.align.UpdateOCSMethod._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.align.UpdateOCSMethod._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'Inertia_axes': &lt;UpdateOCSMethod.Inertia_axes: 'Inertia axes'&gt;, 'User_defined_CS': &lt;UpdateOCSMethod.User_defined_CS: 'User defined coordinate system'&gt;, 'WCS': &lt;UpdateOCSMethod.WCS: 'WCS'&gt;}</em><a class="headerlink" href="#trimatic.align.UpdateOCSMethod._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.align.UpdateOCSMethod._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['Inertia_axes', 'WCS', 'User_defined_CS']</em><a class="headerlink" href="#trimatic.align.UpdateOCSMethod._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.align.UpdateOCSMethod._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.align.UpdateOCSMethod._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.align.UpdateOCSMethod._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'Inertia axes': &lt;UpdateOCSMethod.Inertia_axes: 'Inertia axes'&gt;, 'User defined coordinate system': &lt;UpdateOCSMethod.User_defined_CS: 'User defined coordinate system'&gt;, 'WCS': &lt;UpdateOCSMethod.WCS: 'WCS'&gt;}</em><a class="headerlink" href="#trimatic.align.UpdateOCSMethod._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.align.arc_to_arc_align">
+<code class="descname">arc_to_arc_align</code><span class="sig-paren">(</span><em>fixed_entity</em>, <em>moving_entity</em>, <em>move_along_entities=()</em>, <em>coincident=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/align.html#arc_to_arc_align"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.align.arc_to_arc_align" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aligns two (or more) entities, through arc-fitting method, based on the center and normal orientation of the selected arcs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>fixed_entity</strong> (<em>trimatic.Curve | trimatic.Surface | trimatic.Arc</em>) – Reference entity to be aligned with.</li>
+<li><strong>moving_entity</strong> (<em>trimatic.Curve | trimatic.Surface | trimatic.Arc</em>) – Entity to align/move. For curves or surfaces, the part they belong to will be moved.</li>
+<li><strong>move_along_entities</strong> (<em>trimatic.Object |</em><em> [</em><em>trimatic.Object</em><em>] </em><em>|</em><em> (</em><em>trimatic.Object</em><em>)</em><em>, </em><em>optional</em>) – Either single object, empty or heterogeneous list/tuple of root level entities
+(parts, analytical primitives) that will be aligned along with the moving_entity.</li>
+<li><strong>coincident</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, centre points of the input arcs will be made coincident and their normals will be parallel.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Aligned entities. This will be a combination of moving_entity and move_along_entities.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Object | (trimatic.Object)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">app_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">app_folder</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">import_project</span><span class="p">(</span><span class="n">app_folder</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Flange.mxp&quot;</span><span class="p">)</span>
+
+<span class="n">aorta</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">inlet_surface</span> <span class="o">=</span> <span class="n">aorta</span><span class="o">.</span><span class="n">find_surface_sets</span><span class="p">(</span><span class="s2">&quot;In-outlet&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_surfaces</span><span class="p">()[</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="n">flange</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Cylinder-012-2&quot;</span><span class="p">)</span>
+<span class="n">flange_curve</span> <span class="o">=</span> <span class="n">flange</span><span class="o">.</span><span class="n">get_curves</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">flange_arc</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_circle_arc_fit</span><span class="p">(</span><span class="n">flange_curve</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">arc_to_arc_align</span><span class="p">(</span><span class="n">inlet_surface</span><span class="p">,</span> <span class="n">flange_arc</span><span class="p">,</span> <span class="n">flange</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.align.global_registration">
+<code class="descname">global_registration</code><span class="sig-paren">(</span><em>*args</em>, <em>fixed_entity</em>, <em>moving_entity</em>, <em>move_along_entities=()</em>, <em>distance_threshold=None</em>, <em>number_of_iterations=10</em>, <em>subsample_percentage=15</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/align.html#global_registration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.align.global_registration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs final registration of entities based on a heuristic algorithm.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>fixed_entity</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles</em>) – Reference entity to be aligned with.</li>
+<li><strong>moving_entity</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles</em>) – Entity to align/move.</li>
+<li><strong>move_along_entities</strong> (<em>trimatic.Object |</em><em> [</em><em>trimatic.Object</em><em>] </em><em>, </em><em>optional</em>) – Either single object or heterogeneous list of root level entities
+(parts, analytical primitives) that will be aligned along with the moving_entity.</li>
+<li><strong>distance_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – If distance between a point on fixed and moving entity is less than the
+threshold value, the point will be used for registration. Set to None for automatic calculation.</li>
+<li><strong>number_of_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – Increases the number of passes for higher quality but increases computation time.</li>
+<li><strong>subsample_percentage</strong> (<em>int</em><em>, </em><em>optional</em>) – Defines how many points (in percentage) will be used for registration.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Average distance deviation after registration or None if operation failed.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">float</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">aorta1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">import_part_stl</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta1.stl&quot;</span><span class="p">)</span>
+<span class="n">aorta2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">import_part_stl</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta2.stl&quot;</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">global_registration</span><span class="p">(</span><span class="n">fixed_entity</span><span class="o">=</span><span class="n">aorta1</span><span class="p">,</span><span class="n">moving_entity</span><span class="o">=</span><span class="n">aorta2</span><span class="p">,</span><span class="n">distance_threshold</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.align.mirror">
+<code class="descname">mirror</code><span class="sig-paren">(</span><em>entities</em>, <em>origin</em>, <em>normal</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/align.html#mirror"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.align.mirror" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function mirrors the selected part around a mirror plane defined by the user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Object |</em><em> [</em><em>trimatic.Object</em><em>] </em><em>|</em><em> (</em><em>trimatic.Object</em><em>)</em>) – Entities that need to be mirrored.</li>
+<li><strong>origin</strong> (<em>trimatic.Point</em>) – origin of the mirror plane.</li>
+<li><strong>normal</strong> (<em>trimatic.Point</em>) – normal of the mirror plane.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">mirrored entities</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.Object)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError, AttributeException</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Skull.mxp&quot;</span><span class="p">)</span>
+<span class="n">skull</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Skull&quot;</span><span class="p">)</span>
+
+<span class="n">sagittal_plane</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_1_point_parallel_plane</span><span class="p">(</span><span class="n">point</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">compute_center_of_gravity</span><span class="p">(</span><span class="n">skull</span><span class="p">),</span> <span class="n">parallel_plane</span><span class="o">=</span><span class="n">skull</span><span class="o">.</span><span class="n">object_coordinate_system</span><span class="o">.</span><span class="n">yz_plane</span><span class="o">.</span><span class="n">convert_to_plane</span><span class="p">())</span>
+<span class="n">duplicate_skull</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="n">skull</span><span class="p">)</span>
+<span class="n">origin</span> <span class="o">=</span> <span class="n">sagittal_plane</span><span class="o">.</span><span class="n">origin</span>
+<span class="n">normal</span> <span class="o">=</span> <span class="n">sagittal_plane</span><span class="o">.</span><span class="n">normal</span>
+<span class="n">mirrored_skull</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">mirror</span><span class="p">(</span><span class="n">duplicate_skull</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">origin</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.align.n_points_registration">
+<code class="descname">n_points_registration</code><span class="sig-paren">(</span><em>fixed_points</em>, <em>moving_points</em>, <em>moving_entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/align.html#n_points_registration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.align.n_points_registration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs registration based on 2 sets of points, e.g. landmarks</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>fixed_points</strong> (<em>[</em><em>(</em><em>float</em><em>,</em><em>float</em><em>,</em><em>float</em><em>)</em><em>]</em>) – Reference points to be aligned with.</li>
+<li><strong>moving_points</strong> (<em>[</em><em>(</em><em>float</em><em>,</em><em>float</em><em>,</em><em>float</em><em>)</em><em>]</em>) – For every fixed point, a corresponding “moving point”. The points won’t actually move, but indicate points on the moving entities.</li>
+<li><strong>moving_entities</strong> (<em>trimatic.Object |</em><em> [</em><em>trimatic.Object</em><em>]</em>) – Either single object or heterogeneous list of root level entities.
+(parts, analytical primitives) that will be aligned along with the moving_entity.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">moved entities</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.Object)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError, AttributeException</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">sphere</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">20</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">sphere_cog_init</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">compute_center_of_gravity</span><span class="p">(</span><span class="n">sphere</span><span class="p">)</span>
+<span class="p">[</span><span class="n">sphere_points_init</span><span class="p">,</span> <span class="n">tri</span><span class="p">]</span> <span class="o">=</span> <span class="n">sphere</span><span class="o">.</span><span class="n">get_triangles</span><span class="p">()</span>
+<span class="n">sphere_transformed</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">sphere</span><span class="p">,</span> <span class="n">number_of_copies</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">translation_vector</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">98</span><span class="p">])</span>
+<span class="n">sphere_transformed</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">rotate_around_axes</span><span class="p">(</span><span class="n">sphere_transformed</span><span class="p">,</span> <span class="n">number_of_copies</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">angle_axes</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="n">rotation_origin</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">36</span><span class="p">])</span>
+<span class="n">cog_sphere_transformed</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">compute_center_of_gravity</span><span class="p">(</span><span class="n">sphere_transformed</span><span class="p">)</span>
+
+<span class="p">[</span><span class="n">sphere_points_transformed</span><span class="p">,</span> <span class="n">tri</span><span class="p">]</span> <span class="o">=</span> <span class="n">sphere_transformed</span><span class="o">.</span><span class="n">get_triangles</span><span class="p">()</span>
+<span class="n">sphere_points_registered</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">n_points_registration</span><span class="p">(</span><span class="n">sphere_points_init</span><span class="p">,</span> <span class="n">sphere_points_transformed</span><span class="p">,</span> <span class="n">sphere_transformed</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.align.plane_to_plane_align">
+<code class="descname">plane_to_plane_align</code><span class="sig-paren">(</span><em>plane_on_fixed_entity</em>, <em>plane_on_moving_entity</em>, <em>move_along_entities=()</em>, <em>coincident=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/align.html#plane_to_plane_align"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.align.plane_to_plane_align" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aligns a moving plane against a fixed plane and repositioning specified entities along with the moving plane.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>plane_on_fixed_entity</strong> (<em>trimatic.Plane</em>) – Cartesian plane representing the reference plane to be aligned with.</li>
+<li><strong>plane_on_moving_entity</strong> (<em>trimatic.Plane</em>) – Cartesian plane representing the plane to align/move.</li>
+<li><strong>move_along_entities</strong> (<em>trimatic.Object |</em><em> [</em><em>trimatic.Object</em><em>] </em><em>|</em><em> (</em><em>trimatic.Object</em><em>) </em><em>, </em><em>optional</em>) – Either single object or heterogeneous list of root level entities
+(parts, analytical primitives) that will be aligned along with the plane_on_moving_entity.</li>
+<li><strong>coincident</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, centre points of the input planes will be made coincident and the directions
+will be the same.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Aligned entities. This will be a combination of plane_on_moving_entity and move_along_entities.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Object | (trimatic.Object)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">fixed_plane</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_3_points</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">moving_plane</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_3_points</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">plane_to_plane_align</span><span class="p">(</span><span class="n">fixed_plane</span><span class="p">,</span> <span class="n">moving_plane</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.align.rotate">
+<code class="descname">rotate</code><span class="sig-paren">(</span><em>entities</em>, <em>angle_deg</em>, <em>axis_origin</em>, <em>axis_direction</em>, <em>number_of_copies=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/align.html#rotate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.align.rotate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotates entities around a single axis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Object |</em><em> [</em><em>trimatic.Object</em><em>] </em><em>|</em><em> (</em><em>trimatic.Object</em><em>)</em>) – Either single object or heterogeneous list of root level entities (parts, analytical primitives).</li>
+<li><strong>angle_deg</strong> (<em>float</em>) – Angle of rotation, in degrees.</li>
+<li><strong>axis_origin</strong> (<em>(</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>)</em>) – Origin of axis of rotation.</li>
+<li><strong>axis_direction</strong> (<em>(</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>)</em>) – Direction of axis of rotation.</li>
+<li><strong>number_of_copies</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of additional copies of the input entities to create. Each copy is rotated
+by angle_deg relative to the last copy made.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Rotated entities (including any copies).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Object | (trimatic.Object)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">x_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">z_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">box</span><span class="p">,</span> <span class="n">angle_deg</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">axis_origin</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis_direction</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.align.rotate_around_axes">
+<code class="descname">rotate_around_axes</code><span class="sig-paren">(</span><em>entities</em>, <em>angle_axes</em>, <em>rotation_origin</em>, <em>number_of_copies=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/align.html#rotate_around_axes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.align.rotate_around_axes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotates entities around an origin and angles along each major axis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Object |</em><em> [</em><em>trimatic.Object</em><em>] </em><em>|</em><em> (</em><em>trimatic.Object</em><em>)</em>) – Either single object or heterogeneous list of root level entities (parts, analytical primitives).</li>
+<li><strong>angle_axes</strong> (<em>(</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>)</em>) – An (x,y,z) tuple with values representing the angles, in degrees, along each major axis.</li>
+<li><strong>rotation_origin</strong> (<em>(</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>)</em>) – Origin/center of rotation.</li>
+<li><strong>number_of_copies</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of additional copies of the input entities to create. Each copy is rotated
+by angle_axes relative to the last copy made.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Rotated entities (including any copies).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Object | (trimatic.Object)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">x_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">z_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">rotate_around_axes</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">box</span><span class="p">,</span><span class="n">angle_axes</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">45</span><span class="p">,</span><span class="mi">60</span><span class="p">),</span><span class="n">rotation_origin</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.align.scale_delta">
+<code class="descname">scale_delta</code><span class="sig-paren">(</span><em>entities</em>, <em>delta</em>, <em>center_object=True</em>, <em>number_of_copies=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/align.html#scale_delta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.align.scale_delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scales entities by the specified distance along each major axis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> [</em><em>trimatic.Part</em><em>] </em><em>|</em><em> (</em><em>trimatic.Part</em><em>)</em>) – Either single object or heterogeneous list of objects.</li>
+<li><strong>delta</strong> (<em>(</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>)</em>) – An (x,y,z) tuple with values representing the scale distance along each major axis.</li>
+<li><strong>center_object</strong> (<em>bool</em><em>, </em><em>optional</em>) – position of scale, by default center around object.
+If False, center at midpoint of all objects.</li>
+<li><strong>center_object</strong> – If True, scaling is done relative to the center of each input entity independently.
+Otherwise, scaling is done against the average center of all the input entities.</li>
+<li><strong>number_of_copies</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of additional copies of the input entities to create. Each copy is scaled
+by factor relative to the last copy made.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Scaled entities (including any copies).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | (trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">x_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">scale_delta</span><span class="p">(</span><span class="n">box</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.align.scale_factor">
+<code class="descname">scale_factor</code><span class="sig-paren">(</span><em>entities</em>, <em>factor</em>, <em>center_object=True</em>, <em>number_of_copies=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/align.html#scale_factor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.align.scale_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scales entities by the specified factor along each major axis</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Object |</em><em> [</em><em>trimatic.Object</em><em>]</em>) – Either single object or heterogeneous list of objects.</li>
+<li><strong>factor</strong> (<em>(</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>)</em>) – An (x,y,z) tuple with values representing the scale factor along each major axis.</li>
+<li><strong>center_object</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, scaling is done relative to the center of each input entity independently.
+Otherwise, scaling is done against the average center of all the input entities.</li>
+<li><strong>number_of_copies</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of additional copies of the input entities to create. Each copy is scaled
+by factor relative to the last copy made.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Scaled entities (including any copies).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Object | (trimatic.Object)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">x_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">(</span><span class="n">box</span><span class="p">,</span><span class="n">factor</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.align.translate">
+<code class="descname">translate</code><span class="sig-paren">(</span><em>entities</em>, <em>translation_vector</em>, <em>number_of_copies=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/align.html#translate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.align.translate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translates entities along the specified translation vector</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Object |</em><em> [</em><em>trimatic.Object</em><em>]</em>) – Either single object or heterogeneous list of root level entities
+(parts, analytical primitives, datum planes).</li>
+<li><strong>translation_vector</strong> (<em>(</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>)</em>) – An (x,y,z) tuple representing the vector of translation.</li>
+<li><strong>number_of_copies</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of additional copies of the input entities to create. Each copy is
+translated by translation_vector relative to the last copy made.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Translated entities (including any copies).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Object | (trimatic.Object)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">x_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">box</span><span class="p">,(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.align.update_ocs_to_cs">
+<code class="descname">update_ocs_to_cs</code><span class="sig-paren">(</span><em>entity</em>, <em>method=&lt;UpdateOCSMethod.WCS: 'WCS'&gt;</em>, <em>user_defined_cs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/align.html#update_ocs_to_cs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.align.update_ocs_to_cs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the object coordinate system to a defined coordinate system.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entity</strong> (<em>trimatic.Part</em>) – Part that needs the OCS to be updated</li>
+<li><strong>method</strong> (<em>trimatic.UpdateOCSMethod</em><em>, </em><em>optional</em>) – Updates the OCS based on one of the methods</li>
+<li><strong>user_defined_cs</strong> (<em>trimatic.CoordinateSystem</em><em>, </em><em>optional</em>) – The OCS of the part will be made the same as the OCS of selection here.
+This parameter is valid only when method = User_defined_CS</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Part with updated OCS, which will be the same as the entity</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">aorta</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">update_ocs_to_cs</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">aorta</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">UpdateOCSMethod</span><span class="o">.</span><span class="n">Inertia_axes</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trimatic.analyze.html" class="btn btn-neutral float-right" title="analyze" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="trimatic.types.html" class="btn btn-neutral" title="types" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

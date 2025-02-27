@@ -1,0 +1,385 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6. Fracture plate &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="Tutorials" href="index.html"/>
+        <link rel="next" title="7. Working with Metadata" href="working_with_metadata.html"/>
+        <link rel="prev" title="5. Align and remesh" href="align_and_remesh.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="working_with_marking.html">1. Working with Marking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="measurements.html">2. Measurements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preparation_for_fea.html">3. Preparation for FEA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="non_manifold_assembly.html">4. Non manifold assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="align_and_remesh.html">5. Align and remesh</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6. Fracture plate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="working_with_metadata.html">7. Working with Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchtop.html">8. Benchtop model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_a_lattice.html">9. Creating a lattice structure</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+      
+    <li>6. Fracture plate</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/hand_plate.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="fracture-plate">
+<h1>6. Fracture plate<a class="headerlink" href="#fracture-plate" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial shows how to semi-automatically design a patient specific finger plate.
+The workflow focuses on designing a plate based on the position of screws in 3D.
+This tutorial will help in understanding workflows that are part of a design process.
+The project hand_plate.mxp is located in the 3-matic installation folder: <code class="file docutils literal"><span class="pre">\..\DemoFiles</span></code>.</p>
+<p>The completed script can be found in the 3-matic installation folder in <code class="file docutils literal"><span class="pre">DemoFiles\scripts\Fracture</span> <span class="pre">plate.py</span></code>. We will describe the different steps in the script in more detail.</p>
+<p>The first step is to define the constants and to import the project from the path that is located locally.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="c1"># Constants used for the script</span>
+<span class="n">ORIGINAL_FILES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;screw&quot;</span><span class="p">,</span><span class="s2">&quot;fingerbone&quot;</span><span class="p">]</span>
+<span class="n">TEMP</span> <span class="o">=</span> <span class="s2">&quot;temp&quot;</span>
+<span class="n">WRAPPED_TEMP</span> <span class="o">=</span> <span class="s2">&quot;wrapped_temp&quot;</span>
+<span class="n">PLATE</span> <span class="o">=</span> <span class="s2">&quot;Hand plate&quot;</span>
+<span class="n">FINAL_PLATE</span> <span class="o">=</span> <span class="s2">&quot;Final Hand plate&quot;</span>
+<span class="n">SCREWS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Screw 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Screw 2&quot;</span><span class="p">,</span> <span class="s2">&quot;Screw 3&quot;</span><span class="p">,</span> <span class="s2">&quot;Screw 4&quot;</span><span class="p">]</span>
+<span class="n">MESSAGE_1</span> <span class="o">=</span> <span class="s2">&quot;Create the profile of the fracture plate and click OK. The script will continue...&quot;</span>
+<span class="n">MESSAGE_2</span>  <span class="o">=</span> <span class="s2">&quot;Position the 4 screws of the plate. Click OK and start indicating the desired locations...&quot;</span>
+
+<span class="c1"># Open project and select the best view.</span>
+<span class="n">application_exe</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">()</span>
+<span class="n">application_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">application_exe</span><span class="p">)</span>
+<span class="n">project_filename</span> <span class="o">=</span> <span class="n">application_path</span> <span class="o">+</span> <span class="s2">&quot;/DemoFiles/hand_plate.mxp&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">project_filename</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">view_default</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">DefaultViews</span><span class="o">.</span><span class="n">Back</span><span class="p">)</span>
+<span class="n">finger_bone</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="n">ORIGINAL_FILES</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">finger_bone</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">zoom</span><span class="p">(</span><span class="n">finger_bone</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The following section will describe the pre processing of the finger bone.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Calculate the center of  gravity and inertia axes to ensure that create a plane.</span>
+<span class="n">finger_bone</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="n">ORIGINAL_FILES</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">inertia</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">compute_inertia_axes</span><span class="p">(</span><span class="n">finger_bone</span><span class="p">)</span>
+<span class="n">finger_bone_zx_pl</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_normal_origin</span><span class="p">(</span><span class="n">normal</span><span class="o">=</span><span class="n">inertia</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">origin</span><span class="o">=</span><span class="n">inertia</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">finger_bone_zx_pl</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">sketch</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sketch</span><span class="p">(</span><span class="n">planes</span><span class="o">=</span><span class="n">finger_bone_zx_pl</span><span class="p">)</span>
+
+<span class="c1"># Move the plane and the sketch above the bone</span>
+<span class="n">assembly</span> <span class="o">=</span> <span class="p">[</span><span class="n">finger_bone_zx_pl</span><span class="p">,</span><span class="n">sketch</span><span class="p">]</span>
+<span class="n">translation_vector</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">inertia</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">assembly</span><span class="p">,</span><span class="n">translation_vector</span><span class="p">)</span>
+
+<span class="c1"># Importing the references of the surfaces onto the sketch.</span>
+<span class="k">for</span> <span class="n">surf</span> <span class="ow">in</span> <span class="n">finger_bone</span><span class="o">.</span><span class="n">get_surfaces</span><span class="p">():</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">import_outline</span><span class="p">(</span><span class="n">sketch</span><span class="p">,</span><span class="n">surf</span><span class="p">,</span> <span class="n">construction</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># UI for the creation of the curve profile.</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">message_box</span><span class="p">(</span><span class="n">MESSAGE_1</span><span class="p">,</span><span class="s1">&#39;Sketch profile&#39;</span><span class="p">,</span><span class="kc">False</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>In the first interactive section of the script, we define the outline of the fracture plate that will be exported onto the finger bone. The first step is to draw two parallel lines that will go across the fracture. This is accomplished by using <strong>“Sketch -&gt; Add Sketch entity -&gt; Line segment”</strong>. The next step is to use <strong>“Sketch -&gt; Add Sketch entity -&gt; Circle Arc (3 points)”</strong> to create the arcs around the two parallel lines to complete the outline.</p>
+<p>It is recommended that a line segment and a circle arc are constrained tangentially to create a fracture plate that is uniform in shape. There will be two pairs of constraints that will be created to create a uniform outline. The last step is to ensure all the line segments and circle arcs are set to have their <strong>“Construction Off”</strong>. The final outcome should resemble the image below.</p>
+<a class="reference internal image-reference" href="../_images/sketch.png"><img alt="../_images/sketch.png" class="align-center" src="../_images/sketch.png" style="width: 734.4px; height: 441.0px;" /></a>
+<p>Once the outline is complete and you are satisfied with the result, click the <strong>“OK”</strong> button on the message box below and the script will continue.</p>
+<a class="reference internal image-reference" href="../_images/messagebox1.png"><img alt="../_images/messagebox1.png" class="align-center" src="../_images/messagebox1.png" style="width: 480.0px; height: 119.0px;" /></a>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Create a temporary part and hide the sketch</span>
+<span class="n">finger_bone</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">temp_part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">copy_to_part</span><span class="p">(</span><span class="n">finger_bone</span><span class="o">.</span><span class="n">get_surfaces</span><span class="p">())</span>
+<span class="n">temp_part</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">TEMP</span>
+<span class="n">temp_part</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">sketch</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># Wrap the temporary part</span>
+<span class="n">wrapped_temp</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">temp_part</span><span class="p">,</span><span class="n">gap_closing_distance</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span><span class="n">smallest_detail</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">wrapped_temp</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">WRAPPED_TEMP</span>
+
+
+<span class="c1">#project curve to part and split to surfaces</span>
+<span class="n">direc</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">translation_vector</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">project_curve</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">sketch</span><span class="p">,</span><span class="n">direction</span><span class="o">=</span><span class="n">direc</span><span class="p">,</span><span class="n">target_entities</span><span class="o">=</span><span class="n">wrapped_temp</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">attach_curve</span><span class="p">(</span><span class="n">wrapped_temp</span><span class="o">.</span><span class="n">get_curve_sets</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span><span class="n">wrapped_temp</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">split_surfaces_by_curves</span><span class="p">(</span><span class="n">wrapped_temp</span><span class="p">,</span><span class="n">wrapped_temp</span><span class="o">.</span><span class="n">get_curve_sets</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Find and pick the smallest surface which is the plate</span>
+<span class="n">surfs</span> <span class="o">=</span> <span class="n">wrapped_temp</span><span class="o">.</span><span class="n">get_surfaces</span><span class="p">()</span>
+<span class="n">plate_surf</span> <span class="o">=</span> <span class="n">surfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">if</span> <span class="n">plate_surf</span><span class="o">.</span><span class="n">area</span> <span class="o">&gt;</span> <span class="n">surfs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">area</span><span class="p">:</span>
+        <span class="n">plate_surf</span> <span class="o">=</span> <span class="n">surfs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1">#From surface to Part for the plate</span>
+<span class="n">plate_part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">copy_to_part</span><span class="p">(</span><span class="n">plate_surf</span><span class="p">)</span>
+<span class="n">plate_surf</span> <span class="o">=</span> <span class="n">plate_part</span><span class="o">.</span><span class="n">get_surfaces</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">move_surface</span><span class="p">(</span><span class="n">plate_surf</span><span class="p">,</span><span class="n">direction</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">distance</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plate_part</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">PLATE</span>
+
+<span class="c1">#Delete temp parts</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">temp_part</span><span class="p">)</span>
+<span class="n">finger_bone</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>In the second and final interactive portion of the script, users are instructed to position 4 screws on the plate as can be seen in the second message box below.</p>
+<a class="reference internal image-reference" href="../_images/messagebox2.png"><img alt="../_images/messagebox2.png" class="align-center" src="../_images/messagebox2.png" style="width: 502.0px; height: 123.0px;" /></a>
+<p>This is accomplished by selecting 4 points that will represent the desired locations of the screws. The points should be selected equidistantly and away from the fracture. The script will resume once the user clicks <strong>“OK”</strong>, creating the 4 corresponding screws. The result of which can be seen in the image below.</p>
+<a class="reference internal image-reference" href="../_images/results.png"><img alt="../_images/results.png" class="align-center" src="../_images/results.png" style="width: 734.4px; height: 441.0px;" /></a>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># UI for the indicating scews</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">message_box</span><span class="p">(</span><span class="n">MESSAGE_2</span><span class="p">,</span><span class="s1">&#39;Indicate screws&#39;</span><span class="p">,</span><span class="kc">False</span> <span class="p">)</span>
+
+<span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">trimatic</span><span class="o">.</span><span class="n">indicate_coordinate</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">SCREWS</span><span class="p">))]</span>
+<span class="n">planes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">))]</span>
+<span class="n">po</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">points</span><span class="p">:</span>
+        <span class="n">duplicatebone</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="n">plate_part</span><span class="p">)</span>
+        <span class="n">spherepoint</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_part</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">inters</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">boolean_intersection</span><span class="p">((</span><span class="n">duplicatebone</span><span class="p">,</span><span class="n">spherepoint</span><span class="p">))</span>
+        <span class="n">allsurfaces</span> <span class="o">=</span> <span class="n">inters</span><span class="o">.</span><span class="n">find_surfaces</span><span class="p">(</span><span class="s1">&#39;Surface&#39;</span><span class="p">)</span>
+        <span class="n">areas</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">allsurfaces</span><span class="p">))]</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">allsurfaces</span><span class="p">:</span>
+                <span class="n">areas</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">area</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">ms</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">areas</span><span class="p">)</span>
+        <span class="n">planes</span><span class="p">[</span><span class="n">po</span><span class="p">]</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_fit</span><span class="p">(</span><span class="n">allsurfaces</span><span class="p">[</span><span class="n">ms</span><span class="p">])</span>
+        <span class="c1"># Check necessary whether Z-axis of plane points in right direction</span>
+        <span class="c1"># by comparing direction from point to center of gravity with Z-axis direction</span>
+        <span class="n">gr</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">compute_center_of_gravity</span><span class="p">(</span><span class="n">inters</span><span class="p">)</span>
+        <span class="n">sp</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">gr</span><span class="p">),</span><span class="n">planes</span><span class="p">[</span><span class="n">po</span><span class="p">]</span><span class="o">.</span><span class="n">object_coordinate_system</span><span class="o">.</span><span class="n">z_axis</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sp</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">trimatic</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">planes</span><span class="p">[</span><span class="n">po</span><span class="p">],</span><span class="mi">180</span><span class="p">,</span><span class="n">planes</span><span class="p">[</span><span class="n">po</span><span class="p">]</span><span class="o">.</span><span class="n">object_coordinate_system</span><span class="o">.</span><span class="n">origin</span><span class="p">,</span><span class="n">planes</span><span class="p">[</span><span class="n">po</span><span class="p">]</span><span class="o">.</span><span class="n">object_coordinate_system</span><span class="o">.</span><span class="n">x_axis</span><span class="p">)</span>
+        <span class="n">po</span> <span class="o">=</span> <span class="n">po</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">inters</span><span class="p">)</span>
+
+<span class="c1"># Place screws with plane to plane align</span>
+<span class="n">screws</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">))]</span>
+<span class="n">screws2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">))]</span>
+<span class="n">sc</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">screw</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="n">ORIGINAL_FILES</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">screw</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">points</span><span class="p">:</span>
+        <span class="n">xyplanescrew</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_normal_origin</span><span class="p">(</span><span class="n">screw</span><span class="o">.</span><span class="n">object_coordinate_system</span><span class="o">.</span><span class="n">z_axis</span><span class="p">,</span><span class="n">screw</span><span class="o">.</span><span class="n">object_coordinate_system</span><span class="o">.</span><span class="n">origin</span><span class="p">)</span>
+        <span class="n">duplicatescrew</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="n">screw</span><span class="p">)</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">plane_to_plane_align</span><span class="p">(</span><span class="n">planes</span><span class="p">[</span><span class="n">sc</span><span class="p">],</span><span class="n">xyplanescrew</span><span class="p">,</span><span class="n">duplicatescrew</span><span class="p">)</span>
+        <span class="n">screws</span><span class="p">[</span><span class="n">sc</span><span class="p">]</span> <span class="o">=</span> <span class="n">duplicatescrew</span>
+        <span class="n">screws2</span><span class="p">[</span><span class="n">sc</span><span class="p">]</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="n">screws</span><span class="p">[</span><span class="n">sc</span><span class="p">])</span>
+        <span class="n">planes</span><span class="p">[</span><span class="n">sc</span><span class="p">]</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">screws</span><span class="p">[</span><span class="n">sc</span><span class="p">]</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">sc</span> <span class="o">=</span> <span class="n">sc</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">xyplanescrew</span><span class="p">)</span>
+
+<span class="c1">#Move a bit the screws to appear better</span>
+<span class="k">for</span> <span class="n">sc</span> <span class="ow">in</span> <span class="n">screws</span><span class="p">:</span>
+        <span class="n">trvector</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">object_coordinate_system</span><span class="o">.</span><span class="n">z_axis</span> <span class="c1">#only 1 mm required</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span><span class="n">trvector</span><span class="p">)</span>
+
+<span class="n">allscrews</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">boolean_union</span><span class="p">(</span><span class="n">screws</span><span class="p">)</span>
+<span class="n">screws_4_subtraction</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">boolean_union</span><span class="p">(</span><span class="n">screws2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The final step of the script is to complete the plate with the screw holes.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1">#create holes in the plate</span>
+<span class="n">final_plate</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">boolean_subtraction</span><span class="p">(</span><span class="n">plate_part</span><span class="p">,</span><span class="n">screws_4_subtraction</span><span class="p">)</span>
+<span class="n">final_plate</span><span class="o">.</span><span class="n">name</span>  <span class="o">=</span> <span class="n">FINAL_PLATE</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">resume_progress</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="working_with_metadata.html" class="btn btn-neutral float-right" title="7. Working with Metadata" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="align_and_remesh.html" class="btn btn-neutral" title="5. Align and remesh" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

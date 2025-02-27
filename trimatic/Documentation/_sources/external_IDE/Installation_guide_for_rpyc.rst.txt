@@ -1,0 +1,5 @@
+Installation guide for RPyC 
+------------------------------
+
+The first step to make the external IDE work is to install the “RPyC” package using either the graphical package manager or pip install to your local Python directory. 
+For an explanation on how to install a Python package, refer to: :ref:`installing_packages`.

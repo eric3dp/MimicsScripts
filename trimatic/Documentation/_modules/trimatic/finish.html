@@ -1,0 +1,488 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>trimatic.finish &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>trimatic.finish</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for trimatic.finish</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pymatic</span>
+<span class="kn">import</span> <span class="nn">trimatic.utils</span>
+
+<span class="kn">from</span> <span class="nn">trimatic.data</span> <span class="kn">import</span> <span class="n">TextAlignment</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+
+<div class="viewcode-block" id="fillet"><a class="viewcode-back" href="../../trimatic.rst/trimatic.finish.html#trimatic.finish.fillet">[docs]</a><span class="k">def</span> <span class="nf">fillet</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">radius</span> <span class="o">=</span> <span class="mf">2.0000</span><span class="p">,</span> <span class="n">tolerance</span> <span class="o">=</span> <span class="mf">0.0100</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Rounds (fillets) the sharp edges between surfaces to a desired radius.</span>
+<span class="sd"> </span>
+<span class="sd">    :param entities: Borders or contours to be rounded.</span>
+<span class="sd">    :type entities: trimatic.SurfaceBorder | trimatic.SurfaceContour |</span>
+<span class="sd">                          [trimatic.SurfaceBorder | trimatic.SurfaceContour]</span>
+<span class="sd">    :param radius: The radius of the fillet.</span>
+<span class="sd">    :type radius: float, optional</span>
+<span class="sd">    :param tolerance: This parameter allows you to set the accuracy of the fillet. A lower tolerance will lead to a higher accuracy and smaller triangles, whereas a higher tolerance will lead to a lower accuracy and larger triangles. A value equal to or smaller than the radius divided by a factor of 200 usually provides a good result without leading to an excessive number of triangles being generated. </span>
+<span class="sd">    :type tolerance: float, optional</span>
+<span class="sd">    :return: The rounded surfaces that were created</span>
+<span class="sd">    :rtype: trimatic.Surface | (trimatic.Surface)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/finish/fillet.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceBorder</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceContour</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;radius&quot;</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_resolution</span><span class="p">())</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;tolerance&quot;</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_resolution</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">fillet</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">radius</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="quick_label"><a class="viewcode-back" href="../../trimatic.rst/trimatic.finish.html#trimatic.finish.quick_label">[docs]</a><span class="k">def</span> <span class="nf">quick_label</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="c1">#&#39;force named parameters&#39;</span>
+    <span class="n">entity</span><span class="p">,</span>
+    <span class="n">text</span><span class="p">,</span>
+    <span class="n">point</span><span class="p">,</span>
+    <span class="n">direction</span><span class="p">,</span>
+    <span class="n">follow_surface</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">alignment</span> <span class="o">=</span> <span class="n">TextAlignment</span><span class="o">.</span><span class="n">Center</span><span class="p">,</span>
+    <span class="n">font</span> <span class="o">=</span> <span class="s1">&#39;Arial&#39;</span><span class="p">,</span>
+    <span class="n">font_height</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">label_height</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">bold</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">italic</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Places a label on a part based on text.</span>
+
+<span class="sd">    :param entity: Entity to label.</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :param text: Text to use for label. Can be multiline. Use &lt;backslash&gt;n for new lines.</span>
+<span class="sd">    :type text: string</span>
+<span class="sd">    :param point: Point where the label will start.</span>
+<span class="sd">    :type point: trimatic.Point</span>
+<span class="sd">    :param direction: Direction of the label.</span>
+<span class="sd">    :type direction: trimatic.Point</span>
+<span class="sd">    :param follow_surface: When True, the label will be bent to follow the surface normal. When False, the label will be aligned with the normal at the starting point.</span>
+<span class="sd">    :type follow_surface: bool, optional</span>
+<span class="sd">    :param alignment: The text alignment.</span>
+<span class="sd">    :type alignment: trimatic.TextAlignment, optional</span>
+<span class="sd">    :param font: Font to use for the label.</span>
+<span class="sd">    :type font: string, optional</span>
+<span class="sd">    :param font_height: Font height</span>
+<span class="sd">    :type font_height: float, optional</span>
+<span class="sd">    :param label_height: Label height (embossed text). Use a negative value for labeling inwards (debossed text).</span>
+<span class="sd">    :type label_height: float, optional</span>
+<span class="sd">    :param bold: Set to True for bold font style.</span>
+<span class="sd">    :type bold: bool, optional</span>
+<span class="sd">    :param italic: Set to True for italic font style.</span>
+<span class="sd">    :type italic: bool, optional</span>
+<span class="sd">    :return: SurfaceSet containing surfaces that were created for the label.</span>
+<span class="sd">    :rtype: trimatic.SurfaceSet</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/finish/quick_label.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;alignment&quot;</span><span class="p">,</span> <span class="n">alignment</span><span class="p">,</span> <span class="p">(</span><span class="n">TextAlignment</span><span class="p">,))</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;font_height&quot;</span><span class="p">,</span> <span class="n">font_height</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">quick_label</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">direction</span><span class="p">),</span> <span class="n">follow_surface</span><span class="p">,</span> <span class="n">alignment</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">font</span><span class="p">,</span> <span class="n">font_height</span><span class="p">,</span> <span class="n">label_height</span><span class="p">,</span> <span class="n">bold</span><span class="p">,</span> <span class="n">italic</span> <span class="p">)</span></div>
+
+<div class="viewcode-block" id="quick_label_dxf"><a class="viewcode-back" href="../../trimatic.rst/trimatic.finish.html#trimatic.finish.quick_label_dxf">[docs]</a><span class="k">def</span> <span class="nf">quick_label_dxf</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="c1">#&#39;force named parameters&#39;</span>
+    <span class="n">entity</span><span class="p">,</span>
+    <span class="n">filename</span><span class="p">,</span>
+    <span class="n">point</span><span class="p">,</span>
+    <span class="n">direction</span><span class="p">,</span>
+    <span class="n">follow_surface</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">label_height</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Places a label on a part based on a .dxf file.</span>
+
+<span class="sd">    :param entity: Entity to label.</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :param filename: File to use for label.</span>
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :param point: Point where the label will start.</span>
+<span class="sd">    :type point: trimatic.Point</span>
+<span class="sd">    :param direction: Direction of the label.</span>
+<span class="sd">    :type direction: trimatic.Point</span>
+<span class="sd">    :param follow_surface: When True, the label will be bent to follow the surface normal. When False, the label will be aligned with the normal at the starting point.</span>
+<span class="sd">    :type follow_surface: bool, optional</span>
+<span class="sd">    :param scale: Scale factor to be applied to the .dxf file.</span>
+<span class="sd">    :type scale: float, optional</span>
+<span class="sd">    :param label_height: Label height (embossed text). Use a negative value for labeling inwards (debossed text).</span>
+<span class="sd">    :type label_height: float, optional</span>
+<span class="sd">    :return: SurfaceSet containing surfaces that were created for the label.</span>
+<span class="sd">    :rtype: trimatic.SurfaceSet</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/finish/quick_label_dxf.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">quick_label_dxf</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">direction</span><span class="p">),</span> <span class="n">follow_surface</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">label_height</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="remove_undercut"><a class="viewcode-back" href="../../trimatic.rst/trimatic.finish.html#trimatic.finish.remove_undercut">[docs]</a><span class="k">def</span> <span class="nf">remove_undercut</span><span class="p">(</span>
+        <span class="n">undercut_entity</span><span class="p">,</span>
+        <span class="n">fitting_entity</span><span class="p">,</span> 
+        <span class="n">direction</span><span class="p">,</span>
+        <span class="n">draft_angle</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">detail</span> <span class="o">=</span> <span class="mf">0.3</span>
+    <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Removes excess undercuts from a part, such that it fits into another part according to a set direction.</span>
+
+<span class="sd">    :param undercut_entity: Part that should have its undercuts removed.</span>
+<span class="sd">    :type undercut_entity: trimatic.Part</span>
+<span class="sd">    :param fitting_entity: Part that the undercut entity should fit into after the operation completes.</span>
+<span class="sd">    :type fitting_entity: trimatic.Part</span>
+<span class="sd">    :param direction: The direction to take out the undercut entity from the fitting entity.</span>
+<span class="sd">    :type direction: trimatic.Point</span>
+<span class="sd">    :param draft_angle: The draft angle by which you want to take out the undercut entity from the fitting entity.</span>
+<span class="sd">    :type draft_angle: float, optional</span>
+<span class="sd">    :param detail: Smaller input here gives a smoother cut surface at the cost of increased computation time.</span>
+<span class="sd">    :type detail: float, optional</span>
+<span class="sd">    :return: Part after removal of undercut.</span>
+<span class="sd">    :rtype: trimatic.Part</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/finish/remove_undercut.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;undercut_entity&quot;</span><span class="p">,</span> <span class="n">undercut_entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;fitting_entity&quot;</span><span class="p">,</span> <span class="n">fitting_entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;draft_angle&quot;</span><span class="p">,</span> <span class="n">draft_angle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;detail&quot;</span><span class="p">,</span> <span class="n">detail</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">remove_undercut</span><span class="p">(</span><span class="n">undercut_entity</span><span class="p">,</span> <span class="n">fitting_entity</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">direction</span><span class="p">),</span> <span class="n">draft_angle</span><span class="p">,</span> <span class="n">detail</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SmoothDetail"><a class="viewcode-back" href="../../trimatic.rst/trimatic.finish.html#trimatic.finish.SmoothDetail">[docs]</a><span class="k">class</span> <span class="nc">SmoothDetail</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Smooth detail type.&quot;&quot;&quot;</span>
+
+    <span class="n">Coarse</span> <span class="o">=</span> <span class="s2">&quot;Coarse&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Coarse level&quot;&quot;&quot;</span>
+
+    <span class="n">Medium</span> <span class="o">=</span> <span class="s2">&quot;Medium&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Medium level&quot;&quot;&quot;</span>
+
+    <span class="n">Fine</span> <span class="o">=</span> <span class="s2">&quot;Fine&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fine level&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="smooth_edge"><a class="viewcode-back" href="../../trimatic.rst/trimatic.finish.html#trimatic.finish.smooth_edge">[docs]</a><span class="k">def</span> <span class="nf">smooth_edge</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">distance</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">smooth_detail</span> <span class="o">=</span> <span class="n">SmoothDetail</span><span class="o">.</span><span class="n">Coarse</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Smoothes a sharp edge. The operation will smooth the edge of the input contour.</span>
+
+<span class="sd">    :param entity: Surface contour.</span>
+<span class="sd">    :type entity: trimatic.SurfaceContour</span>
+<span class="sd">    :param distance: Distance from the selected contour to which the smoothing should be applied.</span>
+<span class="sd">    :type distance: float, optional</span>
+<span class="sd">    :param smooth_detail: Smooth detail type.</span>
+<span class="sd">    :type smooth_detail: trimatic.SmoothDetail, optional</span>
+<span class="sd">    :return: The smoothed surfaces.</span>
+<span class="sd">    :rtype: (trimatic.Surface)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/finish/smooth_edge.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceContour</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;distance&quot;</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;smooth_detail&quot;</span><span class="p">,</span> <span class="n">smooth_detail</span><span class="p">,</span> <span class="p">(</span><span class="n">SmoothDetail</span><span class="p">,))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">smooth_edge</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">smooth_detail</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_path_based_pattern"><a class="viewcode-back" href="../../trimatic.rst/trimatic.finish.html#trimatic.finish.create_path_based_pattern">[docs]</a><span class="k">def</span> <span class="nf">create_path_based_pattern</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">pattern_entity</span><span class="p">,</span> <span class="n">distance</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">number_of_copies</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">is_follow_curve</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                              <span class="n">is_follow_surface</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_transform_displacement</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Patterns entities along the guiding path that is defined by the curve.</span>
+
+<span class="sd">    :param path: The curve that is used as the guiding path.</span>
+<span class="sd">    :type path: trimatic.Curve</span>
+<span class="sd">    :param pattern_entity: The entity to be patterned along the guiding path.</span>
+<span class="sd">    :type pattern_entity: trimatic.Part, trimatic.Sketch, trimatic.Plane</span>
+<span class="sd">    :param distance: The distance between the pattern entities. If set to None, the distance will be computed automatically</span>
+<span class="sd">        based on the number of copies. If number_of_copies is also None, then the pattern entities will be placed on the curve segment endpoints.</span>
+<span class="sd">    :type distance: float | None, optional</span>
+<span class="sd">    :param number_of_copies: The number of pattern entities to be added along the guiding path. If set to None, the number</span>
+<span class="sd">        will be computed automatically based on the distance. If distance is also None, then the pattern entities will be</span>
+<span class="sd">        placed on the curve segment endpoints.</span>
+<span class="sd">    :type number_of_copies: int | None, optional</span>
+<span class="sd">    :param is_follow_curve: If True, the direction of the pattern entity will follow the curve direction.</span>
+<span class="sd">    :type is_follow_curve: bool, optional</span>
+<span class="sd">    :param is_follow_surface: If True, and the path is an attached curve, the triangle normals are used to align the Z axis</span>
+<span class="sd">        of the pattern entity.</span>
+<span class="sd">    :type is_follow_surface: bool, optional</span>
+<span class="sd">    :param is_transform_displacement: If True, the displacement between the pattern entity and the path curve will be</span>
+<span class="sd">        transformed such that the pattern entity will be centered on top of the path.</span>
+<span class="sd">    :type is_transform_displacement: bool, optional</span>
+<span class="sd">    :return: One or multiple pattern results.</span>
+<span class="sd">    :rtype: trimatic.Part | (trimatic.Plane) | (trimatic.Sketch)</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/finish/create_path_based_pattern.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;pattern_entity&quot;</span><span class="p">,</span> <span class="n">pattern_entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Sketch</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Plane</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">distance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;distance&quot;</span><span class="p">,</span> <span class="n">distance</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">number_of_copies</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;number_of_copies&quot;</span><span class="p">,</span> <span class="n">number_of_copies</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_path_based_pattern</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">pattern_entity</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">number_of_copies</span><span class="p">,</span> <span class="n">is_follow_curve</span><span class="p">,</span>
+                                             <span class="n">is_follow_surface</span><span class="p">,</span> <span class="n">is_transform_displacement</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_point_based_pattern"><a class="viewcode-back" href="../../trimatic.rst/trimatic.finish.html#trimatic.finish.create_point_based_pattern">[docs]</a><span class="k">def</span> <span class="nf">create_point_based_pattern</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="n">entity</span><span class="p">,</span>
+    <span class="n">pattern_entity</span><span class="p">,</span>
+    <span class="n">specific_points_on_mesh</span><span class="p">,</span>
+    <span class="n">direction</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">rotation_angle</span> <span class="o">=</span> <span class="mf">0.0000</span><span class="p">,</span>
+    <span class="n">height_offset</span> <span class="o">=</span> <span class="mf">0.0000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Operation to place pattern entities on the desired points of a reference mesh.</span>
+
+<span class="sd">    :param entity: A single part to be used as the marker for the points to place the pattern entities.</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :param pattern_entity: A single part to be used as the pattern entity.</span>
+<span class="sd">    :type pattern_entity: trimatic.Part</span>
+<span class="sd">    :param specific_points_on_mesh: One or a list of points to be used as the markers to place the pattern entities.</span>
+<span class="sd">    :type specific_points_on_mesh: trimatic.Point | [trimatic.Point] | [(float, float, float)]</span>
+<span class="sd">    :param direction: The direction vector for the X axis of the pattern entity to be aligned to. If set to None, all pattern entities are placed without a shared common direction.</span>
+<span class="sd">    :type direction: (float, float, float), optional</span>
+<span class="sd">    :param rotation_angle: The rotation of the pattern entities about the vertical axis of the pattern entity.</span>
+<span class="sd">    :type rotation_angle: float, optional</span>
+<span class="sd">    :param height_offset: Offset of the pattern position from the specified point along the vertical axis.</span>
+<span class="sd">    :type height_offset: float, optional</span>
+
+<span class="sd">    :return: One part with the patterned result.</span>
+<span class="sd">    :rtype: trimatic.Part</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/finish/create_point_based_pattern.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;pattern_entity&quot;</span><span class="p">,</span> <span class="n">pattern_entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;rotation_angle&quot;</span><span class="p">,</span> <span class="n">rotation_angle</span><span class="p">,</span> <span class="o">-</span><span class="mf">180.0</span><span class="p">,</span> <span class="mf">180.0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">direction</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_direction</span><span class="p">(</span><span class="s2">&quot;direction&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_point_based_pattern</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">pattern_entity</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_sequence_argument</span><span class="p">(</span><span class="n">specific_points_on_mesh</span><span class="p">),</span>
+                                                  <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">direction</span><span class="p">),</span> <span class="n">rotation_angle</span><span class="p">,</span> <span class="n">height_offset</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_point_based_pattern</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">pattern_entity</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_sequence_argument</span><span class="p">(</span><span class="n">specific_points_on_mesh</span><span class="p">),</span>
+                                                  <span class="n">direction</span><span class="p">,</span> <span class="n">rotation_angle</span><span class="p">,</span> <span class="n">height_offset</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

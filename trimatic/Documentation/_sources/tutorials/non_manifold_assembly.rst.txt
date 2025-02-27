@@ -1,0 +1,106 @@
+Non manifold assembly
+-----------------------
+
+In this tutorial, some basic features of remeshing to create a non-manifold assembly are presented using the project BonePlate.mxp that is located in the 3-matic installation folder under the folder `DemoFiles`.  
+
+The completed script can be found in the 3-matic installation folder in :file:`DemoFiles\\scripts\\Non-manifold assembly.py`. 
+We will describe the different steps in the script in more detail.
+
+The first step is to open the project BonePlate.mxp in 3-matic. The following image shows the input file. 
+
+
+.. code-block:: python
+
+	import trimatic
+	import os	
+	#Open the project BonePlate.mxp
+	application_exe = trimatic.get_application_path()
+	application_path = os.path.dirname(application_exe)
+	path = application_path + "/DemoFiles/BonePlate.mxp"
+	trimatic.open_project(path)
+
+.. image:: Non_Manifold_Assembly/Input.png
+ :width: 450px
+ :height: 450px
+ :align: center    
+    
+In the next step, the different parts of the assembly are located and assigned to variables. The parts, Bone, Plate and Screws are located and variables of their respective names are created.
+
+
+.. code-block:: python
+
+    # get a list of the objects that exist in the file and duplicate the femur
+    bone = trimatic.find_part('Bone')
+    plate = trimatic.find_part('Plate_MovedSurface')
+    screws = trimatic.find_part('Screws')
+    trimatic.delete(trimatic.find_part('Plate'))
+    plate.name = 'Plate'
+
+The following step is to remesh the parts individually before the non manifold assembly operation. All the parts can be remeshed with the same parameters, in one operation with the **Adaptive Remesh** tool.
+
+.. code-block:: python
+
+    # Remesh separate objects prior to creating the NMA
+    trimatic.adaptive_remesh_expert(entities=(bone,plate,screws),shape_measure=trimatic.ShapeMeasures.height_base_n,shape_quality_threshold=0.3,maximum_geometrical_error=0.05, minimum_triangle_edge_length=0,maximum_triangle_edge_length=0.5, number_of_iterations=10, skip_bad_edges=False,preserve_surface_contours=False, preserve_sharp_edges=False,local_remesh_parameters=(), local_growth_rate=25)
+
+
+The next step is to duplicate all the parts before the non manifold assembly operation.
+
+.. code-block:: python
+
+    # Duplicate objects to maintain a copy after NMA creation
+    bone2 = trimatic.duplicate(bone)
+    plate2 = trimatic.duplicate(plate)
+    screws2 = trimatic.duplicate(screws)
+    bone2.visible = False
+    plate2.visible = False
+    screws2.visible = False
+
+In the following step a non manifold assembly is created. The main entity is the object whose volume will be reduced with the intersecting entities. The volume of the intersecting entity will be preserved. The order is important, the last ones in the order will always be subtracted from the top entities.
+
+.. code-block:: python   
+     
+    # Create NMA
+    nma = trimatic.create_non_manifold_assembly_intersection(plate, (bone, screws))
+    nma.name = 'Non-manifold'
+    
+.. image:: Non_Manifold_Assembly/NMA_no_remesh.png
+ :width: 450px
+ :height: 450px
+ :align: center    
+
+In the next step, the mesh of the non manifold assembly is improved by performing an **Adaptive Remesh** operation. The parameters are the same as those selected in the operation in a previous step.
+
+.. code-block:: python
+
+    # Improve mesh of NMA
+    trimatic.adaptive_remesh_expert(entities=nma,shape_measure=trimatic.ShapeMeasures.height_base_n,shape_quality_threshold=0.3, maximum_geometrical_error=0.05,minimum_triangle_edge_length=0, maximum_triangle_edge_length=0.5,number_of_iterations=10,skip_bad_edges=False,preserve_surface_contours=False,preserve_sharp_edges=False, local_remesh_parameters=(), local_growth_rate=25)
+
+In the next step, a volume mesh is created on the non manifold assembly part. The part is duplicated and renamed before the operation.
+
+.. code-block:: python
+
+    # Create volume mesh
+    nma.visible = False
+    vol_mesh_nma = trimatic.duplicate(nma)
+    vol_mesh_nma.name = nma.name + "_volume_mesh"
+    trimatic.create_volume_mesh(part=vol_mesh_nma, maximum_edge_length=1)
+    
+.. image:: Non_Manifold_Assembly/NMA_volume_mesh_Z.png
+ :width: 300px
+ :height: 300px
+ :align: center  
+
+The last step is to inspect the mesh quality. For the shape measure parameter, Ansys element quality is selected. The results are presented in the metadata.
+
+.. code-block:: python
+    
+    # Analyze mesh quality
+    trimatic.analyze_mesh_quality_volume(vol_mesh_nma, shape_measure=trimatic.ShapeMeasuresAnalyzeMeshQualityVolume.ansys_element_quality_n, shape_quality_threshold=0.0001)
+    
+    
+.. image:: Non_Manifold_Assembly/metadata_non_manifold_assembly.png
+ :width: 650px
+ :height: 100px
+ :align: center 
+ 

@@ -1,0 +1,568 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cadlink &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="trimatic modules" href="trimatic.html"/>
+        <link rel="next" title="curve" href="trimatic.curve.html"/>
+        <link rel="prev" title="analyze" href="trimatic.analyze.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">trimatic API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="trimatic.html">trimatic modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="trimatic.data.html">data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.types.html">types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.align.html">align</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.analyze.html">analyze</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">cadlink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.curve.html">curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.design.html">design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.file.html">file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.finish.html">finish</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.fix.html">fix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.group.html">group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.interactive.html">interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.lattice.html">lattice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.logging.html">logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.mark.html">mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.measure.html">measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.preferences.html">preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.remesh.html">remesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.sketch.html">sketch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.surface.html">surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.texturing.html">texturing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.uv.html">uv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.view.html">view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.subscription.html">subscription</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">trimatic API</a> &raquo;</li>
+      
+          <li><a href="trimatic.html">trimatic modules</a> &raquo;</li>
+      
+    <li>cadlink</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/trimatic.rst/trimatic.cad_link.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-trimatic.cad_link">
+<span id="cadlink"></span><h1>cadlink<a class="headerlink" href="#module-trimatic.cad_link" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="trimatic.cad_link.CADLinkAnalyticalStructures">
+<em class="property">class </em><code class="descname">CADLinkAnalyticalStructures</code><a class="reference internal" href="../_modules/trimatic/cad_link.html#CADLinkAnalyticalStructures"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.cad_link.CADLinkAnalyticalStructures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Analytical Structures</p>
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkAnalyticalStructures.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Analytical Structures'</em><a class="headerlink" href="#trimatic.cad_link.CADLinkAnalyticalStructures.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkAnalyticalStructures.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.cad_link'</em><a class="headerlink" href="#trimatic.cad_link.CADLinkAnalyticalStructures.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.cad_link.CADLinkAnalyticalStructures.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.cad_link.CADLinkAnalyticalStructures.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.cad_link.CADLinkAnalyticalStructures._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.cad_link.CADLinkAnalyticalStructures._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkAnalyticalStructures._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'seam': &lt;CADLinkAnalyticalStructures.seam: 1&gt;, 'slit': &lt;CADLinkAnalyticalStructures.slit: 2&gt;, 'split': &lt;CADLinkAnalyticalStructures.split: 0&gt;}</em><a class="headerlink" href="#trimatic.cad_link.CADLinkAnalyticalStructures._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkAnalyticalStructures._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['split', 'seam', 'slit']</em><a class="headerlink" href="#trimatic.cad_link.CADLinkAnalyticalStructures._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkAnalyticalStructures._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.cad_link.CADLinkAnalyticalStructures._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkAnalyticalStructures._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {0: &lt;CADLinkAnalyticalStructures.split: 0&gt;, 1: &lt;CADLinkAnalyticalStructures.seam: 1&gt;, 2: &lt;CADLinkAnalyticalStructures.slit: 2&gt;}</em><a class="headerlink" href="#trimatic.cad_link.CADLinkAnalyticalStructures._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkAnalyticalStructures.seam">
+<code class="descname">seam</code><em class="property"> = 1</em><a class="headerlink" href="#trimatic.cad_link.CADLinkAnalyticalStructures.seam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Single surface with slit contours.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkAnalyticalStructures.slit">
+<code class="descname">slit</code><em class="property"> = 2</em><a class="headerlink" href="#trimatic.cad_link.CADLinkAnalyticalStructures.slit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkAnalyticalStructures.split">
+<code class="descname">split</code><em class="property"> = 0</em><a class="headerlink" href="#trimatic.cad_link.CADLinkAnalyticalStructures.split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Single surface with a seam.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="trimatic.cad_link.CADLinkFormat">
+<em class="property">class </em><code class="descname">CADLinkFormat</code><a class="reference internal" href="../_modules/trimatic/cad_link.html#CADLinkFormat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.cad_link.CADLinkFormat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>CAD Formats.</p>
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkFormat.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'CAD Formats.'</em><a class="headerlink" href="#trimatic.cad_link.CADLinkFormat.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkFormat.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.cad_link'</em><a class="headerlink" href="#trimatic.cad_link.CADLinkFormat.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.cad_link.CADLinkFormat.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.cad_link.CADLinkFormat.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.cad_link.CADLinkFormat._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.cad_link.CADLinkFormat._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkFormat._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'igs': &lt;CADLinkFormat.igs: 'igs'&gt;, 'step': &lt;CADLinkFormat.step: 'step'&gt;}</em><a class="headerlink" href="#trimatic.cad_link.CADLinkFormat._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkFormat._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['step', 'igs']</em><a class="headerlink" href="#trimatic.cad_link.CADLinkFormat._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkFormat._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.cad_link.CADLinkFormat._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkFormat._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'igs': &lt;CADLinkFormat.igs: 'igs'&gt;, 'step': &lt;CADLinkFormat.step: 'step'&gt;}</em><a class="headerlink" href="#trimatic.cad_link.CADLinkFormat._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkFormat.igs">
+<code class="descname">igs</code><em class="property"> = 'igs'</em><a class="headerlink" href="#trimatic.cad_link.CADLinkFormat.igs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkFormat.step">
+<code class="descname">step</code><em class="property"> = 'step'</em><a class="headerlink" href="#trimatic.cad_link.CADLinkFormat.step" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="trimatic.cad_link.CADLinkPatchDensityType">
+<em class="property">class </em><code class="descname">CADLinkPatchDensityType</code><a class="reference internal" href="../_modules/trimatic/cad_link.html#CADLinkPatchDensityType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.cad_link.CADLinkPatchDensityType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Patch Decomposition Types.</p>
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkPatchDensityType.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Patch Decomposition Types.'</em><a class="headerlink" href="#trimatic.cad_link.CADLinkPatchDensityType.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkPatchDensityType.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.cad_link'</em><a class="headerlink" href="#trimatic.cad_link.CADLinkPatchDensityType.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.cad_link.CADLinkPatchDensityType.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.cad_link.CADLinkPatchDensityType.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.cad_link.CADLinkPatchDensityType._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.cad_link.CADLinkPatchDensityType._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkPatchDensityType._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'above_normal': &lt;CADLinkPatchDensityType.above_normal: 5&gt;, 'adaptive': &lt;CADLinkPatchDensityType.adaptive: 1&gt;, 'below_normal': &lt;CADLinkPatchDensityType.below_normal: 3&gt;, 'high': &lt;CADLinkPatchDensityType.high: 6&gt;, 'low': &lt;CADLinkPatchDensityType.low: 2&gt;, 'none': &lt;CADLinkPatchDensityType.none: 0&gt;, 'normal': &lt;CADLinkPatchDensityType.normal: 4&gt;}</em><a class="headerlink" href="#trimatic.cad_link.CADLinkPatchDensityType._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkPatchDensityType._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['none', 'adaptive', 'low', 'below_normal', 'normal', 'above_normal', 'high']</em><a class="headerlink" href="#trimatic.cad_link.CADLinkPatchDensityType._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkPatchDensityType._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.cad_link.CADLinkPatchDensityType._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkPatchDensityType._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {0: &lt;CADLinkPatchDensityType.none: 0&gt;, 1: &lt;CADLinkPatchDensityType.adaptive: 1&gt;, 2: &lt;CADLinkPatchDensityType.low: 2&gt;, 3: &lt;CADLinkPatchDensityType.below_normal: 3&gt;, 4: &lt;CADLinkPatchDensityType.normal: 4&gt;, 5: &lt;CADLinkPatchDensityType.above_normal: 5&gt;, 6: &lt;CADLinkPatchDensityType.high: 6&gt;}</em><a class="headerlink" href="#trimatic.cad_link.CADLinkPatchDensityType._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkPatchDensityType.above_normal">
+<code class="descname">above_normal</code><em class="property"> = 5</em><a class="headerlink" href="#trimatic.cad_link.CADLinkPatchDensityType.above_normal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkPatchDensityType.adaptive">
+<code class="descname">adaptive</code><em class="property"> = 1</em><a class="headerlink" href="#trimatic.cad_link.CADLinkPatchDensityType.adaptive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkPatchDensityType.below_normal">
+<code class="descname">below_normal</code><em class="property"> = 3</em><a class="headerlink" href="#trimatic.cad_link.CADLinkPatchDensityType.below_normal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkPatchDensityType.high">
+<code class="descname">high</code><em class="property"> = 6</em><a class="headerlink" href="#trimatic.cad_link.CADLinkPatchDensityType.high" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkPatchDensityType.low">
+<code class="descname">low</code><em class="property"> = 2</em><a class="headerlink" href="#trimatic.cad_link.CADLinkPatchDensityType.low" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkPatchDensityType.none">
+<code class="descname">none</code><em class="property"> = 0</em><a class="headerlink" href="#trimatic.cad_link.CADLinkPatchDensityType.none" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.cad_link.CADLinkPatchDensityType.normal">
+<code class="descname">normal</code><em class="property"> = 4</em><a class="headerlink" href="#trimatic.cad_link.CADLinkPatchDensityType.normal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.cad_link.cadlink_quad_dominant">
+<code class="descname">cadlink_quad_dominant</code><span class="sig-paren">(</span><em>*args</em>, <em>entity</em>, <em>format=&lt;CADLinkFormat.step: 'step'&gt;</em>, <em>output_directory</em>, <em>nurbs_only=False</em>, <em>border_tolerance=None</em>, <em>analytical_structures=&lt;CADLinkAnalyticalStructures.slit: 2&gt;</em>, <em>preserve_surface_structure=True</em>, <em>improve_mesh=True</em>, <em>patch_size=None</em>, <em>number_of_control_points=None</em>, <em>smoothing_strength=0.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/cad_link.html#cadlink_quad_dominant"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.cad_link.cadlink_quad_dominant" title="Permalink to this definition">¶</a></dt>
+<dd><p>The CAD link module makes it possible to convert a triangulated mesh to an Iges or Step file using Quad dominant method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entity</strong> (<em>trimatic.Part</em>) – part to convert.</li>
+<li><strong>format</strong> (<em>trimatic.CADLinkFormat</em><em>, </em><em>optional</em>) – CAD file format, igs or step.</li>
+<li><strong>output_directory</strong> (<em>string</em>) – Destination path to save the CAD file.</li>
+<li><strong>nurbs_only</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, all surfaces will be converted to NURBS surfaces. 
+When False, the opertion will first search for a match of the triangulated surfaces with an analytical primitive like a plane, cylinder etc.</li>
+<li><strong>border_tolerance</strong> (<em>float</em><em>, </em><em>optional</em>) – The border tolerance is the tolerance with which the file is read.     
+When two points are further apart than this tolerance, they are considered to be 2 different points.     
+When they are closer to each other as the defined tolerance, they are considered to fall together.     
+When None is specified, tolerance will be estimated automatically (Like “Estimate” button in GUI).</li>
+<li><strong>analytical_structures</strong> (<em>trimatic.CADLinkAnalyticalStructures</em><em>, </em><em>optional</em>) – Trimming loop representation for closed analytical surfaces.</li>
+<li><strong>preserve_surface_structure</strong> (<em>bool</em><em>, </em><em>optional</em>) – Specifies whether the surface structure should be preserved or not.</li>
+<li><strong>improve_mesh</strong> (<em>bool</em><em>, </em><em>optional</em>) – Specifies whether or not the mesh improving shall be performed before reverse (recommended).</li>
+<li><strong>patch_size</strong> (<em>float</em><em>, </em><em>optional</em>) – Desired edge length for decomposition via quadrangulation algorithm.</li>
+<li><strong>number_of_control_points</strong> (<em>integer</em><em>, </em><em>optional</em>) – Number of control points. If None, then estimate automatically.</li>
+<li><strong>smoothing_strength</strong> (<em>float</em><em>, </em><em>optional</em>) – Strength of NURBS surfaces smoothing. Value from 0 to 1.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Names of written file.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">string</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">cadlink_quad_dominant</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">cylinder</span><span class="p">,</span> <span class="n">output_directory</span><span class="o">=</span><span class="s2">&quot;C:/MedData&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.cad_link.cadlink_voronoi_based">
+<code class="descname">cadlink_voronoi_based</code><span class="sig-paren">(</span><em>*args</em>, <em>entity</em>, <em>format=&lt;CADLinkFormat.step: 'step'&gt;</em>, <em>output_directory</em>, <em>nurbs_only=False</em>, <em>border_tolerance=None</em>, <em>analytical_structures=&lt;CADLinkAnalyticalStructures.slit: 2&gt;</em>, <em>preserve_surface_structure=True</em>, <em>improve_mesh=True</em>, <em>patch_density=&lt;CADLinkPatchDensityType.adaptive: 1&gt;</em>, <em>number_of_control_points=None</em>, <em>smoothing_strength=0.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/cad_link.html#cadlink_voronoi_based"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.cad_link.cadlink_voronoi_based" title="Permalink to this definition">¶</a></dt>
+<dd><p>The CAD link module makes it possible to convert a triangulated mesh to an Iges or Step file using Voronoi based patching method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entity</strong> (<em>trimatic.Part</em>) – part to convert.</li>
+<li><strong>format</strong> (<em>trimatic.CADLinkFormat</em><em>, </em><em>optional</em>) – CAD file format, igs or step.</li>
+<li><strong>output_directory</strong> (<em>string</em>) – Destination path to save the CAD file.</li>
+<li><strong>nurbs_only</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, all surfaces will be converted to NURBS surfaces. 
+When False, the opertion will first search for a match of the triangulated surfaces with an analytical primitive like a plane, cylinder etc.</li>
+<li><strong>border_tolerance</strong> (<em>float</em><em>, </em><em>optional</em>) – The border tolerance is the tolerance with which the file is read.     
+When two points are further apart than this tolerance, they are considered to be 2 different points.     
+When they are closer to each other as the defined tolerance, they are considered to fall together.     
+When None is specified, tolerance will be estimated automatically (Like “Estimate” button in GUI).</li>
+<li><strong>analytical_structures</strong> (<em>trimatic.CADLinkAnalyticalStructures</em><em>, </em><em>optional</em>) – Trimming loop representation for closed analytical surfaces.</li>
+<li><strong>preserve_surface_structure</strong> (<em>bool</em><em>, </em><em>optional</em>) – Specifies whether the surface structure should be preserved or not.</li>
+<li><strong>improve_mesh</strong> (<em>bool</em><em>, </em><em>optional</em>) – Specifies whether or not the mesh improving shall be performed before reverse (recommended).</li>
+<li><strong>patch_density</strong> (<em>trimatic.CADLinkPatchDecompositionType</em><em>, </em><em>optional</em>) – Recommended density of resulting parametric faces. Used with regular decomposition method only. 
+It is called ‘recommended density’ because it can contradict the reversing tolerance parameter that is considered as a superior one.
+The default ‘adaptive’ value is used to vary patch density depending on mesh curvature.
+Other possible value can be None, Low, Below normal, Normal, Above normal, or High.  
+If None, reverse must be performed as a single patch in this case.</li>
+<li><strong>number_of_control_points</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of control points. If None, then estimate automatically.</li>
+<li><strong>smoothing_strength</strong> (<em>float</em><em>, </em><em>optional</em>) – Strength of NURBS surfaces smoothing. Value from 0 to 1.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Names of written file.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">string</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">cadlink_voronoi_based</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">cylinder</span><span class="p">,</span> <span class="n">output_directory</span><span class="o">=</span><span class="s2">&quot;C:/MedData&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trimatic.curve.html" class="btn btn-neutral float-right" title="curve" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="trimatic.analyze.html" class="btn btn-neutral" title="analyze" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

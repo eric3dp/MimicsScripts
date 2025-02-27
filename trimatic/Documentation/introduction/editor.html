@@ -1,0 +1,333 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. Scripting in 3-matic Quick Start Guide &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="Introduction" href="index.html"/>
+        <link rel="next" title="4. Getting started with the 3-matic API" href="overview_api.html"/>
+        <link rel="prev" title="2. Python installation" href="installation.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Introduction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="general_introduction.html">1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">2. Python installation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Scripting in 3-matic Quick Start Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">3.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python-editor">3.2. Python editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python-console">3.3. Python console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scripting-library">3.4. Scripting Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#autocomplete">3.5. Autocomplete</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-script">3.6. Run script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-recent-script">3.7. Run recent script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-script-options">3.8. Run Script Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#command-prompt-cmd">3.9. Command prompt (CMD)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="overview_api.html">4. Getting started with the 3-matic API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Introduction</a> &raquo;</li>
+      
+    <li>3. Scripting in 3-matic Quick Start Guide</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/introduction/editor.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="scripting-in-3-matic-quick-start-guide">
+<h1>3. Scripting in 3-matic Quick Start Guide<a class="headerlink" href="#scripting-in-3-matic-quick-start-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>3.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In this section we describe the functionality offered in 3-matic for editing and running python code.
+More advanced functionality is offered by external IDEs. This will be described in a separate section.</p>
+</div>
+<div class="section" id="python-editor">
+<h2>3.2. Python editor<a class="headerlink" href="#python-editor" title="Permalink to this headline">¶</a></h2>
+<p>The built-in Python editor of 3-matic is a basic editor to write and run Python scripts.
+It is accessed via <strong>Script -&gt; Editor</strong>.</p>
+<a class="reference internal image-reference" href="../_images/editor.png"><img alt="3-matic Script Editor" class="align-center" src="../_images/editor.png" style="width: 552.0px; height: 440.8px;" /></a>
+<p>In the Scripting Editor you can create a new project via the <img alt="new" src="../_images/new.png" /> button.
+To save a project click the <img alt="save" src="../_images/save.png" /> or <img alt="saveas" src="../_images/saveas.png" /> buttons. You can open an existing project by clicking the button <img alt="open" src="../_images/open.png" />.</p>
+<p>To run a script, click the button <img alt="run" src="../_images/run.png" />.</p>
+<p>Close the window to exit the editor.</p>
+</div>
+<div class="section" id="python-console">
+<h2>3.3. Python console<a class="headerlink" href="#python-console" title="Permalink to this headline">¶</a></h2>
+<p>An alternative method for executing Python commands is via the built-in Python console in 3-matic.
+The console is found on the bottom-right of the Work Area.</p>
+<a class="reference internal image-reference" href="../_images/console.png"><img alt="Mimics Script Editor" class="align-center" src="../_images/console.png" style="width: 396.0px; height: 192.0px;" /></a>
+<p>After commands are executed, the console will eventually be full of lines of commands, outputs and errors from the execution.</p>
+<a class="reference internal image-reference" href="../_images/console_with_history.png"><img alt="Mimics Script Editor" class="align-center" src="../_images/console_with_history.png" style="width: 396.0px; height: 328.0px;" /></a>
+<p>3-matic allows you to clear the console so that you can maintain clearer visualization and reduce distractions due to executed commands.
+There are two methods available to clear the console:</p>
+<ul class="simple">
+<li>While the console is active, you can press shortcut key <strong>Ctrl + L</strong>:</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/console_clear_with_shortcut_key.png"><img alt="Mimics Script Editor" class="align-center" src="../_images/console_clear_with_shortcut_key.png" style="width: 804.0px; height: 344.0px;" /></a>
+<ul class="simple">
+<li>Enter “clear” command in the console:</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/console_clear_with_command.png"><img alt="Mimics Script Editor" class="align-center" src="../_images/console_clear_with_command.png" style="width: 396.0px; height: 328.0px;" /></a>
+<p>Clearing the python console will not delete the history of the executed commands.
+History of the previously executed commands are preserved and can be found by pressing up and down key while the console is active.</p>
+</div>
+<div class="section" id="scripting-library">
+<h2>3.4. Scripting Library<a class="headerlink" href="#scripting-library" title="Permalink to this headline">¶</a></h2>
+<p>A third method for executing Python scripts is via the menu <strong>Script -&gt; Scripting Library</strong>.
+You can specify a path to a script directory via <strong>Options &amp; Help -&gt; Preferences -&gt; Scripting</strong> in 3-matic.
+Click on the folder field to open the Add path dialog.
+Use the New button (green arrow) to add a new path and use the Delete button (red arrow) to delete a path.
+The arrows on the right can be used to change the order of the created paths.
+This order will be reflected in the scripting library.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/scripting_library.png"><img alt="Mimics Script Editor" class="align-center" src="../_images/scripting_library.png" style="width: 541.6px; height: 386.40000000000003px;" /></a>
+</div></blockquote>
+<p>Any scripts present in the specified folder(s) will automatically be registered under the Scripting Library.
+It is now possible to execute these scripts with a single click.
+This is the ideal method for users who need to execute a script without needing to see or modify the script.
+(You need to restart 3-matic for the changes to become effective.)</p>
+</div>
+<div class="section" id="autocomplete">
+<h2>3.5. Autocomplete<a class="headerlink" href="#autocomplete" title="Permalink to this headline">¶</a></h2>
+<p>The built-in Python editor and console support Autocomplete.
+The first step towards making the Autocomplete feature work is to install the Jedi 0.9.0 package to your local python directory using either the graphical package manager or pip.
+For an explanation on how to install a python package, we refer to the next section under introduction: <a class="reference internal" href="installation.html#installing-packages"><span class="std std-ref">Installing extra packages (optional)</span></a>.</p>
+<p>Note that Autocomplete works for names of methods, arguments, variables, etc.
+You can press <strong>Tab</strong> or <strong>Enter</strong> to confirm the selection of the:</p>
+<ul class="simple">
+<li>module (i.e: import functools),</li>
+<li>function (i.e: trimatic.create_arc_3_points), or</li>
+<li>function argument (i.e: trimatic.create_arc_3_points(arc_side=)).</li>
+</ul>
+<p>The Autocomplete feature can be deactivated using <strong>Ctrl + Shift + Space</strong> when the console tab is open.
+If you decide to reactivate Autocomplete, you can press <strong>Ctrl + Space</strong>.</p>
+</div>
+<div class="section" id="run-script">
+<h2>3.6. Run script<a class="headerlink" href="#run-script" title="Permalink to this headline">¶</a></h2>
+<p>To run an existing Python script, you can use the <strong>Script</strong> menu in 3-matic.
+You can click <strong>Script -&gt; Run Script</strong> and select a Python file that contains a script.
+Click <strong>Run</strong> to run the script.</p>
+</div>
+<div class="section" id="run-recent-script">
+<h2>3.7. Run recent script<a class="headerlink" href="#run-recent-script" title="Permalink to this headline">¶</a></h2>
+<p>If you ran script(s) before, you can also select and run them from a list of most recent scripts via <strong>Script -&gt; Recent Scripts</strong>.</p>
+</div>
+<div class="section" id="run-script-options">
+<h2>3.8. Run Script Options<a class="headerlink" href="#run-script-options" title="Permalink to this headline">¶</a></h2>
+<p>In complex workflows, it is likely that the workflow is separated into several smaller script files that are imported during the execution of the main script.
+By default, Python caches imported modules and any changes to imported modules are <strong>NOT</strong> immediately reflected until 3-matic is restarted.
+This can produce unexpected results when developing scripts.</p>
+<p>3-matic allows you to override this behavior so that modifications to script files are immediately reflected upon the next execution.
+To force the reload of imported modules, go to <strong>Options &amp; Help -&gt; Preferences -&gt; Scripting</strong>, and make sure the option <strong>Reload modules on run</strong> is checked <strong>ON</strong>.
+Note that this may have a small performance impact as some third party packages are known to not work with this reload mechanism.
+If you encounter such errors, it is recommended to turn this option <strong>OFF</strong>.</p>
+<a class="reference internal image-reference" href="../_images/reload_module.png"><img alt="../_images/reload_module.png" class="align-center" src="../_images/reload_module.png" style="width: 488.4px; height: 325.2px;" /></a>
+<p>Variables, functions, etc. created by your scripts are kept in memory for the duration of the active 3-matic session (referred to as a namespace).
+Depending on the script, there could be unintended side-effects to the current or future execution due to this persistence.
+The namespace can be cleared to a clean state by selecting <strong>Script -&gt; Clear All</strong>.
+You can also specify that the namespace be cleared at the start of every script execution.
+Go to <strong>Options &amp; Help -&gt; Preferences -&gt; Scripting</strong>, and check <strong>ON</strong> the option <strong>Perform Clear All on run</strong>.</p>
+<a class="reference internal image-reference" href="../_images/preference_clear_all.png"><img alt="../_images/preference_clear_all.png" class="align-center" src="../_images/preference_clear_all.png" style="width: 529.6px; height: 345.6px;" /></a>
+</div>
+<div class="section" id="command-prompt-cmd">
+<h2>3.9. Command prompt (CMD)<a class="headerlink" href="#command-prompt-cmd" title="Permalink to this headline">¶</a></h2>
+<p>You can run 3-matic and Python scripts from the Windows Command Prompt (<strong>cmd.exe</strong>).
+To do so, browse to 3-matic’s installation directory, and then run the 3-matic.exe file from there, using one or multiple parameters.
+The available parameters can be printed to the screen by adding the -h command (3-matic.exe -h).</p>
+<a class="reference internal image-reference" href="../_images/cmd1.png"><img alt="../_images/cmd1.png" class="align-center" src="../_images/cmd1.png" style="width: 940.0px; height: 268.0px;" /></a>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="overview_api.html" class="btn btn-neutral float-right" title="4. Getting started with the 3-matic API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="installation.html" class="btn btn-neutral" title="2. Python installation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

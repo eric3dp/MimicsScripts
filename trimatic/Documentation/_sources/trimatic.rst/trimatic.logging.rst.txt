@@ -1,0 +1,9 @@
+logging
+=======
+
+
+.. automodule:: trimatic.logging
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

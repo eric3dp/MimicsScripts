@@ -1,0 +1,315 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ssm &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="trimatic modules" href="trimatic.html"/>
+        <link rel="next" title="texturing" href="trimatic.texturing.html"/>
+        <link rel="prev" title="surface" href="trimatic.surface.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">trimatic API</a> &raquo;</li>
+      
+          <li><a href="trimatic.html">trimatic modules</a> &raquo;</li>
+      
+    <li>ssm</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/trimatic.rst/trimatic.ssm.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-trimatic.ssm">
+<span id="ssm"></span><h1>ssm<a class="headerlink" href="#module-trimatic.ssm" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="trimatic.ssm.registration_with_scaling">
+<code class="descname">registration_with_scaling</code><span class="sig-paren">(</span><em>*args</em>, <em>fixed_entity</em>, <em>moving_entity</em>, <em>move_along_entities=()</em>, <em>sample_points=15.0</em>, <em>number_of_iterations=10</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/ssm.html#registration_with_scaling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.ssm.registration_with_scaling" title="Permalink to this definition">¶</a></dt>
+<dd><p>An iterative closest point registration with isotropic scaling.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>fixed_entity</strong> (<em>trimatic.Part</em>) – Reference entity to be aligned with.</li>
+<li><strong>moving_entity</strong> (<em>trimatic.Part</em>) – Entity to align/move.</li>
+<li><strong>move_along_entities</strong> (<em>trimatic.Object |</em><em> [</em><em>trimatic.Object</em><em>]</em><em>, </em><em>optional</em>) – Either a single object or heterogeneous list of root level entities (parts, analytical primitives) that will be aligned along with the moving entity.</li>
+<li><strong>sample_points</strong> (<em>float</em><em>, </em><em>optional</em>) – The size of the point sample in percentage. A higher value implies more points and thus a higher computation time.</li>
+<li><strong>number_of_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of iterations. A higher value results in better quality but increases the computation time.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Root mean squared error of deviation between the moving entity and the fixed entity. None if operation failed.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">float</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">application_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">application_path</span><span class="p">,</span> <span class="s2">&quot;DemoFiles&quot;</span><span class="p">,</span> <span class="s2">&quot;SSM femur.mxp&quot;</span><span class="p">))</span>
+<span class="n">original_parts</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Original parts&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="p">[</span><span class="n">fix_entity</span><span class="p">,</span> <span class="n">mov_entity</span><span class="p">]</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Original parts&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">original_parts</span><span class="p">:</span> <span class="n">i</span><span class="o">.</span><span class="n">visible</span><span class="o">=</span><span class="kc">False</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">registration_with_scaling</span><span class="p">(</span><span class="n">fixed_entity</span><span class="o">=</span><span class="n">fix_entity</span><span class="p">,</span> <span class="n">moving_entity</span><span class="o">=</span><span class="n">mov_entity</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.ssm.warp_part">
+<code class="descname">warp_part</code><span class="sig-paren">(</span><em>*args</em>, <em>fixed_entity</em>, <em>moving_entity</em>, <em>fixed_landmarks=None</em>, <em>moving_landmarks=None</em>, <em>number_of_smooth_iteration=50</em>, <em>bidirectional_point_correspondence=True</em>, <em>bad_contour_correspondence=False</em>, <em>triangle_correspondence=True</em>, <em>max_stiffness=30.0</em>, <em>min_stiffness=5.0</em>, <em>max_geometrical_error=0.01</em>, <em>max_non_smooth_iterations=300</em>, <em>subsample_ratio=0.5</em>, <em>convergence_tolerance=0.001</em>, <em>normal_constraint_angle=30.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/ssm.html#warp_part"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.ssm.warp_part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adapts the mesh of the moving entity to create point correspondence with the fixed entity.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>fixed_entity</strong> (<em>trimatic.Part</em>) – Fixed/target entity to be warped with.</li>
+<li><strong>moving_entity</strong> (<em>trimatic.Part</em>) – Moving/master entity to warp.</li>
+<li><strong>fixed_landmarks</strong> (<em>[</em><em>(</em><em>float</em><em>,</em><em>float</em><em>,</em><em>float</em><em>)</em><em>]</em><em>, </em><em>optional</em>) – Landmarks on fixed/target entity.</li>
+<li><strong>moving_landmarks</strong> (<em>[</em><em>(</em><em>float</em><em>,</em><em>float</em><em>,</em><em>float</em><em>)</em><em>]</em><em>, </em><em>optional</em>) – Landmarks on moving/master entity.</li>
+<li><strong>number_of_smooth_iteration</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of smooth warping iterations upfront.</li>
+<li><strong>bidirectional_point_correspondence</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, search for corresponding points from the moving entity to the fixed entity and from the fixed entity to the moving entity.</li>
+<li><strong>triangle_correspondence</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, the triangle centers are included in the corresponding point search.</li>
+<li><strong>bad_contour_correspondence</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, the bad contours of the moving and fixed entities will be matched.</li>
+<li><strong>normal_constraint_angle</strong> (<em>float</em><em>, </em><em>optional</em>) – The angle [degrees] with which the normal of a corresponding point may deviate.</li>
+<li><strong>subsample_ratio</strong> (<em>float</em><em>, </em><em>optional</em>) – The fraction of points on the moving surface which search for a corresponding point in each iteration.</li>
+<li><strong>max_stiffness</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum stiffness determines the maximum strength of the connections between neighbouring points.</li>
+<li><strong>min_stiffness</strong> (<em>float</em><em>, </em><em>optional</em>) – The minimum stiffness determines the minimum strength of the connections between neighbouring points.</li>
+<li><strong>max_non_smooth_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximum number of iterations after which the algorithm will stop.</li>
+<li><strong>max_geometrical_error</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum geometrical error for the Housdorff distance between the moving surface and the fixed surface.</li>
+<li><strong>convergence_tolerance</strong> (<em>float</em><em>, </em><em>optional</em>) – The tolerance for the difference between the Housdorff distance in interation n and iteration n-1 of the warping algorithm.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Created part from the warping operation.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | (trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">application_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">application_path</span><span class="p">,</span> <span class="s2">&quot;DemoFiles&quot;</span><span class="p">,</span> <span class="s2">&quot;SSM femur.mxp&quot;</span><span class="p">))</span>
+<span class="n">original_parts</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Original parts&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="p">[</span><span class="n">fix_entity</span><span class="p">,</span> <span class="n">mov_entity</span><span class="p">]</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Original parts&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">original_parts</span><span class="p">:</span> <span class="n">i</span><span class="o">.</span><span class="n">visible</span><span class="o">=</span><span class="kc">False</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">warp_part</span><span class="p">(</span><span class="n">fixed_entity</span><span class="o">=</span><span class="n">fix_entity</span><span class="p">,</span> <span class="n">moving_entity</span><span class="o">=</span><span class="n">mov_entity</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trimatic.texturing.html" class="btn btn-neutral float-right" title="texturing" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="trimatic.surface.html" class="btn btn-neutral" title="surface" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

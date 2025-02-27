@@ -1,0 +1,321 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. Eclipse &amp; Pydev &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="External IDE" href="index.html"/>
+        <link rel="next" title="5. Microsoft Visual Studio" href="Microsoft_Visual_Studio.html"/>
+        <link rel="prev" title="3. JetBrains PyCharm" href="JetBrains_PyCharm.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">External IDE</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Installation_guide_for_rpyc.html">2. Installation guide for RPyC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JetBrains_PyCharm.html">3. JetBrains PyCharm</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. Eclipse &amp; Pydev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Microsoft_Visual_Studio.html">5. Microsoft Visual Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Using_an_External_IDE.html">6. Using an External IDE</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">External IDE</a> &raquo;</li>
+      
+    <li>4. Eclipse &amp; Pydev</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/external_IDE/Eclipse_and_Pydev.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="eclipse-pydev">
+<h1>4. Eclipse &amp; Pydev<a class="headerlink" href="#eclipse-pydev" title="Permalink to this headline">¶</a></h1>
+<p>To setup Eclipse to work via external IDE, please follow the steps below:</p>
+<ol class="arabic">
+<li><p class="first">Install RPyC package, for more information to do so please refer to the following section: <a class="reference internal" href="../introduction/installation.html#installing-packages"><span class="std std-ref">Installing extra packages (optional)</span></a></p>
+</li>
+<li><p class="first">Install Eclipse:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Install the latest Java runtime environment (Windows x64 Offline):
+<a class="reference external" href="https://java.com/en/download/manual.jsp">https://java.com/en/download/manual.jsp</a></li>
+<li>Install Eclipse IDE for Java Developers:
+<a class="reference external" href="https://www.eclipse.org/downloads/download.php?file=/oomph/epp/oxygen/R/eclipse-inst-win64.exe">https://www.eclipse.org/downloads/download.php?file=/oomph/epp/oxygen/R/eclipse-inst-win64.exe</a></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Download PyDev Certificate:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Instructions to install PyDev are in the following link:
+<a class="reference external" href="http://www.pydev.org/manual_101_install.html">http://www.pydev.org/manual_101_install.html</a></li>
+<li>Download the certificate:
+<a class="reference external" href="http://www.pydev.org/pydev_certificate.cer">http://www.pydev.org/pydev_certificate.cer</a></li>
+<li>Copy the “pydev_certificate” to this location  C:\Program Files\Java\jre-18.0.2.1</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/pydev.png"><img alt="../_images/pydev.png" class="align-center" src="../_images/pydev.png" style="width: 550.0px; height: 177.5px;" /></a>
+<ul class="simple">
+<li>Ensure to run command prompt as an administrator (press the windows button, type cmd in search, right click cmd.exe -&gt; run as administrator)</li>
+<li>Execute:
+cd C:\Program Files\Java\jre-18.0.2.1</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/jre.png"><img alt="../_images/jre.png" class="align-center" src="../_images/jre.png" style="width: 588.6px; height: 309.0px;" /></a>
+<ul class="simple">
+<li>Execute:
+bin\keytool.exe -import -file pydev_certificate.cer -keystore</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/binkeytool.png"><img alt="../_images/binkeytool.png" class="align-center" src="../_images/binkeytool.png" style="width: 587.4px; height: 309.0px;" /></a>
+</div></blockquote>
+</li>
+<li><p class="first">Install PyDev Certificate:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">Launch Eclipse</p>
+</li>
+<li><p class="first">Help -&gt; Install new software</p>
+</li>
+<li><p class="first">On the top right, click on “Add…” and enter the site with</p>
+<blockquote>
+<div><p>Name: “Pydev”
+Location: <a class="reference external" href="http://www.pydev.org/updates">http://www.pydev.org/updates</a></p>
+</div></blockquote>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/installnewsoftware.png"><img alt="../_images/installnewsoftware.png" class="align-center" src="../_images/installnewsoftware.png" style="width: 519.6px; height: 423.0px;" /></a>
+<ul class="simple">
+<li>Press OK and wait for Eclipse to get the information</li>
+<li>Select the checkbox of PyDev</li>
+<li>Unselect “Contact all update sites during install to find required software”</li>
+<li>Press Next &gt;, then Press Next</li>
+<li>During the installation, if you are prompted to select that you trust the installed certificate, click accept</li>
+<li>Restart the application before proceeding to the next step</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Add the Python Interpreter</p>
+<blockquote>
+<div><ul class="simple">
+<li>Launch Eclipse</li>
+<li><strong>Window &gt; Preferences &gt; PyDev &gt; Interpreters &gt; Python Interpreter</strong></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<a class="reference internal image-reference" href="../_images/Add_python.png"><img alt="../_images/Add_python.png" class="align-center" src="../_images/Add_python.png" style="width: 657.6px; height: 483.0px;" /></a>
+<ol class="arabic" start="6">
+<li><p class="first">To select the Python interpreter for the project:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Launch Eclipse</li>
+<li><strong>File &gt; New &gt; Project &gt; PyDev &gt; PyDev Project : under “Interpreter”</strong>, select the Python interpreter previously configured</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<a class="reference internal image-reference" href="../_images/interpreter_eclipse.png"><img alt="../_images/interpreter_eclipse.png" class="align-center" src="../_images/interpreter_eclipse.png" style="width: 307.2px; height: 450.59999999999997px;" /></a>
+<ol class="arabic" start="7">
+<li><p class="first">Once a project is created, add a source folder:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Right click the project and access the properties</li>
+<li>Select PyDev - PYTHONPATH</li>
+<li>Tab : External Libraries</li>
+<li>Add a source folder and browse to the folder where 3-matic is installed: C:\Program Files\Materialise\3-matic 18.0(x64).</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<a class="reference internal image-reference" href="../_images/pydev_pythonpath.png"><img alt="../_images/pydev_pythonpath.png" class="align-center" src="../_images/pydev_pythonpath.png" style="width: 875.0px; height: 595.0px;" /></a>
+<p>Disclaimer: All external IDEs mentioned in this chapter are property of their respective owners.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Microsoft_Visual_Studio.html" class="btn btn-neutral float-right" title="5. Microsoft Visual Studio" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="JetBrains_PyCharm.html" class="btn btn-neutral" title="3. JetBrains PyCharm" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,1249 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>fix &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="trimatic modules" href="trimatic.html"/>
+        <link rel="next" title="group" href="trimatic.group.html"/>
+        <link rel="prev" title="finish" href="trimatic.finish.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">trimatic API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="trimatic.html">trimatic modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="trimatic.data.html">data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.types.html">types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.align.html">align</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.analyze.html">analyze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.cad_link.html">cadlink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.curve.html">curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.design.html">design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.file.html">file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.finish.html">finish</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">fix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.group.html">group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.interactive.html">interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.lattice.html">lattice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.logging.html">logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.mark.html">mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.measure.html">measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.preferences.html">preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.remesh.html">remesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.sketch.html">sketch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.surface.html">surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.texturing.html">texturing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.uv.html">uv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.view.html">view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.subscription.html">subscription</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">trimatic API</a> &raquo;</li>
+      
+          <li><a href="trimatic.html">trimatic modules</a> &raquo;</li>
+      
+    <li>fix</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/trimatic.rst/trimatic.fix.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-trimatic.fix">
+<span id="fix"></span><h1>fix<a class="headerlink" href="#module-trimatic.fix" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="trimatic.fix.FilterSharpTriangleMode">
+<em class="property">class </em><code class="descname">FilterSharpTriangleMode</code><a class="reference internal" href="../_modules/trimatic/fix.html#FilterSharpTriangleMode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.FilterSharpTriangleMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Mode for filter sharp triangle.</p>
+<dl class="attribute">
+<dt id="trimatic.fix.FilterSharpTriangleMode.Collapse">
+<code class="descname">Collapse</code><em class="property"> = 'Collapse'</em><a class="headerlink" href="#trimatic.fix.FilterSharpTriangleMode.Collapse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.fix.FilterSharpTriangleMode.Delete">
+<code class="descname">Delete</code><em class="property"> = 'Delete'</em><a class="headerlink" href="#trimatic.fix.FilterSharpTriangleMode.Delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.fix.FilterSharpTriangleMode.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Mode for filter sharp triangle.'</em><a class="headerlink" href="#trimatic.fix.FilterSharpTriangleMode.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.fix.FilterSharpTriangleMode.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.fix'</em><a class="headerlink" href="#trimatic.fix.FilterSharpTriangleMode.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.fix.FilterSharpTriangleMode.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.fix.FilterSharpTriangleMode.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.fix.FilterSharpTriangleMode._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.fix.FilterSharpTriangleMode._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.fix.FilterSharpTriangleMode._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'Collapse': &lt;FilterSharpTriangleMode.Collapse: 'Collapse'&gt;, 'Delete': &lt;FilterSharpTriangleMode.Delete: 'Delete'&gt;}</em><a class="headerlink" href="#trimatic.fix.FilterSharpTriangleMode._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.fix.FilterSharpTriangleMode._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['Collapse', 'Delete']</em><a class="headerlink" href="#trimatic.fix.FilterSharpTriangleMode._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.fix.FilterSharpTriangleMode._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.fix.FilterSharpTriangleMode._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.fix.FilterSharpTriangleMode._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'Collapse': &lt;FilterSharpTriangleMode.Collapse: 'Collapse'&gt;, 'Delete': &lt;FilterSharpTriangleMode.Delete: 'Delete'&gt;}</em><a class="headerlink" href="#trimatic.fix.FilterSharpTriangleMode._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="trimatic.fix.SmoothMethod">
+<em class="property">class </em><code class="descname">SmoothMethod</code><a class="reference internal" href="../_modules/trimatic/fix.html#SmoothMethod"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.SmoothMethod" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Smooth method for smooth.</p>
+<dl class="attribute">
+<dt id="trimatic.fix.SmoothMethod.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Smooth method for smooth.'</em><a class="headerlink" href="#trimatic.fix.SmoothMethod.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.fix.SmoothMethod.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.fix'</em><a class="headerlink" href="#trimatic.fix.SmoothMethod.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.fix.SmoothMethod.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.fix.SmoothMethod.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.fix.SmoothMethod._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.fix.SmoothMethod._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.fix.SmoothMethod._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'curvature': &lt;SmoothMethod.curvature: 'Curvature'&gt;, 'first_order_laplacian': &lt;SmoothMethod.first_order_laplacian: 'First Order Laplacian'&gt;, 'second_order_laplacian': &lt;SmoothMethod.second_order_laplacian: 'Second Order Laplacian'&gt;}</em><a class="headerlink" href="#trimatic.fix.SmoothMethod._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.fix.SmoothMethod._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['first_order_laplacian', 'second_order_laplacian', 'curvature']</em><a class="headerlink" href="#trimatic.fix.SmoothMethod._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.fix.SmoothMethod._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.fix.SmoothMethod._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.fix.SmoothMethod._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'Curvature': &lt;SmoothMethod.curvature: 'Curvature'&gt;, 'First Order Laplacian': &lt;SmoothMethod.first_order_laplacian: 'First Order Laplacian'&gt;, 'Second Order Laplacian': &lt;SmoothMethod.second_order_laplacian: 'Second Order Laplacian'&gt;}</em><a class="headerlink" href="#trimatic.fix.SmoothMethod._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.fix.SmoothMethod.curvature">
+<code class="descname">curvature</code><em class="property"> = 'Curvature'</em><a class="headerlink" href="#trimatic.fix.SmoothMethod.curvature" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.fix.SmoothMethod.first_order_laplacian">
+<code class="descname">first_order_laplacian</code><em class="property"> = 'First Order Laplacian'</em><a class="headerlink" href="#trimatic.fix.SmoothMethod.first_order_laplacian" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.fix.SmoothMethod.second_order_laplacian">
+<code class="descname">second_order_laplacian</code><em class="property"> = 'Second Order Laplacian'</em><a class="headerlink" href="#trimatic.fix.SmoothMethod.second_order_laplacian" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.auto_adjust_normals">
+<code class="descname">auto_adjust_normals</code><span class="sig-paren">(</span><em>entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#auto_adjust_normals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.auto_adjust_normals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adjust normals of the input parts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entities</strong> (<em>trimatic.Part |</em><em> [</em><em>trimatic.Part</em><em>]</em>) – Either single part or a list of parts.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Fixed parts</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Part | (trimatic.Part)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValueError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">imported</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">import_part_stl</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\bad.stl&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">auto_adjust_normals</span><span class="p">(</span><span class="n">imported</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.auto_fix">
+<code class="descname">auto_fix</code><span class="sig-paren">(</span><em>entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#auto_fix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.auto_fix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs auto fix on selected parts using the Automatic method, which includes filtering and small shell removal.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entities</strong> (<em>trimatic.Part |</em><em> [</em><em>trimatic.Part</em><em>]</em>) – Either single part or a list of parts.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Fixed parts</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Part | (trimatic.Part)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValueError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">imported</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">import_part_stl</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\bad.stl&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">auto_fix</span><span class="p">(</span><span class="n">imported</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.fill_hole_freeform">
+<code class="descname">fill_hole_freeform</code><span class="sig-paren">(</span><em>entities</em>, <em>accuracy=&lt;TriangulationAccuracy.Coarse: 'Coarse'&gt;</em>, <em>treat_as_one_hole=False</em>, <em>tangent=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#fill_hole_freeform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.fill_hole_freeform" title="Permalink to this definition">¶</a></dt>
+<dd><p>The freeform hole filler will use a freeform surface. This functions corresponds to the GUI behavior with the Fill Algorithm “Advanced” and Method “Automatic”.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.SurfaceContour | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles |</em><em> [</em><em>trimatic.SurfaceContour | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles</em><em>]</em>) – Entities to fill.</li>
+<li><strong>accuracy</strong> (<em>trimatic.TriangulationAccuracy</em><em>, </em><em>optional</em>) – Accuracy of the triangulation.</li>
+<li><strong>tangent</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, the surface will be created tangentially to the surrounding surface(s).</li>
+<li><strong>treat_as_one_hole</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, 3-matic will interpret the selection as being the contours of one surface and create only one.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Surface(s) that were created to fill the hole(s).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Surface | (trimatic.Surface)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">imported</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">import_part_stl</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Rib pattern.stl&quot;</span><span class="p">)</span>
+<span class="n">bad_contours</span> <span class="o">=</span> <span class="n">imported</span><span class="o">.</span><span class="n">get_bad_contours</span><span class="p">()</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">fill_hole_freeform</span><span class="p">(</span><span class="n">bad_contours</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.fill_hole_freeform_expert">
+<code class="descname">fill_hole_freeform_expert</code><span class="sig-paren">(</span><em>entities</em>, <em>grid_size=3</em>, <em>treat_as_one_hole=False</em>, <em>tangent=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#fill_hole_freeform_expert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.fill_hole_freeform_expert" title="Permalink to this definition">¶</a></dt>
+<dd><p>The freeform hole filler will use a freeform surface. This functions corresponds to the GUI behavior with Fill Algorithm “Normal”.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.SurfaceBorder | trimatic.SurfaceContour | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles |</em><em> [</em><em>trimatic.SurfaceBorder | trimatic.SurfaceContour | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles</em><em>]</em>) – Entities to fill.</li>
+<li><strong>grid_size</strong> (<em>float</em><em>, </em><em>optional</em>) – The size of the triangles that will create the surface.</li>
+<li><strong>tangent</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, the surface will be created tangentially to the surrounding surface(s).</li>
+<li><strong>treat_as_one_hole</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, 3-matic will interpret the selection as being the contours of one surface and create only one.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Surface(s) that were created to fill the hole(s).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Surface | (trimatic.Surface)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">imported</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">import_part_stl</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Rib pattern.stl&quot;</span><span class="p">)</span>
+<span class="n">bad_contours</span> <span class="o">=</span> <span class="n">imported</span><span class="o">.</span><span class="n">get_bad_contours</span><span class="p">()</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">fill_hole_freeform_expert</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">bad_contours</span><span class="p">,</span><span class="n">grid_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.fill_hole_normal">
+<code class="descname">fill_hole_normal</code><span class="sig-paren">(</span><em>entities</em>, <em>treat_as_one_hole=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#fill_hole_normal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.fill_hole_normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fills the hole with the fastest and easiest triangulation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.SurfaceBorder | trimatic.SurfaceContour | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles |</em><em> [</em><em>trimatic.SurfaceBorder | trimatic.SurfaceContour | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles</em><em>]</em>) – Entities to fill.</li>
+<li><strong>treat_as_one_hole</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, 3-matic will interpret the selection as being the contours of one surface and create only one.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Surface(s) that were created to fill the hole(s).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Surface | (trimatic.Surface)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">imported</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">import_part_stl</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Rib pattern.stl&quot;</span><span class="p">)</span>
+<span class="n">bad_contours</span> <span class="o">=</span> <span class="n">imported</span><span class="o">.</span><span class="n">get_bad_contours</span><span class="p">()</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">fill_hole_normal</span><span class="p">(</span><span class="n">bad_contours</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.fill_hole_ruled">
+<code class="descname">fill_hole_ruled</code><span class="sig-paren">(</span><em>entities</em>, <em>direction</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#fill_hole_ruled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.fill_hole_ruled" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ruled hole filler directs the triangulation according to the specified direction.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.SurfaceBorder | trimatic.SurfaceContour | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles |</em><em> [</em><em>trimatic.SurfaceBorder | trimatic.SurfaceContour | trimatic.Curve | trimatic.CurveSet | trimatic.MarkedTriangles</em><em>]</em>) – Entities to fill.</li>
+<li><strong>direction</strong> (<em>float</em><em>, </em><em>optional</em>) – Direction along which the triangulation of the hole will be performed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Surface(s) that were created to fill the hole(s).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Surface | (trimatic.Surface)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">imported</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">import_part_stl</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Rib pattern.stl&quot;</span><span class="p">)</span>
+<span class="n">bad_contours</span> <span class="o">=</span> <span class="n">imported</span><span class="o">.</span><span class="n">get_bad_contours</span><span class="p">()</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">fill_hole_ruled</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">bad_contours</span><span class="p">,</span><span class="n">direction</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.filter_sharp_triangles">
+<code class="descname">filter_sharp_triangles</code><span class="sig-paren">(</span><em>entities</em>, <em>filter_distance=0.01</em>, <em>threshold_angle=5.0</em>, <em>filter_mode=&lt;FilterSharpTriangleMode.Collapse: 'Collapse'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#filter_sharp_triangles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.filter_sharp_triangles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes sharp, thin and long triangles of the selected parts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em>]</em>) – Either a single object or heterogeneous list of parts, surfaces, or surface sets.</li>
+<li><strong>filter_distance</strong> (<em>float</em><em>, </em><em>optional</em>) – Triangles with an edge or height smaller than this distance will be filtered.</li>
+<li><strong>threshold_angle</strong> (<em>float</em><em>, </em><em>optional</em>) – A triangle will be filtered when the angle it makes with its neighbors is larger than the threshold angle.</li>
+<li><strong>filter_mode</strong> (<a class="reference internal" href="#trimatic.fix.FilterSharpTriangleMode" title="trimatic.fix.FilterSharpTriangleMode"><em>FilterSharpTriangleMode</em></a><em>, </em><em>optional</em>) – 2 Options - Collapse and Delete.
+With Collapse, the thin triangle will be removed and its neighbours will be connected to each other.
+With Delete, the thin triangle will be deleted, and bad edges will appear.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Fixed input entities.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">aorta</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">filter_sharp_triangles</span><span class="p">(</span><span class="n">entities</span> <span class="o">=</span> <span class="n">aorta</span><span class="p">,</span> <span class="n">filter_distance</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">threshold_angle</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">filter_mode</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">FilterSharpTriangleMode</span><span class="o">.</span><span class="n">Delete</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.filter_small_edges">
+<code class="descname">filter_small_edges</code><span class="sig-paren">(</span><em>entities</em>, <em>filter_distance=0.001</em>, <em>threshold_angle=30.0</em>, <em>number_of_iterations=3</em>, <em>surface_border_only=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#filter_small_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.filter_small_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes small edges of the selected parts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> [</em><em>trimatic.Part</em><em>]</em>) – Either single part or a list of parts.</li>
+<li><strong>filter_distance</strong> (<em>float</em><em>, </em><em>optional</em>) – Triangles with an edge or height smaller than this distance are filtered.</li>
+<li><strong>threshold_angle</strong> (<em>float</em><em>, </em><em>optional</em>) – A triangle will be filtered when the angle it makes with its neighbors is larger than the threshold angle.</li>
+<li><strong>number_of_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of iterations to filter the small edges.</li>
+<li><strong>surface_border_only</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, only edges situated on a surface border of the selected part are filtered.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Fixed parts</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | (trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">aorta</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">fixed</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">filter_small_edges</span><span class="p">(</span><span class="n">aorta</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.filter_small_shells">
+<code class="descname">filter_small_shells</code><span class="sig-paren">(</span><em>entities</em>, <em>threshold_area=10.0</em>, <em>threshold_volume=10.0</em>, <em>threshold_relative=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#filter_small_shells"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.filter_small_shells" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes small noisy shells from the parts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part |</em><em> [</em><em>trimatic.Part</em><em>]</em>) – Either single part or a list of parts.</li>
+<li><strong>threshold_area</strong> (<em>float</em><em>, </em><em>optional</em>) – Area threshold (in terms of percentage or absolute value depending on threshold_relative).</li>
+<li><strong>threshold_volume</strong> (<em>float</em><em>, </em><em>optional</em>) – Volume threshold (in terms of percentage or absolute value depending on threshold_relative).</li>
+<li><strong>threshold_relative</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, thresholds values are interpreted as percentage; if False, the absolute values are taken.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Fixed parts</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | (trimatic.Part)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">aorta</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">fixed</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">filter_small_shells</span><span class="p">(</span><span class="n">aorta</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.get_number_of_intersecting_triangles">
+<code class="descname">get_number_of_intersecting_triangles</code><span class="sig-paren">(</span><em>entity</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#get_number_of_intersecting_triangles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.get_number_of_intersecting_triangles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of intersecting triangles.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entity</strong> (<em>trimatic.Part</em>) – The part from which a user wants the number of intersecting triangles.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Returns the number of intersecting triangles.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValueError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>	
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\create_cranioplasty_prosthesis.mxp&quot;</span><span class="p">)</span>
+<span class="n">skull</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;skull&quot;</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">get_number_of_intersecting_triangles</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">skull</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.get_number_of_overlapping_triangles">
+<code class="descname">get_number_of_overlapping_triangles</code><span class="sig-paren">(</span><em>entity</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#get_number_of_overlapping_triangles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.get_number_of_overlapping_triangles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of overlapping triangles.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entity</strong> (<em>trimatic.Part</em>) – The part from which a user wants the number of overlapping triangles.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Returns the number of overlapping triangles.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValueError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>	
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\create_cranioplasty_prosthesis.mxp&quot;</span><span class="p">)</span>
+<span class="n">skull</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;skull&quot;</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">get_number_of_overlapping_triangles</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">skull</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.improve_mesh">
+<code class="descname">improve_mesh</code><span class="sig-paren">(</span><em>entities</em>, <em>shape_quality_high=False</em>, <em>maximum_geometrical_error=0.05</em>, <em>maximum_edge_length=20.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#improve_mesh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.improve_mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Improves the meshes of the selected entities.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em>]</em>) – Either single object or a heterogeneous list of parts, surfaces, or surface sets.</li>
+<li><strong>shape_quality_high</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the original mesh will be converted into high quality triangles.</li>
+<li><strong>maximum_geometrical_error</strong> (<em>float</em><em>, </em><em>optional</em>) – No geometrical error higher than this value will be introduced.</li>
+<li><strong>maximum_edge_length</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum triangle edge length in the output.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Entities with improved meshes.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">aorta</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">fixed</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">improve_mesh</span><span class="p">(</span><span class="n">aorta</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.invert_normal">
+<code class="descname">invert_normal</code><span class="sig-paren">(</span><em>entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#invert_normal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.invert_normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverts the normal of all triangles of part, surface, or surface sets.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em>]</em>) – Either single object or heterogeneous list of parts, surfaces, or surface sets</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Entities with the normals inverted</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValueError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">aorta</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">invert_normal</span><span class="p">(</span><span class="n">aorta</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.reduce">
+<code class="descname">reduce</code><span class="sig-paren">(</span><em>entities</em>, <em>flip_threshold_angle=15.0</em>, <em>geometrical_error=0.05</em>, <em>number_of_iterations=5</em>, <em>preserve_surfaces=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#reduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.reduce" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function reduces the number of triangles in a chosen entity. 
+The number of triangles will be as small as possible within given geometric error constraints.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles</em><em>]</em>) – Either single object or heterogeneous list of parts, surfaces, or surface sets.</li>
+<li><strong>flip_threshold_angle</strong> (<em>float</em><em>, </em><em>optional</em>) – This parameter avoids that triangles will flip during the reduce process. It determines the
+maximum allowed deviation between the normals of the triangles before and after the reduction.</li>
+<li><strong>geometrical_error</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum error that can be produced by the reduction.</li>
+<li><strong>number_of_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – Higher number of iterations will further reduce the entity’s number of triangles.</li>
+<li><strong>preserve_surfaces</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the geometry of surface contours will be preserved during reduction.
+This is useful when there are surfaces defined that are not based on the part geometry.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Reduced parts</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |
+(trimatic.Part) | (trimatic.Surface) | (trimatic.SurfaceSet)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">fix</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">p</span><span class="p">,</span><span class="n">flip_threshold_angle</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="n">geometrical_error</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                    <span class="n">number_of_iterations</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">preserve_surfaces</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.reduce_quality_preserving">
+<code class="descname">reduce_quality_preserving</code><span class="sig-paren">(</span><em>entities</em>, <em>quality_threshold=0.3</em>, <em>geometrical_error=0.05</em>, <em>number_of_iterations=3</em>, <em>preserve_surfaces=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#reduce_quality_preserving"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.reduce_quality_preserving" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function reduces the number of triangles in a chosen entity. 
+The number of triangles will be as small as possible within given geometric error constraints, and
+besides that, it does not create any triangle with quality worse than the specified quality threshold.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles</em><em>]</em>) – Either a single object or a heterogeneous list of parts, surfaces, or surface sets.</li>
+<li><strong>quality_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – Choose a triangle quality between 1 (all sides of the triangle are equal) and 0 (collapsed triangle).</li>
+<li><strong>geometrical_error</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum error that can be produced by the reduction.</li>
+<li><strong>number_of_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – Higher number of iterations will further reduce the entity’s number of triangles.</li>
+<li><strong>preserve_surfaces</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the geometry of surface contours will be preserved during the reduction.
+This is useful when there are surfaces defined that are not based on the part geometry.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Reduced parts</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |
+(trimatic.Part) | (trimatic.Surface) | (trimatic.SurfaceSet)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">fix</span><span class="o">.</span><span class="n">reduce_quality_preserving</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">p</span><span class="p">,</span><span class="n">quality_threshold</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span><span class="n">geometrical_error</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                                       <span class="n">number_of_iterations</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">preserve_surfaces</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.remove_spikes">
+<code class="descname">remove_spikes</code><span class="sig-paren">(</span><em>*args</em>, <em>entities</em>, <em>spike_size=1</em>, <em>smallest_detail=1</em>, <em>reduce=True</em>, <em>preserve_surface_structure=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#remove_spikes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.remove_spikes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove unwanted spike shaped noise on parts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles</em><em>]</em>) – Either single object or a list of parts, surface or surface sets.</li>
+<li><strong>spike_size</strong> (<em>float</em><em>, </em><em>optional</em>) – The average size of spikes that will be removed. The value must be greater than or equal to the smallest detail.</li>
+<li><strong>smallest_detail</strong> (<em>float</em><em>, </em><em>optional</em>) – Targeted size of triangles of the part.</li>
+<li><strong>reduce</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, triangle reduction will be applied to the parts.</li>
+<li><strong>preserve_surface_structure</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the original surface structure and the surface color will be preserved.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Part after spikes are removed.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">fix</span><span class="o">.</span><span class="n">remove_spikes</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">p</span><span class="p">,</span><span class="n">spike_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">smallest_detail</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">reduce</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">preserve_surface_structure</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.shells_to_parts">
+<code class="descname">shells_to_parts</code><span class="sig-paren">(</span><em>entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#shells_to_parts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.shells_to_parts" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function creates one part from each shell in the specified part(s).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entities</strong> (<em>trimatic.Part |</em><em> [</em><em>trimatic.Part</em><em>]</em>) – Either single part or a list of parts.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Single part or a tuple of parts.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Part | (trimatic.Part)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValueError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">box2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">merged_box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">merge</span><span class="p">([</span><span class="n">box1</span><span class="p">,</span><span class="n">box2</span><span class="p">])</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">shells_to_parts</span><span class="p">(</span><span class="n">merged_box</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.smooth">
+<code class="descname">smooth</code><span class="sig-paren">(</span><em>entities</em>, <em>smooth_method=&lt;SmoothMethod.first_order_laplacian: 'First Order Laplacian'&gt;</em>, <em>smooth_factor=0.7</em>, <em>perform_post_processing=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#smooth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.smooth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Smooths entities with simplified parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles</em><em>]</em>) – Either single object or heterogeneous list of parts, surfaces, or surface sets</li>
+<li><strong>smooth_method</strong> (<em>trimatic.SmoothMethod</em><em>, </em><em>optional</em>) – Method used to smooth the selected entities.</li>
+<li><strong>smooth_factor</strong> (<em>float</em><em>, </em><em>optional</em>) – Strength of smoothing – higher values give better smoothing but may change geometry</li>
+<li><strong>perform_post_processing</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, postprocessing will be performed after smoothing</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Smoothed entities</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">aorta</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">aorta</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SmoothMethod</span><span class="o">.</span><span class="n">curvature</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.split_surface">
+<code class="descname">split_surface</code><span class="sig-paren">(</span><em>entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#split_surface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.split_surface" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function creates multiple surfaces if the given surface has unconnected triangles.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em>]</em>) – Either single object or heterogeneous list of parts, surfaces, or surface sets</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Surface or tuple of surfaces.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Surface | (trimatic.Surface)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValueError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">box_top</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Top&quot;</span><span class="p">)</span>
+<span class="n">box_bottom</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Bottom&quot;</span><span class="p">)</span>
+<span class="n">box_front</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Front&quot;</span><span class="p">)</span>
+<span class="n">box_back</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Back&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span><span class="p">([</span><span class="n">box_top</span><span class="p">,</span> <span class="n">box_bottom</span><span class="p">,</span> <span class="n">box_front</span><span class="p">,</span> <span class="n">box_back</span><span class="p">])</span>
+<span class="n">box_surface</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">merge_all_surfaces</span><span class="p">()</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">split_surface</span><span class="p">(</span><span class="n">box_surface</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.stitch">
+<code class="descname">stitch</code><span class="sig-paren">(</span><em>entities</em>, <em>tolerance=0.01</em>, <em>iteration=5</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#stitch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.stitch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stitches small holes in the mesh by moving triangle nodes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em>]</em>) – Either single object or heterogeneous list of parts, surfaces, or surface sets.</li>
+<li><strong>tolerance</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum distance that a point will be moved to fill a gap.</li>
+<li><strong>iteration</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of times the stitch algorithm will be applied.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Stitched entities</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">imported</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">import_part_stl</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\bad.stl&quot;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">stitch</span><span class="p">(</span><span class="n">imported</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.subdivide">
+<code class="descname">subdivide</code><span class="sig-paren">(</span><em>entities</em>, <em>number_of_iterations=1</em>, <em>maximum_edge_length=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#subdivide"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.subdivide" title="Permalink to this definition">¶</a></dt>
+<dd><p>This operation increases the number of triangles in the chosen entity by splitting triangles into smaller ones.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles</em><em>]</em>) – Either single object or heterogeneous list of parts, surfaces, or surface sets.</li>
+<li><strong>number_of_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of subdivide iterations.</li>
+<li><strong>maximum_edge_length</strong> (<em>float</em><em>, </em><em>optional</em>) – When specified, only subdivide triangles with an edge longer than this length. When not specified, all triangles are subdivided.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Subdivided entities</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">subdivide</span><span class="p">(</span><span class="n">box</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.surface_sets_to_parts">
+<code class="descname">surface_sets_to_parts</code><span class="sig-paren">(</span><em>entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#surface_sets_to_parts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.surface_sets_to_parts" title="Permalink to this definition">¶</a></dt>
+<dd><p>This operation creates one part from each surface set in the specified part(s).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entities</strong> (<em>trimatic.Part |</em><em> [</em><em>trimatic.Part</em><em>]</em>) – Either single part or a list of parts.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Single part or a tuple of parts.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Part | (trimatic.Part)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValueError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">(</span><span class="n">point_1</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">point_2</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span><span class="n">radius</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">union</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">boolean_union</span><span class="p">([</span><span class="n">box</span><span class="p">,</span> <span class="n">cylinder</span><span class="p">])</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">surface_sets_to_parts</span><span class="p">(</span><span class="n">union</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.surfaces_to_parts">
+<code class="descname">surfaces_to_parts</code><span class="sig-paren">(</span><em>entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#surfaces_to_parts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.surfaces_to_parts" title="Permalink to this definition">¶</a></dt>
+<dd><p>This operation creates one part from each surface in the specified part(s).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entities</strong> (<em>trimatic.Part |</em><em> [</em><em>trimatic.Part</em><em>]</em>) – Either single part or a list of parts.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Single part or a tuple of parts.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Part | (trimatic.Part)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValueError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">surfaces_to_parts</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.fix.unify">
+<code class="descname">unify</code><span class="sig-paren">(</span><em>entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/fix.html#unify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.fix.unify" title="Permalink to this definition">¶</a></dt>
+<dd><p>This operation preserves the outer triangles, and deletes all the inner triangles for each entity.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entities</strong> (<em>trimatic.Part |</em><em> [</em><em>trimatic.Part</em><em>]</em>) – Either single part or a list of parts.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Single part or a tuple of parts.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">trimatic.Part | (trimatic.Part)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValueError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">s_5</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">s_10</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">s_merged</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">merge</span><span class="p">([</span><span class="n">s_5</span><span class="p">,</span> <span class="n">s_10</span><span class="p">])</span>
+<span class="n">s_unify</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">unify</span><span class="p">(</span><span class="n">s_merged</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trimatic.group.html" class="btn btn-neutral float-right" title="group" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="trimatic.finish.html" class="btn btn-neutral" title="finish" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

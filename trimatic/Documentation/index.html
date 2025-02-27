@@ -1,0 +1,310 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3-matic Scripting Guide &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="#"/>
+        <link rel="next" title="Introduction" href="introduction/index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="#">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="#">Home</a> &raquo;</li>
+      
+    <li>3-matic Scripting Guide</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="matic-scripting-guide">
+<h1>3-matic Scripting Guide<a class="headerlink" href="#matic-scripting-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction/index.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction/general_introduction.html">1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction/installation.html">2. Python installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="introduction/installation.html#configuring-3-matic-for-scripting">2.1. Configuring 3-matic for scripting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction/installation.html#installing-extra-packages-optional">2.2. Installing extra packages (optional)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="introduction/editor.html">3. Scripting in 3-matic Quick Start Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="introduction/editor.html#introduction">3.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction/editor.html#python-editor">3.2. Python editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction/editor.html#python-console">3.3. Python console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction/editor.html#scripting-library">3.4. Scripting Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction/editor.html#autocomplete">3.5. Autocomplete</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction/editor.html#run-script">3.6. Run script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction/editor.html#run-recent-script">3.7. Run recent script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction/editor.html#run-script-options">3.8. Run Script Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction/editor.html#command-prompt-cmd">3.9. Command prompt (CMD)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="introduction/overview_api.html">4. Getting started with the 3-matic API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="introduction/overview_api.html#introduction">4.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction/overview_api.html#functions-and-classes">4.2. Functions and classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction/overview_api.html#finding-an-object-in-3-matic">4.3. Finding an object in 3-matic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction/overview_api.html#api-functions-that-take-single-or-more-entities">4.4. API functions that take single or more entities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction/overview_api.html#api-functions-that-take-a-point-as-input">4.5. API functions that take a “point” as input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction/overview_api.html#keyword-arguments">4.6. Keyword arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction/overview_api.html#remove-original-and-create-new-part-parameters-in-gui">4.7. “Remove original” and “Create new part” parameters in GUI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction/overview_api.html#create-versus-compute-methods">4.8. “Create” versus “Compute” methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction/overview_api.html#callback-notifications">4.9. Callback notifications</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="trimatic.rst/index.html">trimatic API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trimatic.rst/trimatic.html">trimatic modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.data.html">data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.types.html">types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.align.html">align</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.analyze.html">analyze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.cad_link.html">cadlink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.curve.html">curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.design.html">design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.file.html">file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.finish.html">finish</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.fix.html">fix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.group.html">group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.interactive.html">interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.lattice.html">lattice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.logging.html">logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.mark.html">mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.measure.html">measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.preferences.html">preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.remesh.html">remesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.sketch.html">sketch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.surface.html">surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.texturing.html">texturing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.uv.html">uv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.view.html">view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.rst/trimatic.subscription.html">subscription</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="external_IDE/index.html">External IDE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="external_IDE/Introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external_IDE/Installation_guide_for_rpyc.html">2. Installation guide for RPyC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external_IDE/JetBrains_PyCharm.html">3. JetBrains PyCharm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external_IDE/Eclipse_and_Pydev.html">4. Eclipse &amp; Pydev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external_IDE/Microsoft_Visual_Studio.html">5. Microsoft Visual Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external_IDE/Using_an_External_IDE.html">6. Using an External IDE</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/working_with_marking.html">1. Working with Marking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/measurements.html">2. Measurements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/preparation_for_fea.html">3. Preparation for FEA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/non_manifold_assembly.html">4. Non manifold assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/align_and_remesh.html">5. Align and remesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/hand_plate.html">6. Fracture plate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/working_with_metadata.html">7. Working with Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/benchtop.html">8. Benchtop model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/creating_a_lattice.html">9. Creating a lattice structure</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="introduction/index.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

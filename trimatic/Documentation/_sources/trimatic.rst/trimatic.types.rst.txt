@@ -1,0 +1,8 @@
+types
+=====
+
+.. automodule:: trimatic.types
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

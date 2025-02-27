@@ -1,0 +1,8 @@
+align
+=====
+
+.. automodule:: trimatic.align
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

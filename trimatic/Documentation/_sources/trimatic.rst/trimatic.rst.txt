@@ -1,0 +1,65 @@
+trimatic modules
+================
+
+.. Any Module which needs to be in appeared Non-Medical Documentation should be added to toctree below. 
+
+
+.. only:: non_medical
+
+   .. toctree:: 
+       trimatic.data
+       trimatic.types
+       trimatic.align
+       trimatic.analyze
+       trimatic.cad_link
+       trimatic.curve
+       trimatic.design
+       trimatic.file
+       trimatic.finish
+       trimatic.fix
+       trimatic.group
+       trimatic.interactive
+       trimatic.lattice
+       trimatic.logging
+       trimatic.mark
+       trimatic.measure
+       trimatic.preferences
+       trimatic.remesh
+       trimatic.sketch
+       trimatic.surface
+       trimatic.ssm
+       trimatic.texturing
+       trimatic.uv
+       trimatic.view
+       trimatic.subscription
+
+.. Any Module which needs to be in appeared Medical Documentation should be added to toctree below.  
+
+
+.. only:: medical
+
+   .. toctree:: 
+       trimatic.data
+       trimatic.types
+       trimatic.align
+       trimatic.analyze
+       trimatic.cad_link
+       trimatic.curve
+       trimatic.design
+       trimatic.file
+       trimatic.finish
+       trimatic.fix
+       trimatic.group
+       trimatic.interactive
+       trimatic.lattice
+       trimatic.logging
+       trimatic.mark
+       trimatic.measure
+       trimatic.preferences
+       trimatic.remesh
+       trimatic.sketch
+       trimatic.surface
+       trimatic.texturing
+       trimatic.uv
+       trimatic.view
+       trimatic.subscription

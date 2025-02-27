@@ -1,0 +1,422 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. Getting started with the 3-matic API &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="Introduction" href="index.html"/>
+        <link rel="next" title="trimatic API" href="../trimatic.rst/index.html"/>
+        <link rel="prev" title="3. Scripting in 3-matic Quick Start Guide" href="editor.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Introduction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="general_introduction.html">1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">2. Python installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="editor.html">3. Scripting in 3-matic Quick Start Guide</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. Getting started with the 3-matic API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">4.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions-and-classes">4.2. Functions and classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#finding-an-object-in-3-matic">4.3. Finding an object in 3-matic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-functions-that-take-single-or-more-entities">4.4. API functions that take single or more entities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-functions-that-take-a-point-as-input">4.5. API functions that take a “point” as input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#keyword-arguments">4.6. Keyword arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remove-original-and-create-new-part-parameters-in-gui">4.7. “Remove original” and “Create new part” parameters in GUI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-versus-compute-methods">4.8. “Create” versus “Compute” methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#callback-notifications">4.9. Callback notifications</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Introduction</a> &raquo;</li>
+      
+    <li>4. Getting started with the 3-matic API</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/introduction/overview_api.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started-with-the-3-matic-api">
+<h1>4. Getting started with the 3-matic API<a class="headerlink" href="#getting-started-with-the-3-matic-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>4.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Python is a very powerful programming language and can be used in many ways.
+If you have never used Python before, we recommend following an online tutorial.
+The following section explains the way the Python API in 3-matic is built up.
+We will refer to the Python API in 3-matic as trimatic API, or simply API.</p>
+<p>To use 3-matic features with Python, you use the trimatic API.
+A simple script that creates a point in 3-matic looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1">#import trimatic package</span>
+<span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="c1">#create a point with coordinates 1,2,3</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_point</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The trimatic Python package was implemented such that a single import statement is sufficient to make all functions available.
+For example, create_point() will be available as</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_point</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Alternatively, you can equally use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">trimatic</span><span class="o">.</span><span class="n">analyze</span><span class="o">.</span><span class="n">create_point</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>You can choose whichever way of working you prefer.</p>
+</div>
+<div class="section" id="functions-and-classes">
+<h2>4.2. Functions and classes<a class="headerlink" href="#functions-and-classes" title="Permalink to this headline">¶</a></h2>
+<p>The trimatic API contains mostly functions that make it possible to script 3-matic features.
+We refer to these functions as API functions.
+Next to the API functions, the API contains classes that are used for the 3-matic data types.
+Those classes have member functions and attributes. For example, in this statement:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">mypoint</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_point</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The function trimatic.create_point() will create an object of class trimatic.Point and assign it to variable “mypoint”.
+The coordinates of the point can be obtained from the “coordinates” attribute. For example, the coordinates of a point can be printed with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mypoint</span><span class="o">.</span><span class="n">coordinates</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="finding-an-object-in-3-matic">
+<span id="finding-objects"></span><h2>4.3. Finding an object in 3-matic<a class="headerlink" href="#finding-an-object-in-3-matic" title="Permalink to this headline">¶</a></h2>
+<p>Many API functions are implemented to return an object type.
+There are 3 different types of search functions available, depending on the specific needs:</p>
+<ul class="simple">
+<li>Functions to find an object with a specific name.  For example:</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">trimatic</span><span class="o">.</span><span class="n">find_point</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Point 1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Functions to find objects with names that match a specified regular expression. For full reference, have a look at <a class="reference external" href="https://en.wikipedia.org/wiki/Regular_expression">https://en.wikipedia.org/wiki/Regular_expression</a>. For example:</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">trimatic</span><span class="o">.</span><span class="n">find_points</span><span class="p">(</span><span class="n">regex</span> <span class="o">=</span> <span class="s2">&quot;Point.*&quot;</span><span class="p">)</span>
+<span class="c1"># &quot;Point.*&quot; will find all objects that start with ‘Point’</span>
+<span class="c1"># &quot;.*Point.*&quot; will find all objects that have ‘Point’ in their name</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Functions to get all objects of a specific type. For example:</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_points</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="api-functions-that-take-single-or-more-entities">
+<h2>4.4. API functions that take single or more entities<a class="headerlink" href="#api-functions-that-take-single-or-more-entities" title="Permalink to this headline">¶</a></h2>
+<p>Many API functions can work on one or more entities.
+In such a case, you can either pass a single entity or any container type containing the entities.
+For example, all of these statements will work:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">trimatic</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="n">box</span><span class="p">)</span> <span class="c1">#single entity</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">duplicate</span><span class="p">([</span><span class="n">box</span><span class="p">,</span> <span class="n">cone</span><span class="p">])</span> <span class="c1">#list of entities</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">duplicate</span><span class="p">((</span><span class="n">box</span><span class="p">,</span> <span class="n">cone</span><span class="p">))</span> <span class="c1">#tuple of entities</span>
+</pre></div>
+</div>
+<p>Note: For purposes of brevity, the documentation for specific API functions will not always exhaustively mention all possibilities.</p>
+</div>
+<div class="section" id="api-functions-that-take-a-point-as-input">
+<h2>4.5. API functions that take a “point” as input<a class="headerlink" href="#api-functions-that-take-a-point-as-input" title="Permalink to this headline">¶</a></h2>
+<p>Many API functions take a point as input.
+In such a case, you can either pass a single Point object, or 3 coordinates.
+For example, a line between two points can be created in both these ways:</p>
+<ul class="simple">
+<li>From coordinates:</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">point1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="c1">#tuple with x, y, z</span>
+<span class="n">point2</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="o">+</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">point1</span><span class="p">]</span> <span class="c1">#list with translated point1</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_line</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>From trimatic.Point objects:</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">point1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_point</span><span class="p">(</span><span class="s2">&quot;Point 1&quot;</span><span class="p">)</span> <span class="c1"># returns point in object tree (type trimatic.Point)</span>
+<span class="n">point2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_point</span><span class="p">(</span><span class="s2">&quot;Point 2&quot;</span><span class="p">)</span> <span class="c1"># returns point in object tree (type trimatic.Point)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_line</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note: For purposes of brevity, the documentation for specific API functions will mention trimatic.
+Point as input type and not exhaustively mention all possibilities.</p>
+</div>
+<div class="section" id="keyword-arguments">
+<h2>4.6. Keyword arguments<a class="headerlink" href="#keyword-arguments" title="Permalink to this headline">¶</a></h2>
+<p>Passing arguments to a Python function can be done in 2 ways:</p>
+<ul class="simple">
+<li>By using positional arguments. In this case, the order in which arguments are passed determines which argument it is. For example:</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">closest_point</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">compute_closest_point</span><span class="p">(</span><span class="n">mypoint</span><span class="p">,</span> <span class="n">mybox</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>By using keyword arguments, which argument is passed is determined by specifying its name. The order in which they are specified does not matter. For example:</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">closest_point</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">compute_closest_point</span><span class="p">(</span><span class="n">part</span> <span class="o">=</span> <span class="n">mybox</span><span class="p">,</span> <span class="n">point</span> <span class="o">=</span> <span class="n">mypoint</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Using keyword arguments makes your script more robust against API changes.
+When a function has many arguments, it will also improve readability.</p>
+<p>When a trimatic API function has more than 5 arguments, the function will force the user to use keyword arguments.
+Such functions can be recognized because they will have *args as their first argument. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">adaptive_remesh</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">target_triangle_edge_length</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">preserve_surface_contours</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">local_remesh_parameters</span> <span class="o">=</span> <span class="p">(()),</span> <span class="n">local_growth_rate</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">25</span> <span class="p">):</span>
+</pre></div>
+</div>
+<p>In the trimatic API, keyword arguments cannot be used for class member functions, such as mypart.find_surface().
+For those functions, positional arguments should be used. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">mypart</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Bottom&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="remove-original-and-create-new-part-parameters-in-gui">
+<h2>4.7. “Remove original” and “Create new part” parameters in GUI<a class="headerlink" href="#remove-original-and-create-new-part-parameters-in-gui" title="Permalink to this headline">¶</a></h2>
+<p>Many operations in the 3-matic GUI have parameters like “Remove original” and “Create new part”.
+In the trimatic API, we have consciously not added such parameters.
+When working in the GUI, these parameters can save the user from making excessive interactions, this is not valid when scripting.
+When comparing the GUI with the API, you should imagine “Remove Original” = ON and “Create new part” = ON.
+To have the same result as “Remove Original” = OFF, you can use trimatic.duplicate to make a duplicate of the original part before performing the operation.
+To have the same effect as “Create new part” = OFF where you want to add the result to an existing part, you can use trimatic.merge after the operation.</p>
+</div>
+<div class="section" id="create-versus-compute-methods">
+<h2>4.8. “Create” versus “Compute” methods<a class="headerlink" href="#create-versus-compute-methods" title="Permalink to this headline">¶</a></h2>
+<p>When you compare GUI operations for create point, you will find many different methods.
+In the trimatic API, you will only find one (generic)</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_point</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>which creates a point based on x,y,z values.
+This function will create a point in the 3-matic GUI and return a trimatic.Point object.
+Next to this, you will find functions like</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">cog</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">compute_center_of_gravity</span><span class="p">(</span><span class="n">mypart</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function will only compute and return (x, y, z) coordinates of the center of gravity, but will not create a point in 3-matic GUI.
+This choice was made because in many scripting applications, the computed points are only needed for further calculations.
+When you do want to create a point corresponding to the center of gravity, you can use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_point</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">compute_center_of_gravity</span><span class="p">(</span><span class="n">mypart</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="callback-notifications">
+<h2>4.9. Callback notifications<a class="headerlink" href="#callback-notifications" title="Permalink to this headline">¶</a></h2>
+<p>Callback notifications allow you to subscribe to a 3-matic event, thus executing the user-defined callback function whenever the corresponding event occurred during 3-matic’s operation.
+With this feature, you can get active notifications on 3-matic events and create a more efficient workflow for your system updates.
+Note that this feature will be relevant mostly for advanced users that write elaborate scripts, who want to obtain maximum efficiency during their script execution.</p>
+<p>Notification types are 3-matic events that users can subscribe to through the scripting functions.
+There are 4 notification types available in 3-matic:</p>
+<ul class="simple">
+<li>obj_created: New object is created.</li>
+<li>obj_deleted: Existing object is deleted.</li>
+<li>obj_label_changed: Existing object is renamed.</li>
+<li>obj_visual_state_changed: Existing object is changed to show/hide.</li>
+</ul>
+<p>Users can subscribe, unsubscribe and check subscription status of supported notification types.
+Most of the notification types notify users after the event except obj_deleted, which notifies users before the event.
+Further details on callback notification functions can be found <a class="reference internal" href="../trimatic.rst/trimatic.subscription.html#callback-notification"><span class="std std-ref">here</span></a>.</p>
+<ul class="simple">
+<li>Supports only selected APIs listed <a class="reference download internal" href="../_downloads/scripting_functions_with_callback_notifications_medical.pdf" download=""><code class="xref download docutils literal"><span class="pre">here</span></code></a>.</li>
+</ul>
+<p>Notes:</p>
+<ul class="simple">
+<li>The term “Object” refers to an STL part, analytical point, analytical line, analytical arc, analytical cylinder, analytical cone, analytical plane (datum plane) and analytical sphere only.</li>
+<li>Supports only one subscription per 3-matic event.</li>
+<li>If users resubscribe to a 3-matic event that was subscribed to previously, the original subscription is replaced by the later subscription.</li>
+<li>Users are responsible for ensuring that their callback function is not contained in a workflow that might induce a recursive callback scenario.</li>
+<li>Notification for obj_deleted is sent before the event, and there is no additional handling if the deletion fails later in the operation.</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../trimatic.rst/index.html" class="btn btn-neutral float-right" title="trimatic API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="editor.html" class="btn btn-neutral" title="3. Scripting in 3-matic Quick Start Guide" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

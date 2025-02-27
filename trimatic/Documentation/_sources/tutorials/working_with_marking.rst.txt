@@ -1,0 +1,98 @@
+Working with Marking
+-------------------------
+
+This tutorial shows how to utilise the marking operation and planes in 3-matic to create condyles from a femur bone. The project 'Femur.mxp' is located in the 3-matic installation folder under the folder `DemoFiles`.
+The first step of the script is to open the project from the installation folder, then assign variables to the parts, as well as define the view. The completed script can be found in the 3-matic installation folder: :file:`DemoFiles\\scripts\\Working with Marking.py`.
+
+.. code-block:: python
+
+		import os
+		import trimatic
+
+		#Open project, find part and set view.
+		application_exe = trimatic.get_application_path()
+		application_path = os.path.dirname(application_exe)
+		project_filename = application_path + "/DemoFiles/Femur.mxp"
+		trimatic.open_project(project_filename)
+		view_vector=[0.48249295353889465, -0.874954879283905, 0.040668144822120667]
+		up_vector=[0, 0, 1]
+		trimatic.view_custom(view_vector,up_vector)
+		femur=trimatic.find_part("femur")
+
+In the next portion of the script, the user is prompted by a message box that instructs the user to mark the triangles of the femur's head as can be seen in the image below. The marked area will then create a new surface and a landmark point of the femur head.
+
+ .. image:: working_with_planes/marking.png
+  :width: 180px
+  :height: 100px
+  :align: center
+  
+.. code-block:: python
+		
+		#Define the marked area and create new surface.
+		trimatic.message_box(message="Mark the femur head. To make sure that the triangles are marked through the selected area, hold the **SHIFT** button while selecting. Click OK and start marking, press ESC when finished" , title= "Marking operation")
+		marked_triangles = trimatic.activate_mark_wave_brush(diameter=20)
+		sphere=trimatic.create_sphere_fit(entities=marked_triangles)
+		head_pt=trimatic.create_point((sphere.center))
+
+The next portion of the script is to generate the midshaft, midplane and condyle plane. The user will be prompted to indicate the medial and lateral point of the femur via the message box.
+
+ .. image:: working_with_planes/head_pt.png
+  :width: 150px
+  :height: 20px
+  :align: center
+  
+.. code-block:: python
+		
+		#perform indicate coordinates to create points on the condyles
+		trimatic.message_box(message="Indicate the medial point on the femur. Click OK and start indicating.", title= "Indicate medial point")
+		medial_pt=trimatic.indicate_coordinate()
+		medial_pt=trimatic.create_point(coords=medial_pt)
+		trimatic.message_box(message="Indicate the lateral point on the femur. Click OK and start indicating.", title= "Indicate lateral point")
+		lateral_pt=trimatic.indicate_coordinate()
+		lateral_pt=trimatic.create_point(coords=lateral_pt)
+
+		# Create a midshaft plane
+		mid_shaft_plane=trimatic.create_plane_midplane(point1=head_pt,point2=medial_pt)
+		mid_shaft_plane.name="midshaft"
+
+		# Create a midplane in condyles
+		mid_cond_plane=trimatic.create_plane_midplane(point1=medial_pt,point2=lateral_pt)
+		center_cond=trimatic.create_point(mid_cond_plane.origin)
+		center_cond.name="c_cond"
+		translated_center_cond=trimatic.create_point(center_cond.coordinates)
+		trimatic.translate(translated_center_cond,[0,0,1])
+		
+		# Create a saggital plane
+		sag_plane=trimatic.create_plane_2_points_perpendicular_1_plane(head_pt,center_cond,mid_shaft_plane)
+		sag_plane.name="saggital plane"
+		
+		# Create a plane in the condyles area
+		cond_plane=trimatic.create_plane_3_points(medial_pt,translated_center_cond,lateral_pt)
+		cond_plane.name="condyles plane"
+		
+.. image:: working_with_planes/new_plane.png
+ :width: 400px
+ :height: 600px
+ :align: center
+		
+The final step is to perform a cut in the distal area of the femur. The cond_plane will be used as the cutting entity. After the cut, all the objects are hidden and only the part of interest remains visible. The cut part is renamed to condyles.
+
+.. code-block:: python
+	
+		# Create the condyles
+		trimatic.delete(translated_center_cond)
+		femur=trimatic.cut((femur),(sag_plane))
+		cut_femur=trimatic.cut((femur),(cond_plane))
+
+		#Hide all the parts and planes and keep the part of interest
+		objs = trimatic.get_objects()
+		for obj in objs:
+			obj.visible = False
+		cut_femur[1].visible = True
+		condyles=cut_femur[1]
+		condyles.name="condyles"
+
+.. image:: working_with_planes/condyles.png
+  :width: 300px
+  :height: 250px
+  :align: center

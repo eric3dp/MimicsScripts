@@ -1,0 +1,343 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>trimatic.cad_link &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>trimatic.cad_link</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for trimatic.cad_link</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pymatic</span>
+<span class="kn">import</span> <span class="nn">trimatic.utils</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<div class="viewcode-block" id="CADLinkFormat"><a class="viewcode-back" href="../../trimatic.rst/trimatic.cad_link.html#trimatic.cad_link.CADLinkFormat">[docs]</a><span class="k">class</span> <span class="nc">CADLinkFormat</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;CAD Formats.&quot;&quot;&quot;</span>
+
+    <span class="n">step</span> <span class="o">=</span> <span class="s2">&quot;step&quot;</span>
+    <span class="n">igs</span> <span class="o">=</span> <span class="s2">&quot;igs&quot;</span></div>
+
+<div class="viewcode-block" id="CADLinkPatchDensityType"><a class="viewcode-back" href="../../trimatic.rst/trimatic.cad_link.html#trimatic.cad_link.CADLinkPatchDensityType">[docs]</a><span class="k">class</span> <span class="nc">CADLinkPatchDensityType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Patch Decomposition Types.&quot;&quot;&quot;</span>
+
+    <span class="n">none</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">adaptive</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">below_normal</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">normal</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">above_normal</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="mi">6</span></div>
+    
+<div class="viewcode-block" id="CADLinkAnalyticalStructures"><a class="viewcode-back" href="../../trimatic.rst/trimatic.cad_link.html#trimatic.cad_link.CADLinkAnalyticalStructures">[docs]</a><span class="k">class</span> <span class="nc">CADLinkAnalyticalStructures</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analytical Structures&quot;&quot;&quot;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Split closed analytical surfaces into two faces (no seam).&quot;&quot;&quot;</span>
+    <span class="n">split</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Single surface with a seam.&quot;&quot;&quot;</span>
+    <span class="n">seam</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Single surface with slit contours.&quot;&quot;&quot;</span>
+    <span class="n">slit</span> <span class="o">=</span> <span class="mi">2</span></div>
+
+<div class="viewcode-block" id="cadlink_quad_dominant"><a class="viewcode-back" href="../../trimatic.rst/trimatic.cad_link.html#trimatic.cad_link.cadlink_quad_dominant">[docs]</a><span class="k">def</span> <span class="nf">cadlink_quad_dominant</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="c1">#&#39;force named parameters&#39;</span>
+                          <span class="n">entity</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">CADLinkFormat</span><span class="o">.</span><span class="n">step</span><span class="p">,</span> <span class="n">output_directory</span><span class="p">,</span> <span class="n">nurbs_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">border_tolerance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">analytical_structures</span><span class="o">=</span><span class="n">CADLinkAnalyticalStructures</span><span class="o">.</span><span class="n">slit</span><span class="p">,</span> <span class="n">preserve_surface_structure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">improve_mesh</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">patch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">number_of_control_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">smoothing_strength</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The CAD link module makes it possible to convert a triangulated mesh to an Iges or Step file using Quad dominant method.</span>
+<span class="sd">    </span>
+<span class="sd">    :param entity: part to convert.</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :param format: CAD file format, igs or step.</span>
+<span class="sd">    :type format: trimatic.CADLinkFormat, optional</span>
+<span class="sd">    :param output_directory: Destination path to save the CAD file.</span>
+<span class="sd">    :type output_directory: string</span>
+<span class="sd">    :param nurbs_only: When True, all surfaces will be converted to NURBS surfaces. </span>
+<span class="sd">        When False, the opertion will first search for a match of the triangulated surfaces with an analytical primitive like a plane, cylinder etc.</span>
+<span class="sd">    :type nurbs_only: bool, optional    </span>
+<span class="sd">    :param border_tolerance: The border tolerance is the tolerance with which the file is read.     </span>
+<span class="sd">        When two points are further apart than this tolerance, they are considered to be 2 different points.     </span>
+<span class="sd">        When they are closer to each other as the defined tolerance, they are considered to fall together.     </span>
+<span class="sd">        When None is specified, tolerance will be estimated automatically (Like &quot;Estimate&quot; button in GUI).</span>
+<span class="sd">    :type border_tolerance: float, optional</span>
+<span class="sd">    :param analytical_structures: Trimming loop representation for closed analytical surfaces.</span>
+<span class="sd">    :type analytical_structures: trimatic.CADLinkAnalyticalStructures, optional</span>
+<span class="sd">    :param preserve_surface_structure: Specifies whether the surface structure should be preserved or not.</span>
+<span class="sd">    :type preserve_surface_structure: bool, optional</span>
+<span class="sd">    :param improve_mesh: Specifies whether or not the mesh improving shall be performed before reverse (recommended).</span>
+<span class="sd">    :type improve_mesh: bool, optional</span>
+<span class="sd">    :param patch_size: Desired edge length for decomposition via quadrangulation algorithm.</span>
+<span class="sd">    :type patch_size: float, optional</span>
+<span class="sd">    :param number_of_control_points: Number of control points. If None, then estimate automatically.</span>
+<span class="sd">    :type number_of_control_points: integer, optional</span>
+<span class="sd">    :param smoothing_strength: Strength of NURBS surfaces smoothing. Value from 0 to 1.</span>
+<span class="sd">    :type smoothing_strength: float, optional    </span>
+<span class="sd">    :return: Names of written file.</span>
+<span class="sd">    :rtype: string</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/cadlink/cadlink_quad_dominant.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_folder_path_is_valid</span><span class="p">(</span><span class="n">output_directory</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">patch_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;patch_size&quot;</span><span class="p">,</span> <span class="n">patch_size</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">border_tolerance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;tolerance&quot;</span><span class="p">,</span> <span class="n">border_tolerance</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">number_of_control_points</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;number_of_control_points&quot;</span><span class="p">,</span> <span class="n">number_of_control_points</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;smoothing_strength&quot;</span><span class="p">,</span> <span class="n">smoothing_strength</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">cadlink</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="nb">format</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">output_directory</span><span class="p">,</span> <span class="n">nurbs_only</span><span class="p">,</span> <span class="n">border_tolerance</span><span class="p">,</span> <span class="n">analytical_structures</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> 
+                           <span class="n">preserve_surface_structure</span><span class="p">,</span> <span class="n">improve_mesh</span><span class="p">,</span> <span class="n">patch_size</span><span class="p">,</span> <span class="n">CADLinkPatchDensityType</span><span class="o">.</span><span class="n">adaptive</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                           <span class="n">number_of_control_points</span><span class="p">,</span> <span class="n">smoothing_strength</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="cadlink_voronoi_based"><a class="viewcode-back" href="../../trimatic.rst/trimatic.cad_link.html#trimatic.cad_link.cadlink_voronoi_based">[docs]</a><span class="k">def</span> <span class="nf">cadlink_voronoi_based</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="c1">#&#39;force named parameters&#39;</span>
+                          <span class="n">entity</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">CADLinkFormat</span><span class="o">.</span><span class="n">step</span><span class="p">,</span> <span class="n">output_directory</span><span class="p">,</span> <span class="n">nurbs_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">border_tolerance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">analytical_structures</span><span class="o">=</span><span class="n">CADLinkAnalyticalStructures</span><span class="o">.</span><span class="n">slit</span><span class="p">,</span> <span class="n">preserve_surface_structure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">improve_mesh</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">patch_density</span><span class="o">=</span><span class="n">CADLinkPatchDensityType</span><span class="o">.</span><span class="n">adaptive</span><span class="p">,</span> <span class="n">number_of_control_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">smoothing_strength</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The CAD link module makes it possible to convert a triangulated mesh to an Iges or Step file using Voronoi based patching method.</span>
+<span class="sd">    </span>
+<span class="sd">    :param entity: part to convert.</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :param format: CAD file format, igs or step.</span>
+<span class="sd">    :type format: trimatic.CADLinkFormat, optional</span>
+<span class="sd">    :param output_directory: Destination path to save the CAD file.</span>
+<span class="sd">    :type output_directory: string</span>
+<span class="sd">    :param nurbs_only: When True, all surfaces will be converted to NURBS surfaces. </span>
+<span class="sd">        When False, the opertion will first search for a match of the triangulated surfaces with an analytical primitive like a plane, cylinder etc.</span>
+<span class="sd">    :type nurbs_only: bool, optional    </span>
+<span class="sd">    :param border_tolerance: The border tolerance is the tolerance with which the file is read.     </span>
+<span class="sd">        When two points are further apart than this tolerance, they are considered to be 2 different points.     </span>
+<span class="sd">        When they are closer to each other as the defined tolerance, they are considered to fall together.     </span>
+<span class="sd">        When None is specified, tolerance will be estimated automatically (Like &quot;Estimate&quot; button in GUI).</span>
+<span class="sd">    :type border_tolerance: float, optional</span>
+<span class="sd">    :param analytical_structures: Trimming loop representation for closed analytical surfaces.</span>
+<span class="sd">    :type analytical_structures: trimatic.CADLinkAnalyticalStructures, optional</span>
+<span class="sd">    :param preserve_surface_structure: Specifies whether the surface structure should be preserved or not.</span>
+<span class="sd">    :type preserve_surface_structure: bool, optional</span>
+<span class="sd">    :param improve_mesh: Specifies whether or not the mesh improving shall be performed before reverse (recommended).</span>
+<span class="sd">    :type improve_mesh: bool, optional</span>
+<span class="sd">    :param patch_density: Recommended density of resulting parametric faces. Used with regular decomposition method only. </span>
+<span class="sd">        It is called &#39;recommended density&#39; because it can contradict the reversing tolerance parameter that is considered as a superior one.</span>
+<span class="sd">        The default &#39;adaptive&#39; value is used to vary patch density depending on mesh curvature.</span>
+<span class="sd">        Other possible value can be None, Low, Below normal, Normal, Above normal, or High.  </span>
+<span class="sd">        If None, reverse must be performed as a single patch in this case.</span>
+<span class="sd">    :type patch_density: trimatic.CADLinkPatchDecompositionType, optional</span>
+<span class="sd">    :param number_of_control_points: Number of control points. If None, then estimate automatically.</span>
+<span class="sd">    :type number_of_control_points: int, optional</span>
+<span class="sd">    :param smoothing_strength: Strength of NURBS surfaces smoothing. Value from 0 to 1.</span>
+<span class="sd">    :type smoothing_strength: float, optional    </span>
+<span class="sd">    :return: Names of written file.</span>
+<span class="sd">    :rtype: string</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/cadlink/cadlink_voronoi_based.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_folder_path_is_valid</span><span class="p">(</span><span class="n">output_directory</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">border_tolerance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;tolerance&quot;</span><span class="p">,</span> <span class="n">border_tolerance</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">number_of_control_points</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s2">&quot;number_of_control_points&quot;</span><span class="p">,</span> <span class="n">number_of_control_points</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;smoothing_strength&quot;</span><span class="p">,</span> <span class="n">smoothing_strength</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">cadlink</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="nb">format</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">output_directory</span><span class="p">,</span> <span class="n">nurbs_only</span><span class="p">,</span> <span class="n">border_tolerance</span><span class="p">,</span> <span class="n">analytical_structures</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> 
+                           <span class="n">preserve_surface_structure</span><span class="p">,</span> <span class="n">improve_mesh</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">patch_density</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                           <span class="n">number_of_control_points</span><span class="p">,</span> <span class="n">smoothing_strength</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

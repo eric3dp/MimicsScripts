@@ -1,0 +1,8 @@
+design
+======
+
+.. automodule:: trimatic.design
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

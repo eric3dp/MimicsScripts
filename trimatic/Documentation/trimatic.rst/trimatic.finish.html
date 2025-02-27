@@ -1,0 +1,621 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>finish &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="trimatic modules" href="trimatic.html"/>
+        <link rel="next" title="fix" href="trimatic.fix.html"/>
+        <link rel="prev" title="file" href="trimatic.file.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">trimatic API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="trimatic.html">trimatic modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="trimatic.data.html">data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.types.html">types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.align.html">align</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.analyze.html">analyze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.cad_link.html">cadlink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.curve.html">curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.design.html">design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.file.html">file</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">finish</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.fix.html">fix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.group.html">group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.interactive.html">interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.lattice.html">lattice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.logging.html">logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.mark.html">mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.measure.html">measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.preferences.html">preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.remesh.html">remesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.sketch.html">sketch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.surface.html">surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.texturing.html">texturing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.uv.html">uv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.view.html">view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.subscription.html">subscription</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">trimatic API</a> &raquo;</li>
+      
+          <li><a href="trimatic.html">trimatic modules</a> &raquo;</li>
+      
+    <li>finish</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/trimatic.rst/trimatic.finish.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-trimatic.finish">
+<span id="finish"></span><h1>finish<a class="headerlink" href="#module-trimatic.finish" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="trimatic.finish.SmoothDetail">
+<em class="property">class </em><code class="descname">SmoothDetail</code><a class="reference internal" href="../_modules/trimatic/finish.html#SmoothDetail"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.finish.SmoothDetail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Smooth detail type.</p>
+<dl class="attribute">
+<dt id="trimatic.finish.SmoothDetail.Coarse">
+<code class="descname">Coarse</code><em class="property"> = 'Coarse'</em><a class="headerlink" href="#trimatic.finish.SmoothDetail.Coarse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coarse level</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.finish.SmoothDetail.Fine">
+<code class="descname">Fine</code><em class="property"> = 'Fine'</em><a class="headerlink" href="#trimatic.finish.SmoothDetail.Fine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fine level</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.finish.SmoothDetail.Medium">
+<code class="descname">Medium</code><em class="property"> = 'Medium'</em><a class="headerlink" href="#trimatic.finish.SmoothDetail.Medium" title="Permalink to this definition">¶</a></dt>
+<dd><p>Medium level</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.finish.SmoothDetail.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Smooth detail type.'</em><a class="headerlink" href="#trimatic.finish.SmoothDetail.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.finish.SmoothDetail.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.finish'</em><a class="headerlink" href="#trimatic.finish.SmoothDetail.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.finish.SmoothDetail.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.finish.SmoothDetail.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.finish.SmoothDetail._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.finish.SmoothDetail._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.finish.SmoothDetail._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'Coarse': &lt;SmoothDetail.Coarse: 'Coarse'&gt;, 'Fine': &lt;SmoothDetail.Fine: 'Fine'&gt;, 'Medium': &lt;SmoothDetail.Medium: 'Medium'&gt;}</em><a class="headerlink" href="#trimatic.finish.SmoothDetail._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.finish.SmoothDetail._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['Coarse', 'Medium', 'Fine']</em><a class="headerlink" href="#trimatic.finish.SmoothDetail._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.finish.SmoothDetail._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.finish.SmoothDetail._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.finish.SmoothDetail._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'Coarse': &lt;SmoothDetail.Coarse: 'Coarse'&gt;, 'Fine': &lt;SmoothDetail.Fine: 'Fine'&gt;, 'Medium': &lt;SmoothDetail.Medium: 'Medium'&gt;}</em><a class="headerlink" href="#trimatic.finish.SmoothDetail._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.finish.create_path_based_pattern">
+<code class="descname">create_path_based_pattern</code><span class="sig-paren">(</span><em>*args</em>, <em>path</em>, <em>pattern_entity</em>, <em>distance=1.0</em>, <em>number_of_copies=10</em>, <em>is_follow_curve=True</em>, <em>is_follow_surface=False</em>, <em>is_transform_displacement=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/finish.html#create_path_based_pattern"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.finish.create_path_based_pattern" title="Permalink to this definition">¶</a></dt>
+<dd><p>Patterns entities along the guiding path that is defined by the curve.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>path</strong> (<em>trimatic.Curve</em>) – The curve that is used as the guiding path.</li>
+<li><strong>pattern_entity</strong> (<em>trimatic.Part</em><em>, </em><em>trimatic.Sketch</em><em>, </em><em>trimatic.Plane</em>) – The entity to be patterned along the guiding path.</li>
+<li><strong>distance</strong> (<em>float | None</em><em>, </em><em>optional</em>) – The distance between the pattern entities. If set to None, the distance will be computed automatically
+based on the number of copies. If number_of_copies is also None, then the pattern entities will be placed on the curve segment endpoints.</li>
+<li><strong>number_of_copies</strong> (<em>int | None</em><em>, </em><em>optional</em>) – The number of pattern entities to be added along the guiding path. If set to None, the number
+will be computed automatically based on the distance. If distance is also None, then the pattern entities will be
+placed on the curve segment endpoints.</li>
+<li><strong>is_follow_curve</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the direction of the pattern entity will follow the curve direction.</li>
+<li><strong>is_follow_surface</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, and the path is an attached curve, the triangle normals are used to align the Z axis
+of the pattern entity.</li>
+<li><strong>is_transform_displacement</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the displacement between the pattern entity and the path curve will be
+transformed such that the pattern entity will be centered on top of the path.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">One or multiple pattern results.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | (trimatic.Plane) | (trimatic.Sketch)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\AAA_trimmed.mxp&quot;</span><span class="p">)</span>
+<span class="n">part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s1">&#39;Centerline  1&#39;</span><span class="p">)</span>
+<span class="n">curve</span> <span class="o">=</span> <span class="n">part</span><span class="o">.</span><span class="n">find_curve</span><span class="p">(</span><span class="s1">&#39;Small2&#39;</span><span class="p">)</span>
+<span class="n">sphere</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_path_based_pattern</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">curve</span><span class="p">,</span> <span class="n">pattern_entity</span><span class="o">=</span><span class="n">sphere</span><span class="p">,</span> <span class="n">is_follow_surface</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">number_of_copies</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.finish.create_point_based_pattern">
+<code class="descname">create_point_based_pattern</code><span class="sig-paren">(</span><em>*args</em>, <em>entity</em>, <em>pattern_entity</em>, <em>specific_points_on_mesh</em>, <em>direction=None</em>, <em>rotation_angle=0.0</em>, <em>height_offset=0.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/finish.html#create_point_based_pattern"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.finish.create_point_based_pattern" title="Permalink to this definition">¶</a></dt>
+<dd><p>Operation to place pattern entities on the desired points of a reference mesh.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entity</strong> (<em>trimatic.Part</em>) – A single part to be used as the marker for the points to place the pattern entities.</li>
+<li><strong>pattern_entity</strong> (<em>trimatic.Part</em>) – A single part to be used as the pattern entity.</li>
+<li><strong>specific_points_on_mesh</strong> (<em>trimatic.Point |</em><em> [</em><em>trimatic.Point</em><em>] </em><em>|</em><em> [</em><em>(</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>)</em><em>]</em>) – One or a list of points to be used as the markers to place the pattern entities.</li>
+<li><strong>direction</strong> (<em>(</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>)</em><em>, </em><em>optional</em>) – The direction vector for the X axis of the pattern entity to be aligned to. If set to None, all pattern entities are placed without a shared common direction.</li>
+<li><strong>rotation_angle</strong> (<em>float</em><em>, </em><em>optional</em>) – The rotation of the pattern entities about the vertical axis of the pattern entity.</li>
+<li><strong>height_offset</strong> (<em>float</em><em>, </em><em>optional</em>) – Offset of the pattern position from the specified point along the vertical axis.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">One part with the patterned result.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">ValueError, RuntimeError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">box_side</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">x_extent</span> <span class="o">=</span> <span class="n">box_side</span><span class="p">,</span> <span class="n">y_extent</span> <span class="o">=</span> <span class="n">box_side</span><span class="p">,</span> <span class="n">z_extent</span> <span class="o">=</span> <span class="n">box_side</span><span class="p">)</span>
+<span class="n">cone</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cone_part</span><span class="p">(</span><span class="n">bottom_radius</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">origin</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">direction</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">points</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_point_based_pattern</span><span class="p">(</span><span class="n">entity</span> <span class="o">=</span> <span class="n">box</span><span class="p">,</span> <span class="n">pattern_entity</span> <span class="o">=</span> <span class="n">cone</span><span class="p">,</span> <span class="n">specific_points_on_mesh</span> <span class="o">=</span> <span class="n">points</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.finish.fillet">
+<code class="descname">fillet</code><span class="sig-paren">(</span><em>entities</em>, <em>radius=2.0</em>, <em>tolerance=0.01</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/finish.html#fillet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.finish.fillet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rounds (fillets) the sharp edges between surfaces to a desired radius.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.SurfaceBorder | trimatic.SurfaceContour |</em><em>
+[</em><em>trimatic.SurfaceBorder | trimatic.SurfaceContour</em><em>]</em>) – Borders or contours to be rounded.</li>
+<li><strong>radius</strong> (<em>float</em><em>, </em><em>optional</em>) – The radius of the fillet.</li>
+<li><strong>tolerance</strong> (<em>float</em><em>, </em><em>optional</em>) – This parameter allows you to set the accuracy of the fillet. A lower tolerance will lead to a higher accuracy and smaller triangles, whereas a higher tolerance will lead to a lower accuracy and larger triangles. A value equal to or smaller than the radius divided by a factor of 200 usually provides a good result without leading to an excessive number of triangles being generated.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The rounded surfaces that were created</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Surface | (trimatic.Surface)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">x_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">y_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">z_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">c1</span> <span class="o">=</span>  <span class="n">box</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Top&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get_border</span><span class="p">()</span><span class="o">.</span><span class="n">get_contours</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">c2</span> <span class="o">=</span>  <span class="n">box</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Right&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get_border</span><span class="p">()</span><span class="o">.</span><span class="n">get_contours</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">fillet</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span><span class="n">c2</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.0015</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.finish.quick_label">
+<code class="descname">quick_label</code><span class="sig-paren">(</span><em>*args</em>, <em>entity</em>, <em>text</em>, <em>point</em>, <em>direction</em>, <em>follow_surface=True</em>, <em>alignment=&lt;TextAlignment.Center: 'Center'&gt;</em>, <em>font='Arial'</em>, <em>font_height=4</em>, <em>label_height=1</em>, <em>bold=False</em>, <em>italic=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/finish.html#quick_label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.finish.quick_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Places a label on a part based on text.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entity</strong> (<em>trimatic.Part</em>) – Entity to label.</li>
+<li><strong>text</strong> (<em>string</em>) – Text to use for label. Can be multiline. Use &lt;backslash&gt;n for new lines.</li>
+<li><strong>point</strong> (<em>trimatic.Point</em>) – Point where the label will start.</li>
+<li><strong>direction</strong> (<em>trimatic.Point</em>) – Direction of the label.</li>
+<li><strong>follow_surface</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, the label will be bent to follow the surface normal. When False, the label will be aligned with the normal at the starting point.</li>
+<li><strong>alignment</strong> (<em>trimatic.TextAlignment</em><em>, </em><em>optional</em>) – The text alignment.</li>
+<li><strong>font</strong> (<em>string</em><em>, </em><em>optional</em>) – Font to use for the label.</li>
+<li><strong>font_height</strong> (<em>float</em><em>, </em><em>optional</em>) – Font height</li>
+<li><strong>label_height</strong> (<em>float</em><em>, </em><em>optional</em>) – Label height (embossed text). Use a negative value for labeling inwards (debossed text).</li>
+<li><strong>bold</strong> (<em>bool</em><em>, </em><em>optional</em>) – Set to True for bold font style.</li>
+<li><strong>italic</strong> (<em>bool</em><em>, </em><em>optional</em>) – Set to True for italic font style.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">SurfaceSet containing surfaces that were created for the label.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.SurfaceSet</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">size</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">quick_label</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">box</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;front-&gt;up&#39;</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">size</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">size</span><span class="p">),</span> <span class="n">direction</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.finish.quick_label_dxf">
+<code class="descname">quick_label_dxf</code><span class="sig-paren">(</span><em>*args</em>, <em>entity</em>, <em>filename</em>, <em>point</em>, <em>direction</em>, <em>follow_surface=True</em>, <em>scale=1</em>, <em>label_height=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/finish.html#quick_label_dxf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.finish.quick_label_dxf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Places a label on a part based on a .dxf file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entity</strong> (<em>trimatic.Part</em>) – Entity to label.</li>
+<li><strong>filename</strong> (<em>string</em>) – File to use for label.</li>
+<li><strong>point</strong> (<em>trimatic.Point</em>) – Point where the label will start.</li>
+<li><strong>direction</strong> (<em>trimatic.Point</em>) – Direction of the label.</li>
+<li><strong>follow_surface</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, the label will be bent to follow the surface normal. When False, the label will be aligned with the normal at the starting point.</li>
+<li><strong>scale</strong> (<em>float</em><em>, </em><em>optional</em>) – Scale factor to be applied to the .dxf file.</li>
+<li><strong>label_height</strong> (<em>float</em><em>, </em><em>optional</em>) – Label height (embossed text). Use a negative value for labeling inwards (debossed text).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">SurfaceSet containing surfaces that were created for the label.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.SurfaceSet</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">size</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+
+<span class="n">dxfilename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Logo_Materialise.dxf&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">finish</span><span class="o">.</span><span class="n">quick_label_dxf</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">box</span><span class="p">,</span><span class="n">filename</span><span class="o">=</span><span class="n">dxfilename</span><span class="p">,</span><span class="n">point</span><span class="o">=</span><span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">size</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">size</span><span class="p">),</span><span class="n">direction</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.finish.remove_undercut">
+<code class="descname">remove_undercut</code><span class="sig-paren">(</span><em>undercut_entity</em>, <em>fitting_entity</em>, <em>direction</em>, <em>draft_angle=0.0</em>, <em>detail=0.3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/finish.html#remove_undercut"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.finish.remove_undercut" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes excess undercuts from a part, such that it fits into another part according to a set direction.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>undercut_entity</strong> (<em>trimatic.Part</em>) – Part that should have its undercuts removed.</li>
+<li><strong>fitting_entity</strong> (<em>trimatic.Part</em>) – Part that the undercut entity should fit into after the operation completes.</li>
+<li><strong>direction</strong> (<em>trimatic.Point</em>) – The direction to take out the undercut entity from the fitting entity.</li>
+<li><strong>draft_angle</strong> (<em>float</em><em>, </em><em>optional</em>) – The draft angle by which you want to take out the undercut entity from the fitting entity.</li>
+<li><strong>detail</strong> (<em>float</em><em>, </em><em>optional</em>) – Smaller input here gives a smoother cut surface at the cost of increased computation time.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Part after removal of undercut.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="mf">2.5</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">remove_undercut</span><span class="p">(</span><span class="n">undercut_entity</span><span class="o">=</span><span class="n">box</span><span class="p">,</span>
+                                  <span class="n">fitting_entity</span><span class="o">=</span><span class="n">cylinder</span><span class="p">,</span>
+                                  <span class="n">direction</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                                  <span class="n">draft_angle</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
+                                  <span class="n">detail</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.finish.smooth_edge">
+<code class="descname">smooth_edge</code><span class="sig-paren">(</span><em>entity</em>, <em>distance=0.5</em>, <em>smooth_detail=&lt;SmoothDetail.Coarse: 'Coarse'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/finish.html#smooth_edge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.finish.smooth_edge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Smoothes a sharp edge. The operation will smooth the edge of the input contour.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entity</strong> (<em>trimatic.SurfaceContour</em>) – Surface contour.</li>
+<li><strong>distance</strong> (<em>float</em><em>, </em><em>optional</em>) – Distance from the selected contour to which the smoothing should be applied.</li>
+<li><strong>smooth_detail</strong> (<em>trimatic.SmoothDetail</em><em>, </em><em>optional</em>) – Smooth detail type.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The smoothed surfaces.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">(trimatic.Surface)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\BonePlate.mxp&quot;</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Plate&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">find_surface</span><span class="p">(</span><span class="s2">&quot;Bottom&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get_border</span><span class="p">()</span><span class="o">.</span><span class="n">get_contours</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">finish</span><span class="o">.</span><span class="n">smooth_edge</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">smooth_detail</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">SmoothDetail</span><span class="o">.</span><span class="n">Coarse</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trimatic.fix.html" class="btn btn-neutral float-right" title="fix" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="trimatic.file.html" class="btn btn-neutral" title="file" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

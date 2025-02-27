@@ -1,0 +1,303 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. Working with Marking &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="Tutorials" href="index.html"/>
+        <link rel="next" title="2. Measurements" href="measurements.html"/>
+        <link rel="prev" title="Tutorials" href="index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. Working with Marking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="measurements.html">2. Measurements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preparation_for_fea.html">3. Preparation for FEA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="non_manifold_assembly.html">4. Non manifold assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="align_and_remesh.html">5. Align and remesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hand_plate.html">6. Fracture plate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="working_with_metadata.html">7. Working with Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchtop.html">8. Benchtop model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_a_lattice.html">9. Creating a lattice structure</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+      
+    <li>1. Working with Marking</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/working_with_marking.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="working-with-marking">
+<h1>1. Working with Marking<a class="headerlink" href="#working-with-marking" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial shows how to utilise the marking operation and planes in 3-matic to create condyles from a femur bone. The project ‘Femur.mxp’ is located in the 3-matic installation folder under the folder <cite>DemoFiles</cite>.
+The first step of the script is to open the project from the installation folder, then assign variables to the parts, as well as define the view. The completed script can be found in the 3-matic installation folder: <code class="file docutils literal"><span class="pre">DemoFiles\scripts\Working</span> <span class="pre">with</span> <span class="pre">Marking.py</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="c1">#Open project, find part and set view.</span>
+<span class="n">application_exe</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">()</span>
+<span class="n">application_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">application_exe</span><span class="p">)</span>
+<span class="n">project_filename</span> <span class="o">=</span> <span class="n">application_path</span> <span class="o">+</span> <span class="s2">&quot;/DemoFiles/Femur.mxp&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">project_filename</span><span class="p">)</span>
+<span class="n">view_vector</span><span class="o">=</span><span class="p">[</span><span class="mf">0.48249295353889465</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.874954879283905</span><span class="p">,</span> <span class="mf">0.040668144822120667</span><span class="p">]</span>
+<span class="n">up_vector</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">view_custom</span><span class="p">(</span><span class="n">view_vector</span><span class="p">,</span><span class="n">up_vector</span><span class="p">)</span>
+<span class="n">femur</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;femur&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the next portion of the script, the user is prompted by a message box that instructs the user to mark the triangles of the femur’s head as can be seen in the image below. The marked area will then create a new surface and a landmark point of the femur head.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/marking.png"><img alt="../_images/marking.png" class="align-center" src="../_images/marking.png" style="width: 180px; height: 100px;" /></a>
+</div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1">#Define the marked area and create new surface.</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">message_box</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Mark the femur head. To make sure that the triangles are marked through the selected area, hold the **SHIFT** button while selecting. Click OK and start marking, press ESC when finished&quot;</span> <span class="p">,</span> <span class="n">title</span><span class="o">=</span> <span class="s2">&quot;Marking operation&quot;</span><span class="p">)</span>
+<span class="n">marked_triangles</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">activate_mark_wave_brush</span><span class="p">(</span><span class="n">diameter</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">sphere</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_fit</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">marked_triangles</span><span class="p">)</span>
+<span class="n">head_pt</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_point</span><span class="p">((</span><span class="n">sphere</span><span class="o">.</span><span class="n">center</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The next portion of the script is to generate the midshaft, midplane and condyle plane. The user will be prompted to indicate the medial and lateral point of the femur via the message box.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/head_pt.png"><img alt="../_images/head_pt.png" class="align-center" src="../_images/head_pt.png" style="width: 150px; height: 20px;" /></a>
+</div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1">#perform indicate coordinates to create points on the condyles</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">message_box</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Indicate the medial point on the femur. Click OK and start indicating.&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span> <span class="s2">&quot;Indicate medial point&quot;</span><span class="p">)</span>
+<span class="n">medial_pt</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">indicate_coordinate</span><span class="p">()</span>
+<span class="n">medial_pt</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_point</span><span class="p">(</span><span class="n">coords</span><span class="o">=</span><span class="n">medial_pt</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">message_box</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Indicate the lateral point on the femur. Click OK and start indicating.&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span> <span class="s2">&quot;Indicate lateral point&quot;</span><span class="p">)</span>
+<span class="n">lateral_pt</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">indicate_coordinate</span><span class="p">()</span>
+<span class="n">lateral_pt</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_point</span><span class="p">(</span><span class="n">coords</span><span class="o">=</span><span class="n">lateral_pt</span><span class="p">)</span>
+
+<span class="c1"># Create a midshaft plane</span>
+<span class="n">mid_shaft_plane</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_midplane</span><span class="p">(</span><span class="n">point1</span><span class="o">=</span><span class="n">head_pt</span><span class="p">,</span><span class="n">point2</span><span class="o">=</span><span class="n">medial_pt</span><span class="p">)</span>
+<span class="n">mid_shaft_plane</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;midshaft&quot;</span>
+
+<span class="c1"># Create a midplane in condyles</span>
+<span class="n">mid_cond_plane</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_midplane</span><span class="p">(</span><span class="n">point1</span><span class="o">=</span><span class="n">medial_pt</span><span class="p">,</span><span class="n">point2</span><span class="o">=</span><span class="n">lateral_pt</span><span class="p">)</span>
+<span class="n">center_cond</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_point</span><span class="p">(</span><span class="n">mid_cond_plane</span><span class="o">.</span><span class="n">origin</span><span class="p">)</span>
+<span class="n">center_cond</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;c_cond&quot;</span>
+<span class="n">translated_center_cond</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_point</span><span class="p">(</span><span class="n">center_cond</span><span class="o">.</span><span class="n">coordinates</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">translated_center_cond</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Create a saggital plane</span>
+<span class="n">sag_plane</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_2_points_perpendicular_1_plane</span><span class="p">(</span><span class="n">head_pt</span><span class="p">,</span><span class="n">center_cond</span><span class="p">,</span><span class="n">mid_shaft_plane</span><span class="p">)</span>
+<span class="n">sag_plane</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;saggital plane&quot;</span>
+
+<span class="c1"># Create a plane in the condyles area</span>
+<span class="n">cond_plane</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">create_plane_3_points</span><span class="p">(</span><span class="n">medial_pt</span><span class="p">,</span><span class="n">translated_center_cond</span><span class="p">,</span><span class="n">lateral_pt</span><span class="p">)</span>
+<span class="n">cond_plane</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;condyles plane&quot;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/new_plane.png"><img alt="../_images/new_plane.png" class="align-center" src="../_images/new_plane.png" style="width: 400px; height: 600px;" /></a>
+<p>The final step is to perform a cut in the distal area of the femur. The cond_plane will be used as the cutting entity. After the cut, all the objects are hidden and only the part of interest remains visible. The cut part is renamed to condyles.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Create the condyles</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">translated_center_cond</span><span class="p">)</span>
+<span class="n">femur</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">cut</span><span class="p">((</span><span class="n">femur</span><span class="p">),(</span><span class="n">sag_plane</span><span class="p">))</span>
+<span class="n">cut_femur</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">cut</span><span class="p">((</span><span class="n">femur</span><span class="p">),(</span><span class="n">cond_plane</span><span class="p">))</span>
+
+<span class="c1">#Hide all the parts and planes and keep the part of interest</span>
+<span class="n">objs</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">get_objects</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objs</span><span class="p">:</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">cut_femur</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">condyles</span><span class="o">=</span><span class="n">cut_femur</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">condyles</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;condyles&quot;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/condyles.png"><img alt="../_images/condyles.png" class="align-center" src="../_images/condyles.png" style="width: 300px; height: 250px;" /></a>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="measurements.html" class="btn btn-neutral float-right" title="2. Measurements" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Tutorials" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

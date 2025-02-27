@@ -1,0 +1,11 @@
+.. _callback_notification:
+
+subscription
+============
+
+
+.. automodule:: trimatic.subscription
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

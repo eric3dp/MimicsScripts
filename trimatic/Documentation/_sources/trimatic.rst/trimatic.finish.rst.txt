@@ -1,0 +1,8 @@
+finish
+======
+
+.. automodule:: trimatic.finish
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

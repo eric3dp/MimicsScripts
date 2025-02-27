@@ -1,0 +1,1027 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>curve &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="trimatic modules" href="trimatic.html"/>
+        <link rel="next" title="design" href="trimatic.design.html"/>
+        <link rel="prev" title="cadlink" href="trimatic.cad_link.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">trimatic API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="trimatic.html">trimatic modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="trimatic.data.html">data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.types.html">types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.align.html">align</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.analyze.html">analyze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.cad_link.html">cadlink</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.design.html">design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.file.html">file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.finish.html">finish</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.fix.html">fix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.group.html">group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.interactive.html">interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.lattice.html">lattice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.logging.html">logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.mark.html">mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.measure.html">measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.preferences.html">preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.remesh.html">remesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.sketch.html">sketch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.surface.html">surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.texturing.html">texturing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.uv.html">uv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.view.html">view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.subscription.html">subscription</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">trimatic API</a> &raquo;</li>
+      
+          <li><a href="trimatic.html">trimatic modules</a> &raquo;</li>
+      
+    <li>curve</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/trimatic.rst/trimatic.curve.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-trimatic.curve">
+<span id="curve"></span><h1>curve<a class="headerlink" href="#module-trimatic.curve" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="trimatic.curve.CurvatureType">
+<em class="property">class </em><code class="descname">CurvatureType</code><a class="reference internal" href="../_modules/trimatic/curve.html#CurvatureType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.curve.CurvatureType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Curvature type for curvature based geometry curve.</p>
+<dl class="attribute">
+<dt id="trimatic.curve.CurvatureType.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Curvature type for curvature based geometry curve.'</em><a class="headerlink" href="#trimatic.curve.CurvatureType.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.curve.CurvatureType.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.curve'</em><a class="headerlink" href="#trimatic.curve.CurvatureType.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.curve.CurvatureType.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.curve.CurvatureType.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.curve.CurvatureType._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.curve.CurvatureType._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.curve.CurvatureType._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'gaussian': &lt;CurvatureType.gaussian: 'Gaussian'&gt;, 'maximal': &lt;CurvatureType.maximal: 'Maximal'&gt;, 'mean': &lt;CurvatureType.mean: 'Mean'&gt;, 'minimal': &lt;CurvatureType.minimal: 'Minimal'&gt;}</em><a class="headerlink" href="#trimatic.curve.CurvatureType._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.curve.CurvatureType._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['gaussian', 'mean', 'minimal', 'maximal']</em><a class="headerlink" href="#trimatic.curve.CurvatureType._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.curve.CurvatureType._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.curve.CurvatureType._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.curve.CurvatureType._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'Gaussian': &lt;CurvatureType.gaussian: 'Gaussian'&gt;, 'Maximal': &lt;CurvatureType.maximal: 'Maximal'&gt;, 'Mean': &lt;CurvatureType.mean: 'Mean'&gt;, 'Minimal': &lt;CurvatureType.minimal: 'Minimal'&gt;}</em><a class="headerlink" href="#trimatic.curve.CurvatureType._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.curve.CurvatureType.gaussian">
+<code class="descname">gaussian</code><em class="property"> = 'Gaussian'</em><a class="headerlink" href="#trimatic.curve.CurvatureType.gaussian" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.curve.CurvatureType.maximal">
+<code class="descname">maximal</code><em class="property"> = 'Maximal'</em><a class="headerlink" href="#trimatic.curve.CurvatureType.maximal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.curve.CurvatureType.mean">
+<code class="descname">mean</code><em class="property"> = 'Mean'</em><a class="headerlink" href="#trimatic.curve.CurvatureType.mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.curve.CurvatureType.minimal">
+<code class="descname">minimal</code><em class="property"> = 'Minimal'</em><a class="headerlink" href="#trimatic.curve.CurvatureType.minimal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="trimatic.curve.DirectionMethod">
+<em class="property">class </em><code class="descname">DirectionMethod</code><a class="reference internal" href="../_modules/trimatic/curve.html#DirectionMethod"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.curve.DirectionMethod" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Method for direction of isocurves.</p>
+<dl class="attribute">
+<dt id="trimatic.curve.DirectionMethod.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Method for direction of isocurves.'</em><a class="headerlink" href="#trimatic.curve.DirectionMethod.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.curve.DirectionMethod.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.curve'</em><a class="headerlink" href="#trimatic.curve.DirectionMethod.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.curve.DirectionMethod.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.curve.DirectionMethod.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.curve.DirectionMethod._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.curve.DirectionMethod._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.curve.DirectionMethod._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'both': &lt;DirectionMethod.both: 'Both'&gt;, 'inside': &lt;DirectionMethod.inside: 'Inside'&gt;, 'outside': &lt;DirectionMethod.outside: 'Outside'&gt;}</em><a class="headerlink" href="#trimatic.curve.DirectionMethod._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.curve.DirectionMethod._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['inside', 'outside', 'both']</em><a class="headerlink" href="#trimatic.curve.DirectionMethod._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.curve.DirectionMethod._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.curve.DirectionMethod._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.curve.DirectionMethod._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'Both': &lt;DirectionMethod.both: 'Both'&gt;, 'Inside': &lt;DirectionMethod.inside: 'Inside'&gt;, 'Outside': &lt;DirectionMethod.outside: 'Outside'&gt;}</em><a class="headerlink" href="#trimatic.curve.DirectionMethod._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.curve.DirectionMethod.both">
+<code class="descname">both</code><em class="property"> = 'Both'</em><a class="headerlink" href="#trimatic.curve.DirectionMethod.both" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.curve.DirectionMethod.inside">
+<code class="descname">inside</code><em class="property"> = 'Inside'</em><a class="headerlink" href="#trimatic.curve.DirectionMethod.inside" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.curve.DirectionMethod.outside">
+<code class="descname">outside</code><em class="property"> = 'Outside'</em><a class="headerlink" href="#trimatic.curve.DirectionMethod.outside" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.curve.attach_curve">
+<code class="descname">attach_curve</code><span class="sig-paren">(</span><em>entities</em>, <em>target_entities=None</em>, <em>distance_threshold=5.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/curve.html#attach_curve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.curve.attach_curve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attaches curve(s) to the specified part(s)/surface(s). The curve is first attracted and then attached.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Curve | trimatic.CurveSet | trimatic.Sketch |</em><em> [</em><em>trimatic.Curve | trimatic.CurveSet | trimatic.Sketch</em><em>] </em><em>|</em><em> (</em><em>trimatic.Curve | trimatic.CurveSet | trimatic.Sketch</em><em>)</em>) – Either single object or list of curves, curve sets or sketches.</li>
+<li><strong>target_entities</strong> (<em>trimatic.Part | trimatic.Surface |</em><em> [</em><em>trimatic.Part | trimatic.Surface</em><em>]</em><em>, </em><em>optional</em>) – The target entities that the curves will be attached to. If set to None, the
+curves will be attached to the part they currently belong to.</li>
+<li><strong>distance_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – Curve segments that are within the distance threshold will be attached.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Attached curve(s).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Curve | (trimatic.Curve)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_curve</span><span class="p">([(</span><span class="mf">175.773</span><span class="p">,</span> <span class="o">-</span><span class="mf">154.0134</span><span class="p">,</span> <span class="mf">45.9217</span><span class="p">),</span> <span class="p">(</span><span class="mf">184.0625</span><span class="p">,</span> <span class="o">-</span><span class="mf">127.4913</span><span class="p">,</span> <span class="mf">43.0846</span><span class="p">)],</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">attracted_c</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">attach_curve</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.curve.attract_curve">
+<code class="descname">attract_curve</code><span class="sig-paren">(</span><em>entities</em>, <em>target_entities=None</em>, <em>distance_threshold=5.0</em>, <em>attach_curve=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/curve.html#attract_curve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.curve.attract_curve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attracts curve(s) to the specified part(s)/surface(s).</p>
+<p>If multiple curves are specified as input, operation will succeed if at least one of the curves is successfully
+attracted.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Curve | trimatic.CurveSet | trimatic.Sketch |</em><em> [</em><em>trimatic.Curve | trimatic.CurveSet | trimatic.Sketch</em><em>] </em><em>|</em><em> (</em><em>trimatic.Curve | trimatic.CurveSet | trimatic.Sketch</em><em>)</em>) – Either single object or list of curves, curve sets or sketches.</li>
+<li><strong>target_entities</strong> (<em>trimatic.Part | trimatic.Surface |</em><em> [</em><em>trimatic.Part | trimatic.Surface</em><em>]</em><em>, </em><em>optional</em>) – The target entities that the curves will be attracted to. If set to None, the
+curves will be attracted to the part they currently belong to.</li>
+<li><strong>distance_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – Curve segments that are within the distance threshold will be attracted.</li>
+<li><strong>attach_curve</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the target_entities will be retriangulated and the curve will be attached
+to the part.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Attracted curve(s).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Curve | (trimatic.Curve)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_curve</span><span class="p">([(</span><span class="mf">175.773</span><span class="p">,</span> <span class="o">-</span><span class="mf">154.0134</span><span class="p">,</span> <span class="mf">45.9217</span><span class="p">),(</span><span class="mf">184.0625</span><span class="p">,</span> <span class="o">-</span><span class="mf">127.4913</span><span class="p">,</span> <span class="mf">43.0846</span><span class="p">)],</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">attracted_c</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">attract_curve</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.curve.connect_curves">
+<code class="descname">connect_curves</code><span class="sig-paren">(</span><em>entities</em>, <em>distance_threshold=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/curve.html#connect_curves"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.curve.connect_curves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connects curves together.If there is a small overlap, this will be removed.</p>
+<p>If there is a small gap between the endings of two selected curves, they will be connected with a free curve, 
+if the gap is smaller than a specified distance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>[</em><em>trimatic.Curve</em><em>]</em>) – List of curves to connect.</li>
+<li><strong>distance_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – Curve endings that are within the distance threshold will be connected and merged.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Connected curve.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Curve</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">c1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_curve</span><span class="p">([(</span><span class="mf">175.773</span><span class="p">,</span> <span class="o">-</span><span class="mf">154.0134</span><span class="p">,</span> <span class="mf">45.9217</span><span class="p">),(</span><span class="mf">184.0625</span><span class="p">,</span> <span class="o">-</span><span class="mf">127.4913</span><span class="p">,</span> <span class="mf">43.0846</span><span class="p">)],</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">c2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_curve</span><span class="p">([(</span><span class="mi">199</span><span class="p">,</span> <span class="o">-</span><span class="mi">134</span><span class="p">,</span> <span class="mi">45</span><span class="p">),(</span><span class="mi">195</span><span class="p">,</span> <span class="o">-</span><span class="mi">156</span><span class="p">,</span> <span class="mi">47</span><span class="p">)],</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_curves</span><span class="p">()</span>
+<span class="n">unattached_c</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">connect_curves</span><span class="p">([</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">attached_c</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">attract_curve</span><span class="p">(</span><span class="n">unattached_c</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.curve.convert_to_curve">
+<code class="descname">convert_to_curve</code><span class="sig-paren">(</span><em>entities</em>, <em>accuracy=0.05</em>, <em>add_to=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/curve.html#convert_to_curve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.curve.convert_to_curve" title="Permalink to this definition">¶</a></dt>
+<dd><p>The analytical line and arc, but also all contours can be converted with this operation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Arc | trimatic.Line | trimatic.SurfaceBorder | trimatic.SurfaceContour |</em><em> [</em><em>trimatic.Arc | trimatic.Line | trimatic.SurfaceBorder | trimatic.SurfaceContour</em><em>]</em>) – Entities you like to convert.</li>
+<li><strong>accuracy</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum deviation between the input entity and the output curve.</li>
+<li><strong>add_to</strong> (<em>trimatic.Part</em><em>, </em><em>optional</em>) – Target part to add the resulting curve to. If set to None, a new part is created.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">If add_to is None, a part is created. Otherwise, a curve is created.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Part | trimatic.Curve | (trimatic.Curve)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">l</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_line</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">100</span><span class="p">,</span><span class="o">-</span><span class="mi">32</span><span class="p">,</span><span class="mi">46</span><span class="p">))</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">convert_to_curve</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">add_to</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.curve.create_curve">
+<code class="descname">create_curve</code><span class="sig-paren">(</span><em>points</em>, <em>part=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/curve.html#create_curve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.curve.create_curve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a free curve from a list of points.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>points</strong> (<em>[</em><em>trimatic.Point</em><em>]</em>) – List of points representing the curve nodes. Points are specified with tuples of (x,y,z) coordinates.</li>
+<li><strong>part</strong> (<em>trimatic.Part</em><em>, </em><em>optional</em>) – Target part to add the resulting curve to. If set to None, a new part is created.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The curve.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Curve</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">pnts</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="mi">56</span><span class="p">),(</span><span class="mi">45</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="o">-</span><span class="mf">54.4</span><span class="p">),(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">)]</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_curve</span><span class="p">(</span><span class="n">pnts</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.curve.create_geometry_curve_angle_based">
+<code class="descname">create_geometry_curve_angle_based</code><span class="sig-paren">(</span><em>entities</em>, <em>angle=30.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/curve.html#create_geometry_curve_angle_based"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.curve.create_geometry_curve_angle_based" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates curves on the common edge of two triangles that make an angle larger than the specified angle.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em>]</em>) – Either single object or list of parts, surfaces or surface sets.</li>
+<li><strong>angle</strong> (<em>float</em><em>, </em><em>optional</em>) – If the angle between the normal of two triangles is bigger than the defined threshold, a curve is 
+created on the common edge.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The created geometry curves.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Curve | (trimatic.Curve)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">cone_part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cone_part</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">direction</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">bottom_radius</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_geometry_curve_angle_based</span><span class="p">(</span><span class="n">cone_part</span><span class="p">,</span> <span class="mi">35</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.curve.create_geometry_curve_curvature_based">
+<code class="descname">create_geometry_curve_curvature_based</code><span class="sig-paren">(</span><em>entities</em>, <em>curvature_type=&lt;CurvatureType.maximal: 'Maximal'&gt;</em>, <em>radius_threshold=16.0</em>, <em>sharp_edge_threshold=30.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/curve.html#create_geometry_curve_curvature_based"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.curve.create_geometry_curve_curvature_based" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates curves where the surface has a curvature specified by the input parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em>]</em>) – Either single object or list of parts, surfaces or surface sets.</li>
+<li><strong>curvature_type</strong> (<em>trimatic.CurvatureType</em><em>, </em><em>optional</em>) – Method used to calculate curvature information.</li>
+<li><strong>radius_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – Threshold of the average triangle curvature. A curve is created on the common edge of two 
+triangles when one triangle has a curvature smaller than the threshold and the other triangle has a curvature 
+bigger than the threshold.</li>
+<li><strong>sharp_edge_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – If the angle between two triangles is smaller than the defined threshold, the common 
+edge is considered sharp. Whether a curve is created on the comon triangle edge depends on the radius threshold.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The created geometry curves.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Curve | (trimatic.Curve)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">cone_part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cone_part</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">direction</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">bottom_radius</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_geometry_curve_curvature_based</span><span class="p">(</span><span class="n">cone_part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">CurvatureType</span><span class="o">.</span><span class="n">maximal</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.curve.create_geometry_curve_draft_based">
+<code class="descname">create_geometry_curve_draft_based</code><span class="sig-paren">(</span><em>entities</em>, <em>direction</em>, <em>draft_angle=0.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/curve.html#create_geometry_curve_draft_based"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.curve.create_geometry_curve_draft_based" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates curves where the surface changes direction specified by the draft direction.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em>]</em>) – Either single object or list of parts, surfaces or surface sets.</li>
+<li><strong>direction</strong> (<em>(</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>)</em>) – Direction vector, specified as a tuple of (x,y,z). The direction towards which the draft is defined.</li>
+<li><strong>draft_angle</strong> (<em>float</em><em>, </em><em>optional</em>) – If the angle w.r.t. the draft direction is bigger than the defined threshold, the triangle is 
+considered drafted.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The created geometry curves.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Curve | (trimatic.Curve)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">cone_part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cone_part</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">direction</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">bottom_radius</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_geometry_curve_draft_based</span><span class="p">(</span><span class="n">cone_part</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.curve.create_intersection_curve">
+<code class="descname">create_intersection_curve</code><span class="sig-paren">(</span><em>entity_set1</em>, <em>entity_set2</em>, <em>intersection_curve_in=2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/curve.html#create_intersection_curve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.curve.create_intersection_curve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates curves representing the intersection lines of two sets of entities.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entity_set1</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em>]</em>) – First set of entities. Either single object or heterogeneous list of parts, surfaces, or surface
+sets.</li>
+<li><strong>entity_set2</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.Plane |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.Plane</em><em>]</em>) – Second set of entities. Either single object or heterogeneous list of parts, surfaces, surface
+sets, or planes.</li>
+<li><strong>intersection_curve_in</strong> (<em>int</em><em>, </em><em>optional</em>) – Flag to determine which entity set will contain the output curves. 0 for
+entity from first set, 1 for entity from second set and 2 for both entities.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Intersection curves. Empty tuple if no intersection exists.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Curve | (trimatic.Curve)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_part</span><span class="p">((</span><span class="n">trimatic</span><span class="o">.</span><span class="n">compute_center_of_gravity</span><span class="p">(</span><span class="n">p</span><span class="p">)),</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_intersection_curve</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.curve.create_iso_curves">
+<code class="descname">create_iso_curves</code><span class="sig-paren">(</span><em>entities</em>, <em>interval_distance=1.0</em>, <em>number_of_copies=1</em>, <em>direction=&lt;DirectionMethod.outside: 'Outside'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/curve.html#create_iso_curves"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.curve.create_iso_curves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates isocurves from the specified attached curves.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Curve | trimatic.SurfaceContour |</em><em> [</em><em>trimatic.Curve | trimatic.SurfaceContour</em><em>]</em>) – One or more reference curves.</li>
+<li><strong>interval_distance</strong> (<em>float</em><em>, </em><em>optional</em>) – Distance at which the isocurve will be created from the reference.</li>
+<li><strong>number_of_copies</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of isocurves that should be created in the defined direction.</li>
+<li><strong>direction</strong> (<em>trimatic.DirectionMethod</em><em>, </em><em>optional</em>) – Direction at which the isocurve will be created.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The created isocurves.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Curve | (trimatic.Curve)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">sphere</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">circle</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_circle_arc_normal_center_radius</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">attached</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">attach_curve</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">convert_to_curve</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span><span class="o">.</span><span class="n">get_curves</span><span class="p">(),</span> <span class="n">sphere</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_iso_curves</span><span class="p">(</span><span class="n">attached</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">DirectionMethod</span><span class="o">.</span><span class="n">outside</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.curve.filter_curve">
+<code class="descname">filter_curve</code><span class="sig-paren">(</span><em>entities</em>, <em>sharp_angle_threshold=20.0</em>, <em>small_edge_threshold=0.1</em>, <em>treat_as_free_curve=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/curve.html#filter_curve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.curve.filter_curve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters curves.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Curve | trimatic.SurfaceBorder | trimatic.SurfaceContour |</em><em> [</em><em>trimatic.Curve | trimatic.SurfaceBorder | trimatic.SurfaceContour</em><em>]</em>) – Entities to filter.</li>
+<li><strong>sharp_angle_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – Curve segments with angles smaller than the threshold will be removed.</li>
+<li><strong>small_edge_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – Curve segments with edges smaller than the threshold will be removed.</li>
+<li><strong>treat_as_free_curve</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, changes to the curve do not alter the underlying triangles of the part containing
+the curve.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Filtered entities.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Curve | (trimatic.Curve)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_part</span><span class="p">((</span><span class="n">trimatic</span><span class="o">.</span><span class="n">compute_center_of_gravity</span><span class="p">(</span><span class="n">p</span><span class="p">)),</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_intersection_curve</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">filter_curve</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">30</span><span class="p">,</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.curve.fit_centerline_curve">
+<code class="descname">fit_centerline_curve</code><span class="sig-paren">(</span><em>entity</em>, <em>segment_length=1.0</em>, <em>detail=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/curve.html#fit_centerline_curve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.curve.fit_centerline_curve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates center line(s) for the given part. The center line is kept as a curve inside a curve set.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entity</strong> (<em>trimatic.Part</em>) – Part for which center line is created.</li>
+<li><strong>segment_length</strong> (<em>float</em>) – Value defines the length of the different segments of the center line.</li>
+<li><strong>detail</strong> (<em>float</em>) – Value defines the accuracy of the center line definition.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">If successful, a center line is returned. Otherwise, a runtime error is raised.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.CurveSet</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_cylinder_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">fit_centerline_curve</span><span class="p">(</span><span class="n">cylinder</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.curve.project_curve">
+<code class="descname">project_curve</code><span class="sig-paren">(</span><em>entities</em>, <em>direction</em>, <em>target_entities</em>, <em>visibility_threshold=10.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/curve.html#project_curve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.curve.project_curve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Projects curve(s) to the specified part(s)/surface(s).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Curve | trimatic.Sketch |</em><em>  [</em><em>trimatic.Curve | trimatic.Sketch</em><em>]</em>) – Either single object or list of curves or sketches.</li>
+<li><strong>direction</strong> (<em>(</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>)</em>) – Direction vector for the projection, specified as a tuple of (x,y,z).</li>
+<li><strong>target_entities</strong> (<em>trimatic.Part | trimatic.Surface |</em><em> [</em><em>trimatic.Part | trimatic.Surface</em><em>]</em>) – The target entities that the curves will be projected to.</li>
+<li><strong>visibility_threshold</strong> (<em>float | None</em><em>, </em><em>optional</em>) – If None, projected curve segments are connected along the part of the mesh in the
+projection direction even if the region of the mesh is not visible from the original curve. The threshold value
+determines the maximum distance between curve segments across non-visible regions that will be connected.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Projected curve(s).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Curve | (trimatic.Curve)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_part</span><span class="p">((</span><span class="n">trimatic</span><span class="o">.</span><span class="n">compute_center_of_gravity</span><span class="p">(</span><span class="n">p</span><span class="p">)),</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_intersection_curve</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_box_part</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">project_curve</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">3</span><span class="p">],(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.70</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.curve.reduce_curve">
+<code class="descname">reduce_curve</code><span class="sig-paren">(</span><em>entities</em>, <em>geometrical_error=0.1</em>, <em>treat_as_free_curve=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/curve.html#reduce_curve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.curve.reduce_curve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduce the number of segments in a curve.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.SurfaceBorder | trimatic.SurfaceContour | trimatic.Curve |</em><em> [</em><em>trimatic.SurfaceBorder | trimatic.SurfaceContour | trimatic.Curve</em><em>]</em>) – Entities to be reduced.</li>
+<li><strong>geometrical_error</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum error that can be produced by the reduction.</li>
+<li><strong>treat_as_free_curve</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, changes to the curve do not alter the underlying triangles of the part containing the curve.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Reduced entities.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Curve | (trimatic.Curve)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">part</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">sphere</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_part</span><span class="p">((</span><span class="n">trimatic</span><span class="o">.</span><span class="n">compute_center_of_gravity</span><span class="p">(</span><span class="n">part</span><span class="p">)),</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">curve</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_intersection_curve</span><span class="p">(</span><span class="n">part</span><span class="p">,</span><span class="n">sphere</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">reduce_curve</span><span class="p">(</span><span class="n">curve</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.curve.smooth_curve">
+<code class="descname">smooth_curve</code><span class="sig-paren">(</span><em>entities</em>, <em>smooth_factor=0.7</em>, <em>use_compensation=True</em>, <em>number_of_iterations=10</em>, <em>treat_as_free_curve=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/curve.html#smooth_curve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.curve.smooth_curve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Smooths curves.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Curve | trimatic.SurfaceBorder | trimatic.SurfaceContour |</em><em> [</em><em>trimatic.Curve | trimatic.SurfaceBorder | trimatic.SurfaceContour</em><em>]</em>) – Entities to smooth.</li>
+<li><strong>smooth_factor</strong> (<em>float</em><em>, </em><em>optional</em>) – Strength of the smoothing. 1.0 indicates maximum smoothing.</li>
+<li><strong>number_of_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – Increases the number of times smooth is repeated.</li>
+<li><strong>use_compensation</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, prevents reduction of a circular curve into a point.</li>
+<li><strong>treat_as_free_curve</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, changes to the curve do not alter the underlying triangles of the part containing
+the curve.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Smoothed entities.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Curve | (trimatic.Curve)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_part</span><span class="p">((</span><span class="n">trimatic</span><span class="o">.</span><span class="n">compute_center_of_gravity</span><span class="p">(</span><span class="n">p</span><span class="p">)),</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_intersection_curve</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">smooth_curve</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">smooth_factor</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">number_of_iterations</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">treat_as_free_curve</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.curve.split_surfaces_by_curves">
+<code class="descname">split_surfaces_by_curves</code><span class="sig-paren">(</span><em>entities=None</em>, <em>curves=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/curve.html#split_surfaces_by_curves"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.curve.split_surfaces_by_curves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Splits surfaces by curves.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entities</strong> (<em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet |</em><em> [</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em>] </em><em>|</em><em> (</em><em>trimatic.Part | trimatic.Surface | trimatic.SurfaceSet</em><em>) </em><em>| None</em><em>, </em><em>optional</em>) – Entities to split. If set to None, the part(s) containing the curves will be split.</li>
+<li><strong>curves</strong> (<em>trimatic.Curve | trimatic.CurveSet |</em><em> [</em><em>trimatic.Curve | trimatic.CurveSet</em><em>] </em><em>|</em><em> (</em><em>trimatic.Curve | trimatic.CurveSet</em><em>)</em><em>, </em><em>optional</em>) – Curves to use for the split. If set to None, all closed and attached curves are used to
+split surfaces of the entities.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Split surfaces.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">trimatic.Surface | (trimatic.Surface)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_part</span><span class="p">((</span><span class="n">trimatic</span><span class="o">.</span><span class="n">compute_center_of_gravity</span><span class="p">(</span><span class="n">p</span><span class="p">)),</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_intersection_curve</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">attach_curve</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">curves</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">split_surfaces_by_curves</span><span class="p">(</span><span class="n">curves</span><span class="o">=</span><span class="n">curves</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trimatic.design.html" class="btn btn-neutral float-right" title="design" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="trimatic.cad_link.html" class="btn btn-neutral" title="cadlink" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

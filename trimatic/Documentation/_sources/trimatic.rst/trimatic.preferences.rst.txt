@@ -1,0 +1,9 @@
+preferences
+===========
+
+
+.. automodule:: trimatic.preferences
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

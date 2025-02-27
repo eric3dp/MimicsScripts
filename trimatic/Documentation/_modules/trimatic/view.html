@@ -1,0 +1,330 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>trimatic.view &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>trimatic.view</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for trimatic.view</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pymatic</span>
+<span class="kn">import</span> <span class="nn">trimatic.utils</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<div class="viewcode-block" id="get_view"><a class="viewcode-back" href="../../trimatic.rst/trimatic.view.html#trimatic.view.get_view">[docs]</a><span class="k">def</span> <span class="nf">get_view</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the view direction from the 3D view. </span>
+
+<span class="sd">    :return: Tuple of 2 vectors. The view vector and view up vector.</span>
+<span class="sd">    :rtype: ((float, float, float), (float, float, float))</span>
+<span class="sd">    :raises: RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/view/get_view.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">get_view</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="view_custom"><a class="viewcode-back" href="../../trimatic.rst/trimatic.view.html#trimatic.view.view_custom">[docs]</a><span class="k">def</span> <span class="nf">view_custom</span><span class="p">(</span><span class="n">view_vector</span><span class="p">,</span> <span class="n">up_vector</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sets the 3D view to a custom view direction. View is zoomed such that all objects are visible (&quot;Unzoom All&quot;).</span>
+
+<span class="sd">    :param view_vector: view_vector is an eye vector, this vector is orthogonal to the screen and directed from the user. If passed vectors are not orthogonal, up_vector is set as orthogonal to view_vector in the plane determined by up and view vectors.</span>
+<span class="sd">    :type view_vector: trimatic.Point</span>
+<span class="sd">    :param up_vector: up_vector is aligned with Y-axis (bottom to top) of the window.</span>
+<span class="sd">    :type up_vector: trimatic.Point</span>
+<span class="sd">    :return: Operation successfull or not.</span>
+<span class="sd">    :rtype: bool</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/view/view_custom.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">py_view_vector</span><span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">view_vector</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_direction</span><span class="p">(</span><span class="s2">&quot;view_vector&quot;</span><span class="p">,</span> <span class="n">py_view_vector</span><span class="p">)</span>
+
+    <span class="n">py_up_vector</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">up_vector</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_direction</span><span class="p">(</span><span class="s2">&quot;up_vector&quot;</span><span class="p">,</span> <span class="n">py_up_vector</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">view_custom</span><span class="p">(</span><span class="n">py_view_vector</span><span class="p">,</span><span class="n">py_up_vector</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="zoom"><a class="viewcode-back" href="../../trimatic.rst/trimatic.view.html#trimatic.view.zoom">[docs]</a><span class="k">def</span> <span class="nf">zoom</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Zoom the view in such a way that the specified entities will be enclosed in the view. The resulting view will be the same as when using &quot;Zoom Selection&quot; in GUI for the specified entities.</span>
+
+<span class="sd">    :param entities: Either a single object or list of trimatic.Objects</span>
+<span class="sd">    :type  entities: trimatic.Object | [trimatic.Object]</span>
+<span class="sd">    :return: Operation successful or not.</span>
+<span class="sd">    :rtype: bool</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/view/zoom.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">zoom</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="show_only"><a class="viewcode-back" href="../../trimatic.rst/trimatic.view.html#trimatic.view.show_only">[docs]</a><span class="k">def</span> <span class="nf">show_only</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Zoom and show only the specified entities and hide the non-specified entities.</span>
+
+<span class="sd">    Entities refer to all root level entities including groups and subgroups.</span>
+
+<span class="sd">    :param entities: Either a single or list of trimatic.Object and/or trimatic.Group</span>
+<span class="sd">    :type  entities: trimatic.Object | trimatic.Group | [trimatic.Object | trimatic.Group]</span>
+<span class="sd">    :return: Operation successful or not.</span>
+<span class="sd">    :rtype: bool</span>
+<span class="sd">    :raises: ValueError, RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/view/show_only.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">pymatic_entities</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">pymatic_entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Object</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Group</span><span class="p">))</span> 
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type_is_not</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">pymatic_entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Analysis</span><span class="p">))</span> 
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">show_only</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">pymatic_entities</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="DefaultViews"><a class="viewcode-back" href="../../trimatic.rst/trimatic.view.html#trimatic.view.DefaultViews">[docs]</a><span class="k">class</span> <span class="nc">DefaultViews</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Default views.&quot;&quot;&quot;</span>
+
+    <span class="n">Top</span> <span class="o">=</span> <span class="s2">&quot;Top&quot;</span>
+    <span class="n">Bottom</span> <span class="o">=</span> <span class="s2">&quot;Bottom&quot;</span>
+    <span class="n">Left</span> <span class="o">=</span> <span class="s2">&quot;Left&quot;</span>
+    <span class="n">Right</span> <span class="o">=</span> <span class="s2">&quot;Right&quot;</span>
+    <span class="n">Front</span> <span class="o">=</span> <span class="s2">&quot;Front&quot;</span>
+    <span class="n">Back</span> <span class="o">=</span> <span class="s2">&quot;Back&quot;</span>
+    <span class="n">Isometric</span> <span class="o">=</span> <span class="s2">&quot;Isometric&quot;</span></div>
+
+<div class="viewcode-block" id="view_default"><a class="viewcode-back" href="../../trimatic.rst/trimatic.view.html#trimatic.view.view_default">[docs]</a><span class="k">def</span> <span class="nf">view_default</span><span class="p">(</span><span class="n">view</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sets the 3D view to a predefined view direction. View is zoomed such that all objects are visible (&quot;Unzoom All&quot;).</span>
+
+<span class="sd">    Top: Direction of visualization is perpendicular to the XY plane, in the Z-direction. </span>
+
+<span class="sd">    Bottom: Direction of visualization is perpendicular to the XY plane, against the Z- direction. </span>
+
+<span class="sd">    Left: Direction of visualization is perpendicular to the YZ plane, in the X-direction. </span>
+
+<span class="sd">    Right: Direction of visualization is perpendicular to the YZ plane, against the X-direction. </span>
+
+<span class="sd">    Front: Direction of visualization is perpendicular to the XZ plane, in the Y-direction. </span>
+
+<span class="sd">    Back: Direction of visualization is perpendicular to the XZ plane, against the Y-direction. </span>
+
+<span class="sd">    Isometric: Direction of visualization is (1,1, -1). </span>
+
+<span class="sd">    :param view: Which view to set.</span>
+<span class="sd">    :type view: trimatic.DefaultView</span>
+<span class="sd">    :return: Operation successfull or not.</span>
+<span class="sd">    :rtype: bool</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/view/view_default.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;view&quot;</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="p">(</span><span class="n">DefaultViews</span><span class="p">,))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">view_default</span><span class="p">(</span><span class="n">view</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

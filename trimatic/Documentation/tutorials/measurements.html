@@ -1,0 +1,275 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. Measurements &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="Tutorials" href="index.html"/>
+        <link rel="next" title="3. Preparation for FEA" href="preparation_for_fea.html"/>
+        <link rel="prev" title="1. Working with Marking" href="working_with_marking.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="working_with_marking.html">1. Working with Marking</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. Measurements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preparation_for_fea.html">3. Preparation for FEA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="non_manifold_assembly.html">4. Non manifold assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="align_and_remesh.html">5. Align and remesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hand_plate.html">6. Fracture plate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="working_with_metadata.html">7. Working with Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchtop.html">8. Benchtop model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_a_lattice.html">9. Creating a lattice structure</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+      
+    <li>2. Measurements</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/measurements.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="measurements">
+<h1>2. Measurements<a class="headerlink" href="#measurements" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial basic measurement operations are presented using the project Femur.mxp that is located in the 3-matic installation folder under the folder <cite>DemoFiles</cite>.
+The first step of the script is to open the project from the installation folder, then assign variables to the parts and define the view. The completed script can be found in the 3-matic installation folder: <code class="file docutils literal"><span class="pre">DemoFiles\scripts\Measurements.py</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1">#Open project, find part and set view.</span>
+<span class="n">application_exe</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">()</span>
+<span class="n">application_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">application_exe</span><span class="p">)</span>
+<span class="n">project_filename</span> <span class="o">=</span> <span class="n">application_path</span> <span class="o">+</span> <span class="s2">&quot;/DemoFiles/Femur.mxp&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">project_filename</span><span class="p">)</span>
+<span class="n">view_vector</span><span class="o">=</span><span class="p">[</span><span class="mf">0.48249295353889465</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.874954879283905</span><span class="p">,</span> <span class="mf">0.040668144822120667</span><span class="p">]</span>
+<span class="n">up_vector</span><span class="o">==</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">view_custom</span><span class="p">(</span><span class="n">view_vector</span><span class="p">,</span> <span class="n">up_vector</span><span class="p">)</span>
+<span class="n">femur</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;femur&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The next portion of the script is to manually mark the femur head, the neck and the femur shaft. The users are prompted with a message box with instructions of which area to mark and to create the corresponding surfaces. The image below displays the “head”, “neck” and “shaft” portions.</p>
+<a class="reference internal image-reference" href="../_images/selections.png"><img alt="../_images/selections.png" class="align-center" src="../_images/selections.png" style="width: 300px; height: 300px;" /></a>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1">#Mark the different areas and create the corresponding surfaces.</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">message_box</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Mark the triangles of the femur&#39;s head using Mark-&gt; Brush Mark -&gt; Wave Brush Mark and click OK. To make sure that the triangles are marked through the selected area, hold the **SHIFT** button while selecting.&quot;</span> <span class="p">,</span> <span class="n">title</span><span class="o">=</span> <span class="s2">&quot;Marking Head&quot;</span><span class="p">)</span>
+<span class="n">head_marked_triangles</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_selection</span><span class="p">()</span>
+<span class="n">head_surface</span><span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">move_to_surface</span><span class="p">(</span><span class="n">head_marked_triangles</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">message_box</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Mark the triangles of the femur&#39;s shaft using Mark-&gt; Brush Mark -&gt; Wave Brush Mark and click OK. To make sure that the triangles are marked through the selected area, hold the **SHIFT** button while selecting.&quot;</span> <span class="p">,</span> <span class="n">title</span><span class="o">=</span> <span class="s2">&quot;Marking Shaft&quot;</span><span class="p">)</span>
+<span class="n">shaft_marked_triangles</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_selection</span><span class="p">()</span>
+<span class="n">shaft_surface</span><span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">move_to_surface</span><span class="p">(</span><span class="n">shaft_marked_triangles</span><span class="p">)</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">message_box</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Select the surface of the neck in the object tree to define the variable and click OK. Make sure the Wave Brush tool is closed upon selection of the surface.&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Define Neck Surface&quot;</span><span class="p">)</span>
+<span class="n">neck_surface</span><span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">get_selection</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In the next step, an analytical sphere is created around the surface of the head with the fit sphere method. Then, two lines are fitted in the created surfaces of the femoral neck and shaft respectively with the fit ruled surface method. To check if the analytical entities present are in the correct positions, set the femur to high transparency.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Create an analytical sphere and fit lines</span>
+<span class="n">head_sphere</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_sphere_fit</span><span class="p">(</span><span class="n">head_surface</span><span class="p">)</span>
+<span class="n">neck_line</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_line_fit_ruled_surface</span><span class="p">(</span><span class="n">neck_surface</span><span class="p">)</span>
+<span class="n">shaft_line</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_line_fit_ruled_surface</span><span class="p">(</span><span class="n">shaft_surface</span><span class="p">)</span>
+<span class="n">femur</span><span class="o">.</span><span class="n">transparency</span><span class="o">=</span><span class="mf">0.5</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/final.png"><img alt="../_images/final.png" class="align-center" src="../_images/final.png" style="width: 120px; height: 120px;" /></a>
+<p>The last step is to print the radius of the fitted sphere to the femoral head in the logger. The angle between the line of the neck and shaft is also calculated and printed.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># print the radius of the head of the sphere</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Radius of the femur head is &quot;</span><span class="p">,</span><span class="n">head_sphere</span><span class="o">.</span><span class="n">radius</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate the angle between the neck and the femur and print the value</span>
+<span class="n">femurangle</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_angle_measurement_line_to_line</span><span class="p">(</span><span class="n">shaft_line</span><span class="p">,</span><span class="n">neck_line</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Angle between femur neck and femur shaft is &quot;</span><span class="p">,</span><span class="n">femurangle</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/logger.png"><img alt="../_images/logger.png" class="align-center" src="../_images/logger.png" style="width: 250px; height: 400px;" /></a>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="preparation_for_fea.html" class="btn btn-neutral float-right" title="3. Preparation for FEA" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="working_with_marking.html" class="btn btn-neutral" title="1. Working with Marking" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

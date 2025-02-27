@@ -1,0 +1,292 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. Non manifold assembly &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="Tutorials" href="index.html"/>
+        <link rel="next" title="5. Align and remesh" href="align_and_remesh.html"/>
+        <link rel="prev" title="3. Preparation for FEA" href="preparation_for_fea.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="working_with_marking.html">1. Working with Marking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="measurements.html">2. Measurements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preparation_for_fea.html">3. Preparation for FEA</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. Non manifold assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="align_and_remesh.html">5. Align and remesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hand_plate.html">6. Fracture plate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="working_with_metadata.html">7. Working with Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchtop.html">8. Benchtop model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_a_lattice.html">9. Creating a lattice structure</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+      
+    <li>4. Non manifold assembly</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/non_manifold_assembly.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="non-manifold-assembly">
+<h1>4. Non manifold assembly<a class="headerlink" href="#non-manifold-assembly" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, some basic features of remeshing to create a non-manifold assembly are presented using the project BonePlate.mxp that is located in the 3-matic installation folder under the folder <cite>DemoFiles</cite>.</p>
+<p>The completed script can be found in the 3-matic installation folder in <code class="file docutils literal"><span class="pre">DemoFiles\scripts\Non-manifold</span> <span class="pre">assembly.py</span></code>.
+We will describe the different steps in the script in more detail.</p>
+<p>The first step is to open the project BonePlate.mxp in 3-matic. The following image shows the input file.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="c1">#Open the project BonePlate.mxp</span>
+<span class="n">application_exe</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">()</span>
+<span class="n">application_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">application_exe</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">application_path</span> <span class="o">+</span> <span class="s2">&quot;/DemoFiles/BonePlate.mxp&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/Input1.png"><img alt="../_images/Input1.png" class="align-center" src="../_images/Input1.png" style="width: 450px; height: 450px;" /></a>
+<p>In the next step, the different parts of the assembly are located and assigned to variables. The parts, Bone, Plate and Screws are located and variables of their respective names are created.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># get a list of the objects that exist in the file and duplicate the femur</span>
+<span class="n">bone</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s1">&#39;Bone&#39;</span><span class="p">)</span>
+<span class="n">plate</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s1">&#39;Plate_MovedSurface&#39;</span><span class="p">)</span>
+<span class="n">screws</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s1">&#39;Screws&#39;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s1">&#39;Plate&#39;</span><span class="p">))</span>
+<span class="n">plate</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Plate&#39;</span>
+</pre></div>
+</div>
+<p>The following step is to remesh the parts individually before the non manifold assembly operation. All the parts can be remeshed with the same parameters, in one operation with the <strong>Adaptive Remesh</strong> tool.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Remesh separate objects prior to creating the NMA</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">adaptive_remesh_expert</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="p">(</span><span class="n">bone</span><span class="p">,</span><span class="n">plate</span><span class="p">,</span><span class="n">screws</span><span class="p">),</span><span class="n">shape_measure</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">ShapeMeasures</span><span class="o">.</span><span class="n">height_base_n</span><span class="p">,</span><span class="n">shape_quality_threshold</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span><span class="n">maximum_geometrical_error</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">minimum_triangle_edge_length</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">maximum_triangle_edge_length</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">number_of_iterations</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">skip_bad_edges</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">preserve_surface_contours</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">preserve_sharp_edges</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">local_remesh_parameters</span><span class="o">=</span><span class="p">(),</span> <span class="n">local_growth_rate</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The next step is to duplicate all the parts before the non manifold assembly operation.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Duplicate objects to maintain a copy after NMA creation</span>
+<span class="n">bone2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="n">bone</span><span class="p">)</span>
+<span class="n">plate2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="n">plate</span><span class="p">)</span>
+<span class="n">screws2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="n">screws</span><span class="p">)</span>
+<span class="n">bone2</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">plate2</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">screws2</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>In the following step a non manifold assembly is created. The main entity is the object whose volume will be reduced with the intersecting entities. The volume of the intersecting entity will be preserved. The order is important, the last ones in the order will always be subtracted from the top entities.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Create NMA</span>
+<span class="n">nma</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">create_non_manifold_assembly_intersection</span><span class="p">(</span><span class="n">plate</span><span class="p">,</span> <span class="p">(</span><span class="n">bone</span><span class="p">,</span> <span class="n">screws</span><span class="p">))</span>
+<span class="n">nma</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Non-manifold&#39;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/NMA_no_remesh.png"><img alt="../_images/NMA_no_remesh.png" class="align-center" src="../_images/NMA_no_remesh.png" style="width: 450px; height: 450px;" /></a>
+<p>In the next step, the mesh of the non manifold assembly is improved by performing an <strong>Adaptive Remesh</strong> operation. The parameters are the same as those selected in the operation in a previous step.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Improve mesh of NMA</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">adaptive_remesh_expert</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">nma</span><span class="p">,</span><span class="n">shape_measure</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">ShapeMeasures</span><span class="o">.</span><span class="n">height_base_n</span><span class="p">,</span><span class="n">shape_quality_threshold</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">maximum_geometrical_error</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span><span class="n">minimum_triangle_edge_length</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">maximum_triangle_edge_length</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">number_of_iterations</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">skip_bad_edges</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">preserve_surface_contours</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">preserve_sharp_edges</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">local_remesh_parameters</span><span class="o">=</span><span class="p">(),</span> <span class="n">local_growth_rate</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the next step, a volume mesh is created on the non manifold assembly part. The part is duplicated and renamed before the operation.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Create volume mesh</span>
+<span class="n">nma</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">vol_mesh_nma</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="n">nma</span><span class="p">)</span>
+<span class="n">vol_mesh_nma</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">nma</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;_volume_mesh&quot;</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">create_volume_mesh</span><span class="p">(</span><span class="n">part</span><span class="o">=</span><span class="n">vol_mesh_nma</span><span class="p">,</span> <span class="n">maximum_edge_length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/NMA_volume_mesh_Z.png"><img alt="../_images/NMA_volume_mesh_Z.png" class="align-center" src="../_images/NMA_volume_mesh_Z.png" style="width: 300px; height: 300px;" /></a>
+<p>The last step is to inspect the mesh quality. For the shape measure parameter, Ansys element quality is selected. The results are presented in the metadata.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Analyze mesh quality</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">analyze_mesh_quality_volume</span><span class="p">(</span><span class="n">vol_mesh_nma</span><span class="p">,</span> <span class="n">shape_measure</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">ShapeMeasuresAnalyzeMeshQualityVolume</span><span class="o">.</span><span class="n">ansys_element_quality_n</span><span class="p">,</span> <span class="n">shape_quality_threshold</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/metadata_non_manifold_assembly.png"><img alt="../_images/metadata_non_manifold_assembly.png" class="align-center" src="../_images/metadata_non_manifold_assembly.png" style="width: 650px; height: 100px;" /></a>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="align_and_remesh.html" class="btn btn-neutral float-right" title="5. Align and remesh" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="preparation_for_fea.html" class="btn btn-neutral" title="3. Preparation for FEA" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

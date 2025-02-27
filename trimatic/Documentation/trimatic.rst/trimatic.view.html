@@ -1,0 +1,494 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>view &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../index.html"/>
+        <link rel="up" title="trimatic modules" href="trimatic.html"/>
+        <link rel="next" title="subscription" href="trimatic.subscription.html"/>
+        <link rel="prev" title="uv" href="trimatic.uv.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">trimatic API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="trimatic.html">trimatic modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="trimatic.data.html">data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.types.html">types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.align.html">align</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.analyze.html">analyze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.cad_link.html">cadlink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.curve.html">curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.design.html">design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.file.html">file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.finish.html">finish</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.fix.html">fix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.group.html">group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.interactive.html">interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.lattice.html">lattice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.logging.html">logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.mark.html">mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.measure.html">measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.preferences.html">preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.remesh.html">remesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.sketch.html">sketch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.surface.html">surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.texturing.html">texturing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.uv.html">uv</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trimatic.subscription.html">subscription</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">trimatic API</a> &raquo;</li>
+      
+          <li><a href="trimatic.html">trimatic modules</a> &raquo;</li>
+      
+    <li>view</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/trimatic.rst/trimatic.view.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-trimatic.view">
+<span id="view"></span><h1>view<a class="headerlink" href="#module-trimatic.view" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="trimatic.view.DefaultViews">
+<em class="property">class </em><code class="descname">DefaultViews</code><a class="reference internal" href="../_modules/trimatic/view.html#DefaultViews"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.view.DefaultViews" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Default views.</p>
+<dl class="attribute">
+<dt id="trimatic.view.DefaultViews.Back">
+<code class="descname">Back</code><em class="property"> = 'Back'</em><a class="headerlink" href="#trimatic.view.DefaultViews.Back" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.view.DefaultViews.Bottom">
+<code class="descname">Bottom</code><em class="property"> = 'Bottom'</em><a class="headerlink" href="#trimatic.view.DefaultViews.Bottom" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.view.DefaultViews.Front">
+<code class="descname">Front</code><em class="property"> = 'Front'</em><a class="headerlink" href="#trimatic.view.DefaultViews.Front" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.view.DefaultViews.Isometric">
+<code class="descname">Isometric</code><em class="property"> = 'Isometric'</em><a class="headerlink" href="#trimatic.view.DefaultViews.Isometric" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.view.DefaultViews.Left">
+<code class="descname">Left</code><em class="property"> = 'Left'</em><a class="headerlink" href="#trimatic.view.DefaultViews.Left" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.view.DefaultViews.Right">
+<code class="descname">Right</code><em class="property"> = 'Right'</em><a class="headerlink" href="#trimatic.view.DefaultViews.Right" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.view.DefaultViews.Top">
+<code class="descname">Top</code><em class="property"> = 'Top'</em><a class="headerlink" href="#trimatic.view.DefaultViews.Top" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.view.DefaultViews.__doc__">
+<code class="descname">__doc__</code><em class="property"> = 'Default views.'</em><a class="headerlink" href="#trimatic.view.DefaultViews.__doc__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.view.DefaultViews.__module__">
+<code class="descname">__module__</code><em class="property"> = 'trimatic.view'</em><a class="headerlink" href="#trimatic.view.DefaultViews.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.view.DefaultViews.__new__">
+<code class="descname">__new__</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.view.DefaultViews.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="trimatic.view.DefaultViews._generate_next_value_">
+<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#trimatic.view.DefaultViews._generate_next_value_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_value: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.view.DefaultViews._member_map_">
+<code class="descname">_member_map_</code><em class="property"> = {'Back': &lt;DefaultViews.Back: 'Back'&gt;, 'Bottom': &lt;DefaultViews.Bottom: 'Bottom'&gt;, 'Front': &lt;DefaultViews.Front: 'Front'&gt;, 'Isometric': &lt;DefaultViews.Isometric: 'Isometric'&gt;, 'Left': &lt;DefaultViews.Left: 'Left'&gt;, 'Right': &lt;DefaultViews.Right: 'Right'&gt;, 'Top': &lt;DefaultViews.Top: 'Top'&gt;}</em><a class="headerlink" href="#trimatic.view.DefaultViews._member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.view.DefaultViews._member_names_">
+<code class="descname">_member_names_</code><em class="property"> = ['Top', 'Bottom', 'Left', 'Right', 'Front', 'Back', 'Isometric']</em><a class="headerlink" href="#trimatic.view.DefaultViews._member_names_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.view.DefaultViews._member_type_">
+<code class="descname">_member_type_</code><a class="headerlink" href="#trimatic.view.DefaultViews._member_type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">builtins.object</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="trimatic.view.DefaultViews._value2member_map_">
+<code class="descname">_value2member_map_</code><em class="property"> = {'Back': &lt;DefaultViews.Back: 'Back'&gt;, 'Bottom': &lt;DefaultViews.Bottom: 'Bottom'&gt;, 'Front': &lt;DefaultViews.Front: 'Front'&gt;, 'Isometric': &lt;DefaultViews.Isometric: 'Isometric'&gt;, 'Left': &lt;DefaultViews.Left: 'Left'&gt;, 'Right': &lt;DefaultViews.Right: 'Right'&gt;, 'Top': &lt;DefaultViews.Top: 'Top'&gt;}</em><a class="headerlink" href="#trimatic.view.DefaultViews._value2member_map_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.view.get_view">
+<code class="descname">get_view</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/view.html#get_view"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.view.get_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the view direction from the 3D view.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Tuple of 2 vectors. The view vector and view up vector.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">((float, float, float), (float, float, float))</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">RuntimeError</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">view</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_view</span><span class="p">()</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">view_custom</span><span class="p">(</span><span class="n">view_vector</span><span class="o">=</span><span class="n">view</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">up_vector</span><span class="o">=</span><span class="n">view</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.view.show_only">
+<code class="descname">show_only</code><span class="sig-paren">(</span><em>entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/view.html#show_only"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.view.show_only" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zoom and show only the specified entities and hide the non-specified entities.</p>
+<p>Entities refer to all root level entities including groups and subgroups.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entities</strong> (<em>trimatic.Object | trimatic.Group |</em><em> [</em><em>trimatic.Object | trimatic.Group</em><em>]</em>) – Either a single or list of trimatic.Object and/or trimatic.Group</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Operation successful or not.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValueError, RuntimeError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span> 
+<span class="kn">import</span> <span class="nn">os</span> 
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\BonePlate.mxp&quot;</span><span class="p">)</span>
+<span class="n">plate</span><span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s1">&#39;Plate&#39;</span><span class="p">)</span>
+<span class="n">screws</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s1">&#39;Screws&#39;</span><span class="p">)</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">show_only</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="p">(</span><span class="n">plate</span><span class="p">,</span><span class="n">screws</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.view.view_custom">
+<code class="descname">view_custom</code><span class="sig-paren">(</span><em>view_vector</em>, <em>up_vector</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/view.html#view_custom"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.view.view_custom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the 3D view to a custom view direction. View is zoomed such that all objects are visible (“Unzoom All”).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>view_vector</strong> (<em>trimatic.Point</em>) – view_vector is an eye vector, this vector is orthogonal to the screen and directed from the user. If passed vectors are not orthogonal, up_vector is set as orthogonal to view_vector in the plane determined by up and view vectors.</li>
+<li><strong>up_vector</strong> (<em>trimatic.Point</em>) – up_vector is aligned with Y-axis (bottom to top) of the window.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Operation successfull or not.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">bool</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">RuntimeError, ValueError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">view</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_view</span><span class="p">()</span>
+<span class="n">trimatic</span><span class="o">.</span><span class="n">view_custom</span><span class="p">(</span><span class="n">view_vector</span><span class="o">=</span><span class="n">view</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">up_vector</span><span class="o">=</span><span class="n">view</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.view.view_default">
+<code class="descname">view_default</code><span class="sig-paren">(</span><em>view</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/view.html#view_default"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.view.view_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the 3D view to a predefined view direction. View is zoomed such that all objects are visible (“Unzoom All”).</p>
+<p>Top: Direction of visualization is perpendicular to the XY plane, in the Z-direction.</p>
+<p>Bottom: Direction of visualization is perpendicular to the XY plane, against the Z- direction.</p>
+<p>Left: Direction of visualization is perpendicular to the YZ plane, in the X-direction.</p>
+<p>Right: Direction of visualization is perpendicular to the YZ plane, against the X-direction.</p>
+<p>Front: Direction of visualization is perpendicular to the XZ plane, in the Y-direction.</p>
+<p>Back: Direction of visualization is perpendicular to the XZ plane, against the Y-direction.</p>
+<p>Isometric: Direction of visualization is (1,1, -1).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>view</strong> (<em>trimatic.DefaultView</em>) – Which view to set.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Operation successfull or not.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">RuntimeError, ValueError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">view_default</span><span class="p">(</span><span class="n">view</span><span class="o">=</span><span class="n">trimatic</span><span class="o">.</span><span class="n">DefaultViews</span><span class="o">.</span><span class="n">Left</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="trimatic.view.zoom">
+<code class="descname">zoom</code><span class="sig-paren">(</span><em>entities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/trimatic/view.html#zoom"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trimatic.view.zoom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zoom the view in such a way that the specified entities will be enclosed in the view. The resulting view will be the same as when using “Zoom Selection” in GUI for the specified entities.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entities</strong> (<em>trimatic.Object |</em><em> [</em><em>trimatic.Object</em><em>]</em>) – Either a single object or list of trimatic.Objects</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Operation successful or not.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">RuntimeError, ValueError</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trimatic</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">get_application_path</span><span class="p">())</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\DemoFiles\Aorta.mxp&quot;</span><span class="p">)</span>
+
+<span class="n">aorta</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">find_part</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="n">some_surfaces</span> <span class="o">=</span> <span class="n">aorta</span><span class="o">.</span><span class="n">find_surface_sets</span><span class="p">(</span><span class="s2">&quot;In-outlet&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_surfaces</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="n">trimatic</span><span class="o">.</span><span class="n">zoom</span><span class="p">(</span><span class="n">entities</span><span class="o">=</span><span class="n">some_surfaces</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trimatic.subscription.html" class="btn btn-neutral float-right" title="subscription" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="trimatic.uv.html" class="btn btn-neutral" title="uv" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

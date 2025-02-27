@@ -1,0 +1,1172 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>trimatic.analyze &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>trimatic.analyze</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for trimatic.analyze</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pymatic</span>
+<span class="kn">import</span> <span class="nn">trimatic.utils</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<div class="viewcode-block" id="collision_detection"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.collision_detection">[docs]</a><span class="k">def</span> <span class="nf">collision_detection</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">clearance_check</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Detect collision between parts by considering acceptable clearance between parts.</span>
+
+<span class="sd">    :param entities: A list of parts to check whether the parts are colliding.</span>
+<span class="sd">    :type entities: [trimatic.Part] | (trimatic.Part)</span>
+<span class="sd">    :param clearance_check: The minimum distance between parts that can be considered collision. </span>
+<span class="sd">     If the distance between parts is less than or equal to this value, the parts are considered to be colliding.</span>
+<span class="sd">    :type clearance_check: float</span>
+
+<span class="sd">    :return: A tuple of tuples containing colliding parts as pairs.</span>
+<span class="sd">    :rtype: ((trimatic.Part, trimatic.Part)) </span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/collision_detection.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;clearance_check&quot;</span><span class="p">,</span> <span class="n">clearance_check</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">pymatic_entities</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pymatic_entities</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Atleast two entities are required for collision stection&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">collision_detection</span><span class="p">(</span><span class="n">pymatic_entities</span><span class="p">,</span> <span class="n">clearance_check</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="collision_detection_with_colliding_volume"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.collision_detection_with_colliding_volume">[docs]</a><span class="k">def</span> <span class="nf">collision_detection_with_colliding_volume</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Detect collision between parts and calculate colliding volume. </span>
+
+<span class="sd">    :param entities: A list of parts to check whether colliding or not.</span>
+<span class="sd">    :type entities: [trimatic.Part] | (trimatic.Part)</span>
+
+<span class="sd">    :return: A tuple of tuples containing colliding parts as pairs along with colliding volume information.</span>
+<span class="sd">    :rtype: ((trimatic.Part, trimatic.Part, float)) </span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/collision_detection_with_colliding_volume.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">)</span>
+    <span class="n">pymatic_entities</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pymatic_entities</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Atleast two entities are required for collision stection&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">collision_detection_with_colliding_volume</span><span class="p">(</span><span class="n">pymatic_entities</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_arc_3_points"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_arc_3_points">[docs]</a><span class="k">def</span> <span class="nf">create_arc_3_points</span><span class="p">(</span><span class="n">point_from</span><span class="p">,</span> <span class="n">point_to</span><span class="p">,</span> <span class="n">arc_side</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates an open arc based on 3 points method.</span>
+
+<span class="sd">    :param point_from: Begin point of the arc.</span>
+<span class="sd">    :type point_from: trimatic.Point</span>
+<span class="sd">    :param point_to: End point of the arc.</span>
+<span class="sd">    :type point_to: trimatic.Point</span>
+<span class="sd">    :param arc_side: Indicates the side of the arc that will be visible, and determines the radius. </span>
+<span class="sd">                     The end result is an arc beginning in point_from, ending in point_to, and going through arc_side.</span>
+<span class="sd">    :type arc_side: trimatic.Point</span>
+<span class="sd">    :return: Created arc</span>
+<span class="sd">    :rtype: trimatic.Arc</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_arc_3_points.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+
+    <span class="n">pymatic_point_from</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point_from</span><span class="p">)</span>
+    <span class="n">pymatic_point_to</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point_to</span><span class="p">)</span>
+    <span class="n">pymatic_arc_side</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">arc_side</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_points_not_collinear</span><span class="p">(</span><span class="n">pymatic_point_from</span><span class="p">,</span> <span class="n">pymatic_point_to</span><span class="p">,</span> <span class="n">pymatic_arc_side</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_3points_not_coincident</span><span class="p">(</span><span class="s1">&#39;point_from&#39;</span><span class="p">,</span> <span class="s1">&#39;point_to&#39;</span><span class="p">,</span> <span class="s1">&#39;arc_side&#39;</span><span class="p">,</span> <span class="n">pymatic_point_from</span><span class="p">,</span> <span class="n">pymatic_point_to</span><span class="p">,</span> <span class="n">pymatic_arc_side</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_arc_3_points</span><span class="p">(</span><span class="n">pymatic_point_from</span><span class="p">,</span> <span class="n">pymatic_point_to</span><span class="p">,</span> <span class="n">pymatic_arc_side</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_circle_arc_3_points"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_circle_arc_3_points">[docs]</a><span class="k">def</span> <span class="nf">create_circle_arc_3_points</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">,</span> <span class="n">point3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a circle that passes through 3 points.</span>
+
+<span class="sd">    :param point1: First point.</span>
+<span class="sd">    :type point1: trimatic.Point</span>
+<span class="sd">    :param point2: Second point.</span>
+<span class="sd">    :type point2: trimatic.Point</span>
+<span class="sd">    :param point3: Third point.</span>
+<span class="sd">    :type point3: trimatic.Point</span>
+<span class="sd">    :return: Created arc (circle).</span>
+<span class="sd">    :rtype: trimatic.Arc</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_circle_arc_3_points.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+
+    <span class="n">pymatic_point1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point1</span><span class="p">)</span>
+    <span class="n">pymatic_point2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point2</span><span class="p">)</span>
+    <span class="n">pymatic_point3</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point3</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_points_not_collinear</span><span class="p">(</span><span class="n">pymatic_point1</span><span class="p">,</span> <span class="n">pymatic_point2</span><span class="p">,</span> <span class="n">pymatic_point3</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_3points_not_coincident</span><span class="p">(</span><span class="s1">&#39;point1&#39;</span><span class="p">,</span> <span class="s1">&#39;point2&#39;</span><span class="p">,</span> <span class="s1">&#39;point3&#39;</span><span class="p">,</span> <span class="n">pymatic_point1</span><span class="p">,</span> <span class="n">pymatic_point2</span><span class="p">,</span> <span class="n">pymatic_point3</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_circle_arc_3_points</span><span class="p">(</span><span class="n">pymatic_point1</span><span class="p">,</span> <span class="n">pymatic_point2</span><span class="p">,</span> <span class="n">pymatic_point3</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_circle_arc_normal_center_radius"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_circle_arc_normal_center_radius">[docs]</a><span class="k">def</span> <span class="nf">create_circle_arc_normal_center_radius</span><span class="p">(</span><span class="n">normal</span><span class="p">,</span> <span class="n">center_point</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a circle based on normal, center, and radius.</span>
+
+<span class="sd">    :param normal: Direction of the normal of the arc or circle, that is the normal of the plane in which the arc or circle lies.</span>
+<span class="sd">    :type normal: trimatic.Point</span>
+<span class="sd">    :param center_point: Center point of circle.</span>
+<span class="sd">    :type center_point: trimatic.Point</span>
+<span class="sd">    :param radius: Radius of circle.</span>
+<span class="sd">    :type radius: float</span>
+<span class="sd">    :return: Created arc (circle).</span>
+<span class="sd">    :rtype: trimatic.Arc</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_circle_arc_normal_center_radius.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+
+    <span class="n">pymatic_center_point</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">center_point</span><span class="p">)</span>
+    <span class="n">pymatic_normal</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">normal</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_direction</span><span class="p">(</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="n">pymatic_normal</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;radius&quot;</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_circle_arc_normal_center_radius</span><span class="p">(</span><span class="n">pymatic_normal</span><span class="p">,</span> <span class="n">pymatic_center_point</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_arc_normal_center_radius"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_arc_normal_center_radius">[docs]</a><span class="k">def</span> <span class="nf">create_arc_normal_center_radius</span><span class="p">(</span><span class="n">normal</span><span class="p">,</span> <span class="n">center_point</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">start_point</span><span class="p">,</span> <span class="n">end_point</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates an open arc based on normal, center, radius and two points.</span>
+
+<span class="sd">    :param normal: Direction of the normal of the arc or circle, which is the normal of the plane in which the arc or circle lies.</span>
+<span class="sd">    :type normal: trimatic.Point</span>
+<span class="sd">    :param center_point: Center point of arc.</span>
+<span class="sd">    :type center_point: trimatic.Point</span>
+<span class="sd">    :param radius: Radius of arc.</span>
+<span class="sd">    :type radius: float</span>
+<span class="sd">    :param start_point: Start point of arc.</span>
+<span class="sd">    :type start_point: trimatic.Point</span>
+<span class="sd">    :param end_point: End point of arc.</span>
+<span class="sd">    :type end_point: trimatic.Point</span>
+<span class="sd">    :return: Created arc.</span>
+<span class="sd">    :rtype: trimatic.Arc</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_arc_normal_center_radius.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;radius&quot;</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
+    <span class="n">pymatic_normal</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">normal</span><span class="p">)</span>
+    <span class="n">pymatic_center_point</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">center_point</span><span class="p">)</span>
+    <span class="n">pymatic_start_point</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">start_point</span><span class="p">)</span>
+    <span class="n">pymatic_end_point</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">end_point</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_3points_not_coincident</span><span class="p">(</span><span class="s1">&#39;center_point&#39;</span><span class="p">,</span> <span class="s1">&#39;start_point&#39;</span><span class="p">,</span> <span class="s1">&#39;end_point&#39;</span><span class="p">,</span>
+                                          <span class="n">pymatic_center_point</span><span class="p">,</span> <span class="n">pymatic_start_point</span><span class="p">,</span> <span class="n">pymatic_end_point</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_direction</span><span class="p">(</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="n">pymatic_normal</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_arc_normal_center_radius</span><span class="p">(</span><span class="n">pymatic_normal</span><span class="p">,</span> <span class="n">pymatic_center_point</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">pymatic_start_point</span><span class="p">,</span> <span class="n">pymatic_end_point</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_circle_arc_fit"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_circle_arc_fit">[docs]</a><span class="k">def</span> <span class="nf">create_circle_arc_fit</span><span class="p">(</span><span class="n">entity</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a fit circle.</span>
+
+<span class="sd">    :param entity: Contour or curve to fit arc.</span>
+<span class="sd">    :type entity: trimatic.Curve | trimatic.SurfaceContour</span>
+<span class="sd">    :return: Created arc.</span>
+<span class="sd">    :rtype: trimatic.Arc</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_circle_arc_fit.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceContour</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_circle_arc_fit</span><span class="p">(</span><span class="n">entity</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_cone"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_cone">[docs]</a><span class="k">def</span> <span class="nf">create_cone</span><span class="p">(</span><span class="n">bottom_point</span><span class="p">,</span> <span class="n">top_point</span><span class="p">,</span> <span class="n">bottom_radius</span><span class="p">,</span> <span class="n">top_radius</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates an analytical cone.</span>
+
+<span class="sd">    :param bottom_point: Center point of bottom of the cone.</span>
+<span class="sd">    :type bottom_point: trimatic.Point</span>
+<span class="sd">    :param top_point: Center point of the top of the cone.</span>
+<span class="sd">    :type top_point: trimatic.Point</span>
+<span class="sd">    :param bottom_radius: Bottom radius of the cone.</span>
+<span class="sd">    :type bottom_radius: float</span>
+<span class="sd">    :param top_radius: Top radius of the cone.</span>
+<span class="sd">    :type top_radius: float, optional</span>
+<span class="sd">    :return: Created cone.</span>
+<span class="sd">    :rtype: trimatic.Cone</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_cone.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;bottom_radius&quot;</span><span class="p">,</span> <span class="n">bottom_radius</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;top_radius&quot;</span><span class="p">,</span> <span class="n">top_radius</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_cone</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">bottom_point</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">top_point</span><span class="p">),</span> <span class="n">bottom_radius</span><span class="p">,</span> <span class="n">top_radius</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_cylinder_fit"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_cylinder_fit">[docs]</a><span class="k">def</span> <span class="nf">create_cylinder_fit</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates an analytical cylinder by fitting to entities.</span>
+
+<span class="sd">    :param entities: Either single object or a heterogeneous list of parts, surfaces or surface sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles]</span>
+<span class="sd">    :return: Fitted cylinder.</span>
+<span class="sd">    :rtype: trimatic.Cylinder</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_cylinder_fit.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span> <span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_part_has_surface</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_cylinder_fit</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">))</span></div>
+    
+<div class="viewcode-block" id="create_cylinder_axis"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_cylinder_axis">[docs]</a><span class="k">def</span> <span class="nf">create_cylinder_axis</span><span class="p">(</span><span class="n">origin_point</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates an analytical cylinder using axis method.</span>
+
+<span class="sd">    :param origin_point: Origin of the cylinder.</span>
+<span class="sd">    :type origin_point: trimatic.Point</span>
+<span class="sd">    :param direction: Direction of the axis of the cylinder.</span>
+<span class="sd">    :type direction: trimatic.Point</span>
+<span class="sd">    :param radius: Radius of cylinder.</span>
+<span class="sd">    :type radius: float</span>
+<span class="sd">    :param height: Height of the cylinder.</span>
+<span class="sd">    :type height: float</span>
+<span class="sd">    :return: Created cylinder.</span>
+<span class="sd">    :rtype: trimatic.Cylinder</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_cylinder_axis.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;radius&quot;</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_cylinder_axis</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">origin_point</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">direction</span><span class="p">),</span> <span class="n">radius</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_line"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_line">[docs]</a><span class="k">def</span> <span class="nf">create_line</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a line between 2 points.</span>
+
+<span class="sd">    :param point1: First point of the line.</span>
+<span class="sd">    :type point1: trimatic.Point</span>
+<span class="sd">    :param point2: Second point of the line.</span>
+<span class="sd">    :type point2: trimatic.Point</span>
+<span class="sd">    :return: Created line.</span>
+<span class="sd">    :rtype: trimatic.Line</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_line.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">pymatic_point1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point1</span><span class="p">)</span> 
+    <span class="n">pymatic_point2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point2</span><span class="p">)</span> 
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_2points_not_coincident</span><span class="p">(</span><span class="s2">&quot;point1&quot;</span><span class="p">,</span> <span class="s2">&quot;point2&quot;</span><span class="p">,</span> <span class="n">pymatic_point1</span><span class="p">,</span> <span class="n">pymatic_point2</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_line</span><span class="p">(</span><span class="n">pymatic_point1</span><span class="p">,</span> <span class="n">pymatic_point2</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_line_direction_and_length"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_line_direction_and_length">[docs]</a><span class="k">def</span> <span class="nf">create_line_direction_and_length</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a line starting from a point in given direction with specified length.</span>
+
+<span class="sd">    :param point: First point of the line.</span>
+<span class="sd">    :type point: trimatic.Point</span>
+<span class="sd">    :param direction: Direction of the line.</span>
+<span class="sd">    :type direction: trimatic.Point</span>
+<span class="sd">    :param length: Length of the line.</span>
+<span class="sd">    :type length: float</span>
+<span class="sd">    :return: Created line.</span>
+<span class="sd">    :rtype: trimatic.Line</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_line_direction_and_length.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+
+    <span class="n">pymatic_direction</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_direction</span><span class="p">(</span><span class="s2">&quot;direction&quot;</span><span class="p">,</span> <span class="n">pymatic_direction</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;length&quot;</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span>
+    <span class="n">pymatic_point</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+    
+    <span class="n">point1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+    <span class="n">l2</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">l2</span> <span class="o">+=</span> <span class="n">direction</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">direction</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">point1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">point</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">direction</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">l</span> <span class="o">*</span> <span class="n">length</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_line</span><span class="p">(</span><span class="n">pymatic_point</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point1</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="create_line_fit_ruled_surface"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_line_fit_ruled_surface">[docs]</a><span class="k">def</span> <span class="nf">create_line_fit_ruled_surface</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a line by fitting a ruled surface and returning its axis.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of parts, surfaces, or surface sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet]</span>
+<span class="sd">    :return: Axis of fitted ruled surface.</span>
+<span class="sd">    :rtype: trimatic.Line</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_line_fit_ruled_surface.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_line_fit_ruled_surface</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="create_line_plane_intersection"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_line_plane_intersection">[docs]</a><span class="k">def</span> <span class="nf">create_line_plane_intersection</span><span class="p">(</span><span class="n">plane1</span><span class="p">,</span> <span class="n">plane2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a line on intersection of two planes.</span>
+
+<span class="sd">    :param plane1: First plane.</span>
+<span class="sd">    :type plane1: trimatic.Plane</span>
+<span class="sd">    :param plane2: Second plane.</span>
+<span class="sd">    :type plane2: trimatic.Plane</span>
+<span class="sd">    :return: Created line.</span>
+<span class="sd">    :rtype: trimatic.Line</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_line_plane_intersection.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;plane1&quot;</span><span class="p">,</span> <span class="n">plane1</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Plane</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;plane2&quot;</span><span class="p">,</span> <span class="n">plane2</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Plane</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_line_plane_intersection</span><span class="p">(</span><span class="n">plane1</span><span class="p">,</span> <span class="n">plane2</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_part_comparison_analysis"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_part_comparison_analysis">[docs]</a><span class="k">def</span> <span class="nf">create_part_comparison_analysis</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">target_entity</span><span class="p">,</span> <span class="n">signed</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates part comparison analysis.</span>
+
+<span class="sd">    :param entity: The part to analyze.</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :param target_entity: The part to compare with.</span>
+<span class="sd">    :type target_entity: trimatic.Part | trimatic.Plane | trimatic.Sphere | trimatic.Cone | trimatic.Cylinder</span>
+<span class="sd">    :param signed: When True, this means that negative and positive deviation are used to differentiate between areas where target entity is inside the selected entity (negative) and where target entity is outside the selected entity (positive). When False, all distances are positive.</span>
+<span class="sd">    :type signed: bool, optional</span>
+<span class="sd">    :return: Created analysis.</span>
+<span class="sd">    :rtype: trimatic.Analysis</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_part_comparison_analysis.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;target_entity&quot;</span><span class="p">,</span> <span class="n">target_entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Plane</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Sphere</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Cone</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Cylinder</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_part_comparison_analysis</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">target_entity</span><span class="p">,</span> <span class="n">signed</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_plane_fit"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_plane_fit">[docs]</a><span class="k">def</span> <span class="nf">create_plane_fit</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a datum plane by fitting into entities.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of parts, surfaces, surface sets, curves, or curve sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.Curve  | trimatic.CurveSet | trimatic.MarkedTriangles | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.Curve  | trimatic.CurveSet | trimatic.MarkedTriangles] </span>
+<span class="sd">    :return: Created plane.</span>
+<span class="sd">    :rtype: trimatic.Plane</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_plane_fit.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">CurveSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_entities_does_not_have_part_and_one_of_its_surfaces</span><span class="p">(</span><span class="s1">&#39;entities&#39;</span><span class="p">,</span> <span class="n">entities</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_plane_fit</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="create_plane_3_points"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_plane_3_points">[docs]</a><span class="k">def</span> <span class="nf">create_plane_3_points</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">,</span> <span class="n">point3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a datum plane through 3 points.</span>
+
+<span class="sd">    The points should not be coincident (more than one point is of the same coordinate) or collinear (all 3 points form a line).</span>
+
+<span class="sd">    :param point1: First point to define the plane.</span>
+<span class="sd">    :type point1: trimatic.Point</span>
+<span class="sd">    :param point2: Second point to define the plane.</span>
+<span class="sd">    :type point2: trimatic.Point</span>
+<span class="sd">    :param point3: Third point to define the plane.</span>
+<span class="sd">    :type point3: trimatic.Point</span>
+<span class="sd">    :return: Created plane.</span>
+<span class="sd">    :rtype: trimatic.Plane</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_plane_3_points.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">pypoint1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point1</span><span class="p">)</span>
+    <span class="n">pypoint2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point2</span><span class="p">)</span>
+    <span class="n">pypoint3</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point3</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_points_not_collinear</span><span class="p">(</span><span class="n">pypoint1</span><span class="p">,</span> <span class="n">pypoint2</span><span class="p">,</span> <span class="n">pypoint3</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_3points_not_coincident</span><span class="p">(</span><span class="s2">&quot;point1&quot;</span><span class="p">,</span> <span class="s2">&quot;point2&quot;</span><span class="p">,</span> <span class="s2">&quot;point3&quot;</span><span class="p">,</span> <span class="n">pypoint1</span><span class="p">,</span> <span class="n">pypoint2</span><span class="p">,</span> <span class="n">pypoint3</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_plane_3_points</span><span class="p">(</span><span class="n">pypoint1</span><span class="p">,</span> <span class="n">pypoint2</span><span class="p">,</span> <span class="n">pypoint3</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="create_plane_2_points_perpendicular_1_plane"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_plane_2_points_perpendicular_1_plane">[docs]</a><span class="k">def</span> <span class="nf">create_plane_2_points_perpendicular_1_plane</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">,</span> <span class="n">perpendicular_plane</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a datum plane through 2 points and perpendicular to a selected plane.</span>
+
+<span class="sd">    The points should not be coincident (more than one point is of the same coordinate).</span>
+
+<span class="sd">    :param point1: First point to define the plane.</span>
+<span class="sd">    :type point1: trimatic.Point</span>
+<span class="sd">    :param point2: Second point to define the plane.</span>
+<span class="sd">    :type point2: trimatic.Point</span>
+<span class="sd">    :param perpendicular_plane: The created datum plane will be perpendicular to this selected plane.</span>
+<span class="sd">    :type perpendicular_plane: trimatic.Plane | trimatic.Surface</span>
+<span class="sd">    :return: Created plane.</span>
+<span class="sd">    :rtype: trimatic.Plane</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_plane_2_points_perpendicular_1_plane.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">pypoint1</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point1</span><span class="p">)</span>
+    <span class="n">pypoint2</span> <span class="o">=</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point2</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_2points_not_coincident</span><span class="p">(</span><span class="s2">&quot;point1&quot;</span><span class="p">,</span> <span class="s2">&quot;point2&quot;</span><span class="p">,</span> <span class="n">pypoint1</span><span class="p">,</span> <span class="n">pypoint2</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;perpendicular_plane&quot;</span><span class="p">,</span> <span class="n">perpendicular_plane</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Plane</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_plane_2_points_perpendicular_1_plane</span><span class="p">(</span><span class="n">perpendicular_plane</span><span class="p">,</span> <span class="n">pypoint1</span><span class="p">,</span> <span class="n">pypoint2</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="create_plane_normal_origin"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_plane_normal_origin">[docs]</a><span class="k">def</span> <span class="nf">create_plane_normal_origin</span><span class="p">(</span><span class="n">normal</span><span class="p">,</span> <span class="n">origin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a datum plane with given normal vector and an origin.</span>
+
+<span class="sd">    :param normal: Normal vector of the plane.</span>
+<span class="sd">    :type normal: trimatic.Point</span>
+<span class="sd">    :param origin: Origin of the plane.</span>
+<span class="sd">    :type origin: trimatic.Point</span>
+<span class="sd">    :return: Created plane.</span>
+<span class="sd">    :rtype: trimatic.Plane</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_plane_normal_origin.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_direction</span><span class="p">(</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="n">normal</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_plane_normal_origin</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">normal</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">origin</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="create_plane_midplane"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_plane_midplane">[docs]</a><span class="k">def</span> <span class="nf">create_plane_midplane</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a datum plane between two points.</span>
+
+<span class="sd">    :param point1: First point.</span>
+<span class="sd">    :type point1: trimatic.Point</span>
+<span class="sd">    :param point2: Second point.</span>
+<span class="sd">    :type point2: trimatic.Point</span>
+<span class="sd">    :return: Created plane.</span>
+<span class="sd">    :rtype: trimatic.Plane</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_plane_midplane.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_plane_midplane</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point1</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point2</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="create_plane_1_point_perpendicular_2_planes"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_plane_1_point_perpendicular_2_planes">[docs]</a><span class="k">def</span> <span class="nf">create_plane_1_point_perpendicular_2_planes</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">perpendicular_plane1</span><span class="p">,</span> <span class="n">perpendicular_plane2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a datum plane through one point and perpendicular to two selected planes.</span>
+
+<span class="sd">    :param origin: Origin of the plane.</span>
+<span class="sd">    :type origin: trimatic.Point</span>
+<span class="sd">    :param perpendicular_plane1: First perpendicular plane.</span>
+<span class="sd">    :type perpendicular_plane1: trimatic.Plane | trimatic.Surface</span>
+<span class="sd">    :param perpendicular_plane2: Second perpendicular plane.</span>
+<span class="sd">    :type perpendicular_plane2: trimatic.Plane | trimatic.Surface</span>
+<span class="sd">    :return: Created plane.</span>
+<span class="sd">    :rtype: trimatic.Plane</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_plane_1_point_perpendicular_2_planes.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;perpendicular_plane1&quot;</span><span class="p">,</span> <span class="n">perpendicular_plane1</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Plane</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;perpendicular_plane2&quot;</span><span class="p">,</span> <span class="n">perpendicular_plane2</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Plane</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_entity_sets_do_not_contain_equal_entities</span><span class="p">(</span><span class="s2">&quot;perpendicular_plane1&quot;</span><span class="p">,</span> <span class="s2">&quot;perpendicular_plane2&quot;</span><span class="p">,</span>
+                                                                   <span class="n">perpendicular_plane1</span><span class="p">,</span> <span class="n">perpendicular_plane2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_plane_1_point_perpendicular_2_planes</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">origin</span><span class="p">),</span>
+                                                              <span class="n">perpendicular_plane1</span><span class="p">,</span>
+                                                              <span class="n">perpendicular_plane2</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="create_plane_1_point_parallel_plane"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_plane_1_point_parallel_plane">[docs]</a><span class="k">def</span> <span class="nf">create_plane_1_point_parallel_plane</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">parallel_plane</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a datum plane through one point and parallel to a selected plane.</span>
+
+<span class="sd">    :param point: Origin of the plane.</span>
+<span class="sd">    :type point: trimatic.Point</span>
+<span class="sd">    :param parallel_plane: Parallel plane.</span>
+<span class="sd">    :type parallel_plane: trimatic.Plane | trimatic.Surface</span>
+<span class="sd">    :return: Created plane.</span>
+<span class="sd">    :rtype: trimatic.Plane</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_plane_1_point_parallel_plane.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;parallel_plane&quot;</span><span class="p">,</span> <span class="n">parallel_plane</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Plane</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_plane_1_point_parallel_plane</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point</span><span class="p">),</span> <span class="n">parallel_plane</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="create_plane_average_existing"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_plane_average_existing">[docs]</a><span class="k">def</span> <span class="nf">create_plane_average_existing</span><span class="p">(</span><span class="n">planes</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a datum plane based on the average of selected planes.</span>
+
+<span class="sd">    :param planes: Either single or heterogeneous list of planes.</span>
+<span class="sd">    :type planes: trimatic.Plane | [trimatic.Plane]</span>
+<span class="sd">    :return: Created plane.</span>
+<span class="sd">    :rtype: trimatic.Plane</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_plane_average_existing.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;planes&quot;</span><span class="p">,</span> <span class="n">planes</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Plane</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_plane_average_existing</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">planes</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="create_point"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_point">[docs]</a><span class="k">def</span> <span class="nf">create_point</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates point in 3-matic based on xyz coordinates.</span>
+
+<span class="sd">    :param coords: (x,y,z) of point to create.</span>
+<span class="sd">    :type coords: trimatic.Point</span>
+<span class="sd">    :return: Created point.</span>
+<span class="sd">    :rtype: trimatic.Point</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_point.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_point</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">coords</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="compute_center_of_gravity"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.compute_center_of_gravity">[docs]</a><span class="k">def</span> <span class="nf">compute_center_of_gravity</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;Based on mesh&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes center of gravity of a part.</span>
+<span class="sd">   </span>
+<span class="sd">    :param part: Part to compute center of gravity.</span>
+<span class="sd">    :type part: trimatic.Part</span>
+<span class="sd">    :param method: &quot;Based on mesh&quot; or &quot;Based on points&quot; or &quot;Based on volume&quot;.</span>
+<span class="sd">    :type method: string, optional</span>
+<span class="sd">    :return: Computed center of gravity in tuple.</span>
+<span class="sd">    :rtype: (float,float,float)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/compute_center_of_gravity.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">computation_methods</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Based on mesh&quot;</span><span class="p">,</span>
+                           <span class="s2">&quot;Based on points&quot;</span><span class="p">,</span>
+                           <span class="s2">&quot;Based on volume&quot;</span><span class="p">]</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;part&quot;</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_valid_name</span><span class="p">(</span><span class="s2">&quot;method&quot;</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">computation_methods</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">compute_center_of_gravity</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="project_point"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.project_point">[docs]</a><span class="k">def</span> <span class="nf">project_point</span><span class="p">(</span><span class="n">point_to_project</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">parts</span><span class="p">,</span> <span class="n">project_through</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Projects a point on a part given in a direction.</span>
+<span class="sd">    </span>
+<span class="sd">    :param point_to_project: Select a point to project, it can also be a list or tuple of xyz coordinates.</span>
+<span class="sd">    :type point_to_project: trimatic.Point</span>
+<span class="sd">    :param direction: Direction to project</span>
+<span class="sd">    :type direction: trimatic.Point</span>
+<span class="sd">    :param parts: Either single entity or a heterogeneous list of parts.</span>
+<span class="sd">    :type parts: trimatic.Part | [trimatic.Part]</span>
+<span class="sd">    :param project_through: If True, the point will be projected through the selected entities.</span>
+<span class="sd">    :type project_through: bool, optional</span>
+<span class="sd">    :return: Tuple of points (will only contain 1 item when project_through = False).</span>
+<span class="sd">    :rtype: ((float,float,float))</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/project_point.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_vector_not_equal</span><span class="p">(</span><span class="s2">&quot;direction&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;parts&quot;</span><span class="p">,</span> <span class="n">parts</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">project_point</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point_to_project</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">direction</span><span class="p">),</span>
+                                 <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">parts</span><span class="p">),</span> <span class="n">project_through</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="compute_closest_point"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.compute_closest_point">[docs]</a><span class="k">def</span> <span class="nf">compute_closest_point</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">parts</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the point on one or more parts that is closest to a query point.</span>
+<span class="sd">   </span>
+<span class="sd">    :param point: the query point. </span>
+<span class="sd">    :type point: (float,float,float) | trimatic.Point</span>
+<span class="sd">    :param parts: target part(s).</span>
+<span class="sd">    :type parts: trimatic.Part | [trimatic.Part]</span>
+<span class="sd">    :return: closest point.</span>
+<span class="sd">    :rtype: (float,float,float)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/compute_closest_point.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;parts&quot;</span><span class="p">,</span> <span class="n">parts</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">compute_closest_point</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">parts</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="compute_normal_and_closest_point"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.compute_normal_and_closest_point">[docs]</a><span class="k">def</span> <span class="nf">compute_normal_and_closest_point</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">parts</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the normal vector in the point closest to one or more parts in a query point.</span>
+
+<span class="sd">    This function does the same as compute_closest_point, but also return normal vector in the closest point.</span>
+<span class="sd">   </span>
+<span class="sd">    :param point: the query point. </span>
+<span class="sd">    :type point: (float,float,float) | trimatic.Point</span>
+<span class="sd">    :param parts: target part.</span>
+<span class="sd">    :type parts: trimatic.Part | [trimatic.Part]</span>
+<span class="sd">    :return: Tuple with points: normal vector and closest point</span>
+<span class="sd">    :rtype: ((float,float,float), (float,float,float))</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/compute_normal_and_closest_point.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;parts&quot;</span><span class="p">,</span> <span class="n">parts</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">compute_normal_and_closest_point</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">point</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">parts</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="compute_extrema_analysis_points"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.compute_extrema_analysis_points">[docs]</a><span class="k">def</span> <span class="nf">compute_extrema_analysis_points</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">minima</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">maxima</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">global_extrema_only</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes extremal points of multiple entities along a direction.</span>
+<span class="sd">    </span>
+<span class="sd">    :param entities: Either single object or a heterogeneous list of parts, surfaces, or surface sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | (trimatic.Part | trimatic.Surface | trimatic.SurfaceSet)</span>
+<span class="sd">    :param direction: Direction.</span>
+<span class="sd">    :type direction: trimatic.Point</span>
+<span class="sd">    :param minima: If True, computes minima.</span>
+<span class="sd">    :type minima: bool, optional</span>
+<span class="sd">    :param maxima: If True, computes maxima.</span>
+<span class="sd">    :type maxima: bool, optional</span>
+<span class="sd">    :param global_extrema_only: If True, only global extrema will be generated. If False, local extrema points will also be computed.</span>
+<span class="sd">    :type global_extrema_only: bool, optional</span>
+<span class="sd">    :return: 0, 1 or 2 tuples of points, depending on minima or maxima were queried.</span>
+<span class="sd">    :rtype: (((float,float,float)),((float,float,float)))</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/compute_extrema_analysis_points.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_vector_not_equal</span><span class="p">(</span><span class="s2">&quot;direction&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">compute_extrema_analysis_points</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">direction</span><span class="p">),</span> <span class="n">minima</span><span class="p">,</span> <span class="n">maxima</span><span class="p">,</span> <span class="n">global_extrema_only</span><span class="p">)</span></div>
+   
+<div class="viewcode-block" id="create_sphere_fit"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_sphere_fit">[docs]</a><span class="k">def</span> <span class="nf">create_sphere_fit</span><span class="p">(</span><span class="n">entities</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates an analytical sphere by fitting to entities.</span>
+
+<span class="sd">    :param entities: Either single object or heterogeneous list of parts, surfaces, or surface sets.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles | [trimatic.Part | trimatic.Surface | trimatic.SurfaceSet | trimatic.MarkedTriangles]</span>
+<span class="sd">    :return: Created sphere.</span>
+<span class="sd">    :rtype: trimatic.Sphere</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_sphere_fit.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Surface</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceSet</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">MarkedTriangles</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_part_has_surface</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_sphere_fit</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">))</span></div>
+    
+<div class="viewcode-block" id="create_sphere_center_radius"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_sphere_center_radius">[docs]</a><span class="k">def</span> <span class="nf">create_sphere_center_radius</span><span class="p">(</span><span class="n">center_point</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates an analytical sphere by specifying its center point and radius.</span>
+
+<span class="sd">    :param center_point: Center point of the sphere.</span>
+<span class="sd">    :type center_point: trimatic.Point</span>
+<span class="sd">    :param radius: Radius of the sphere.</span>
+<span class="sd">    :type radius: float</span>
+<span class="sd">    :return: Created sphere.</span>
+<span class="sd">    :rtype: trimatic.Sphere</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_sphere_center_radius.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;radius&quot;</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_sphere_center_radius</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">point_argument</span><span class="p">(</span><span class="n">center_point</span><span class="p">),</span> <span class="n">radius</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="import_fea_results"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.import_fea_results">[docs]</a><span class="k">def</span> <span class="nf">import_fea_results</span><span class="p">(</span><span class="n">filename_model</span><span class="p">,</span> <span class="n">filename_report</span><span class="p">,</span> <span class="n">recreate_surface_mesh</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Imports results from FEA packages like ABAQUS.</span>
+
+<span class="sd">    :param filename_model: The filename of the file that contains the model.</span>
+<span class="sd">    :type filename_model: string</span>
+<span class="sd">    :param filename_report: The filename of the file that contains the report.</span>
+<span class="sd">    :type filename_report: string</span>
+<span class="sd">    :param recreate_surface_mesh: When True, new surface will be created for the volume element being imported.</span>
+<span class="sd">    :type recreate_surface_mesh: bool, optional</span>
+<span class="sd">    :return: Imported model containing the analysis.</span>
+<span class="sd">    :rtype: trimatic.Part</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/import_fea_results.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename_model</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename_model</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename_report</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">filename_report</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">import_fea_results</span><span class="p">(</span><span class="n">filename_model</span><span class="p">,</span> <span class="n">filename_report</span><span class="p">,</span> <span class="n">recreate_surface_mesh</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="compute_inertia_axes"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.compute_inertia_axes">[docs]</a><span class="k">def</span> <span class="nf">compute_inertia_axes</span><span class="p">(</span><span class="n">part</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculates the inertia axes of a part. </span>
+
+<span class="sd">    :param part: The part.</span>
+<span class="sd">    :type part: trimatic.Part</span>
+<span class="sd">    :return: Returns center of gravity, the main, second and third inertia axis of the part (in that order).</span>
+<span class="sd">    :rtype: ((float, float, float),(float, float, float),(float, float, float),(float, float, float))</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/compute_inertia_axes.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;part&quot;</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">compute_inertia_axes</span><span class="p">(</span><span class="n">part</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="create_wall_thickness_analysis"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_wall_thickness_analysis">[docs]</a><span class="k">def</span> <span class="nf">create_wall_thickness_analysis</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">max_wall_thickness</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create wall thickness analysis for given entity.</span>
+
+<span class="sd">    :param entity: Entity for which analysis needs to be created.</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :param max_wall_thickness: Defines maximum allowed wall thickness for the analysis.</span>
+<span class="sd">    :type max_wall_thickness: float</span>
+<span class="sd">    :return: Created analysis object.</span>
+<span class="sd">    :rtype: trimatic.Analysis </span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_wall_thickness_analysis.py</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s1">&#39;entity&#39;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater_or_equal</span><span class="p">(</span><span class="s1">&#39;max_wall_thickness&#39;</span><span class="p">,</span> <span class="n">max_wall_thickness</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_wall_thickness_analysis</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">max_wall_thickness</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_maximum_curvature_analysis"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_maximum_curvature_analysis">[docs]</a><span class="k">def</span> <span class="nf">create_maximum_curvature_analysis</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">fitting_radius</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create maximum curvature analysis for given part.</span>
+<span class="sd">    </span>
+<span class="sd">    :param entity: Part for which analysis needs to be created.</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :param fitting_radius: If specified the curvature in each point is based on the global curvature in that area around the point. This way you can avoid that local peaks influence the curvature analysis. Otherwise, curvature is calculated locally in each point.</span>
+<span class="sd">    :type fitting_radius: float, optional</span>
+<span class="sd">    :return: Created analysis object.</span>
+<span class="sd">    :rtype: trimatic.Analysis </span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+<span class="sd">    </span>
+<span class="sd">    :example:</span>
+<span class="sd">    </span>
+<span class="sd">    .. literalinclude:: example/analyze/create_maximum_curvature_analysis.py</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    
+    <span class="k">if</span> <span class="n">fitting_radius</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s1">&#39;fitting_radius&#39;</span><span class="p">,</span> <span class="n">fitting_radius</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_maximum_curvature_analysis</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">fitting_radius</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_minimum_curvature_analysis"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_minimum_curvature_analysis">[docs]</a><span class="k">def</span> <span class="nf">create_minimum_curvature_analysis</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">fitting_radius</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create minimum curvature analysis for given part.</span>
+<span class="sd">    </span>
+<span class="sd">    :param entity: Part for which analysis needs to be created.</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :param fitting_radius: If specified the curvature in each point is based on the global curvature in that area around the point. This way you can avoid that local peaks influence the curvature analysis. Otherwise, curvature is calculated locally in each point.</span>
+<span class="sd">    :type fitting_radius:  float, optional</span>
+<span class="sd">    :return: Created analysis object.</span>
+<span class="sd">    :rtype: trimatic.Analysis </span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+<span class="sd">    </span>
+<span class="sd">    :example:</span>
+<span class="sd">    </span>
+<span class="sd">    .. literalinclude:: example/analyze/create_minimum_curvature_analysis.py</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    
+    <span class="k">if</span> <span class="n">fitting_radius</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s1">&#39;fitting_radius&#39;</span><span class="p">,</span> <span class="n">fitting_radius</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_minimum_curvature_analysis</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">fitting_radius</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_mean_curvature_analysis"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_mean_curvature_analysis">[docs]</a><span class="k">def</span> <span class="nf">create_mean_curvature_analysis</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">fitting_radius</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create mean curvature analysis for given part.</span>
+<span class="sd">    </span>
+<span class="sd">    :param entity: Part for which analysis needs to be created.</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :param fitting_radius: If specified the curvature in each point is based on the global curvature in that area around the point. This way you can avoid that local peaks influence the curvature analysis. Otherwise, curvature is calculated locally in each point.</span>
+<span class="sd">    :type fitting_radius: float, optional</span>
+<span class="sd">    :return: Created analysis object.</span>
+<span class="sd">    :rtype: trimatic.Analysis </span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+<span class="sd">    </span>
+<span class="sd">    :example:</span>
+<span class="sd">    </span>
+<span class="sd">    .. literalinclude:: example/analyze/create_mean_curvature_analysis.py</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    
+    <span class="k">if</span> <span class="n">fitting_radius</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+       <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s1">&#39;fitting_radius&#39;</span><span class="p">,</span> <span class="n">fitting_radius</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_mean_curvature_analysis</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">fitting_radius</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_gaussian_curvature_analysis"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_gaussian_curvature_analysis">[docs]</a><span class="k">def</span> <span class="nf">create_gaussian_curvature_analysis</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">fitting_radius</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create gaussian curvature analysis for given part.</span>
+<span class="sd">    </span>
+<span class="sd">    :param entity: Part for which analysis needs to be created.</span>
+<span class="sd">    :type entity: trimatic.Part</span>
+<span class="sd">    :param fitting_radius: If specified the curvature in each point is based on the global curvature in that area around the point. This way you can avoid that local peaks influence the curvature analysis. Otherwise, curvature is calculated locally in each point.</span>
+<span class="sd">    :type fitting_radius:  float, optional</span>
+<span class="sd">    :return: Created analysis object.</span>
+<span class="sd">    :rtype: trimatic.Analysis </span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+<span class="sd">    </span>
+<span class="sd">    :example:</span>
+<span class="sd">    </span>
+<span class="sd">    .. literalinclude:: example/analyze/create_gaussian_curvature_analysis.py</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    
+    <span class="k">if</span> <span class="n">fitting_radius</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_greater</span><span class="p">(</span><span class="s1">&#39;fitting_radius&#39;</span><span class="p">,</span> <span class="n">fitting_radius</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_gaussian_curvature_analysis</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">fitting_radius</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="create_segmentation"><a class="viewcode-back" href="../../trimatic.rst/trimatic.analyze.html#trimatic.analyze.create_segmentation">[docs]</a><span class="k">def</span> <span class="nf">create_segmentation</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> 
+                        <span class="n">band_thresholds</span><span class="p">,</span>
+                        <span class="n">band_colors</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This will generate a surface structure based on the given analysis.</span>
+<span class="sd">    </span>
+<span class="sd">    :param entity: Analysis object based on which the surface structure is created.</span>
+<span class="sd">    :type entity: trimatic.Analysis</span>
+<span class="sd">    :param band_thresholds: A list of adjacent values which represents minimum and maximum threshold for each band.</span>
+<span class="sd">    :type band_thresholds:  [float]</span>
+<span class="sd">    :param band_colors: A list of colors for the surfaces corresponding to the given bands.</span>
+<span class="sd">    :type band_colors:  [(float, float, float)]</span>
+
+<span class="sd">    :rtype: Generated surfaces.  </span>
+<span class="sd">    :rtype: (trimatic.Surface)</span>
+<span class="sd">    :raises: RuntimeError, ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/analyze/create_segmentation.py</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Analysis</span><span class="p">)</span>
+    <span class="n">vertices</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="n">entity</span><span class="o">.</span><span class="n">get_values</span><span class="p">()</span>
+    <span class="n">sorted_analysis</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+    <span class="c1"># N values create (N-1) bands</span>
+    <span class="n">num_bands</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">band_thresholds</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="n">sorted_bands</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">band_thresholds</span><span class="p">))</span>       
+    <span class="n">actual_min</span> <span class="o">=</span> <span class="n">sorted_analysis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">actual_max</span> <span class="o">=</span> <span class="n">sorted_analysis</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sorted_bands</span><span class="p">)):</span>
+        <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;Band threshold value(</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">sorted_bands</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">actual_min</span><span class="p">,</span> <span class="n">actual_max</span><span class="p">)</span>
+        
+    <span class="k">if</span> <span class="n">num_bands</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+       <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;There should be atleast one band to be spcified for the operation&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">num_bands</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">band_colors</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No. of colors must be equal to number of bands&quot;</span><span class="p">)</span>
+
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">band_colors</span><span class="p">:</span>
+        <span class="n">colors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">color</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_segmentation</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">sorted_bands</span> <span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">colors</span><span class="p">))</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+.. 3-matic API documentation master file, created by
+   sphinx-quickstart on Mon Oct 31 09:42:24 2016.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+**************************
+3-matic Scripting Guide
+**************************
+Table of Contents
+==================
+
+.. toctree::
+
+   introduction/index.rst
+   trimatic.rst/index.rst
+   changelog/index.rst
+   external_IDE/index.rst
+   tutorials/index.rst
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+

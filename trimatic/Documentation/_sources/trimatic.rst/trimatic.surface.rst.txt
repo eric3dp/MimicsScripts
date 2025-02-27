@@ -1,0 +1,8 @@
+surface
+=======
+
+.. automodule:: trimatic.surface
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

@@ -1,0 +1,7 @@
+######################
+API Change Log
+######################
+
+.. only:: builder_html
+
+    Records of notable changes including new API functions, removed API functions and list of modified API functions compared with 3-matic Medical 18.0 can be found in  :download:`3-matic Change Log <MedicalchangeLog.pdf>`.

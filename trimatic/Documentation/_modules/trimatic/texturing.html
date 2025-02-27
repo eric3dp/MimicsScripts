@@ -1,0 +1,493 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>trimatic.texturing &mdash; Trimatic  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Trimatic  documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Trimatic
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_3matic_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../trimatic.rst/index.html">trimatic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Trimatic</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>trimatic.texturing</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for trimatic.texturing</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pymatic</span>
+<span class="kn">import</span> <span class="nn">trimatic.utils</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<div class="viewcode-block" id="create_uv_based_rectangular_pattern_with_deformation"><a class="viewcode-back" href="../../trimatic.rst/trimatic.texturing.html#trimatic.texturing.create_uv_based_rectangular_pattern_with_deformation">[docs]</a><span class="k">def</span> <span class="nf">create_uv_based_rectangular_pattern_with_deformation</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="n">uv_map</span><span class="p">,</span>
+    <span class="n">pattern_entity</span><span class="p">,</span>
+    <span class="n">margin_u</span> <span class="o">=</span> <span class="mf">0.2000</span><span class="p">,</span>
+    <span class="n">margin_v</span> <span class="o">=</span> <span class="mf">0.2000</span><span class="p">,</span>
+    <span class="n">preserve_pattern_height</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">height_offset</span> <span class="o">=</span> <span class="mf">0.0000</span><span class="p">,</span>
+    <span class="n">preserve_boundary_entity</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Patterns the entity across the UV Map with deformation in the output.</span>
+
+<span class="sd">    :param uv_map: Parameterized entity to be used as the patterning guide.</span>
+<span class="sd">    :type uv_map: trimatic.UVMap</span>
+<span class="sd">    :param pattern_entity: One part to be patterned across the parameterized surface.</span>
+<span class="sd">    :type pattern_entity: trimatic.Part</span>
+<span class="sd">    :param margin_u: The distance between the pattern entities in the U direction in UV units.</span>
+<span class="sd">    :type margin_u: float, optional</span>
+<span class="sd">    :param margin_v: The distance between the pattern entities in the U direction in UV units.</span>
+<span class="sd">    :type margin_v: float, optional</span>
+<span class="sd">    :param preserve_pattern_height: If True, preserve the original pattern entity height in the patterned output.</span>
+<span class="sd">    :type preserve_pattern_height: bool, optional</span>
+<span class="sd">    :param height_offset: The distance between the bottom of the pattern entity and the surface with the UV Map on.</span>
+<span class="sd">    :type height_offset: float, optional</span>
+<span class="sd">    :param preserve_boundary_entity: If True, all the partial pattern entities are preserved in the final output.</span>
+<span class="sd">    :type preserve_boundary_entity: bool, optional</span>
+
+<span class="sd">    :return: One part with the output of the patterning operation.</span>
+<span class="sd">    :rtype: trimatic.Part</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/texturing/create_uv_based_rectangular_pattern_with_deformation.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;uv_map&quot;</span><span class="p">,</span> <span class="n">uv_map</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">UVMap</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;pattern_entity&quot;</span><span class="p">,</span> <span class="n">pattern_entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;margin_u&quot;</span><span class="p">,</span> <span class="n">margin_u</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.9999</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;margin_v&quot;</span><span class="p">,</span> <span class="n">margin_v</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.9999</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_uv_based_rectangular_pattern_with_deformation</span><span class="p">(</span><span class="n">uv_map</span><span class="p">,</span> <span class="n">pattern_entity</span><span class="p">,</span> <span class="n">margin_u</span><span class="p">,</span> <span class="n">margin_v</span><span class="p">,</span>
+                                                                        <span class="n">preserve_pattern_height</span><span class="p">,</span> <span class="n">height_offset</span><span class="p">,</span>
+                                                                        <span class="n">preserve_boundary_entity</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_uv_based_rectangular_pattern_without_deformation"><a class="viewcode-back" href="../../trimatic.rst/trimatic.texturing.html#trimatic.texturing.create_uv_based_rectangular_pattern_without_deformation">[docs]</a><span class="k">def</span> <span class="nf">create_uv_based_rectangular_pattern_without_deformation</span><span class="p">(</span>
+    <span class="n">uv_map</span><span class="p">,</span>
+    <span class="n">pattern_entity</span><span class="p">,</span>
+    <span class="n">height_offset</span> <span class="o">=</span> <span class="mf">0.0000</span><span class="p">,</span>
+    <span class="n">preserve_boundary_entity</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Create rectangular pattern entities based on a UV Map without any deformation.</span>
+
+<span class="sd">    :param uv_map: Parameterized entity to be used as the patterning guide.</span>
+<span class="sd">    :type uv_map: trimatic.UVMap</span>
+<span class="sd">    :param pattern_entity: One part to be patterned across the parameterized surface</span>
+<span class="sd">    :type pattern_entity: trimatic.Part</span>
+<span class="sd">    :param height_offset: The distance between the bottom of the pattern entity and the surface with the UV Map on.</span>
+<span class="sd">    :type height_offset: float, optional</span>
+<span class="sd">    :param preserve_boundary_entity: If True, all the partial pattern entities are preserved in the final output.</span>
+<span class="sd">    :type preserve_boundary_entity: bool, optional</span>
+
+<span class="sd">    :return: One part with the output of the patterning operation.</span>
+<span class="sd">    :rtype: trimatic.Part</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/texturing/create_uv_based_rectangular_pattern_without_deformation.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;uv_map&quot;</span><span class="p">,</span> <span class="n">uv_map</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">UVMap</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;pattern_entity&quot;</span><span class="p">,</span> <span class="n">pattern_entity</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_uv_based_rectangular_pattern_without_deformation</span><span class="p">(</span><span class="n">uv_map</span><span class="p">,</span> <span class="n">pattern_entity</span><span class="p">,</span> <span class="n">height_offset</span> <span class="p">,</span> <span class="n">preserve_boundary_entity</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_fade_texture"><a class="viewcode-back" href="../../trimatic.rst/trimatic.texturing.html#trimatic.texturing.create_fade_texture">[docs]</a><span class="k">def</span> <span class="nf">create_fade_texture</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="n">texture</span><span class="p">,</span>
+    <span class="n">fading_guides</span><span class="p">,</span>
+    <span class="n">is_black</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">influence_distance</span> <span class="o">=</span> <span class="mf">1.0000</span><span class="p">,</span>
+    <span class="n">fading_factor</span> <span class="o">=</span> <span class="mf">1.0000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Fades the texture images to the defined color and distance based on the input guiding curves.</span>
+
+<span class="sd">    :param texture: A single texture to be applied with fading.</span>
+<span class="sd">    :type texture: trimatic.Texture</span>
+<span class="sd">    :param fading_guides: One or multiple guide curves for the fading lines. Heterogeneous list of entities is allowed.</span>
+<span class="sd">    :type fading_guides: trimatic.Curve | trimatic.SurfaceContour | trimatic.SurfaceBorder | [trimatic.Curve | trimatic.SurfaceContour | trimatic.SurfaceBorder]</span>
+<span class="sd">    :param is_black: The color that the fading operation should fade to. If True, the fade color will be set to black, else will be white.</span>
+<span class="sd">    :type is_black: bool, optional</span>
+<span class="sd">    :param influence_distance: The distance of the regions influenced by the fading operation in XYZ coordinate system.</span>
+<span class="sd">    :type influence_distance: float, optional</span>
+<span class="sd">    :param fading_factor: The intensity of the fading at the position of the fading guide.</span>
+<span class="sd">    :type fading_factor: float, optional</span>
+<span class="sd">    </span>
+<span class="sd">    :return: One or more faded textures.</span>
+<span class="sd">    :rtype: trimatic.Texture | (trimatic.Texture)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/texturing/create_fade_texture.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;texture&quot;</span><span class="p">,</span> <span class="n">texture</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Texture</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;fading_guides&quot;</span><span class="p">,</span> <span class="n">fading_guides</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceContour</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">SurfaceBorder</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;influence_distance&quot;</span><span class="p">,</span> <span class="n">influence_distance</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;fading_factor&quot;</span><span class="p">,</span> <span class="n">fading_factor</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_fade_texture</span><span class="p">(</span><span class="n">texture</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">fading_guides</span><span class="p">),</span> <span class="n">is_black</span><span class="p">,</span> <span class="n">influence_distance</span><span class="p">,</span> <span class="n">fading_factor</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_uv_based_texture"><a class="viewcode-back" href="../../trimatic.rst/trimatic.texturing.html#trimatic.texturing.create_uv_based_texture">[docs]</a><span class="k">def</span> <span class="nf">create_uv_based_texture</span><span class="p">(</span>
+    <span class="n">uv_maps</span><span class="p">,</span>
+    <span class="n">image_path</span><span class="p">,</span>
+    <span class="n">tile_image</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span> <span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Create UV Based Texture on the selected UV Maps.</span>
+
+<span class="sd">    :param uv_maps: Parameterized entities to be textured.</span>
+<span class="sd">    :type uv_maps: trimatic.UVMap | [trimatic.UVMap]</span>
+<span class="sd">    :param image_path: Path to the texture image file in the user’s computer. Supported image formats are: .bmp, .jpeg, .gif, .png, .tiff.</span>
+<span class="sd">    :type image_path: string</span>
+<span class="sd">    :param tile_image: If True, the tile will be repeated in all the UV boxes in the UV Map.</span>
+<span class="sd">    :type tile_image: bool, optional</span>
+
+<span class="sd">    :return: Newly created textures in the selected UV Maps.</span>
+<span class="sd">    :rtype: trimatic.Texture | (trimatic.Texture)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/texturing/create_uv_based_texture.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;uv_maps&quot;</span><span class="p">,</span> <span class="n">uv_maps</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">UVMap</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">image_path</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_uv_based_texture</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">uv_maps</span><span class="p">),</span> <span class="n">image_path</span><span class="p">,</span> <span class="n">tile_image</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">image_path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="create_uv_based_texture_preserve_aspect_ratio"><a class="viewcode-back" href="../../trimatic.rst/trimatic.texturing.html#trimatic.texturing.create_uv_based_texture_preserve_aspect_ratio">[docs]</a><span class="k">def</span> <span class="nf">create_uv_based_texture_preserve_aspect_ratio</span><span class="p">(</span>
+    <span class="n">uv_maps</span><span class="p">,</span>
+    <span class="n">image_path</span><span class="p">,</span>
+    <span class="n">is_by_width</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">tile_image</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span> <span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Create UV Based Texture on the selected UV Maps while preserving the aspect ratio based on the image aspect ratio.</span>
+
+<span class="sd">    :param uv_maps: Parameterized entities to be textured.</span>
+<span class="sd">    :type uv_maps: trimatic.UVMap | [trimatic.UVMap]</span>
+<span class="sd">    :param image_path: Path in the computer to the image file. Supported image formats are: .bmp, .jpeg, .gif, .png, .tiff.</span>
+<span class="sd">    :type image_path: string</span>
+<span class="sd">    :param is_by_width: If set to True, the region will be preserved by Width (U). If set to False, the region will be preserved by Height (V).</span>
+<span class="sd">    :type is_by_width: bool, optional</span>
+<span class="sd">    :param tile_image: If True, the image texture is tiled.</span>
+<span class="sd">    :type tile_image: bool, optional</span>
+
+<span class="sd">    :return: One or more textured objects.</span>
+<span class="sd">    :rtype: trimatic.Texture | (trimatic.Texture)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+<span class="sd">    </span>
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/texturing/create_uv_based_texture_preserve_aspect_ratio.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+        
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;uv_maps&quot;</span><span class="p">,</span> <span class="n">uv_maps</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">UVMap</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">image_path</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_uv_based_texture_preserve_aspect_ratio</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">uv_maps</span><span class="p">),</span> <span class="n">image_path</span><span class="p">,</span> <span class="n">is_by_width</span><span class="p">,</span> <span class="n">tile_image</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Unable to open file &#39;</span> <span class="o">+</span> <span class="n">image_path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="set_texture_properties"><a class="viewcode-back" href="../../trimatic.rst/trimatic.texturing.html#trimatic.texturing.set_texture_properties">[docs]</a><span class="k">def</span> <span class="nf">set_texture_properties</span><span class="p">(</span>
+    <span class="n">entities</span><span class="p">,</span>
+    <span class="n">white_offset</span><span class="p">,</span>
+    <span class="n">black_offset</span><span class="p">,</span>
+    <span class="n">accuracy</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Sets the texture properties.</span>
+
+<span class="sd">    :param entities: Either a single object or a heterogeneous list of entities.</span>
+<span class="sd">    :type entities: trimatic.UVMap | trimatic.Texture | [trimatic.UVMap | trimatic.Texture]</span>
+<span class="sd">    :param white_offset: The white offset value for 3D texture.</span>
+<span class="sd">    :type white_offset: float</span>
+<span class="sd">    :param black_offset: The black offset value for 3D Texture.</span>
+<span class="sd">    :type black_offset: float</span>
+<span class="sd">    :param accuracy: The accuracy for the slice-based texture operations.</span>
+<span class="sd">    :type accuracy: float</span>
+
+<span class="sd">    :return: Textures with properties edited.</span>
+<span class="sd">    :rtype: trimatic.Texture | (trimatic.Texture)</span>
+<span class="sd">    :raises: ValueError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/texturing/set_texture_properties.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Texture</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">UVMap</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;black_offset&quot;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">set_texture_properties</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">white_offset</span><span class="p">,</span> <span class="n">black_offset</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="convert_texture_to_mesh"><a class="viewcode-back" href="../../trimatic.rst/trimatic.texturing.html#trimatic.texturing.convert_texture_to_mesh">[docs]</a><span class="k">def</span> <span class="nf">convert_texture_to_mesh</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="n">detail_size</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts textures to mesh.</span>
+
+<span class="sd">    Input entities are grouped by the parts they belong to. For every group, a new part will be created.</span>
+<span class="sd">    To control texture offsets, use set_texture_properties.</span>
+
+<span class="sd">    :param entities: Either a single object or heterogenous list of entities.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.UVMap | trimatic.UVRegion | trimatic.Texture | [trimatic.Part | trimatic.UVRegion | trimatic.UVMap | trimatic.Texture]</span>
+<span class="sd">    :param detail_size: The resolution at which the texture will be processed to generate the mesh.</span>
+<span class="sd">    :type detail_size: float</span>
+
+<span class="sd">    :return: Newly created part(s).</span>
+<span class="sd">    :rtype: (trimatic.Part)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/texturing/convert_texture_to_mesh.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">UVRegion</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">UVMap</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">Texture</span><span class="p">))</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_resolution</span><span class="p">(</span><span class="s2">&quot;detail_size&quot;</span><span class="p">,</span> <span class="n">detail_size</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">convert_texture_to_mesh</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span> <span class="n">detail_size</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="create_procedural_leather_texture"><a class="viewcode-back" href="../../trimatic.rst/trimatic.texturing.html#trimatic.texturing.create_procedural_leather_texture">[docs]</a><span class="k">def</span> <span class="nf">create_procedural_leather_texture</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="n">entities</span><span class="p">,</span>
+    <span class="n">texture_resolution</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="n">primary_cell_size</span><span class="o">=</span><span class="mf">1.0000</span><span class="p">,</span>
+    <span class="n">fading_factor</span><span class="o">=</span><span class="mf">0.1500</span><span class="p">,</span>
+    <span class="n">is_apply_spots</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">is_round_cells</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">secondary_cell_size_factor</span><span class="o">=</span><span class="mf">1.0000</span><span class="p">,</span>
+    <span class="n">secondary_cell_intensity</span><span class="o">=</span><span class="mf">1.0000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create and apply leather texture procedurally to the desired UV Map(s).</span>
+
+<span class="sd">    :param entities: Part(s) with UV Map(s) to be applied with a leather texture.</span>
+<span class="sd">    :type entities: trimatic.Part | trimatic.UVMap | [trimatic.Part | trimatic.UVMap]</span>
+<span class="sd">    :param texture_resolution: The resolution of the procedural texture bitmap.</span>
+<span class="sd">    :type texture_resolution: (int)</span>
+<span class="sd">    :param primary_cell_size: The main voronoi cell sizes.</span>
+<span class="sd">    :type primary_cell_size: (float)</span>
+<span class="sd">    :param fading_factor: The fading factor of the voronoi cells&#39; lines to the center of cell. Useful for generating different kinds of bump profiles for the voronoi cells.</span>
+<span class="sd">    :type fading_factor: (float)</span>
+<span class="sd">    :param is_apply_spots: If True, adds spots to the leather texture.</span>
+<span class="sd">    :type is_apply_spots: (bool)</span>
+<span class="sd">    :param is_round_cells: If True, voronoi cell lines will be smoothed to create more organic cells.</span>
+<span class="sd">    :type is_round_cells: (bool)</span>
+<span class="sd">    :param secondary_cell_size_factor: The factor of the secondary voronoi cells relative to the primary voronoi cells. When set to 1, no secondary cells will be generated.</span>
+<span class="sd">    :type secondary_cell_size_factor: (float)</span>
+<span class="sd">    :param secondary_cell_intensity: The intensity of the secondary voronoi cell pixels in the final image texture.</span>
+<span class="sd">    :type secondary_cell_intensity: (float)</span>
+
+<span class="sd">    :return: A tuple of Texture(s) generated by the operation. </span>
+<span class="sd">    :rtype: (trimatic.Texture)</span>
+<span class="sd">    :raises: ValueError | RuntimeError</span>
+
+<span class="sd">    :example:</span>
+
+<span class="sd">    .. literalinclude:: example/texturing/create_procedural_leather_texture.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_smaller_or_equal</span><span class="p">(</span><span class="s2">&quot;texture_resolution&quot;</span><span class="p">,</span> <span class="n">texture_resolution</span><span class="p">,</span> <span class="mi">16000</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;fading_factor&quot;</span><span class="p">,</span> <span class="n">fading_factor</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_in_range</span><span class="p">(</span><span class="s2">&quot;secondary_cell_size_factor&quot;</span><span class="p">,</span> <span class="n">secondary_cell_size_factor</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_resolution</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_param_smaller_or_equal</span><span class="p">(</span><span class="s2">&quot;secondary_cell_intensity&quot;</span><span class="p">,</span> <span class="n">secondary_cell_intensity</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_type</span><span class="p">(</span><span class="s2">&quot;entities&quot;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">Part</span><span class="p">,</span> <span class="n">trimatic</span><span class="o">.</span><span class="n">UVMap</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pymatic</span><span class="o">.</span><span class="n">create_procedural_leather_texture</span><span class="p">(</span><span class="n">trimatic</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">single_or_multiple_entities</span><span class="p">(</span><span class="n">entities</span><span class="p">),</span>
+                                                     <span class="n">texture_resolution</span><span class="p">,</span>
+                                                     <span class="n">primary_cell_size</span><span class="p">,</span>
+                                                     <span class="n">fading_factor</span><span class="p">,</span>
+                                                     <span class="n">is_apply_spots</span><span class="p">,</span>
+                                                     <span class="n">is_round_cells</span><span class="p">,</span>
+                                                     <span class="n">secondary_cell_size_factor</span><span class="p">,</span>
+                                                     <span class="n">secondary_cell_intensity</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, Materialise NV.
+
+    </p>
+    <p>
+      This scripting guide is part of the Materialise 3-matic Medical 19.0 User Guide (L-103866-03)
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
