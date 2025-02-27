@@ -9,13 +9,14 @@ import threading
 # Path to the script folder
 SCRIPT_FOLDER = r"C:\Users\bradened\github\MimicsScripts\Mimics"
 TARGET_WINDOW = "Materialise Mimics Core"
+BUTTON_HEIGHT = 35  # Approximate height per button
+MIN_HEIGHT = 100  # Minimum window height
+MAX_HEIGHT = 600  # Maximum window height to prevent excessive size
 
 class ScriptRunnerApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Mimics Script Runner")
-        self.root.geometry("300x400")
-        self.root.attributes("-topmost", True)  # Always on top
         self.root.configure(bg="white")
 
         # Label
@@ -34,7 +35,7 @@ class ScriptRunnerApp:
         self.monitor_thread.start()
 
     def load_scripts(self):
-        """Loads Python scripts from the specified folder and creates buttons, excluding 'hidden' scripts."""
+        """Loads Python scripts from the specified folder, formats names, and adjusts window size."""
         for widget in self.button_frame.winfo_children():
             widget.destroy()  # Clear existing buttons
 
@@ -49,17 +50,27 @@ class ScriptRunnerApp:
 
         if not scripts:
             tk.Label(self.button_frame, text="No scripts found", bg="white", fg="red").pack(pady=5)
+            self.adjust_window_size(1)  # Ensure window is not too small
             return
 
         for script in scripts:
+            formatted_name = script[:-3].replace("_", " ")  # Remove ".py" and replace underscores
             btn = tk.Button(
                 self.button_frame,
-                text=script,
+                text=formatted_name,
                 font=("Arial", 10),
                 bg="#4CAF50", fg="white",
                 command=lambda s=script: self.run_script(s)
             )
             btn.pack(fill=tk.X, padx=10, pady=5)
+
+        # Adjust window size based on the number of buttons
+        self.adjust_window_size(len(scripts))
+
+    def adjust_window_size(self, num_buttons):
+        """Dynamically adjusts the window height based on the number of buttons."""
+        new_height = min(MAX_HEIGHT, max(MIN_HEIGHT, 100 + num_buttons * BUTTON_HEIGHT))
+        self.root.geometry(f"300x{new_height}")
 
     def run_script(self, script_name):
         """Runs the selected script in a new process."""
