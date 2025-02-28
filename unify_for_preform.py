@@ -8,19 +8,25 @@ filepath = fullname.rsplit("\\",1)[0] + "\\"
 
 msg = trimatic.message_box("Select which parts you'd like to unify", "Unify")
 selected = trimatic.get_selection()
-duplicated = trimatic.duplicate(selected)
-for x in duplicated:
+
+for x in selected:
   groupselection.clear()
   if isinstance(x, trimatic.Group):
     if "Base" in x.name:
       pass
     else:
       for y in x.items:
-        groupselection.append(y)
-  union = trimatic.boolean_union(groupselection)
-  union.name = modelfolder + "_Gift"
-  newfile = filepath + modelfolder + "_" + x.name + ".stl"
-  trimatic.exportSTL(union, newfile)
+        groupselection.append(trimatic.duplicate(y))
+# STOPPED HERE
+    union = trimatic.boolean_union(groupselection)
+    union.name = modelfolder + "_Gift"
+    newfile = filepath + modelfolder + "_" + x.name + ".stl"
+    trimatic.exportSTL(union, newfile)
+  else:
+    union = trimatic.boolean_union(groupselection)
+    union.name = modelfolder + "_Gift"
+    newfile = filepath + modelfolder + "_" + x.name + ".stl"
+    trimatic.exportSTL(union, newfile)
 
 
 
