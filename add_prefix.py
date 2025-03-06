@@ -11,10 +11,10 @@ def rename(selected):
         0
     ]  # get rid of the excess descriptor in the folder name
 
-    if len(selected) == 0:  # if nothing is selected, exit the script 
+    if len(selected) == 0:  # if nothing is selected, exit the script
         trimatic.message_box(
             "Nothing selected, script aborted",
-            "nothing selected",
+            "Nothing selected",
             with_cancel=False
         )
         raise SystemExit(0)
@@ -24,9 +24,7 @@ def rename(selected):
             if (
                 modelfolder
             ) not in x.name:  # check to see if it's already named correctly
-                x.name = x.name.split(" ")[
-                    0
-                ]  # keep anything after a space
+                x.name = x.name.split(" ")[0]  # keep anything after a space
                 x.name = modelfolder + "_" + x.name  # rename the part
             else:
                 existing.append(
