@@ -12,6 +12,8 @@ TARGET_WINDOW = "Materialise Mimics Core"
 BUTTON_HEIGHT = 35  # Approximate height per button
 MIN_HEIGHT = 100  # Minimum window height
 MAX_HEIGHT = 600  # Maximum window height to prevent excessive size
+PYTHON_PATH = r"C:\Users\bradened\AppData\Local\Programs\Python\Python310\python.exe"
+
 
 class ScriptRunnerApp:
     def __init__(self, root):
@@ -20,7 +22,16 @@ class ScriptRunnerApp:
         self.root.configure(bg="white")
 
         # Label
-        self.label = tk.Label(root, text="Mimics Script Runner", font=("Arial", 12, "bold"), bg="white")
+        self.label = tk.Label(
+            root,
+            text="Mimics Script Runner",
+            font=(
+                "Arial",
+                12,
+                "bold"
+                ),
+            bg="white"
+        )
         self.label.pack(pady=10)
 
         # Frame to hold buttons
@@ -31,11 +42,15 @@ class ScriptRunnerApp:
         self.load_scripts()
 
         # Monitor thread for keeping on top of Mimics
-        self.monitor_thread = threading.Thread(target=self.monitor_mimics, daemon=True)
+        self.monitor_thread = threading.Thread(
+            target=self.monitor_mimics,
+            daemon=True
+            )
         self.monitor_thread.start()
 
     def load_scripts(self):
-        """Loads Python scripts from the specified folder, formats names, and adjusts window size."""
+        """Loads Python scripts from the specified folder,
+        formats names, and adjusts window size."""
         for widget in self.button_frame.winfo_children():
             widget.destroy()  # Clear existing buttons
 
@@ -44,54 +59,87 @@ class ScriptRunnerApp:
             return
 
         scripts = [
-            f for f in os.listdir(SCRIPT_FOLDER) 
+            f
+            for f in os.listdir(SCRIPT_FOLDER)
             if f.endswith(".py") and not f.lower().startswith("hidden")
         ]
 
         if not scripts:
-            tk.Label(self.button_frame, text="No scripts found", bg="white", fg="red").pack(pady=5)
+            tk.Label(
+                self.button_frame,
+                text="No scripts found",
+                bg="white",
+                fg="red"
+            ).pack(
+                pady=5
+                )
             self.adjust_window_size(1)  # Ensure window is not too small
             return
 
         for script in scripts:
-            formatted_name = script[:-3].replace("_", " ")  # Remove ".py" and replace underscores
+            formatted_name = script[:-3].replace(
+                "_", " "
+            )  # Remove ".py" and replace underscores
             btn = tk.Button(
                 self.button_frame,
                 text=formatted_name,
                 font=("Arial", 10),
-                bg="#4CAF50", fg="white",
-                command=lambda s=script: self.run_script(s)
+                bg="#4CAF50",
+                fg="white",
+                command=lambda s=script: self.run_script(s),
             )
-            btn.pack(fill=tk.X, padx=10, pady=5)
+            btn.pack(
+                fill=tk.X,
+                padx=10,
+                pady=5)
 
         # Adjust window size based on the number of buttons
         self.adjust_window_size(len(scripts))
 
     def adjust_window_size(self, num_buttons):
-        """Dynamically adjusts the window height based on the number of buttons."""
-        new_height = min(MAX_HEIGHT, max(MIN_HEIGHT, 100 + num_buttons * BUTTON_HEIGHT))
+        """Dynamically adjusts the window height
+        based on the number of buttons."""
+        new_height = min(
+            MAX_HEIGHT,
+            max(
+                MIN_HEIGHT,
+                100 + num_buttons * BUTTON_HEIGHT
+                )
+            )
         self.root.geometry(f"300x{new_height}")
 
     def run_script(self, script_name):
         """Runs the selected script in a new process."""
         script_path = os.path.join(SCRIPT_FOLDER, script_name)
         try:
-            subprocess.run(["python", script_path], check=True)
+            result = subprocess.run(
+                [PYTHON_PATH, script_path],
+                check=True,
+                capture_output=True,  # Captures output to avoid opening a new terminal
+                text=True,
+                creationflags=subprocess.CREATE_NO_WINDOW,  # Prevents opening a new window
+            )
+            print("Output:", result.stdout)
         except Exception as e:
-            messagebox.showerror("Execution Error", f"Error running {script_name}\n{e}")
+            error_message = f"Error running {script_name}\n{e}\n\n{e.stderr}"
+            messagebox.showerror("Execution Error", error_message)
 
     def monitor_mimics(self):
         """Keeps the window on top when Mimics is focused."""
         while True:
             try:
                 active_window = gw.getActiveWindow()
-                if active_window and TARGET_WINDOW.lower() in active_window.title.lower():
+                if (
+                    active_window
+                    and TARGET_WINDOW.lower() in active_window.title.lower()
+                ):
                     self.root.attributes("-topmost", True)
                 else:
                     self.root.attributes("-topmost", False)
             except Exception:
                 pass
             time.sleep(1)  # Adjust as needed
+
 
 if __name__ == "__main__":
     root = tk.Tk()

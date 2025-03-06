@@ -7,9 +7,9 @@ selected = trimatic.get_selection()
 for x in selected:
     if isinstance(x, trimatic.Group):
         for y in x.items:
-            final_name = final_name  + "," + y.name
-    else:  
-        final_name = final_name  + "," + x.name
+            final_name = final_name + "," + y.name
+    else:
+        final_name = final_name + "," + x.name
 
 duplicates = trimatic.duplicate(selected)
 move_to_trash.move_to_trash(duplicates)

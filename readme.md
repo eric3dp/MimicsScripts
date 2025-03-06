@@ -4,7 +4,7 @@ This repository contains my Python scripts for automating tasks within Materiali
 I'm a "fake" programmer, so an unhealthy amount of this code was written by LLMs. It lacks good error checking and documentation. It's also built very specifically for my personal use. They are provided as-is with no guarantees or formal support.
 ## Scripts Overview
 ### 3-Matic
-- **`boolean_union.py`** - Merges selected parts into a single entity using the boolean union operation
+- **`boolean_union.py`** - Boolean union that keeps original copies and hides them in the trash folder
 - **`export3MF.py`** - Exports selected parts and groups as 3MFs. Renames parts based on project folder and group name
 - **`hollow.py`** - Creates a hollow, saves the original solid to a Solids group
 - **`cylinderbase.py`** - (INCOMPLETE) Creates a cylindrical base for the selected parts & groups. Labeling is currently broken
