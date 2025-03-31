@@ -50,7 +50,8 @@ for (
     x
 ) in (
     selected
-):  # loop through the selection, check if the file exists, check if it's a group or multiple parts, then export them
+):  # loop through the selection, check if the file exists, check if it's a
+    # group or multiple parts, then export them
     groupselection.clear()
     if isinstance(x, trimatic.Group):
         if "Base" in x.name:
