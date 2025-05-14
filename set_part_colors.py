@@ -13,13 +13,12 @@ white = (1, 1, 1)
 colormap = {  # list of common parts and their associated colors
     "PA": darkblue,
     "AO": red,
-    "Ao": red,
-    "Aorta": red,
     "RA": lightblue,
     "LA": orange,
     "LV": yellow,
     "RV": lilac,
     "PDA": white,
+    "Airway": green,
 }
 for (
     x
@@ -29,9 +28,9 @@ for (
     if isinstance(x, trimatic.Group):
         for y in x.items:
             for key, value in colormap.items():
-                if y.name.startswith(key):
+                if y.name.lower().startswith(key):
                     y.color = value
     else:
         for key, value in colormap.items():
-            if x.name.startswith(key):
+            if x.name.lower().startswith(key):
                 x.color = value
