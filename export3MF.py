@@ -3,36 +3,46 @@ import os.path
 import add_prefix
 import exportPDF
 
-fullname = trimatic.get_project_filename()  # get full path and file name
-modelfolder = fullname.rsplit("\\", 2)[
-    1
-]  # split the string into two parts at the last \, keep the folder name
-modelfolder = modelfolder.rsplit(" ")[
-    0
-]  # get rid of the excess descriptor in the folder name
+# Get current project file path (empty string if unsaved)
+fullname = trimatic.get_project_filename()
+
+# If unsaved, prompt user to save before continuing
+if not fullname:
+    trimatic.message_box(
+        "Please save your project before exporting.", "Save Required"
+    )
+    trimatic.save_project_as()
+    fullname = trimatic.get_project_filename()
+    if not fullname:
+        trimatic.message_box("Export canceled.", "No File Saved")
+        raise SystemExit(0)
+
+# Extract folder name and base path
+modelfolder = fullname.rsplit("\\", 2)[1].rsplit(" ")[0]
 filepath = fullname.rsplit("\\", 1)[0] + "\\"
 newfile = ""
 groupselection = []
 
-selected = trimatic.get_selection()  # gather up selected parts & groups
+# Get current selection
+selected = trimatic.get_selection()
 selmsg = "Current selection:\n"
-if len(selected) > 0:  # build a string of what is selected for the message box
+
+# Build display string for selection summary
+if len(selected) > 0:
     for x in selected:
-        if isinstance(x, trimatic.Part):  # check if it's a part
-            selmsg = selmsg + "\n" + x.name
-        elif isinstance(x, trimatic.Group):  # else check if it's a group
-            selmsg = selmsg + "\nGroup: " + x.name
-            for (
-                y
-            ) in (
-                x.items
-            ):  # loop through and add part names under the Group heading
-                selmsg = selmsg + "\n  - " + y.name
+        if isinstance(x, trimatic.Part):
+            selmsg += "\n" + x.name
+        elif isinstance(x, trimatic.Group):
+            selmsg += "\nGroup: " + x.name
+            for y in x.items:
+                selmsg += "\n  - " + y.name
 else:
     selmsg = ""
+
+# Confirm with user
 msg = trimatic.message_box(
-    "Select the objects to which you'd like to export. Selected parts will be \
-    exported individually. Selected groups will be exported as single files."
+    "Select the objects to which you'd like to export. Selected parts will be "
+    "exported individually. Selected groups will be exported as single files."
     + "\n\n"
     + selmsg,
     "Export to 3MF",
@@ -41,54 +51,60 @@ msg = trimatic.message_box(
 if msg is False:
     raise SystemExit(0)
 
-selected = trimatic.get_selection()  # get the selected parts into a tuple
+# Get updated selection
+selected = trimatic.get_selection()
 add_prefix.rename(selected)
+
 basepath = ""
 result = "Performed the following operations:\n"
+
+# Export PDF to both locations
 exportPDF.exportPDF(selected)
-for (
-    x
-) in (
-    selected
-):  # loop through the selection, check if the file exists, check if it's a
-    # group or multiple parts, then export them
+
+# Export selected parts/groups
+for x in selected:
     groupselection.clear()
+
     if isinstance(x, trimatic.Group):
         if "Base" in x.name:
             basepath = (
-                "C:\\Users\\bradened\\OneDrive - Arkansas Children's\\3D Files\
-                \\AMU\\Models\\ACH24-167 - Bases\\"
+                "C:\\Users\\bradened\\OneDrive - Arkansas Children's\\3D "
+                "Files\\AMU\\Models\\ACH24-167 - Bases\\"
                 + modelfolder
                 + "_"
                 + x.name
                 + ".3mf"
             )
+
         for y in x.items:
             groupselection.append(y)
+
     elif isinstance(x, trimatic.Part):
         groupselection.append(x)
+
     newfile = filepath + modelfolder + "_" + x.name + ".3mf"
+
     if os.path.isfile(newfile):
         msg = trimatic.message_box(
-            "Overwriting existing file:"
-            + "\n"
+            "Overwriting existing file:\n"
             + newfile
             + "\nClick Cancel to skip this file",
             "Existing file",
         )
         if msg is True:
             trimatic.export_3mf(groupselection, newfile)
-            if len(basepath) > 0:
-                result = result + "\n- Exported " + basepath
+            if basepath:
                 trimatic.export_3mf(groupselection, basepath)
-            result = result + "\n- Replaced " + newfile
-        if msg is False:
-            result = result + "\n- Skipped " + newfile
+                result += "\n- Exported " + basepath
+            result += "\n- Replaced " + newfile
+        elif msg is False:
+            result += "\n- Skipped " + newfile
     else:
         trimatic.export_3mf(groupselection, newfile)
-        if len(basepath) > 0:
-            result = result + "\n- Exported " + basepath
+        if basepath:
             trimatic.export_3mf(groupselection, basepath)
-        result = result + "\n- Exported " + newfile
+            result += "\n- Exported " + basepath
+        result += "\n- Exported " + newfile
 
+# Show result summary
 trimatic.message_box(result, "Result", False)

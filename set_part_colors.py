@@ -1,5 +1,5 @@
 import trimatic
-
+# soemthing broke here when I changed the case check or whatever
 selected = trimatic.get_selection()
 # Color values are RGB 0-1, so if on a scale of 1-255, divide by 255
 darkblue = (0, 0.501960784, 1)
@@ -28,9 +28,11 @@ for (
     if isinstance(x, trimatic.Group):
         for y in x.items:
             for key, value in colormap.items():
-                if y.name.lower().startswith(key):
+                if y.name.lower().startswith(key.lower()):
                     y.color = value
+                    print(key.lower())
     else:
         for key, value in colormap.items():
-            if x.name.lower().startswith(key):
+            if x.name.lower().startswith(key.lower()):
                 x.color = value
+                print(key.lower() + "x")
