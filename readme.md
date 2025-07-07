@@ -1,7 +1,6 @@
 # MimicsScripts
 This repository contains my Python scripts for automating tasks within Materialise Mimics and 3-matic. These scripts streamline repetitive processes and introduce greater consistency to my process. 
-## Caveats
-I'm a "fake" programmer, so an unhealthy amount of this code was written by LLMs. It lacks good error checking and documentation. It's also built very specifically for my personal use. They are provided as-is with no guarantees or formal support.
+
 ## Scripts Overview
 ### 3-Matic
 - **`boolean_union.py`** - Boolean union that keeps original copies and hides them in the trash folder

@@ -16,17 +16,21 @@ base_min_height = 10 + wall_thickness
 base_diameter = 0.6
 modelparts = []
 
-trimatic.message_box(
-    "Select the parts you'd like to make a base for, then click OK",
-    "Cylindrical Base Script",
-)
+# get selected parts
 selection = trimatic.get_selection()
-
+# prompt if parts not selected
+if len(selection) < 1:
+    trimatic.message_box(
+        "Select the parts you'd like to make a base for, then click OK",
+        "Cylindrical Base Script",
+    )
+    selection = trimatic.get_selection()
+# exit if still nothing selected
 if len(selection) < 1:
     trimatic.message_box("Nothing selected. Quitting.", "Nothing selected")
     raise SystemExit(0)
-for x in selection:
 
+for x in selection:
     if isinstance(x, trimatic.Group):
         for y in x.items:
             modelparts.append(y)
@@ -36,9 +40,7 @@ for x in selection:
 modelparts = trimatic.duplicate(modelparts)
 newpart1 = trimatic.merge(modelparts)
 newpart2 = trimatic.wrap(
-    entities=newpart1,
-    gap_closing_distance=1,
-    smallest_detail=1,
+    entities=newpart1, gap_closing_distance=1, smallest_detail=1,
     resulting_offset=0.5
 )
 trimatic.delete(newpart1)
@@ -53,9 +55,7 @@ cyl_z = dim_min[2] - base_min_height
 cyl_origin = [cyl_x, cyl_y, cyl_z]
 cyl_radius = dim_delta[0] * base_diameter / 2
 base_cyl_ana = trimatic.create_cylinder_axis(
-    origin_point=cyl_origin,
-    direction=[0, 0, 1],
-    radius=cyl_radius,
+    origin_point=cyl_origin, direction=[0, 0, 1], radius=cyl_radius,
     height=dim_delta[2]
 )
 base_cyl = trimatic.convert_analytical_to_mesh(base_cyl_ana)
@@ -109,22 +109,25 @@ base_cyl.name = "Base"
 # Also does it with surfaces, not a different object.
 
 label_text = modelfolder.rsplit(" ", 2)[0]
+text_length = 21
 text_origin = [
-    cyl_x - cyl_radius + 1,
+    cyl_x - text_length,
     cyl_y - cyl_radius,
     base_cyl.dimension_min[2] + 1,
 ]
-base_cyl_dup = trimatic.duplicate(base_cyl)
+text_direction = [1, 0, 0]
+
 text_surface = trimatic.quick_label(
-    entity=base_cyl_dup,
+    entity=base_cyl,
     text=label_text,
     point=text_origin,
-    direction=[1, 0, 0],
+    direction=text_direction,
+    alignment=trimatic.TextAlignment.Center,
     font="Arial",
+    bold=True,
     font_height=base_label_height,
     label_height=-1,
 )
-text_set = base_cyl_dup.find_surface("Top surfaces")
+text_set = base_cyl.find_surface("Top surfaces")
 text_set = trimatic.uniform_offset(text_set, 1, solid=True)
-text_set.color(0, 0, 1)
-trimatic.delete(base_cyl_dup)
+text_set.color = (0, 0, 1)
