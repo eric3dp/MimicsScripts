@@ -18,6 +18,14 @@ colormap = {  # list of common parts and their associated colors
     "LV": yellow,
     "RV": lilac,
     "PDA": white,
+    "Airway": green,
+    "Left Ventricle": yellow,
+    "Right Ventricle": lilac,
+    "Coronar": red,
+    "Label": white,
+    "Left Atrium": orange,
+    "Right Atrium": lightblue,
+    "Pulmonary A": darkblue,
 }
 selected = mimics.data.masks
 for (
