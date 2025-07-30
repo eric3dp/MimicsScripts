@@ -2,10 +2,11 @@ import math
 import trimatic
 
 # === Constants ===
-DENSITY = 1.2            # g/cm³ — adjust to match print material
-MAGNET_PULL = 75         # g — pull strength of 2×1 mm neodymium magnet (axial)
-ORIENTATION_FACTOR = 1.0 # 1.0 = vertical (axial); 3–5 = horizontal/shear
-SAFETY_FACTOR = 2.0      # Multiplier to ensure secure hold
+DENSITY = 0.0012  # g/mm³ — equivalent to 1.2 g/cm³
+MAGNET_PULL = 75  # g — pull strength of 2×1 mm neodymium magnet (axial)
+ORIENTATION_FACTOR = 1.0  # 1.0 = vertical (axial); 3–5 = horizontal/shear
+SAFETY_FACTOR = 2.0  # Multiplier to ensure secure hold
+
 
 # === Helper: recursively collect all parts from selection/group ===
 def collect_parts(selection):
@@ -16,6 +17,7 @@ def collect_parts(selection):
         elif isinstance(item, trimatic.Group):
             parts.extend(collect_parts(item.items))
     return parts
+
 
 # === Main Logic ===
 selection = trimatic.get_selection()
