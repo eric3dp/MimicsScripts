@@ -53,6 +53,7 @@ if msg is False:
 
 # Get updated selection
 selected = trimatic.get_selection()
+# Rename parts
 add_prefix.rename(selected)
 
 basepath = ""
@@ -66,15 +67,7 @@ for x in selected:
     groupselection.clear()
 
     if isinstance(x, trimatic.Group):
-        if "Base" in x.name:
-            basepath = (
-                "C:\\Users\\bradened\\OneDrive - Arkansas Children's\\3D "
-                "Files\\AMU\\Models\\ACH24-167 - Bases\\"
-                + modelfolder
-                + "_"
-                + x.name
-                + ".3mf"
-            )
+        # if "Base" in x.name: basepath = ("C:\\Users\\bradened\\OneDrive - Arkansas Children's\\3D Files\\AMU\\Models\\ACH24-167 - Bases\\" + modelfolder + "_" + x.name + ".3mf")
 
         for y in x.items:
             groupselection.append(y)
