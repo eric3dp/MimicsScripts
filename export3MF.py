@@ -5,7 +5,7 @@ import exportPDF
 
 # Get current project file path (empty string if unsaved)
 fullname = trimatic.get_project_filename()
-
+totalVolume = 0
 # If unsaved, prompt user to save before continuing
 if not fullname:
     trimatic.message_box(
@@ -38,18 +38,19 @@ if len(selected) > 0:
                 selmsg += "\n  - " + y.name
 else:
     selmsg = ""
-
-# Confirm with user
-msg = trimatic.message_box(
-    "Select the objects to which you'd like to export. Selected parts will be "
-    "exported individually. Selected groups will be exported as single files."
-    + "\n\n"
-    + selmsg,
-    "Export to 3MF",
-    with_cancel=True,
-)
-if msg is False:
-    raise SystemExit(0)
+if not selected:
+    # Confirm with user
+    msg = trimatic.message_box(
+        "Select the objects to which you'd like to export."
+        "Selected parts will be exported individually. "
+        "Selected groups will be exported as single files."
+        + "\n\n"
+        + selmsg,
+        "Export to 3MF",
+        with_cancel=True,
+    )
+    if msg is False:
+        raise SystemExit(0)
 
 # Get updated selection
 selected = trimatic.get_selection()
@@ -67,15 +68,20 @@ for x in selected:
     groupselection.clear()
 
     if isinstance(x, trimatic.Group):
-        # if "Base" in x.name: basepath = ("C:\\Users\\bradened\\OneDrive - Arkansas Children's\\3D Files\\AMU\\Models\\ACH24-167 - Bases\\" + modelfolder + "_" + x.name + ".3mf")
+        # if "Base" in x.name: basepath = ("C:\\Users\\bradened\\
+        # OneDrive - Arkansas
+        # Children's\\3D Files\\AMU\\Models\\ACH24-167 - Bases\\"
+        # + modelfolder + "_" + x.name + ".3mf")
 
         for y in x.items:
             groupselection.append(y)
+            totalVolume += y.volume
 
     elif isinstance(x, trimatic.Part):
         groupselection.append(x)
-
-    newfile = filepath + modelfolder + "_" + x.name + ".3mf"
+        totalVolume += x.volume
+    totalVolume = int(round(totalVolume))
+    newfile = f"{filepath}{modelfolder}_{x.name}_{totalVolume}.3mf"
 
     if os.path.isfile(newfile):
         msg = trimatic.message_box(

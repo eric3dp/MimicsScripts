@@ -4,12 +4,8 @@ import trimatic
 def rename(selected):
     existing = []
     fullname = trimatic.get_project_filename()  # get full path and file name
-    modelfolder = fullname.rsplit("\\", 2)[
-        1
-    ]  # split the string into two parts at the last \,keep folder
-    modelfolder = modelfolder.rsplit(" ")[
-        0
-    ]  # get rid of the excess descriptor in the folder name
+    modelfolder = fullname.rsplit("\\", 2)[1]  # split the string into two parts at the last \,keep folder
+    modelfolder = modelfolder.rsplit(" ")[0]  # get rid of the excess descriptor in the folder name
 
     if len(selected) == 0:  # if nothing is selected, exit the script
         trimatic.message_box(

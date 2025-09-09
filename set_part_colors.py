@@ -1,33 +1,6 @@
 import trimatic
-
-# soemthing broke here when I changed the case check or whatever
+from colors import colormap
 selected = trimatic.get_selection()
-# Color values are RGB 0-1, so if on a scale of 1-255, divide by 255
-darkblue = (0, 0.501960784, 1)
-lightblue = (0.501960784, 1, 1)
-red = (1, 0, 0)
-lilac = (0.8235294117647059, 0.8235294117647059, 1)
-orange = (1, 0.501960784, 0)
-yellow = (1, 1, 0)
-green = (0, 1, 0)
-white = (1, 1, 1)
-colormap = {  # list of common parts and their associated colors
-    "PA": darkblue,
-    "Pulmonary A": darkblue,
-    "AO": red,
-    "RA": lightblue,
-    "Right A": lightblue,
-    "LA": orange,
-    "Left A": orange,
-    "Left V": yellow,
-    "LV": yellow,
-    "Right V": lilac,
-    "RV": lilac,
-    "PDA": white,
-    "Airway": green,
-    "Coronar": red,
-    "Label": white
-}
 for (
     x
 ) in (
