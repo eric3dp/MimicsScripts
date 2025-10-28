@@ -89,4 +89,9 @@ def find_closest_triangle_and_normal(part, point):
             + (point[2] - centroid[2]) ** 2
         ) ** 0.5
 
-        # If this is the closest
+        # If this is the closest triangle so far, calculate its normal
+        if distance < min_distance:
+            min_distance = distance
+            best_normal = calculate_triangle_normal(v1, v2, v3)
+
+    return best_normal

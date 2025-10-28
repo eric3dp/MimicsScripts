@@ -94,7 +94,7 @@ while True:
         point_count += 1
         magnet_points.append(point)
         print(f"Magnet point {point_count} selected at: {point}")
-    except:
+    except Exception:
         print(f"Total magnet points selected: {point_count}")
         break
 
@@ -114,7 +114,9 @@ for i, point in enumerate(magnet_points, 1):
         normal = normals.find_closest_triangle_and_normal(door_int, point)
 
     if normal is None:
-        print(f"Warning: Could not find normal for point {i} at {point}. Skipping...")
+        print(
+            f"Warning: Could not find normal for point {i} at {point}. " "Skipping..."
+        )
         continue
 
     print(f"Normal for magnet {i}: {normal}")
@@ -138,10 +140,11 @@ for i, point in enumerate(magnet_points, 1):
     cylinder.name = f"magnet_{i}"
     cylinders.append(cylinder)
     print(f"Created cylinder for magnet {i}")
+    door_cyl = trimatic.duplicate(cylinder)
 
     # Subtract cylinder from body_int and door_int
-    body_int = trimatic.subtract(body_int, cylinder)
-    door_int = trimatic.subtract(door_int, cylinder)
+    body_int = trimatic.boolean_subtraction(body_int, cylinder)
+    door_int = trimatic.boolean_subtraction(door_int, door_cyl)
 
 print(f"Subtracted {len(cylinders)} magnet cylinders from body_int and door_int")
 
