@@ -68,10 +68,6 @@ for x in selected:
     groupselection.clear()
 
     if isinstance(x, trimatic.Group):
-        # if "Base" in x.name: basepath = ("C:\\Users\\bradened\\
-        # OneDrive - Arkansas
-        # Children's\\3D Files\\AMU\\Models\\ACH24-167 - Bases\\"
-        # + modelfolder + "_" + x.name + ".3mf")
 
         for y in x.items:
             groupselection.append(y)
@@ -79,7 +75,7 @@ for x in selected:
 
     elif isinstance(x, trimatic.Part):
         groupselection.append(x)
-        totalVolume += x.volume
+        totalVolume = x.volume
     totalVolume = int(round(totalVolume))
     newfile = f"{filepath}{modelfolder}_{x.name}_{totalVolume}.3mf"
 
