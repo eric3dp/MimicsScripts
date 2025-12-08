@@ -63,10 +63,10 @@ result = "Performed the following operations:\n"
 # Export PDF to both locations
 exportPDF.exportPDF(selected)
 
-# Export selected parts/groups
+# Export selected parts/groups, appending volumes
 for x in selected:
     groupselection.clear()
-
+    totalVolume = 0
     if isinstance(x, trimatic.Group):
 
         for y in x.items:
