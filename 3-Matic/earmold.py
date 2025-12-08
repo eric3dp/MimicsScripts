@@ -15,13 +15,41 @@ import numpy as np
 # - silicone injection port and vents automated
 
 """ Psuedocode
-Activate Mark Wave Brush
-Print ("Please mark the edge of the impression, then hit ESC.")
-Smooth Marked Border
-Delet
 
 """
 
+
+""" marked = trimatic.activate_mark_wave_brush(diameter=5)
+trimmed = marked[0].get_parent()
+trimatic.delete(marked)
+trimmed = trimatic.filter_small_shells(
+    trimmed, threshold_area=90.0, threshold_volume=90.0, threshold_relative=True
+)
+"""
+selected = trimatic.get_selection()
+i = 0
+points = [0, 0, 0]
+while i < 3:
+    points[i] = trimatic.indicate_coordinate()
+    i += 1
+plane = trimatic.create_plane_3_points(
+    point1=points[0], point2=points[1], point3=points[2]
+)
+impression = trimatic.cut(selected, plane)
+msg = trimatic.message_box("Please select the part to keep","Keep")
+earmold = trimatic.duplicate(trimatic.get_selection())
+trimatic.delete(impression)
+trimatic.delete(earmold.find_surface_set("Cutting plane"))
+trimatic.fill_hole_freeform(earmold.get_bad_contours(), tangent=True)
+vector = np.array(plane.normal) * -2 # 2mm
+trimatic.translate(plane, vector)
+trimatic.cut(earmold, plane)
+trimatic.delete(plane)
+earmold2 = earmold
+msg = trimatic.message_box("Please select the part to keep","Keep")
+earmold = trimatic.duplicate(trimatic.get_selection())
+
+trimatic.delete(earmold2)
 
 def create_hollow_cylinder(mold, point, outer_radius, height, wall_thickness):
     """Creates a hollow cylinder at the specified
@@ -37,20 +65,18 @@ def create_hollow_cylinder(mold, point, outer_radius, height, wall_thickness):
     outer = trimatic.create_cylinder_part(
         point_1=tuple(np.array(point) - wall_thickness * normal),
         point_2=tuple(np.array(point) + height * normal),
-        radius=outer_radius
+        radius=outer_radius,
     )
 
     # Create inner cavity
     inner = trimatic.create_cylinder_part(
         point_1=point_backward,
         point_2=point_forward,
-        radius=outer_radius - wall_thickness
+        radius=outer_radius - wall_thickness,
     )
 
     # Subtract from parts
-    earmold_copy = trimatic.duplicate(
-        trimatic.find_parts("Earmold_before-tube")
-        )
+    earmold_copy = trimatic.duplicate(trimatic.find_parts("Earmold_before-tube"))
     inner_copy = trimatic.duplicate(inner)
 
     outer = trimatic.boolean_subtraction(outer, earmold_copy)
@@ -67,12 +93,8 @@ def injection(mold, point):
     filling_height = 4
 
     mold = create_hollow_cylinder(
-        mold,
-        point,
-        filling_radius + filling_wall,
-        filling_height,
-        filling_wall
-        )
+        mold, point, filling_radius + filling_wall, filling_height, filling_wall
+    )
 
     # Add vents
     mold = make_vents(mold)
@@ -87,14 +109,11 @@ def injection(mold, point):
 def make_vents(mold):
     vent_point = trimatic.indicate_coordinate()
     return create_hollow_cylinder(
-        mold,
-        vent_point,
-        outer_radius=2,
-        height=2,
-        wall_thickness=1
-        )
+        mold, vent_point, outer_radius=2, height=2, wall_thickness=1
+    )
 
 
+""" 
 # Request a part selection if nothing is selected
 premold = trimatic.get_selection()
 if len(premold) == 0:
@@ -106,3 +125,4 @@ point = trimatic.indicate_coordinate()
 mold = injection(earmold, point)
 
 print("Complete")
+ """
