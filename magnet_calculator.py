@@ -2,7 +2,7 @@ import math
 import trimatic
 
 # === Constants ===
-DENSITY = 0.0012  # g/mm³ — equivalent to 1.2 g/cm³
+DENSITY = 0.0012  # g/mm³ — equivalent to 1.2 g/cm³ SOMETHING IS WRONG HERE
 MAGNET_PULL = 75  # g — pull strength of 2×1 mm neodymium magnet (axial)
 ORIENTATION_FACTOR = 1.0  # 1.0 = vertical (axial); 3–5 = horizontal/shear
 SAFETY_FACTOR = 2.0  # Multiplier to ensure secure hold
