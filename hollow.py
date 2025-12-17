@@ -37,6 +37,7 @@ def on_window_open():
 
 
 # input box to get hollow thickness
+trimatic.suspend_progress()
 input_box = tk.Tk()
 input_box.title("Enter Thickness")
 
@@ -105,3 +106,5 @@ if not solids:
 
 else:
     solids.add_items(parts_to_solids_folder)
+
+trimatic.resume_progress()

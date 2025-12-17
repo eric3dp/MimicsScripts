@@ -1,5 +1,5 @@
 import trimatic
-
+import math
 
 def calculate_triangle_normal(v1, v2, v3):
     """
@@ -95,3 +95,20 @@ def find_closest_triangle_and_normal(part, point):
             best_normal = calculate_triangle_normal(v1, v2, v3)
 
     return best_normal
+
+def move_point(b, normal, dist):
+    """ Move Point "b" along a normal vector for a distance "dist"
+
+    Args:
+        b: Point to move, tuple
+        normal: Direction to move, tuple
+        dist: distance to move, float?
+        
+    Returns: Tuple
+
+    """
+    nx, ny, nz = normal
+    mag = math.sqrt(nx*nx + ny*ny + nz*nz)
+    nx, ny, nz = nx/mag, ny/mag, nz/mag
+    bx, by, bz = b
+    return (bx + dist*nx, by + dist*ny, bz + dist*nz)
