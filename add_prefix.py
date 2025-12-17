@@ -4,12 +4,8 @@ import trimatic
 def rename(selected):
     existing = []
     fullname = trimatic.get_project_filename()  # get full path and file name
-    modelfolder = fullname.rsplit("\\", 2)[
-        1
-    ]  # split the string into two parts at the last \,keep folder
-    modelfolder = modelfolder.rsplit(" ")[
-        0
-    ]  # get rid of the excess descriptor in the folder name
+    modelfolder = fullname.rsplit("\\", 2)[1]  # split the string into two parts at the last \,keep folder
+    modelfolder = modelfolder.rsplit(" ")[0]  # get rid of the excess descriptor in the folder name
 
     if len(selected) == 0:  # if nothing is selected, exit the script
         trimatic.message_box(
@@ -32,7 +28,7 @@ def rename(selected):
                 )  # if it's already named correctly, add it to a list
         elif isinstance(x, trimatic.Group):  # check if it's a group
             for y in x.items:
-                if (modelfolder + "_" + x.name) not in y.name:
+                if (modelfolder) not in y.name:
                     y.name = y.name.split(" ")[0]
                     y.name = (
                         modelfolder + "_" + x.name + "_" + y.name

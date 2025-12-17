@@ -2,7 +2,7 @@ import mimics
 
 # constants
 THRESHOLD_MIN = mimics.segment.HU2GV(-1023)
-THRESHOLD_MAX = mimics.segment.HU2GV(-575)
+THRESHOLD_MAX = mimics.segment.HU2GV(-238)
 
 airway_mask = mimics.segment.create_mask()
 airway_mask.name = "Airway"
@@ -13,9 +13,9 @@ mimics.segment.threshold(
 )
 
 bounding_masks = [
-    mimics.data.masks.find("(?i)^AO.*", regex=True),
-    mimics.data.masks.find("(?i)^LV.*", regex=True),
-    mimics.data.masks.find("(?i)^LA.*", regex=True),
+    mimics.data.masks.find("(?i)^(AO|Aorta).*", regex=True),
+    mimics.data.masks.find("(?i)^(LV|Left[- ]?Ventricle).*", regex=True),
+    mimics.data.masks.find("(?i)^(LA|Left[- ]?Atrium).*", regex=True),
 ]
 crop_box = mimics.measure.get_bounding_box(bounding_masks)
 
