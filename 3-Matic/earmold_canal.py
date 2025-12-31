@@ -17,6 +17,7 @@ def canal(part):
     trimatic.activate_trim(part)
     list_post = trimatic.Part.get_surfaces(part)
     surface = [item for item in list_post if item not in list_pre] + [item for item in list_pre if item not in list_post]
+    """Fillet the edge"""
     sphere1 = trimatic.create_sphere_fit(surface)
     sphere = trimatic.convert_analytical_to_mesh(sphere1)
     canal_point = trimatic.compute_center_of_gravity(sphere)
@@ -48,12 +49,7 @@ def canal(part):
             move_dist
             )
     
-""" 
-    # this is the problem. max and min give corners of the bounding box not the literal object
-    min = intersect.dimension_max
-    max = intersect.dimension_min
-    canal_line = trimatic.create_line(min, max)
-    
+"""     
     print("mark the exit point for the tube")
     exit_point = trimatic.indicate_coordinate()
     exit_normal = normals.find_closest_triangle_and_normal(part, exit_point)
