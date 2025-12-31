@@ -1,5 +1,9 @@
 import trimatic
 import normals
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+import move_to_trash
 
 # Step 1: Check if a part is selected, if not prompt user to select one
 selection = trimatic.get_selection()
@@ -43,9 +47,8 @@ side_surfaces = side_surface_set.get_surfaces()
 merged_part = trimatic.merge(side_surfaces)
 merged_part.name = "merged_sides"
 print(f"Merged {len(side_surfaces)} surfaces into new part: {merged_part.name}")
-newpart = trimatic.copy_to_part(merged_part)
-newpart.name = "newpart"
-hollow = newpart
+hollow = trimatic.copy_to_part(merged_part)
+
 # Step 5: Hollow the merged surfaces part
 trimatic.hollow(
     entities=hollow, distance=1.1, hollow_type=trimatic.HollowType.Both, smooth_factor=0
@@ -99,7 +102,6 @@ while True:
         break
 
 # Step 10: Create cylinders at each magnet point and subtract from body_int and door_int
-# Step 10: Create cylinders at each magnet point and subtract from body_int and door_int
 cylinders = []
 
 for i, point in enumerate(magnet_points, 1):
@@ -145,19 +147,20 @@ for i, point in enumerate(magnet_points, 1):
     # Subtract cylinder from body_int and door_int
     body_int = trimatic.boolean_subtraction(body_int, cylinder)
     door_int = trimatic.boolean_subtraction(door_int, door_cyl)
-
+    
 print(f"Subtracted {len(cylinders)} magnet cylinders from body_int and door_int")
 
-# Step 11: Move cylinders, body, and door to trash folder
+# Step 11: Tidy up. Rename parts and move cylinders, body, and door to trash folder
+
+body_int.name = f"{part_name}_Rim"
+door_int.name = f"{part_name}-Door_Rim"
+body_sub.name = f"{part_name}"
+door_sub.name = f"{part_name}-Door_Rim"
+
 trash_folder = trimatic.find_group("Trash")
-if trash_folder is None:
-    trash_folder = trimatic.create_group("Trash")
-
-for cylinder in cylinders:
-    cylinder.parent_group = trash_folder
-
-body.parent_group = trash_folder
-door.parent_group = trash_folder
+trashparts = (body, door, hollow)
+move_to_trash.move_to_trash(trashparts)
+move_to_trash.move_to_trash(cylinders)
 
 print("Moved cylinders, body, and door to Trash folder.")
 print("Script completed successfully!")
