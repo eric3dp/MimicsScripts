@@ -1,6 +1,6 @@
 import trimatic
-from trimatic import Point, Vector
-import math
+from trimatic import Point
+
 
 def create_tube_track():
     """
