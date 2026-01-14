@@ -5,4 +5,4 @@ pymatic/
 ScriptingUtils/
 trimatic/
 .venv
-._DS_Store
+.DS_Store
